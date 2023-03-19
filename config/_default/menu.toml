@@ -8,13 +8,24 @@
 #newtab = true
 
 
+# Icons can be found & downloaded here : https://tablericons.com/
+
 [[social]]
 identifier = "linkedin"
 name = "LinkedIn"
 url = "https://www.linkedin.com/in/jonasmehtali/"
 
 [social.params]
-#icon = "brand-linkedin"
+icon = "brand-linkedin"
+
+[[social]]
+identifier = "youtube"
+name = "YouTube"
+url = "https://www.youtube.com/@JonasMht"
+
+[social.params]
+icon = "brand-youtube"
+
 
 [[social]]
 identifier = "github"
@@ -23,11 +34,3 @@ url = "https://github.com/JonasMht"
 
 [social.params]
 icon = "brand-github"
-
-[[social]]
-identifier = "twitter"
-name = "Twitter"
-url = "https://twitter.com"
-
-[social.params]
-icon = "brand-twitter"
