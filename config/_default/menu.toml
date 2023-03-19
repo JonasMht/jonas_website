@@ -7,10 +7,19 @@
 #icon = "home"
 #newtab = true
 
+
+[[social]]
+identifier = "linkedin"
+name = "LinkedIn"
+url = "https://www.linkedin.com/in/jonasmehtali/"
+
+[social.params]
+#icon = "brand-linkedin"
+
 [[social]]
 identifier = "github"
 name = "GitHub"
-url = "https://github.com/CaiJimmy/hugo-theme-stack"
+url = "https://github.com/JonasMht"
 
 [social.params]
 icon = "brand-github"
