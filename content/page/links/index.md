@@ -1,10 +1,10 @@
 ---
 title: Links
 links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  - title: "Cursus Master Ingénierie - Informatique : Image"
+    description: "The CMI in Computer Science: Image is a 5-year Bachelor and Master's degree in Computer Science, with a specialization in Image Processing, Computer Graphics and Game Development with an emphasis on engineering."
+    website: https://mathinfo.unistra.fr/formations/diplome-duniversite/du-cursus-master-ingenierie-cmi-informatique-image-realite-virtuelle-interactions-et-jeux/
+    image: cmi-image-icon.png
 menu:
     main: 
         weight: 4
@@ -14,20 +14,4 @@ menu:
 comments: false
 ---
 
-To use this feature, add `links` section to frontmatter.
-
-This page's frontmatter:
-
-```yaml
-links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
-```
-
-`image` field accepts both local and external images.
+To read more, here are some links to other websites.
