@@ -14,4 +14,7 @@ menu:
 comments: false
 ---
 
+This website can be shared via the following QR code:
+<!--[![Image](jonasx.xyz.svg)](../)-->
+
 To read more, here are some links to other websites.

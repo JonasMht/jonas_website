@@ -14,12 +14,17 @@ all: push
 run:
 	hugo serve
 
-
 .PHONY: push
 push:
 	-git add .
 	-git commit -a -m "$(DES), $(DATE)"
 	-git push
+
+# Setup on ubuntu
+.PHONY: setup
+setup:
+	sudo apt install hugo
+	sudo snap install go --classic
 
 .PHONY: push_quit
 push_quit:
