@@ -19,7 +19,6 @@ run:
 push:
 	-git add .
 	-git commit -a -m "$(DES), $(DATE)"
-	
 	-git push
 
 .PHONY: push_quit
