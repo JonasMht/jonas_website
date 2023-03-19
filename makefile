@@ -20,7 +20,7 @@ push:
 	-git add .
 	-git commit -a -m "$(DES), $(DATE)"
 	
-	-git push origin main
+	-git push
 
 .PHONY: push_quit
 push_quit:
