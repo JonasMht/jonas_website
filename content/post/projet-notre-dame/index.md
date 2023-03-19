@@ -1,15 +1,13 @@
 ---
-title: Welcome
-description: Welcome to my Blog
-slug: welcome
+title: Projet Notre Dame
+description: A project conducted for a museum in Strasbourg
+slug: projet-notre-dame
 date: 2023-03-19 00:00:00+0000
-image: feldberg-see.jpg
-weight: 999
+image: ensemble-2.png
 categories:
-    - Welcome
+    - My Work
 tags:
     - About me
-    - About blog
 ---
 
 Welcome to the blog of Jonas Mehtali.

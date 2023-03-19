@@ -1,7 +1,7 @@
 ---
 title: Welcome
 description: An introduction to this site
-image: ensemble-2.png
+image: feldberg-see.jpg
 
 # Badge style
 style:
