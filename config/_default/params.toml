@@ -8,7 +8,7 @@ description="Description to be added"
 
 [footer]
 since = 2023
-customText = "Made with ❤️"
+customText = ""
 
 [dateFormat]
 published = "2006/01/02"
