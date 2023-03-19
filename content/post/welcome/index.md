@@ -15,6 +15,3 @@ tags:
 Welcome to the blog of Jonas Mehtali.
 
 <!-- {{< youtube uCfkWUmz9YY >}} -->
-
-
-> Image rendered for the [Projet Notre Dame](../projet-notre-dame)
