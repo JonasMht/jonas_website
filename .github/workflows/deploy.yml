@@ -35,7 +35,6 @@ jobs:
                   key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
                   restore-keys: |
                       ${{ runner.os }}-go-
-
             - name: Setup Hugo
               uses: peaceiris/actions-hugo@v2
               with:
