@@ -3,7 +3,7 @@ mainSections = ["post"]
 # Output page's full content in RSS.
 rssFullContent = true
 description="Description to be added"
-favicon = "coupe.png"
+favicon = "/favicon.ico"
 #featuredImageField="assets/img/coupe.png"
 
 [footer]
