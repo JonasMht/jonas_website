@@ -18,7 +18,7 @@ menu:
 ---
 
 ## Introduction
-Hello everyone, my name is Jonas and I am excited to be sharing my passion for computer science with you. As an IT Master's student with a specialization in Image Processing and 3D Computing, I have developed a fascination for mixing technology with creativity.
+Hi, my name is Jonas and I am excited to be sharing my passion for computer science with you. As an IT Master's student with a specialization in Image Processing and 3D Computing, I have developed a fascination for mixing technology with creativity.
 
 ## Education
 Through my academic experiences I gained the skills and knowledge to work with various software tools and technologies, including C/C++, Python, PyTorch, OpenGL, Blender, Maya. Through various projects I have developed expertise in image processing techniques, 3D modeling, and computer graphics.
