@@ -4,7 +4,7 @@ mainSections = ["post"]
 rssFullContent = true
 description="Description to be added"
 favicon = "/favicon.ico"
-#featuredImageField="assets/img/coupe.png"
+featuredImageField="assets/img/coupe.png"
 
 [footer]
 since = 2023
