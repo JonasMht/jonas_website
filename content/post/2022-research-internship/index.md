@@ -3,7 +3,7 @@ title: Research Internship in Computer Science
 description: A Full Research Project at the University of Oviedo, Spain
 slug: 2022-research-internship
 date: 2023-03-19 00:00:00+0000
-image: oviedo-spain-presentation.jpg
+image: oviedo-spain-presentation.png
 categories:
     - Experiences
 tags:
@@ -29,7 +29,7 @@ links:
 During the Summer of 2022, I participated in a Research Camp project at the University of Oviedo, Spain, where I conducted a full-scale research project and co-wrote and published a research paper with a local student. This experience allowed me to develop my research skills, work in a team, and improved my communication and collaboration skills.
 
 
-{{< figure src="oviedo-spain-diploma.jpg" title="Diploma Ceremony" >}}
+{{< figure src="oviedo-spain-diploma.png" title="Diploma Ceremony" >}}
 
 
 ## Links

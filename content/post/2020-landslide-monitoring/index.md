@@ -3,7 +3,7 @@ title: Landslide Monitoring Project
 description: Internship at EOST, Strasbourg, France
 slug: 2020-landslide-monitoring
 date: 2023-03-19 00:00:00+0000
-image: prism-and-tacheometer-la-valette.jpg
+image: prism-and-tacheometer-la-valette.png
 categories:
     - Experiences
 tags:
