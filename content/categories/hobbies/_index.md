@@ -1,6 +1,6 @@
 ---
-title: My Work
-description: A showcase of my work
+title: Hobbies
+description: Things I like to do in my free time
 image: ensemble-2.png
 
 # Badge style

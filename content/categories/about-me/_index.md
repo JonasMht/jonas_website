@@ -1,6 +1,6 @@
 ---
-title: Welcome
-description: An introduction to this site
+title: About Me
+description: Who I am, my interests and my hobbies
 image: feldberg-see.jpg
 
 # Badge style

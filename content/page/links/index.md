@@ -15,6 +15,7 @@ comments: false
 ---
 
 This website can be shared via the following QR code:
-<!--[![Image](jonasx.xyz.svg)](../)-->
+{{< figure src="jonasx.xyz.svg" width=200px title="JonasX.xyz QR Code" >}}
+
 
 To read more, here are some links to other websites.
