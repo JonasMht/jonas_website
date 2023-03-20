@@ -1,14 +1,20 @@
 ---
-title: Welcome
+title: About
 description: Who is this guy and how can he help you ?
 slug: about-me
-date: 2023-03-19 00:00:00+0000
+date: 2023-03-20 00:00:00+0000
 image: oviedo-spain-cover.jpg
 weight: 4
 categories:
     - About Me
 tags:
     - Blog
+
+menu:
+    main:
+        weight: 2
+        params: 
+            icon: user
 ---
 
 ## Introduction

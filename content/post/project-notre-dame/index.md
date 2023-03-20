@@ -10,6 +10,14 @@ tags:
     - 3D
     - Blender
     - Art
+links:
+- title: "Youtube Compilation"
+  description: "Compilation of some renders"
+  website: https://www.youtube.com/playlist?list=PL6GgfN_TkzS5HTbS_GTr9Pvq7EiQtYHTX
+- title: "LinkedIn Publication"
+  description: "Publication on LinkedIn"
+  website: https://www.linkedin.com/feed/update/urn:li:activity:6929762009446010880/
+
 ---
 
 ## Description
@@ -24,9 +32,8 @@ It was a challenging and rewarding experience that allowed me to acquire valuabl
 ### Compilation of all the 3D models
 {{< youtube mtQCm5erVaw >}}
 
+## Images
+{{< figure src="scene-render.png" width=90% title="Full Scene Render" >}}
 
-## Links
-- [LinkedIn Publication](https://www.linkedin.com/feed/update/urn:li:activity:6929762009446010880/)
-- [Youtube Compilation](https://www.youtube.com/playlist?list=PL6GgfN_TkzS5HTbS_GTr9Pvq7EiQtYHTX)
 
-> Image rendered for the [Projet Notre Dame](../projet-notre-dame)
+> Image rendered for the [Projet Notre Dame]({{< ref "/project-notre-dame" >}} "Projet Notre Dame")

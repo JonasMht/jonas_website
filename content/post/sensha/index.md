@@ -11,6 +11,11 @@ tags:
     - Game Dev
     - Python
     - Art
+
+links:
+  - title: "Project Repository"
+    description: "The repository of the project"
+    website: https://github.com/JonasMht/Sensha-Game-2019
 ---
 
 ## Introduction
@@ -35,5 +40,3 @@ Every project begins with an initial idea. My initial idea was to create a "Bric
 ## Game Original Content
 {{< figure src="all-obj.png" title="Game Sprites" >}}
 
-## Links
-- [Repository](https://github.com/JonasMht/Sensha-Game-2019)

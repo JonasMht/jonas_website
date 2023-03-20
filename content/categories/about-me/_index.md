@@ -1,7 +1,7 @@
 ---
 title: About Me
 description: Who I am, my interests and my hobbies
-image: feldberg-see.jpg
+image: oviedo-spain-cover.jpg
 
 # Badge style
 style:
