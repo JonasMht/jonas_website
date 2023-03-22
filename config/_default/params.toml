@@ -2,7 +2,7 @@
 mainSections = ["post"]
 # Output page's full content in RSS.
 rssFullContent = true
-description = "Description to be added"
+description = "The portfolio website and blog of Jonas Mehtali"
 favicon = "/favicon.ico"
 
 [footer]
