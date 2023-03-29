@@ -1,7 +1,7 @@
 ---
-title: Endorsement
+title: Endorsements
 description: Amazing people that have written something about me
-image: endorsment-title.jpg
+image: endorsement-title.jpg
 
 # Badge style
 style:

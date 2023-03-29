@@ -5,7 +5,7 @@ slug: endorsement-frank-hetroy-wheeler
 date: 2023-03-19 00:00:00+0000
 image: pole-api.png
 categories:
-    - Endorsement
+    - Endorsements
 tags:
     - Research
 
@@ -20,8 +20,8 @@ links:
 ---
 
 ## Introduction
-I would like to thank Franck Hétroy-Wheeler for his support and guidance during my Bachelor studies.
-He was always available to answer my questions and provide me with valuable feedback.
+I would like to thank Professor Franck Hétroy-Wheeler for his support and guidance during my Bachelor studies.
+I have known him since I started my studies in Computer Science at the University of Strasbourg back in 2019, where he coordinates the Cursus Master Ingénierie (CMI) program, where I was enrolled.
 He wrote a letter of recommendation for me, which I am happy to share with you.
 ## Endorsement
 {{< figure src="Franck Hétroy-Wheeler Redacted.jpg" title="Franck Hétroy-Wheeler endorsement letter" >}}
