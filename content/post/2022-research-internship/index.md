@@ -10,6 +10,7 @@ tags:
     - Internship
     - Publication
     - Research
+    - Python
 
 links:
 - title: "Publication"
