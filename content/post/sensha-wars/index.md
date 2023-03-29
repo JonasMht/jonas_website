@@ -2,7 +2,7 @@
 title: Sensha Wars
 description: Real Time Strategy Game, the sequel to Sensha
 slug: sensha-wars
-date: 2023-03-19 00:00:00+0000
+date: 2020-01-01 00:00:00+0000
 image: title.png
 categories:
     - Projects
