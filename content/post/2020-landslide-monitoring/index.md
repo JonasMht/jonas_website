@@ -8,6 +8,7 @@ categories:
     - Experiences
 tags:
     - Internship
+    - Python
 
 links:
   - title: "Project Repository"
