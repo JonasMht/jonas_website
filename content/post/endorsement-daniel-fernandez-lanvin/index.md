@@ -1,5 +1,5 @@
 ---
-title: Endorsement from Daniel Fernandez-Lanvin
+title: Endorsement by Daniel Fernandez-Lanvin
 description: Enorsement letter written by my former professor Daniel Fernandez-Lanvin
 slug: endorsement-daniel-fernandez-lanvin
 date: 2023-03-19 00:00:00+0000
