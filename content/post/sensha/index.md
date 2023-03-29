@@ -2,7 +2,7 @@
 title: Sensha
 description: Real Time Strategy Game, 2019
 slug: sensha
-date: 2023-03-19 00:00:00+0000
+date: 2019-05-01 00:00:00+0000
 image: title.png
 categories:
     - Projects
