@@ -14,23 +14,36 @@
 identifier = "linkedin"
 name = "LinkedIn"
 url = "https://www.linkedin.com/in/jonasmehtali/"
+weight = 1
 
 [social.params]
 icon = "brand-linkedin"
+
 
 [[social]]
 identifier = "youtube"
 name = "YouTube"
 url = "https://www.youtube.com/@JonasMht"
+weight = 2
 
 [social.params]
 icon = "brand-youtube"
+
+[[social]]
+identifier = "email"
+name = "Jonas.mht.private@gmail.com"
+url = "mailto:Jonas.mht.private@gmail.com"
+weight = 3
+
+[social.params]
+icon = "mail"
 
 
 [[social]]
 identifier = "github"
 name = "GitHub"
 url = "https://github.com/JonasMht"
+weight = 3
 
 [social.params]
 icon = "brand-github"
