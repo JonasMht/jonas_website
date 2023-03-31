@@ -1,6 +1,6 @@
 ---
 title: Endorsement from Franck Hétroy-Wheeler
-description: Endorsement letter written by my former professor Franck Hétroy-Wheeler
+description: Endorsement letter written by my former professor and program coordinator at the University of Strasbourg
 slug: endorsement-frank-hetroy-wheeler
 date: 2023-01-20 00:00:00+0000
 image: pole-api.png

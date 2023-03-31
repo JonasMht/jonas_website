@@ -1,6 +1,6 @@
 ---
 title: Endorsement from Daniel Fernandez-Lanvin
-description: Enorsement letter written by my former tutor Daniel Fernandez-Lanvin
+description: Endorsement letter written by my former tutor at the University of Oviedo
 slug: endorsement-daniel-fernandez-lanvin
 date: 2023-01-30 00:00:00+0000
 image: oviedo-spain-esquela.jpg
