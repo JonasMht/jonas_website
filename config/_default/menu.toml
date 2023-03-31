@@ -38,6 +38,14 @@ weight = 3
 [social.params]
 icon = "mail"
 
+[[social]]
+identifier = "cv"
+name = "My CV"
+url = "/p/about-me/jonas-mehtali-resume.pdf"
+weight = 3
+
+[social.params]
+icon = "file-certificate"
 
 [[social]]
 identifier = "github"
