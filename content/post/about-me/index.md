@@ -18,7 +18,7 @@ menu:
 links:
 - title: "My CV"
   description: "View my CV in PDF format"
-  website: jonas_mehtali_resume.pdf
+  website: jonas-mehtali-resume.pdf
 
 ---
 
