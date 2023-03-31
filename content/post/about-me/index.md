@@ -16,8 +16,8 @@ menu:
         params: 
             icon: user
 links:
-- title: "CV"
-  description: "Download my CV in PDF format."
+- title: "My CV"
+  description: "View my CV in PDF format"
   website: jonas_mehtali_resume.pdf
 
 ---
