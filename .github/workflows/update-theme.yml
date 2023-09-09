@@ -9,16 +9,33 @@ on:
   workflow_dispatch:
 
 jobs:
+<<<<<<< HEAD
   build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+=======
+  update-theme:
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+    
+    steps:
+      - uses: actions/checkout@v3
+>>>>>>> template/master
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
+<<<<<<< HEAD
           hugo-version: "latest"
+=======
+          hugo-version: 0.115.2
+>>>>>>> template/master
           extended: true
 
       - name: Update theme

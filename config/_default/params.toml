@@ -10,8 +10,9 @@ since = 2023
 customText = ""
 
 [dateFormat]
-published = "2006/01/02"
-lastUpdated = "2006/01/02 15:04 UTC+1"
+published = "13 Apr 2000"
+lastUpdated = "13 Apr 2000 12:12 UTC+1"
+
 
 [sidebar]
 emoji = "" # none
@@ -28,7 +29,7 @@ readingTime = true
 
 [article.license]
 enabled = true
-default = "Licensed under CC BY-NC-ND 4.0"
+default = "Licensed under CC BY-NC-SA 4.0"
 
 ## Widgets
 [[widgets.homepage]]

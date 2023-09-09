@@ -14,6 +14,8 @@ tags:
 ---
 
 ## Description
+During my internship in the research group of MEC-Lab, Darmstadt and ICube at the , I worked on non-invasive surgery assistance through real-time needle trajectory planning and correction. The goal was to develop a system that enabled precise and accurate needle placement during surgical procedures whilst taking into account organ movement during breathing.
+
 
 ## The phantom
 
