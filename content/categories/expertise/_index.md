@@ -1,6 +1,6 @@
 ---
 title: Expertise
-description: Professional Experiences I have had
+description: Professional experiences I have had
 image: internship-novartis.jpg
 
 # Badge style
