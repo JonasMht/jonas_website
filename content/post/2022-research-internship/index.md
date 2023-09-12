@@ -5,7 +5,7 @@ slug: 2022-research-internship
 date: 2022-07-25 00:00:00+0000
 image: oviedo-spain-presentation.png
 categories:
-    - Experiences
+    - Expertise
 tags:
     - Internship
     - Publication

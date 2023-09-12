@@ -5,7 +5,7 @@ slug: 2020-landslide-monitoring
 date: 2020-06-15 00:00:00+0000
 image: prism-and-tacheometer-la-valette.png
 categories:
-    - Experiences
+    - Expertise
 tags:
     - Internship
     - Python
