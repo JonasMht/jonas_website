@@ -1,6 +1,6 @@
 ---
 title: About
-description: Who is this guy and how can he help you ?
+description: Who I am and what I do
 slug: about-me
 date: 2023-03-20 00:00:00+0000
 image: oviedo-spain-cover.png
@@ -26,7 +26,7 @@ links:
 Hi, my name is Jonas and I am excited to be sharing my passion for computer science with you. As an IT Master's student with a specialization in Data Science, Image Processing and 3D Computing, I am particularly drawn to the intersection of technology and creativity.
 
 ## Education
-Through my academic experiences I gained the skills and knowledge to work with various software tools and technologies, including C/C++, Python, PyTorch, OpenGL, Blender, Maya. Through various projects I have developed expertise in image processing techniques, neural network applications, 3D modeling, and computer graphics.
+Through my academic experiences I gained the skills and knowledge to work with various software tools and technologies, including C/C++, Python, 3D Slicer, PyTorch, OpenGL, Blender, Maya. Through various projects I have developed expertise in image processing techniques, computer guided surgery, neural network applications, 3D modeling, and computer graphics.
 
 ## Inspiration
 But what really drives me is the opportunity to apply these skills and knowledge to real-world problems. That's why I am eager to gain practical experience in the field of computer science and IT research through an internship opportunity. I believe that this is the best way to apply academic theory to a real-world setting.

@@ -18,6 +18,12 @@ links:
     website: https://github.com/JonasMht/Sensha-Game-2019
 ---
 
+## Gameplay Videos
+
+{{< youtube iHjbx_x7N88 >}}
+{{< youtube NNkgKb7eu5s >}}
+
+
 ## Introduction
 In Japanese, "Sensha" means "tank", an armored vehicle used in combat. The tank has become a symbol of power and stability and has made its way into comics, movies, television, and video games. In strategy games like "Arma," "Battlefield," and "Supreme Commander," tanks are slow, cumbersome, and expensive, but they provide a significant strategic advantage if placed and used correctly on the battlefield.
 
@@ -33,10 +39,6 @@ The goal of this project is to allow us as young developers to discover the diff
 ### Product Proposal
 Every project begins with an initial idea. My initial idea was to create a "Brick Breaker," but this project did not seem ambitious enough. That's why I proposed developing a strategy game in the style of our childhood games like "Castle Attack"; "Heavy Mach Defense" or "Age of War". This game must combine strategy and management elements in the style of large RTS (Real-Time Strategy) games. The subject of the game is the tank, around which all strategic issues revolve.
 
-## Gameplay Video
-
-{{< youtube iHjbx_x7N88 >}}
 
 ## Game Original Content
 {{< figure src="all-obj.png" title="Game Sprites" >}}
-
