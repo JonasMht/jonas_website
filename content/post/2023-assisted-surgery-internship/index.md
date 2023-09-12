@@ -25,7 +25,9 @@ The goal of the internship was to take over and enhance the CryoTrack project wh
 <br><br>
 The primary focus was on synchronizing the surgical procedure with the breathing cycle. This involved the implementation of a breathing tracking tool based on multi-camera marker detection.
 Another important part was the streamlining of the 3D Slicer workflow, displaying the optimal areas of entry and correcting the needle orientation during the whole procedure.
-<br><br>
+
+{{< figure src="ArtificialRespirationMovement.gif" width=50% title="Breathing Simulation and Marker Detection">}}
+
 Throughout the internship, I worked extensively with Python, C++ and the 3D Slicer interface, learning to integrate a client and server for IGTLink communication between the different independent equipement pieces. I tackled challenges related to stereoscopic imaging, image processing, marker detection, synchronization of surgical procedures with breathing cycles and trajectory predictions for accurate needle placement.
 <br><br>
 Collaborating with the team, I tested, debugged, and collected data on different algorithm optimizations culminating in a presentation of my progress to the IMAGeS team on the 21st of july 2023.
@@ -89,8 +91,9 @@ The user can then use the ring to correct the needle placement and orientation b
 When the ring is closed the needle is aligned with the trajectory of the needle tip to the target.
 <br><br>
 Adding to that there is a color code to the ring.
-It lights up is green when the needle is aligned with the trajectory, yellow when the needleclosely aligned and red otherwise.
-The ring goes gray when the needle is facing away from the target at an angle greater that 90° between the needle end, it's tip and the target.
+It lights up is green when the needle is aligned with the trajectory, yellow when the needle is closely aligned and red otherwise.
+<br>
+In the case the needle is facing away from the target at an angle greater that 90° between the needle end, it's tip and the target, the ring goes gray.
 
 ![Red Targeting Ring : Incorrect Trajectory](TargetingRingRed.png) ![Green Targeting Ring : Correct Trajectory](TargetingRingGreen.png)
 
