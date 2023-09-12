@@ -42,6 +42,7 @@ The internship involved a deep dive into practical software development for non-
 - Heavy tool workflow streamlining and automation
 - Quick setup and surgery preparation (less than 5 minutes)
 - Increased precision and accuracy of needle placement
+- Work on the EMT Linux drive
 
 ## CryoTrack Walkthrough
 <!-- youtube vide-->
