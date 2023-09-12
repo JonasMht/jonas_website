@@ -1,7 +1,7 @@
 ---
 title: Hobbies
 description: Things I like to do in my free time
-image: ensemble-2.png
+image: CampusRepresentative.jpg
 
 # Badge style
 style:

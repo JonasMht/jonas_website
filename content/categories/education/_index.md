@@ -1,7 +1,7 @@
 ---
 title: Education
 description: Knowledge gained from various places
-image: ensemble-2.png
+image: UnistraPalaisU.jpg
 
 # Badge style
 style:
