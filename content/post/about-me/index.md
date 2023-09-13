@@ -23,16 +23,27 @@ links:
 ---
 
 ## Introduction
-Hi, my name is Jonas and I am excited to be sharing my passion for computer science with you. As an IT Master's student with a specialization in Data Science, Image Processing and 3D Computing, I am particularly drawn to the intersection of technology and creativity.
+Hi, my name is Jonas and I am excited to be sharing my passion for computer science and research with you.
+<br>
+As an IT Master's student specializing in Image Processing, 3D Computing, and Data Science, I'm particularly drawn to the fusion of technology and creativity.
 
 ## Education
-Through my academic experiences I gained the skills and knowledge to work with various software tools and technologies, including C/C++, Python, 3D Slicer, PyTorch, OpenGL, Blender, Maya. Through various projects I have developed expertise in image processing techniques, computer guided surgery, neural network applications, 3D modeling, and computer graphics.
+My academic experiences equipped me with aversatile skill set encompasing C/C++, Python, 3D Slicer, PyTorch, OpenGL, Blender, Maya and more.
+<br>
+I've applied these skills in diverse projects, spanning computer-guided surgery, neural network applications, 3D modeling and computer graphics.
+<br>
+Multiple research internships have deepened my passion for IT research, igniting my desire to contribute to the field.
 
 ## Inspiration
-But what really drives me is the opportunity to apply these skills and knowledge to real-world problems. That's why I am eager to gain practical experience in the field of computer science and IT research through an internship opportunity. I believe that this is the best way to apply academic theory to a real-world setting.
+What drives me most is the prospect of applying these skills and knowledge to solving real-world problems and advance the field.
+This is why I am eager to gain hands-on experience in computer science and IT research through further internships.
+<br>
+I believe that this is the ideal way of bridging academic theory with practical applications preparing me for an imminent PhD pursuit.
 
-## Goals
-My goal is not just to gain experience but also to contribute my skills and knowledge to a dynamic organization. As someone who is passionate about using technology to solve problems, I am confident that I can help your organization with its IT needs. Whether it's researching new technologies, developing new software tools, or optimizing existing systems, I am excited to take on any challenge and work towards making a meaningful impact.
+## Aspirations
+I'm a firm believer in using technology to tackle real-world problems, and I'm confident in my ability to make a positive impact. Whether it's diving into new technologies, creating innovative software, or improving existing systems, I don't give up until I find a solution that drives meaningful change.
 
 ## Conclusion
-In conclusion, if you're looking for a passionate and dedicated IT Master's student with expertise in image processing, neural networks and 3D computing, then look no further. I am eager to learn, grow and contribute my skills while gaining valuable work experience. So, let's work together towards creating a better and more innovative future for all.
+In conclusion, if you're looking for a passionate and dedicated IT Master's student with expertise in image processing, computer assisted surgery, neural networks and 3D computing, then look no further. I am eager to learn, grow and contribute my skills while gaining valuable work experience in the light of a future PhD after my graduiation.
+<br>
+So, let's work together towards creating a better and more innovative future for all.

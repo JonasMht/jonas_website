@@ -28,9 +28,9 @@ Another important part was the streamlining of the 3D Slicer workflow, displayin
 
 {{< figure src="ArtificialRespirationMovement.gif" width=50% title="Breathing Simulation and Marker Detection">}}
 
-Throughout the internship, I worked extensively with Python, C++ and the 3D Slicer interface, learning to integrate a client and server for IGTLink communication between the different independent equipement pieces. I tackled challenges related to stereoscopic imaging, image processing, marker detection, synchronization of surgical procedures with breathing cycles and trajectory predictions for accurate needle placement.
+Throughout the internship, I worked extensively with Python, C++ and the 3D Slicer interface, learning to integrate a client and server for IGTLink communication between the different independent equipment pieces. I tackled challenges related to stereoscopic imaging, image processing, marker detection, synchronization of surgical procedures with breathing cycles and trajectory predictions for accurate needle placement.
 <br><br>
-Collaborating with the team, I tested, debugged, and collected data on different algorithm optimizations culminating in a presentation of my progress to the IMAGeS team on the 21st of july 2023.
+Collaborating with the team, I tested, debugged, and collected data on different algorithm optimizations culminating in a presentation of my progress to the IMAGeS team on the 21st of July 2023.
 <br><br>
 The internship involved a deep dive into practical software development for non-invasive surgical guidance, contributing to the field of medical technology and patient care.
 
@@ -60,7 +60,7 @@ Side by side images
 -->
 ![Printed torso for the Phantom](PrintedTorso.jpg) ![Scan of the Phantom](ScannerImage.jpg)
 ### Role in the project
-For our tests we used a phantom of a torso at 1/2 of the scale of a grown man. We used agar-agar gel to simulate the patient's tissue. We chose agar-agar for its material properties that closely resemble the ones of human tissue and is well suited for doing magnetic resonance imaging (MRI). Agar-agar is long lasting, can be melted and remold and is transparent, allowing us to see inside of the phantom and do a preliminary evaluation of the efficiency of our solution.
+For our tests we used a phantom of a torso at 1/2 of the scale of a grown man. We used agar-agar gel to simulate the patient's tissue. We chose agar-agar for its material properties that closely resemble the ones of human tissue and is well suited for doing magnetic resonance imaging (MRI). Agar-agar is long lasting, can be melted and re-mold and is transparent, allowing us to see inside of the phantom and do a preliminary evaluation of the efficiency of our solution.
 The thoracic cage was printed using a flexible printing material called Z-Flex, the choice of this material is motivated by the need to simulate respiration and thus to deform the printed skeleton.
 Within the gel matrix we suspended risk structures such as a rigid printed trachea and rigid printed target beads of differing color.
 
@@ -81,7 +81,7 @@ These areas are displayed as a 3D colored map on the convex hull of the patient'
 The hard part of real time needle correction by only using a 3D visualization is to find an intuitive way to display the correction to the user. The user needs to be able to understand the correction and to be able to apply it to the needle placement and orientation.
 
 ### Targeting ring
-The most intuitive solution I found was to represent the correction as a targeting ring with a sphere. The ring is displayed around the needle tip and the sphere is displayed on it's edge in the opposite direction of the correction.
+The most intuitive solution I found was to represent the correction as a targeting ring with a sphere. The ring is displayed around the needle tip and the sphere is displayed on its edge in the opposite direction of the correction.
 <br><br>
 The ring is displayed in the 3D view and is always oriented towards the target.
 The sphere is the direct projection of the needle end on the ring plane.
@@ -94,7 +94,7 @@ When the ring is closed the needle is aligned with the trajectory of the needle 
 Adding to that there is a color code to the ring.
 It lights up is green when the needle is aligned with the trajectory, yellow when the needle is closely aligned and red otherwise.
 <br>
-In the case the needle is facing away from the target at an angle greater that 90° between the needle end, it's tip and the target, the ring goes gray.
+In the case the needle is facing away from the target at an angle greater that 90° between the needle end, its tip and the target, the ring goes gray.
 
 ![Red Targeting Ring : Incorrect Trajectory](TargetingRingRed.png) ![Green Targeting Ring : Correct Trajectory](TargetingRingGreen.png)
 
