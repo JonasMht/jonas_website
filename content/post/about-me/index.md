@@ -28,7 +28,7 @@ Hi, my name is Jonas and I am excited to be sharing my passion for computer scie
 As an IT Master's student specializing in Image Processing, 3D Computing, and Data Science, I'm particularly drawn to the fusion of technology and creativity.
 
 ## Education
-My academic experiences equipped me with aversatile skill set encompasing C/C++, Python, 3D Slicer, PyTorch, OpenGL, Blender, Maya and more.
+My academic experiences equipped me with a versatile skill set encompasing C/C++, Python, 3D Slicer, PyTorch, OpenGL, Blender, Maya and more.
 <br>
 I've applied these skills in diverse projects, spanning computer-guided surgery, neural network applications, 3D modeling and computer graphics.
 <br>
