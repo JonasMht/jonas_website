@@ -2,7 +2,7 @@
 baseurl = "https://jonasx.xyz"
 languageCode = "en-us"
 paginate = 10
-title = "Jonas Mehtali"
+title = "Jonas"
 
 # Google Analytics
 googleAnalytics = "G-NRM65DNBLP"
