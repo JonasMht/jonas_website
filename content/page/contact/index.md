@@ -1,6 +1,6 @@
 ---
 title: Contact
-image: green-mountains.jpg
+image: oviedo-spain-cover.png
 
 menu:
     main: 

@@ -10,6 +10,8 @@ tags:
     - Internship
     - Publication
     - Research
+    - Python
+    - C/C++
 
 ---
 

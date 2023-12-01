@@ -21,7 +21,7 @@ subtitle = "Master Student in Computer Science, University of Strasbourg, France
 [sidebar.avatar]
 enabled = true
 local = true
-src = "img/avatar.png"
+src = "img/avatar.jpg"
 
 [article]
 math = true
