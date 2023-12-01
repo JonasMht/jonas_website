@@ -1,7 +1,7 @@
 ---
 title: Expertise
 description: Professional experiences I have had
-image: CryoTrack_NHC_experiment.jpg
+image: CryoTrack_NHC_experiment.png
 
 # Badge style
 style:
