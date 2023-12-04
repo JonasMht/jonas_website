@@ -1,7 +1,7 @@
 ---
 title: Research
 description: My experiments and research projects
-image: cryotrack-nhc-experiment.jpg
+image: cryotrack-experiment.jpg
 
 # Badge style
 style:
