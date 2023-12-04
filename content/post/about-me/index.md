@@ -3,7 +3,7 @@ title: About
 description: Who I am and what I do
 slug: about-me
 date: 2023-03-20 00:00:00+0000
-image: CryoTrack_NHC_experiment.png
+image: cryotrack-nhc-experiment.jpg
 weight: 4
 categories:
     - About Me

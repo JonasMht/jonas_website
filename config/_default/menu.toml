@@ -19,7 +19,6 @@ weight = 1
 [social.params]
 icon = "brand-linkedin"
 
-
 [[social]]
 identifier = "youtube"
 name = "YouTube"
