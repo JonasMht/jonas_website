@@ -5,7 +5,7 @@ slug: 2023-assisted-surgery-internship
 date: 2023-08-30 00:00:00+0000
 image: SurgeonNeedleInsertion.jpg
 categories:
-    - Expertise
+    - Research
 tags:
     - Internship
     - Publication

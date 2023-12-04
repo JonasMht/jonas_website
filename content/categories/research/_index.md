@@ -1,6 +1,6 @@
 ---
-title: Expertise
-description: Professional experiences I have had
+title: Research
+description: My experiments and research projects
 image: CryoTrack_NHC_experiment.png
 
 # Badge style
