@@ -1,7 +1,7 @@
 ---
 title: Tests
 description: Test
-image: cryotrack-nhc-experiment.jpg
+image: internship-novartis.jpg
 
 # Badge style
 style:
