@@ -3,7 +3,7 @@ title: R&D Internship in Computer Assisted Surgery
 description: A Research Project at the University of Strasbourg and the TU Darmstadt
 slug: 2023-assisted-surgery-internship
 date: 2023-08-30 00:00:00+0000
-image: SurgeonNeedleInsertion.jpg
+image: insertion.jpg
 categories:
     - Research
 tags:
