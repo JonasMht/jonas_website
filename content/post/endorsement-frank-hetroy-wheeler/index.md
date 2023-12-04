@@ -7,7 +7,6 @@ image: pole-api.png
 categories:
     - Endorsements
 tags:
-    - Research
 
 links:
   - title: "PDF version"

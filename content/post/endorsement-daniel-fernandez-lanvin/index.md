@@ -7,7 +7,6 @@ image: oviedo-spain-esquela.jpg
 categories:
     - Endorsements
 tags:
-    - Research
 
 links:
   - title: "PDF version"
