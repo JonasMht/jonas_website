@@ -2,8 +2,12 @@
 mainSections = ["post"]
 # Output page's full content in RSS.
 rssFullContent = true
+favicon = "/icons/favicon.ico"
+author = "Jonas Mehtali"
 description = "The portfolio website and blog of Jonas Mehtali"
-favicon = "/favicon.ico"
+keywords = "Jonas Mehtali, Jonas, Mehtali, Blog, Research, Portfolio, Strasbourg"
+    
+
 
 [footer]
 since = 2023
