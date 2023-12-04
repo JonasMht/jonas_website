@@ -5,6 +5,6 @@ image: endorsement-title.jpg
 
 # Badge style
 style:
-    background: "#2a9d8f"
+    background: "#533b96"
     color: "#fff"
 ---

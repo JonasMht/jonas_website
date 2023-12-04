@@ -5,6 +5,6 @@ image: oviedo-spain-cover.jpg
 
 # Badge style
 style:
-    background: "#2a9d8f"
+    background: "#3b9694"
     color: "#fff"
 ---
