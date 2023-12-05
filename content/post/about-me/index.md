@@ -23,7 +23,7 @@ links:
 ---
 
 ## Introduction
-Hi, my name is Jonas and I am excited to be sharing my passion for computer science and research with you.
+Hi, my name is Jonas (<b>/ˈjoːnas/</b>) and I am excited to be sharing my passion for computer science and research with you.
 <br>
 As an IT Master's student specializing in Image Processing, 3D Computing, and Data Science, I'm particularly drawn to the fusion of technology and creativity.
 
