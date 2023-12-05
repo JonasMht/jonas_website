@@ -35,7 +35,7 @@ On a daily basis, I was in charge of mowing the lawns, weeding the flower beds a
 {{< figure src="mower.jpg"   title="Mowing the football field" >}}
 
 ### Hauling and Escorting Equipment
-I would drive various vehicles such as a tractor and a van for the purpose hauling equipment on site and escorting large heavy-duty vehicles.
+I would drive various vehicles such as a tractor and a van for the purpose of hauling equipment on site and escorting large heavy-duty vehicles.
 
 {{< figure src="escort.jpg"   title="Escorting a tractor" >}}
 
