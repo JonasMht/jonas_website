@@ -21,23 +21,40 @@ links:
 - title: "LinkedIn Publication"
   description: "Publication on LinkedIn"
   website: https://www.linkedin.com/feed/update/urn:li:activity:6929762009446010880/
+- title: "Musee Notre Dame de Strasbourg"
+  description: "Website of the museum"
+  website: https://www.musees.strasbourg.eu/musee-de-l-oeuvre-notre-dame
 
 ---
 
 ## Description
 During a six-month long project, I led a 3D team of three students to create all the 3D assets and visuals for an artistic and cultural mediation app for the Musée Notre Dame de Strasbourg.
-I develop my leadership and technical skills, as well as the ability to work in a collaborative environment.
-It was a challenging and rewarding experience that allowed me to acquire valuable skills and knowledge for my future projects.
+
+## Mission
+The goal of this project was to create 3D models of a painting displayed in the Musée Notre Dame de Strasbourg.
+<br>
+The 3D models were then used to create a mobile application that would allow visitors to discover the painting and its history in a new way.
+
+
 ## Videos
 ### Sample of 3D models
 {{< youtube hMwaHPiG-eM >}}
 ### Tutorial (French)
 {{< youtube 7xpeSMMu8_I >}}
+
+I recorded a tutorial in French to explain how I created the 3D models of the painting.
+<br>
+Its purpose was to help the other members of the team to create their own 3D models.
 ### Compilation of all the 3D models
 {{< youtube mtQCm5erVaw >}}
 
 ## Images
-{{< figure src="scene-render.png" width=90% title="Full Scene Render" >}}
+{{< figure src="musee.jpg" title="Exposition at the Museum" >}}
+{{< figure src="scene-render.png" title="Full Scene Render" >}}
 
+## Conclusion
+All along this project I develop my leadership and technical skills, as well as the ability to work in a collaborative environment.
+<br>
+It was a challenging and rewarding experience that allowed me to acquire valuable skills and knowledge for my future projects.
 
 > Image rendered for the [Projet Notre Dame]({{< ref "/project-notre-dame" >}} "Projet Notre Dame")
