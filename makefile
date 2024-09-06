@@ -33,4 +33,10 @@ push_quit:
 
 .PHONY: pull
 pull:
-	git pull origin main
+	git pull
+
+.PHONY: update
+update:
+	echo "See documentation for more information"
+	hugo mod get -u github.com/CaiJimmy/hugo-theme-stack/v3
+	hugo mod tidy
