@@ -57,4 +57,4 @@ All along this project I develop my leadership and technical skills, as well as 
 <br>
 It was a challenging and rewarding experience that allowed me to acquire valuable skills and knowledge for my future projects.
 
-> Image rendered for the [Projet Notre Dame]({{< ref "/project-notre-dame/index.md" >}} "Projet Notre Dame")
+> Image rendered for the [Projet Notre Dame]({{< ref "/post/project-notre-dame" >}} "Projet Notre Dame")
