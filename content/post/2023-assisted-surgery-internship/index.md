@@ -122,7 +122,7 @@ We collected data on the efficiency of the solution and the time saved by the su
 
 ## Acknowledgements
 
-Firstly, I wish to extend my gratitude to Caroline Essert, a distinguished researcher in the IMAGeS team at the ICube lab and professor at the University of Strasbourg.
+Firstly, I wish to extend my gratitude to Pr. Caroline Essert, a distinguished researcher in the IMAGeS team at the ICube lab and professor at the University of Strasbourg.
 Her unwavering support and expert guidance were instrumental in my successful completion of this internship.
 <br><br>
 Additionally, I’d wish to thank Henry J. Krumb, a dedicated doctoral student in the MEC-Lab team and an associate professor at TU Darmstadt. Henry played a crucial role in acquainting me with the project during its initial phase and continued to provide invaluable assistance and contributions throughout the entirety of my internship.
