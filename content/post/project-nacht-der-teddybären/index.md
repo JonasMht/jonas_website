@@ -25,4 +25,4 @@ As part of a two-student team, I created a Teddy-Zombie survival game using Unit
 {{< youtube WPh75-kgGAw >}}
 
 
-> Videos filmed for the [Nacht Der Teddybären]({{< ref "/project-nacht-der-teddybären" >}} "Nacht Der Teddybären") project
+> Videos filmed for the [Nacht Der Teddybären]({{< ref "/post/project-nacht-der-teddybären" >}} "Nacht Der Teddybären") project
