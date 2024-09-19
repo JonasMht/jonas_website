@@ -29,15 +29,15 @@ Je viens d'emménager et pour fêter ça, je vous invite à trouver la couleur q
 🎉 __Pinata__ pour la grande révélation<br>
 ⏳ __Fin__ à ~22h
 
-## L'objectif
+## L'Objectif
 Passer un moment convivial pour célébrer mon emménagement dans mon __premier appartement__ 🏠
 
-## Informations pratiques
+## Informations Pratiques
 📍 __Adresse__ : 2 rue de Châtenois, Strasbourg - 3ème étage
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2640.1864146434796!2d7.754665977473331!3d48.567978321098366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796c90872f390b3%3A0xb2e6049ff278df12!2s2%20Rue%20de%20Ch%C3%A2tenois%2C%2067100%20Strasbourg!5e0!3m2!1sen!2sfr!4v1726670085547!5m2!1sen!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 ## Inscription
-Pour me permettre de préparer au mieux la soirée, merci d'indiquer votre présence en remplissant le court formulaire suivant :
-- [https://forms.gle/bYVfE8xCXsapdN4p9](https://forms.gle/bYVfE8xCXsapdN4p9)
+📧 Pour me permettre de préparer au mieux la soirée, merci d'indiquer votre présence en renseignant le court formulaire suivant :
+- [👉https://forms.gle/bYVfE8xCXsapdN4p9👈](https://forms.gle/bYVfE8xCXsapdN4p9)
 
 Venez nombreux 🎉 !
