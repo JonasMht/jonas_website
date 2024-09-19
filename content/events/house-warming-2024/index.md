@@ -20,7 +20,7 @@ Je viens d'emménager et pour fêter ça, je vous invite à trouver la couleur q
 📅 __Date__ : vendredi 27 septembre
 
 
-## Au Programme :<br>
+## Au Programme
 🕖 __Début__ à 19h<br>
 🏡 __Accueil et visite guidée__ de l’appart<br>
 🥂 __Toast et apéro dînatoire__ (boissons, bouchées, salade de pommes de terre)<br>
