@@ -23,7 +23,7 @@ push:
 # Setup on ubuntu
 .PHONY: setup
 setup:
-	sudo apt install hugo
+	sudo snap install hugo
 	sudo snap install go --classic
 
 .PHONY: push_quit
