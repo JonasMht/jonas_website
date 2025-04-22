@@ -10,7 +10,7 @@ menu:
 ---
 
 ## Contact me
-By email at [Jonas.mht.private@gmail.com](mailto:Jonas.mht.private@gmail.com).
+By email at [j.mehtali@unistra.fr](mailto:j.mehtali@unistra.fr).
 
 
 By phone at [+33 7 82 60 23 33](tel:+33782602333)
