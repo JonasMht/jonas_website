@@ -2,7 +2,7 @@
 title: "C-NCA : Chained Neural Cellular Automata"
 description: "Method for fast and accurate thermal ablation estimation using C-NCA."
 slug: cnca-2025
-date: 2025-09-12 00:00:00+0000
+date: 2025-09-22 00:00:00+0000
 image: TargetOutput.png
 categories:
     - Research
