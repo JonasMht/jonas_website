@@ -2,7 +2,7 @@
 title: "C-NCA : Chained Neural Cellular Automata"
 description: "Method for fast and accurate thermal ablation estimation using C-NCA."
 slug: cnca-2025
-date: 2025-09-23 00:00:00+0000
+date: 2025-09-22 00:00:00+0000
 image: TargetOutput.png
 categories:
     - Research
@@ -21,4 +21,5 @@ We introduced an approach to estimate the heat induced tissue death in percutane
 {{< figure src="TargetOutput.png" title="Target Output Pairs" >}}
 
 <!--Add all the logos side by side-->
+{{< figure src="miccai2025-logo.png" width=50% alt="MICCAI 2025 Logo" >}}
 {{< figure src="Planchette Logos.png" width=100% alt="Logos of collaborating institutions" >}}
