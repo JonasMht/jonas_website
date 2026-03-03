@@ -5,6 +5,6 @@ image: ensemble-2.png
 
 # Badge style
 style:
-    background: "#b8792c"
+    background: "#6A8EA0"
     color: "#fff"
 ---

@@ -5,6 +5,6 @@ image: cryotrack-experiment.jpg
 
 # Badge style
 style:
-    background: "#4664c7"
+    background: "#4682B4"
     color: "#fff"
 ---

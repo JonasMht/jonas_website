@@ -2,11 +2,9 @@
 mainSections = ["post"]
 # Output page's full content in RSS.
 rssFullContent = true
-favicon = "/icons/favicon.ico"
-email = "Jonas@gmail.com"
+favicon = "/icons/favicon.svg"
 description = "The portfolio website and blog of Jonas Mehtali"
 keywords = "Jonas Mehtali, Jonas, Mehtali, Blog, Research, Portfolio, Strasbourg"
-    
 
 [author]
 email = "jonas.mht.private@gmail.com"
@@ -17,11 +15,10 @@ customText = ""
 
 [dateFormat]
 published = "02 Jan 2006"
-lastUpdated = "13 Apr 2000 12:12 UTC+1"
-
+lastUpdated = "02 Jan 2006 15:04 UTC"
 
 [sidebar]
-emoji = "" # none
+emoji = ""
 subtitle = "PhD Student in Computer-Assisted Interventions"
 
 [sidebar.avatar]
@@ -83,75 +80,4 @@ enabled = true
 
 ## Comments
 [comments]
-enabled = false # No discussions
-provider = "disqus"
-
-[comments.disqusjs]
-shortname = ""
-apiUrl = ""
-apiKey = ""
-admin = ""
-adminLabel = ""
-
-[comments.utterances]
-repo = ""
-issueTerm = "pathname"
-label = ""
-
-[comments.remark42]
-host = ""
-site = ""
-locale = ""
-
-[comments.vssue]
-platform = ""
-owner = ""
-repo = ""
-clientId = ""
-clientSecret = ""
-autoCreateIssue = false
-
-[comments.waline]
-serverURL = ""
-lang = ""
-visitor = ""
-avatar = ""
-emoji = ["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"]
-requiredMeta = ["name", "email", "url"]
-placeholder = ""
-
-[comments.waline.locale]
-admin = "Admin"
-
-[comments.twikoo]
-envId = ""
-region = ""
-path = ""
-lang = ""
-
-[comments.cactus]
-defaultHomeserverUrl = "https://matrix.cactus.chat:8448"
-serverName = "cactus.chat"
-siteName = ""
-
-[comments.giscus]
-repo = ""
-repoID = ""
-category = ""
-categoryID = ""
-mapping = ""
-lightTheme = ""
-darkTheme = ""
-reactionsEnabled = 1
-emitMetadata = 0
-
-[comments.gitalk]
-owner = ""
-admin = ""
-repo = ""
-clientID = ""
-clientSecret = ""
-
-[comments.cusdis]
-host = ""
-id = ""
+enabled = false

@@ -5,6 +5,6 @@ image: celebrations.jpg
 
 # Badge style
 style:
-    background: "#b8792c"
+    background: "#8A6F50"
     color: "#fff"
 ---

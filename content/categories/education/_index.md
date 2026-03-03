@@ -5,6 +5,6 @@ image: UnistraPalaisU.jpg
 
 # Badge style
 style:
-    background: "#2a9d8f"
+    background: "#3A6F96"
     color: "#fff"
 ---

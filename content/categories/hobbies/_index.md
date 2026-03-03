@@ -5,6 +5,6 @@ image: CampusRepresentative.jpg
 
 # Badge style
 style:
-    background: "#2a9d8f"
+    background: "#5C7A6B"
     color: "#fff"
 ---

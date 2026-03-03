@@ -1,0 +1,11 @@
+{
+  "name": "Jonas Mehtali",
+  "short_name": "Jonas",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#4682B4",
+  "background_color": "#FAFBFC",
+  "display": "standalone"
+}

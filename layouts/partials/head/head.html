@@ -28,9 +28,14 @@
     <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 {{- end -}}
 
-{{ with .Site.Params.favicon }}
-    <link rel="shortcut icon" href="{{ . }}" />
-{{ end }}
+<!-- Favicon: SVG primary, ICO fallback, apple-touch-icon, manifest -->
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+<link rel="icon" href="/icons/favicon.ico" sizes="48x48" />
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#4682B4" />
 
 {{- template "_internal/google_analytics.html" . -}}
 {{- partial "head/custom.html" . -}}

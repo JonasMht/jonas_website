@@ -1,5 +1,6 @@
 ---
 title: "Search"
+description: "Search across all posts and pages."
 slug: "search"
 layout: "search"
 outputs:

@@ -1,5 +1,7 @@
 ---
 title: Contact
+description: "Get in touch and follow on social media."
+slug: contact
 image: oviedo-spain-cover.png
 
 menu:

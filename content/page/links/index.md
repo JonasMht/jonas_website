@@ -1,6 +1,7 @@
 ---
 title: Links
-#image: green-mountains.jpg
+description: "External resources and QR code for this website."
+slug: links
 
 links:
   - title: "Cursus Master Ingénierie - Informatique : Image"

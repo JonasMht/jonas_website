@@ -1,10 +1,420 @@
 /*
-    You can add your own custom styles here.
-*/
+ * Edelweiss — Alpine Steel Design System
+ *
+ * Overrides for Hugo Theme Stack v3.
+ * Color system, typography, and subtle component refinements
+ * derived from STYLE_GUIDE.md (Edelweiss project).
+ *
+ * PRINCIPLES:
+ * - Override CSS variables (safe — the theme reads them everywhere)
+ * - Be surgical with structural CSS (never fight the theme's layout)
+ * - Every token defined once, referenced everywhere
+ */
 
+
+/* ===================================================================
+   1. EDELWEISS DESIGN TOKENS
+   ===================================================================
+   Single source of truth. Both light & dark theme blocks reference
+   these. Changing a token here propagates everywhere.                */
 
 :root {
-    // The base contrast is way too low
-    --body-text-color: #707070;
-    --card-text-color-tertiary: #767676;
+    /* Accent: Steel Blue */
+    --ew-accent:        #4682B4;
+    --ew-accent-hover:  #5A94C2;
+    --ew-accent-dim:    #3A6F96;
+    --ew-accent-muted:  rgba(70, 130, 180, 0.10);
+    --ew-accent-rgb:    70, 130, 180;           /* for rgba() usage */
+
+    /* Surfaces */
+    --ew-bg:              #FAFBFC;
+    --ew-surface:         #FFFFFF;
+    --ew-surface-hover:   #F3F5F7;
+    --ew-surface-active:  #EBEEF0;
+    --ew-border:          #D3D8DD;
+    --ew-border-strong:   #B8BFC6;
+
+    /* Text */
+    --ew-text:            #2C3338;
+    --ew-text-secondary:  #5C6570;
+    --ew-text-muted:      #8C939A;
+
+    /* Semantic */
+    --ew-success: #3D9A50;
+    --ew-error:   #D14343;
+    --ew-warning: #D4880F;
+    --ew-info:    #3B82C4;
+}
+
+
+/* ===================================================================
+   2. LIGHT MODE — Theme Stack variable overrides
+   =================================================================== */
+
+:root {
+    /* --- Core palette --- */
+    --body-background:       var(--ew-bg);
+    --accent-color:          var(--ew-accent);
+    --accent-color-darker:   var(--ew-accent-dim);
+    --accent-color-text:     #FFFFFF;
+    --body-text-color:       var(--ew-text-secondary);
+
+    /* --- Cards --- */
+    --card-background:          var(--ew-surface);
+    --card-background-selected: var(--ew-surface-active);
+    --card-text-color-main:     var(--ew-text);
+    --card-text-color-secondary:var(--ew-text-secondary);
+    --card-text-color-tertiary: var(--ew-text-muted);
+    --card-separator-color:     var(--ew-border);
+    --card-border-radius:       6px;
+
+    /* --- Scrollbar --- */
+    --scrollbar-thumb: var(--ew-border-strong);
+    --scrollbar-track: var(--ew-bg);
+
+    /* --- Links --- */
+    --link-background-color:       var(--ew-accent-rgb);
+    --link-background-opacity:       0.10;
+    --link-background-opacity-hover: 0.22;
+
+    /* --- Code --- */
+    --code-background-color: rgba(var(--ew-accent-rgb), 0.07);
+    --code-text-color:       var(--ew-accent-dim);
+    --pre-background-color:  #1A1C20;
+    --pre-text-color:        #C0CAF5;
+
+    /* --- Content elements --- */
+    --blockquote-background-color: var(--ew-surface-hover);
+    --heading-border-size:         3px;
+    --blockquote-border-size:      3px;
+
+    /* --- Tables --- */
+    --table-border-color:         var(--ew-border);
+    --tr-even-background-color:   var(--ew-surface-hover);
+    --kbd-border-color:           var(--ew-border);
+
+    /* --- Typography (system fonts only — no web font downloads) --- */
+    --sys-font-family:     -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --base-font-family:    var(--sys-font-family);
+    --article-font-family: var(--sys-font-family);
+    --code-font-family:    'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+    --article-font-size:   1.6rem;
+    --article-line-height: 1.75;
+
+    /* --- Shadows (subtle — no heavy elevation) --- */
+    --shadow-l1: 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    --shadow-l2: 0 3px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    --shadow-l3: 0 6px 16px rgba(0, 0, 0, 0.08);
+    --shadow-l4: 0 12px 28px rgba(0, 0, 0, 0.10);
+
+    /* --- Layout --- */
+    --tag-border-radius:  4px;
+    --section-separation: 36px;
+}
+
+
+/* ===================================================================
+   3. DARK MODE — Theme Stack variable overrides
+   ===================================================================
+   The Stack theme toggles via [data-scheme="dark"] set by its JS
+   (which already respects prefers-color-scheme). We override tokens
+   here; all theme vars that use var(--ew-*) follow automatically.    */
+
+[data-scheme="dark"] {
+    /* --- Edelweiss tokens (dark) --- */
+    --ew-bg:              #141618;
+    --ew-surface:         #1E2024;
+    --ew-surface-hover:   #282C30;
+    --ew-surface-active:  #32363A;
+    --ew-border:          #363A40;
+    --ew-border-strong:   #464A52;
+    --ew-text:            #E4E8EC;
+    --ew-text-secondary:  #A4AAB2;
+    --ew-text-muted:      #6A7078;
+
+    /* --- Theme vars that DON'T auto-follow tokens --- */
+    --body-background:       var(--ew-bg);
+    --accent-color:          var(--ew-accent-hover);   /* brighter on dark */
+    --accent-color-darker:   var(--ew-accent);
+    --accent-color-text:     #141618;
+    --body-text-color:       var(--ew-text-secondary);
+
+    --card-background:          var(--ew-surface);
+    --card-background-selected: var(--ew-surface-active);
+    --card-text-color-main:     var(--ew-text);
+    --card-text-color-secondary:var(--ew-text-secondary);
+    --card-text-color-tertiary: var(--ew-text-muted);
+    --card-separator-color:     var(--ew-border);
+
+    --scrollbar-thumb: var(--ew-border-strong);
+    --scrollbar-track: var(--ew-bg);
+
+    --link-background-color: var(--ew-accent-rgb);
+
+    --code-background-color: rgba(var(--ew-accent-rgb), 0.12);
+    --code-text-color:       var(--ew-accent-hover);
+    --pre-background-color:  #1A1B26;
+    --pre-text-color:        #C0CAF5;
+
+    --blockquote-background-color: var(--ew-surface-hover);
+    --table-border-color:          var(--ew-border);
+    --tr-even-background-color:    var(--ew-surface-hover);
+    --kbd-border-color:            var(--ew-border);
+
+    /* --- Shadows (visible edges on dark bg) --- */
+    --shadow-l1: 0 1px 3px rgba(0, 0, 0, 0.20), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    --shadow-l2: 0 3px 8px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    --shadow-l3: 0 6px 16px rgba(0, 0, 0, 0.32);
+    --shadow-l4: 0 12px 28px rgba(0, 0, 0, 0.36);
+}
+
+
+/* ===================================================================
+   4. SELECTION & FOCUS
+   =================================================================== */
+
+::selection {
+    background: rgba(var(--ew-accent-rgb), 0.25);
+    color: inherit;
+}
+
+*:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(var(--ew-accent-rgb), 0.25);
+}
+
+
+/* ===================================================================
+   5. SCROLLBARS
+   =================================================================== */
+
+/* WebKit */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb  { background: var(--scrollbar-thumb); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ew-text-muted); }
+::-webkit-scrollbar-track  { background: transparent; }
+
+/* Firefox (scoped to html to avoid stomping theme's * rule) */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+
+/* ===================================================================
+   6. TYPOGRAPHY
+   =================================================================== */
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+
+/* ===================================================================
+   7. LINKS
+   =================================================================== */
+
+a {
+    transition: color 0.15s ease-out;
+}
+
+
+/* ===================================================================
+   8. ARTICLE CONTENT
+   =================================================================== */
+
+.article-content {
+    /* Steel blue left accent on h2 */
+    h2 {
+        border-left: 3px solid var(--accent-color);
+        padding-left: 12px;
+    }
+
+    /* Blockquote accent */
+    blockquote {
+        border-left-color: var(--accent-color);
+    }
+
+    /* Code blocks */
+    pre {
+        border-radius: var(--card-border-radius);
+    }
+
+    /* Inline code */
+    code:not(pre code) {
+        border-radius: 4px;
+        font-family: var(--code-font-family);
+        font-size: 0.88em;
+    }
+
+    /* Table headers */
+    table th {
+        background: var(--ew-surface-hover);
+        font-weight: 600;
+        color: var(--card-text-color-main);
+    }
+
+    /* HR */
+    hr {
+        border: none;
+        border-top: 1px solid var(--ew-border);
+    }
+}
+
+
+/* ===================================================================
+   9. SEARCH INPUT
+   =================================================================== */
+
+.search-form input {
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+
+    &:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 2px rgba(var(--ew-accent-rgb), 0.15);
+    }
+}
+
+
+/* ===================================================================
+   10. TAG CLOUD
+   =================================================================== */
+
+.tagCloud .tagCloud-tags a {
+    transition: border-color 0.15s ease-out, background-color 0.15s ease-out, color 0.15s ease-out;
+
+    &:hover {
+        border-color: var(--accent-color);
+        background: var(--ew-accent-muted);
+        color: var(--accent-color);
+    }
+}
+
+
+/* ===================================================================
+   11. SOCIAL ICONS
+   =================================================================== */
+
+.menu-social svg {
+    transition: stroke 0.15s ease-out;
+}
+
+.menu-social a:hover svg {
+    stroke: var(--accent-color);
+}
+
+
+/* ===================================================================
+   12. DARK MODE TOGGLE
+   =================================================================== */
+
+.darkmode-toggle {
+    transition: color 0.15s ease-out;
+
+    &:hover {
+        color: var(--accent-color);
+    }
+}
+
+
+/* ===================================================================
+   13. FOOTER
+   =================================================================== */
+
+.site-footer {
+    color: var(--ew-text-muted);
+    font-size: 1.2rem;
+}
+
+
+/* ===================================================================
+   14. FIGURES
+   =================================================================== */
+
+figure figcaption {
+    color: var(--ew-text-muted);
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 8px;
+}
+
+
+/* ===================================================================
+   15. ARTICLE PAGE (meta, license)
+   =================================================================== */
+
+.article-page {
+    .article-category a {
+        font-weight: 500;
+        letter-spacing: 0.01em;
+    }
+
+    .article-license-info {
+        border: 1px solid var(--ew-border);
+        background: var(--ew-surface-hover);
+        border-radius: var(--card-border-radius);
+    }
+}
+
+
+/* ===================================================================
+   16. ANIMATION (minimal, functional)
+   =================================================================== */
+
+.main-container {
+    animation: ew-fade-in 0.2s ease-out;
+}
+
+@keyframes ew-fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration:       0.01ms !important;
+        animation-iteration-count:     1 !important;
+        transition-duration:      0.01ms !important;
+    }
+}
+
+
+/* ===================================================================
+   17. BUTTONS
+   =================================================================== */
+
+button, .btn {
+    transition: background-color 0.15s ease-out, transform 0.05s ease-out;
+    &:active { transform: scale(0.98); }
+}
+
+
+/* ===================================================================
+   18. RESPONSIVE
+   =================================================================== */
+
+@media (max-width: 768px) {
+    :root {
+        --section-separation: 24px;
+    }
+
+    .article-content h2 {
+        padding-left: 10px;
+    }
+}
+
+
+/* ===================================================================
+   19. PRINT
+   =================================================================== */
+
+@media print {
+    .left-sidebar, .right-sidebar { display: none; }
+    .article-content { max-width: 100%; }
 }

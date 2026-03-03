@@ -5,6 +5,6 @@ image: tracteur-niffer.jpg
 
 # Badge style
 style:
-    background: "#870f6b"
+    background: "#546B7A"
     color: "#fff"
 ---
