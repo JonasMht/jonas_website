@@ -116,11 +116,11 @@
 /* ===================================================================
    3. DARK MODE — Theme Stack variable overrides
    ===================================================================
-   The Stack theme toggles via [data-scheme="dark"] set by its JS
+   The Stack theme toggles via :root[data-scheme=dark] set by its JS
    (which already respects prefers-color-scheme). We override tokens
    here; all theme vars that use var(--ew-*) follow automatically.    */
 
-[data-scheme="dark"] {
+:root[data-scheme=dark] {
     /* --- Edelweiss tokens (dark) --- */
     --ew-bg:              #141618;
     --ew-surface:         #1E2024;

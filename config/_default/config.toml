@@ -17,3 +17,14 @@ hasCJKLanguage = false
 
 # Change it to your Disqus shortname before using
 disqusShortname = "hugo-theme-stack"
+
+# Sitemap
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"

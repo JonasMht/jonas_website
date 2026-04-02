@@ -22,6 +22,15 @@ links:
 
 ---
 
+## Research Profiles
+
+| Platform | Profile |
+|----------|---------|
+| ORCID | [0009-0003-3688-7782](https://orcid.org/0009-0003-3688-7782) |
+| Google Scholar | [Jonas Mehtali](https://scholar.google.com/citations?user=0QQM6zIAAAAJ) |
+| ResearchGate | [Jonas Mehtali](https://www.researchgate.net/profile/Jonas-Mehtali) |
+| HAL | [Jonas Mehtali](https://hal.science/search?q=Jonas%20Mehtali) |
+
 ## Introduction
 Hi, my name is Jonas (<b>/ˈjoːnas/</b>) and I am excited to be sharing my passion for computer science and research in the fields of Computer Assisted Interventions (CAI) with you.
 <br>

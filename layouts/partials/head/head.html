@@ -1,6 +1,33 @@
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
+<!-- JSON-LD Schema for Person -->
+{{- if or (eq .Page.Type "home") (eq .Page.Type "post") -}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jonas Mehtali",
+    "url": "https://jonasx.xyz",
+    "jobTitle": "PhD Student in Computer-Assisted Interventions",
+    "affiliation": {
+        "@type": "Organization",
+        "name": "ICube Laboratory, University of Strasbourg"
+    },
+    "sameAs": [
+        "https://www.linkedin.com/in/jonasmehtali/",
+        "https://github.com/JonasMht",
+        "https://orcid.org/0009-0003-3688-7782",
+        "https://scholar.google.com/citations?user=0QQM6zIAAAAJ"
+    ],
+    "worksFor": {
+        "@type": "Organization",
+        "name": "University of Strasbourg"
+    }
+}
+</script>
+{{- end -}}
+
 {{- $description := partialCached "data/description" . .RelPermalink -}}
 <meta name='description' content='{{ $description }}'>
 
