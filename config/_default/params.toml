@@ -4,9 +4,10 @@ mainSections = ["post"]
 rssFullContent = true
 favicon = "/icons/favicon.svg"
 description = "The portfolio website and blog of Jonas Mehtali"
-keywords = "Jonas Mehtali, Jonas, Mehtali, Blog, Research, Portfolio, Strasbourg"
+keywords = "Jonas Mehtali, PhD Student, Computer-Assisted Interventions, Medical Image Computing, Thermal Ablation, Strasbourg, ICube Laboratory, GPU Simulation, Image-Guided Surgery"
 
 [author]
+name = "Jonas Mehtali"
 email = "jonas.mht.private@gmail.com"
 
 [footer]
@@ -60,13 +61,12 @@ limit = 10
 type = "toc"
 
 [opengraph.twitter]
-site = ""
 card = "summary_large_image"
 
 [defaultImage.opengraph]
-enabled = false
-local = false
-src = ""
+enabled = true
+local = true
+src = "img/avatar.jpg"
 
 [colorScheme]
 toggle = true

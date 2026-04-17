@@ -10,16 +10,25 @@ links:
     image: cmi-image-icon.png
 
 menu:
-    main: 
+    main:
         weight: 4
         params:
             icon: link
-  
+
 ---
 
-This website can be shared via the following QR code:
+## QR Code
 
+<div style="text-align:center">
 
-{{< figure src="jonasx.xyz.svg" width=200px title="JonasX.xyz QR Code" >}}
+<span class="qr-light">
+  {{< figure src="qr_prop_CD_light.png" width="280px" >}}
+  <p style="margin-top:8px; margin-bottom:0; color:var(--ew-text-muted); font-size:1.4rem;">scan to visit <a href="https://jonasx.xyz">jonasx.xyz</a></p>
+</span>
 
-To read more, here are some links to other websites.
+<span class="qr-dark">
+  {{< figure src="qr_prop_CD_dark.png" width="280px" >}}
+  <p style="margin-top:8px; margin-bottom:0; color:var(--ew-text-muted); font-size:1.4rem;">scan to visit <a href="https://jonasx.xyz">jonasx.xyz</a></p>
+</span>
+
+</div>

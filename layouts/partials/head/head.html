@@ -2,29 +2,106 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 <!-- JSON-LD Schema for Person -->
-{{- if or (eq .Page.Type "home") (eq .Page.Type "post") -}}
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Jonas Mehtali",
     "url": "https://jonasx.xyz",
-    "jobTitle": "PhD Student in Computer-Assisted Interventions",
+    "jobTitle": "PhD Candidate in Computer-Assisted Interventions",
+    "description": "PhD candidate researching multi-needle trajectory optimization, intraoperative replanning, and ergonomic planning interfaces for percutaneous thermal ablation at ICube Laboratory, University of Strasbourg.",
+    "email": "jonas.mht.private@gmail.com",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Strasbourg",
+        "addressCountry": "FR"
+    },
     "affiliation": {
         "@type": "Organization",
-        "name": "ICube Laboratory, University of Strasbourg"
+        "name": "ICube Laboratory, University of Strasbourg",
+        "url": "https://icube.unistra.fr"
+    },
+    "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Strasbourg"
     },
     "sameAs": [
         "https://www.linkedin.com/in/jonasmehtali/",
         "https://github.com/JonasMht",
         "https://orcid.org/0009-0003-3688-7782",
-        "https://scholar.google.com/citations?user=0QQM6zIAAAAJ"
+        "https://scholar.google.com/citations?user=0QQM6zIAAAAJ",
+        "https://www.researchgate.net/profile/Jonas-Mehtali",
+        "https://hal.science/search?q=Jonas%20Mehtali"
     ],
     "worksFor": {
         "@type": "Organization",
         "name": "University of Strasbourg"
-    }
+    },
+    "knowsAbout": [
+        "Medical Image Computing",
+        "Computer-Assisted Interventions",
+        "Thermal Ablation Planning",
+        "GPU-Accelerated Simulation",
+        "Deep Learning for Medical Imaging",
+        "Image-Guided Surgery",
+        "Cryoablation",
+        "Percutaneous Thermal Ablation"
+    ]
 }
+</script>
+
+{{- if eq .Page.RelPermalink "/publications/" -}}
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "HEAT: High-Efficiency Simulation for Thermal Ablation Therapy",
+    "author": [
+      {"@type": "Person", "name": "Jonas Mehtali", "affiliation": {"@type": "Organization", "name": "ICube Laboratory, University of Strasbourg"}},
+      {"@type": "Person", "name": "Juan Verde", "affiliation": {"@type": "Organization", "name": "ICube Laboratory, University of Strasbourg"}},
+      {"@type": "Person", "name": "Caroline Essert", "affiliation": {"@type": "Organization", "name": "ICube Laboratory, University of Strasbourg"}}
+    ],
+    "datePublished": "2025-01-01",
+    "publisher": {"@type": "Organization", "name": "Springer"},
+    "about": {"@type": "MedicalProcedure", "name": "Thermal Ablation Therapy", "procedureType": "Percutaneous"},
+    "journalName": "International Journal of Computer Assisted Radiology and Surgery (IJCARS)",
+    "doi": "https://doi.org/10.1007/s11548-025-03350-z",
+    "url": "https://doi.org/10.1007/s11548-025-03350-z"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "C-NCA: Chained Neural Cellular Automata for Fast and Accurate Thermal Ablation Estimation",
+    "author": [
+      {"@type": "Person", "name": "Jonas Mehtali", "affiliation": {"@type": "Organization", "name": "ICube Laboratory, University of Strasbourg"}},
+      {"@type": "Person", "name": "Juan Verde", "affiliation": {"@type": "Organization", "name": "ICube Laboratory, University of Strasbourg"}},
+      {"@type": "Person", "name": "Caroline Essert", "affiliation": {"@type": "Organization", "name": "ICube Laboratory, University of Strasbourg"}}
+    ],
+    "datePublished": "2025-09-28",
+    "publisher": {"@type": "Organization", "name": "MICCAI Society"},
+    "partOf": {"@type": "Event", "name": "Medical Image Computing and Computer Assisted Interventions (MICCAI 2025)", "location": "Seoul, Korea", "startDate": "2025-09-28", "endDate": "2025-10-02"},
+    "doi": "https://doi.org/10.1007/978-3-032-04965-0",
+    "url": "https://papers.miccai.org/miccai-2025/0156-Paper4370.html"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Cryotrack: Planning and Navigation for Computer Assisted Cryoablation",
+    "author": [
+      {"@type": "Person", "name": "Henry J. Krumb"},
+      {"@type": "Person", "name": "Jonas Mehtali", "affiliation": {"@type": "Organization", "name": "ICube Laboratory, University of Strasbourg"}},
+      {"@type": "Person", "name": "Juan Verde", "affiliation": {"@type": "Organization", "name": "ICube Laboratory, University of Strasbourg"}},
+      {"@type": "Person", "name": "Anirban Mukhopadhyay"},
+      {"@type": "Person", "name": "Caroline Essert", "affiliation": {"@type": "Organization", "name": "ICube Laboratory, University of Strasbourg"}}
+    ],
+    "datePublished": "2024-10-06",
+    "publisher": {"@type": "Organization", "name": "Springer"},
+    "partOf": {"@type": "Event", "name": "Medical Image Computing and Computer Assisted Interventions (MICCAI 2024)", "location": "Marrakesh, Morocco", "startDate": "2024-10-06", "endDate": "2024-10-10"},
+    "doi": "https://doi.org/10.1007/978-3-031-72089-5_10",
+    "url": "https://papers.miccai.org/miccai-2024/179-Paper1240.html"
+  }
+]
 </script>
 {{- end -}}
 
@@ -35,7 +112,7 @@
     <meta name="keywords" content="{{ . }}" >
 {{ end }}
 
-{{ with .Site.Params.author }}
+{{ with .Site.Params.author.name }}
     <meta name="author" content="{{ . }}" >
 {{ end }}
 

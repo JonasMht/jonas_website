@@ -265,6 +265,22 @@ a {
         border: none;
         border-top: 1px solid var(--ew-border);
     }
+
+    /* Latest badge */
+    span.badge {
+        display: inline-block;
+        font-size: 0.70em;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ew-accent);
+        border: 1.5px solid var(--ew-accent);
+        border-radius: 3px;
+        padding: 1px 6px;
+        margin-left: 6px;
+        vertical-align: middle;
+        line-height: 1.4;
+    }
 }
 
 
@@ -411,7 +427,128 @@ button, .btn {
 
 
 /* ===================================================================
-   19. PRINT
+   19. QR CODE LIGHT/DARK SWAP
+   =================================================================== */
+
+.qr-light { display: inline; }
+.qr-dark  { display: none; }
+:root[data-scheme="dark"] .qr-light { display: none; }
+:root[data-scheme="dark"] .qr-dark  { display: inline; }
+
+
+/* ===================================================================
+   20. FADE-IN ANIMATIONS
+   =================================================================== */
+
+@keyframes ew-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ew-fade-up-d1 {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ew-fade-up-d2 {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ew-fade-up-d3 {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.article-content {
+    h2 { animation: ew-fade-up-d1 0.50s ease-out both; }
+    h3 { animation: ew-fade-up-d2 0.50s ease-out 0.10s both; }
+    p  { animation: ew-fade-up-d3 0.50s ease-out 0.18s both; }
+    .table-wrapper { animation: ew-fade-up-d3 0.50s ease-out 0.20s both; }
+
+    @media (prefers-reduced-motion: reduce) {
+        h2, h3, p, .table-wrapper {
+            animation: none;
+            opacity: 1;
+        }
+    }
+}
+
+
+/* ===================================================================
+   21. MODERN TABLES
+   =================================================================== */
+
+.article-content {
+    .table-wrapper {
+        overflow-x: auto;
+        display: block;
+        width: 100%;
+        margin: var(--section-separation) 0;
+        border-radius: var(--card-border-radius);
+        border: 1px solid var(--ew-border);
+        background: var(--ew-surface);
+    }
+
+    table {
+        width: 100%;
+        min-width: 400px;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-bottom: 0;
+        font-size: 0.95em;
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--ew-border);
+        vertical-align: top;
+        line-height: 1.5;
+    }
+
+    th {
+        background: var(--ew-accent);
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.88em;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--ew-accent);
+        white-space: nowrap;
+    }
+
+    td {
+        background: var(--ew-surface);
+        color: var(--card-text-color-main);
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:hover td {
+        background: var(--ew-surface-hover);
+        transition: background-color 0.12s ease;
+    }
+
+    tr:nth-child(even) td {
+        background: var(--ew-surface);
+    }
+
+    tr:nth-child(even):hover td {
+        background: var(--ew-surface-hover);
+    }
+}
+
+
+/* ===================================================================
+   22. PRINT
    =================================================================== */
 
 @media print {
