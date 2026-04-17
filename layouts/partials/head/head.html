@@ -1,6 +1,25 @@
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
+<!-- JSON-LD Schema for WebSite with SearchAction -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Jonas Mehtali",
+    "url": "https://jonasx.xyz",
+    "description": "PhD Candidate in Computer-Assisted Interventions at ICube Laboratory, University of Strasbourg.",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://jonasx.xyz/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
 <!-- JSON-LD Schema for Person -->
 <script type="application/ld+json">
 {
@@ -8,8 +27,8 @@
     "@type": "Person",
     "name": "Jonas Mehtali",
     "url": "https://jonasx.xyz",
-    "jobTitle": "PhD Candidate in Computer-Assisted Interventions",
-    "description": "PhD candidate researching multi-needle trajectory optimization, intraoperative replanning, and ergonomic planning interfaces for percutaneous thermal ablation at ICube Laboratory, University of Strasbourg.",
+    "jobTitle": "PhD Student in Computer-Assisted Interventions",
+    "description": "PhD student researching multi-needle trajectory optimization, intraoperative replanning, and ergonomic planning interfaces for percutaneous thermal ablation at ICube Laboratory, University of Strasbourg.",
     "email": "jonas.mht.private@gmail.com",
     "address": {
         "@type": "PostalAddress",
@@ -105,7 +124,9 @@
 </script>
 {{- end -}}
 
+{{- $title := partialCached "data/title" . .RelPermalink -}}
 {{- $description := partialCached "data/description" . .RelPermalink -}}
+<title>{{ $title }}</title>
 <meta name='description' content='{{ $description }}'>
 
 {{ with .Site.Params.keywords }}
@@ -116,11 +137,41 @@
     <meta name="author" content="{{ . }}" >
 {{ end }}
 
+<!-- Twitter Card meta tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JonasMht">
+<meta name="twitter:image" content="{{ .Site.BaseURL }}icons/icon-512.png">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
 
-{{- $title := partialCached "data/title" . .RelPermalink -}}
-<title>{{ $title }}</title>
+<!-- Open Graph -->
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:image" content="{{ .Site.BaseURL }}icons/icon-512.png">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jonas Mehtali">
 
 
+{{- if .Ancestors }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {{- $ancestors := .Ancestors.Reverse }}
+        {{- range $i, $a := $ancestors }}
+        {
+            "@type": "ListItem",
+            "position": {{ add $i 1 }},
+            "name": "{{ $a.Title }}",
+            "item": "{{ $a.Permalink }}"
+        }{{- if ne $i (sub (len $ancestors) 1) }},{{ end }}
+        {{- end }}
+    ]
+}
+</script>
+{{- end }}
 
 <link rel='canonical' href='{{ .Permalink }}'>
 

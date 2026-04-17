@@ -548,10 +548,280 @@ button, .btn {
 
 
 /* ===================================================================
-   22. PRINT
+   22. PUBLICATION PAGE
+   =================================================================== */
+
+.article-content {
+    /* Publication type badges */
+    .pub-type-badge {
+        display: inline-block;
+        font-size: 0.70em;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ew-text-muted);
+        border: 1.5px solid var(--ew-border);
+        border-radius: 3px;
+        padding: 1px 6px;
+        margin-right: 4px;
+        vertical-align: middle;
+        line-height: 1.4;
+    }
+
+    .pub-type-badge--highlight {
+        color: var(--ew-accent);
+        border-color: var(--ew-accent);
+    }
+
+    .pub-type-badge--oral {
+        color: #c44;
+        border-color: #c44;
+    }
+
+    /* Author name highlight */
+    strong:has(+ em) {
+        /* author block within publication entries */
+    }
+
+    .pub-author {
+        font-weight: 600;
+        color: var(--card-text-color-main);
+    }
+
+    /* BibTeX collapsible block */
+    .bibtex-block {
+        margin-top: 12px;
+        border: 1px solid var(--ew-border);
+        border-radius: var(--card-border-radius);
+        overflow: hidden;
+        background: var(--ew-surface);
+
+        /* Hugo wraps code blocks in a table (lntable/lntd). The
+           syntax highlighter adds .highlight / .chroma divs with
+           dark bg that peeks through the parent's transparent bg.
+           Override them so they match the light surface. */
+        .highlight {
+            background: var(--ew-surface) !important;
+        }
+        .chroma {
+            background: var(--ew-surface) !important;
+        }
+        .lntable {
+            background: var(--ew-surface) !important;
+            border: none !important;
+        }
+        .lntd {
+            background: var(--ew-surface) !important;
+            border: none !important;
+        }
+
+        summary {
+            padding: 8px 14px;
+            background: var(--ew-surface-hover);
+            color: var(--ew-text-secondary);
+            font-size: 0.88em;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            &::before {
+                content: "";
+                display: inline-block;
+                width: 0;
+                height: 0;
+                border-top: 5px solid transparent;
+                border-bottom: 5px solid transparent;
+                border-left: 6px solid var(--ew-text-muted);
+                transition: transform 0.15s ease;
+            }
+
+            &:hover {
+                background: var(--ew-surface-active);
+                color: var(--card-text-color-main);
+            }
+        }
+
+        &[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        pre {
+            margin: 0;
+            border: none !important;
+            border-radius: 0;
+            box-shadow: none !important;
+            background: transparent !important;
+        }
+    }
+
+    /* Publication year section headers */
+    .pub-year-header {
+        font-size: 1.0em;
+        font-weight: 700;
+        color: var(--ew-text-muted);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid var(--ew-border);
+    }
+}
+
+
+/* ===================================================================
+   23. PRINT
    =================================================================== */
 
 @media print {
     .left-sidebar, .right-sidebar { display: none; }
     .article-content { max-width: 100%; }
 }
+
+
+/* ===================================================================
+   24. BLOG / POST LIST
+   =================================================================== */
+
+/* Category badge on post cards */
+.article-category a {
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+}
+
+/* Tag pills on post cards */
+.article-tags a,
+.tagCloud .tagCloud-tags a {
+    font-size: 1.1rem;
+    border-radius: 4px;
+    padding: 2px 8px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+/* Post card hover — subtle lift */
+.article-list > .article {
+    transition: transform 0.18s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+
+/* ===================================================================
+   26. PULL QUOTES
+   =================================================================== */
+
+.article-content {
+    blockquote.pullquote {
+        border-left: none;
+        background: transparent;
+        padding: 0;
+        margin: 2em 0;
+        font-size: 1.25em;
+        font-weight: 300;
+        color: var(--card-text-color-main);
+        font-style: italic;
+        text-align: center;
+        max-width: 680px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+
+        p { color: inherit; }
+    }
+}
+
+
+/* ===================================================================
+   27. ARTICLE HEADER
+   =================================================================== */
+
+.article-header {
+    .article-title {
+        font-size: 2.2em;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+    }
+}
+
+
+/* ===================================================================
+   28. DARK MODE COLOR REFERENCE
+   ===================================================================
+   Theme dark mode is toggled via :root[data-scheme="dark"] (set by
+   the theme's JS, respects prefers-color-scheme).
+   Edelweiss dark tokens (Section 3) re-map --ew-* tokens inside
+   :root[data-scheme=dark]; all CSS vars that use var(--ew-*) follow.
+   -------------------------------------------------------------------
+   Dark mode bg:        #141618  (--ew-bg, --body-background)
+   Dark mode surface:   #1E2024  (--ew-surface, --card-background)
+   Dark mode text:      #E4E8EC  (--ew-text, --card-text-color-main)
+   Dark mode accent:    #5A94C2  (--ew-accent-hover used as --accent-color)
+   Dark mode muted:     #6A7078  (--ew-text-muted, --card-text-color-tertiary)
+   Dark mode border:    #363A40  (--ew-border, --table-border-color)
+   Selector pattern:     :root[data-scheme="dark"] { ... }
+   =================================================================== */
+
+
+/* ===================================================================
+   29. THEME BUG FIXES — Hardcoded colors in theme SCSS
+   ===================================================================
+   These elements have hardcoded non-variable colors in the theme's
+   SCSS partials. We override them here with proper dark mode values. */
+
+/* Hamburger menu active state — theme hardcodes #000 for the lines
+   (menu.scss). On dark backgrounds this is invisible. Fix: use
+   body-text color which adapts to dark mode. */
+:root[data-scheme="dark"] {
+    .hamburger.is-active .hamburger-inner,
+    .hamburger.is-active .hamburger-inner::before,
+    .hamburger.is-active .hamburger-inner::after {
+        background-color: var(--body-text-color);
+    }
+}
+
+/* Article list tile title — theme hardcodes #fff for the title when
+   an image is present (article.scss). Add a text shadow so it
+   remains legible even if the overlay blends with white. */
+:root[data-scheme="dark"] {
+    .article-list--tile article.has-image .article-title {
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    }
+}
+
+
+/* ===================================================================
+   30. ARTICLE CONTENT — Dark mode refinements
+   =================================================================== */
+
+/* "Latest" badge — transparent bg + light-blue border/text on a dark
+   table cell has insufficient contrast in dark mode. Force white
+   text so it reads well in both modes while keeping the steel-blue
+   border as a brand accent. */
+:root[data-scheme="dark"] {
+    .article-content {
+        span.badge {
+            background: var(--ew-accent);
+            color: #fff;
+            border-color: var(--ew-accent);
+        }
+    }
+}
+
+
+/* ===================================================================
+   31. TAG COLORS — Dark mode (known theme limitation)
+   ===================================================================
+   The theme defines tag backgrounds as a SCSS list
+   ($defaultTagBackgrounds) applied as hardcoded hex values directly
+   in article.scss. Since they are not CSS custom properties, no
+   dark mode token flip occurs. Tag colors remain static.
+   This is a theme limitation — to fix, the theme's article.scss
+   would need to use CSS vars instead of a SCSS loop, which cannot be
+   changed here without forking the theme. All other tag styling
+   (hover, transitions, font-family) uses CSS vars and adapts fine. */

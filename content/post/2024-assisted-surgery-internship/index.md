@@ -48,7 +48,7 @@ Side by side images
 
 
 ## Challenges and Solutions
-- <b>Networked Computing:</b> Tackling the challenge of connecting diverse machines for efficient computation, I developed a custom networking protocol and implemented compression methods such as the modified Huffman coding. This was a cornerstone of the project, enabling the seamless integration of VR/MR technologies and ensuring the system's flexibility for various deployment scenarios.
+- <b>Networked Computing:</b> Tackling the challenge of connecting diverse machines for efficient computation, I developed a custom networking protocol and implemented compression methods such as the modified Huffman coding. This was a cornerstone of the project, enabling the effective integration of VR/MR technologies and ensuring the system's flexibility for various deployment scenarios.
 
 {{< figure src="NetworkTopology.png" width=100% title="Network Layout">}}
 

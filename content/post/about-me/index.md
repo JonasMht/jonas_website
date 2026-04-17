@@ -1,6 +1,6 @@
 ---
 title: About
-description: PhD Candidate — ICube Laboratory, University of Strasbourg
+description: PhD Student — ICube Laboratory, University of Strasbourg
 slug: about-me
 date: 2023-03-20 00:00:00+0000
 image: cryotrack-experiment.jpg
@@ -26,7 +26,7 @@ links:
 
 # Jonas Mehtali
 
-PhD Candidate in Computer-Assisted Interventions · ICube Laboratory, University of Strasbourg
+PhD Student in Computer-Assisted Interventions · ICube Laboratory, University of Strasbourg
 
 ---
 
@@ -74,7 +74,7 @@ Design and implement a user-friendly GUI for planning, tracking, and replanning.
 |---|---|---|---|
 | **Cryotrack** — Planning and Navigation for Computer Assisted Cryoablation | MICCAI 2024 | H.J. Krumb, J. Mehtali, J. Verde, A. Mukhopadhyay, C. Essert | [10.1007/978-3-031-72089-5](https://doi.org/10.1007/978-3-031-72089-5) |
 | **HEAT** — High-Efficiency Simulation for Thermal Ablation Therapy | IJCARS 2025 | J. Mehtali, J. Verde, C. Essert — GPU-accelerated multi-resolution simulation, results in under 1 second | [10.1007/s11548-025-03350-z](https://doi.org/10.1007/s11548-025-03350-z) |
-| **C-NCA** — Chained Neural Cellular Automata for Fast Thermal Ablation Estimation | MICCAI 2025 <span class="badge">Latest</span> | J. Mehtali, J. Verde, C. Essert — 12,210 params · 476 fps · interactive optimization loops | [10.1007/978-3-032-04965-0](https://doi.org/10.1007/978-3-032-04965-0) |
+| **C-NCA** — Chained Neural Cellular Automata for Fast Thermal Ablation Estimation | MICCAI 2025 <span class="badge">Latest</span> | J. Mehtali, J. Verde, C. Essert — 12,210 params · 476 fps · interactive optimization loops | [10.1007/978-3-032-04965-0_7](https://doi.org/10.1007/978-3-032-04965-0_7) |
 
 ---
 

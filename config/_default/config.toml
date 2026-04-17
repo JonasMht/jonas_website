@@ -18,6 +18,9 @@ hasCJKLanguage = false
 # Change it to your Disqus shortname before using
 disqusShortname = "hugo-theme-stack"
 
+# Robots TXT
+enableRobotsTXT = true
+
 # Sitemap
 [taxonomies]
   category = "categories"

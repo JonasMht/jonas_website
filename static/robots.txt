@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /暗/
+Sitemap: https://jonasx.xyz/sitemap.xml

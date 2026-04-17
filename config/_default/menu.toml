@@ -7,6 +7,14 @@
 #icon = "home"
 #newtab = true
 
+[[main]]
+identifier = "writing"
+name = "Writing"
+url = "/post/"
+weight = 1
+
+[main.params]
+icon = "edit"
 
 # Icons can be found & downloaded here : https://tablericons.com/
 
