@@ -72,7 +72,7 @@ Design and implement a user-friendly GUI for planning, tracking, and replanning.
 
 | Paper | Venue | Highlights | DOI |
 |---|---|---|---|
-| **Cryotrack** — Planning and Navigation for Computer Assisted Cryoablation | MICCAI 2024 | H.J. Krumb, J. Mehtali, J. Verde, A. Mukhopadhyay, C. Essert | [10.1007/978-3-031-72089-5](https://doi.org/10.1007/978-3-031-72089-5) |
+| **Cryotrack** — Planning and Navigation for Computer Assisted Cryoablation | MICCAI 2024 | H.J. Krumb, J. Mehtali, J. Verde, A. Mukhopadhyay, C. Essert | [10.1007/978-3-031-72089-5_10](https://doi.org/10.1007/978-3-031-72089-5_10) |
 | **HEAT** — High-Efficiency Simulation for Thermal Ablation Therapy | IJCARS 2025 | J. Mehtali, J. Verde, C. Essert — GPU-accelerated multi-resolution simulation, results in under 1 second | [10.1007/s11548-025-03350-z](https://doi.org/10.1007/s11548-025-03350-z) |
 | **C-NCA** — Chained Neural Cellular Automata for Fast Thermal Ablation Estimation | MICCAI 2025 <span class="badge">Latest</span> | J. Mehtali, J. Verde, C. Essert — 12,210 params · 476 fps · interactive optimization loops | [10.1007/978-3-032-04965-0_7](https://doi.org/10.1007/978-3-032-04965-0_7) |
 

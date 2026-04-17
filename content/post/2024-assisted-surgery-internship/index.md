@@ -24,7 +24,7 @@ The key innovation of this project lies in its use of networked computing. By of
 
 
 ## Achievements and Contributions
-- <b>Efficient Simulations:</b> Leveraging networked computing, I implemented physical simulations that delivers results in under a second for low-resolution outputs and within five seconds for final results. Thus, interactive time planning was achieved.
+- <b>Efficient Simulations:</b> Leveraging networked computing, I implemented physical simulations that deliver results in under a second for low-resolution outputs and within five seconds for final results. Thus, interactive time planning was achieved.
 
 <!--
 Side by side images
