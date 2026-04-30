@@ -1,6 +1,6 @@
 ---
 title: Project Notre Dame
-description: A project conducted for a museum in Strasbourg
+description: 3D reconstruction and rendering of medieval architectural elements for the Musée de l'Œuvre Notre-Dame, Strasbourg, using Blender
 slug: project-notre-dame
 date: 2022-03-10 00:00:00+0000
 image: ensemble-2.png

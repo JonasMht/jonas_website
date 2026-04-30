@@ -179,8 +179,32 @@
 }
 
 *:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(var(--ew-accent-rgb), 0.25);
+    outline: 2px solid var(--ew-accent);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(var(--ew-accent-rgb), 0.15);
+}
+
+
+/* ===================================================================
+   4B. SKIP TO CONTENT
+   =================================================================== */
+
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.5rem 1rem;
+    background: var(--ew-accent);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0 0 4px 4px;
+    text-decoration: none;
+    transition: top 0.2s;
+
+    &:focus {
+        top: 0;
+    }
 }
 
 

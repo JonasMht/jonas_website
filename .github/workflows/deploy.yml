@@ -11,30 +11,39 @@ jobs:
         runs-on: ubuntu-latest
 
         permissions:
-            # Give the default GITHUB_TOKEN write permission to commit and push the
-            # added or changed files to the repository.
             contents: write
 
+        env:
+            HUGO_CACHEDIR: /tmp/hugo_cache
+
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
+
+            - name: Cache Hugo modules
+              uses: actions/cache@v4
+              with:
+                  path: /tmp/hugo_cache
+                  key: ${{ runner.os }}-hugo-modules-${{ hashFiles('go.sum') }}
+                  restore-keys: |
+                      ${{ runner.os }}-hugo-modules-
 
             - name: Cache Hugo resources
-              uses: actions/cache@v3
-              env:
-                  cache-name: cache-hugo-resources
+              uses: actions/cache@v4
               with:
                   path: resources
-                  key: ${{ env.cache-name }}
+                  key: ${{ runner.os }}-hugo-resources-${{ hashFiles('content/**/*.jpg', 'content/**/*.png', 'content/**/*.jpeg', 'content/**/*.webp', 'content/**/*.gif') }}
+                  restore-keys: |
+                      ${{ runner.os }}-hugo-resources-
 
-            - uses: actions/setup-go@v4
+            - uses: actions/setup-go@v5
               with:
-                  go-version: "^1.17.0"
+                  go-version: "^1.21"
             - run: go version
 
             - name: Setup Hugo
               uses: peaceiris/actions-hugo@v2
               with:
-                  hugo-version: "latest"
+                  hugo-version: "0.161.1"
                   extended: true
 
             - name: Build

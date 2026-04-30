@@ -3,7 +3,7 @@ mainSections = ["post"]
 # Output page's full content in RSS.
 rssFullContent = true
 favicon = "/icons/favicon.svg"
-description = "The portfolio website and blog of Jonas Mehtali"
+description = "Jonas Mehtali — PhD student at ICube Laboratory, University of Strasbourg, researching thermal ablation planning and GPU simulation for image-guided surgery."
 keywords = "Jonas Mehtali, PhD Student, Computer-Assisted Interventions, Medical Image Computing, Thermal Ablation, Strasbourg, ICube Laboratory, GPU Simulation, Image-Guided Surgery"
 
 [author]

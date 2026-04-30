@@ -1,6 +1,6 @@
 ---
 title: Nacht Der Teddybären
-description: A unity game
+description: A Teddy-Zombie survival game built in Unity with custom AI, 3D Blender assets, fire control, and wave-based enemy spawning
 slug: project-nacht-der-teddybären
 date: 2021-12-07 00:00:00+0000
 image: nacht-der-teddybären.jpg

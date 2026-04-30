@@ -1,6 +1,6 @@
 ---
 title: Sensha
-description: Real Time Strategy Game, 2019
+description: A Python real-time strategy game featuring tank-based combat, strategic resource management, and AI opponents, built from scratch in 2019
 slug: sensha
 date: 2019-05-01 00:00:00+0000
 image: title.png

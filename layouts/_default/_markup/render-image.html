@@ -1,0 +1,24 @@
+{{- $src := .Destination -}}
+{{- $alt := .Text -}}
+{{- $title := .Title -}}
+{{- $image := .Page.Resources.GetMatch $src -}}
+
+{{- if $image -}}
+  {{- $widths := slice 320 640 960 1280 -}}
+  {{- $srcset := slice -}}
+  {{- range $widths -}}
+    {{- if ge $image.Width . -}}
+      {{- $r := $image.Resize (printf "%dx webp q85" .) -}}
+      {{- $srcset = $srcset | append (printf "%s %dw" $r.RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $fallbackW := 760 -}}
+  {{- if lt $image.Width 760 -}}{{- $fallbackW = $image.Width -}}{{- end -}}
+  {{- $fallback := $image.Resize (printf "%dx webp q85" $fallbackW) -}}
+  {{- if not $srcset -}}
+    {{- $srcset = slice (printf "%s %dw" $fallback.RelPermalink $image.Width) -}}
+  {{- end -}}
+<img srcset="{{ delimit $srcset ", " }}" src="{{ $fallback.RelPermalink }}" sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 760px" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}"{{- if $title }} title="{{ $title }}"{{ end }} loading="lazy" decoding="async">
+{{- else -}}
+<img src="{{ $src | safeURL }}" alt="{{ $alt }}"{{- if $title }} title="{{ $title }}"{{ end }} loading="lazy" decoding="async">
+{{- end -}}
