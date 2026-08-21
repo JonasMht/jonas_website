@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <!-- Primary bract (large crystalline petal) -->
+    <polygon id="bract-lg" points="0,-14 -2.8,-5 0,-3 2.8,-5" fill="#F0F0F0" stroke="#D8D8D8" stroke-width="0.3"/>
+    <!-- Secondary bract (smaller, between primary) -->
+    <polygon id="bract-sm" points="0,-10.5 -2,-4.5 0,-3.2 2,-4.5" fill="#E8E8E8" stroke="#D0D0D0" stroke-width="0.25"/>
+  </defs>
+  <g transform="translate(16,16)">
+    <!-- Outer double-star: 5 large primary bracts (72° apart) -->
+    <use href="#bract-lg" transform="rotate(0)"/>
+    <use href="#bract-lg" transform="rotate(72)"/>
+    <use href="#bract-lg" transform="rotate(144)"/>
+    <use href="#bract-lg" transform="rotate(216)"/>
+    <use href="#bract-lg" transform="rotate(288)"/>
+    <!-- 5 smaller secondary bracts in the gaps (36° offset) -->
+    <use href="#bract-sm" transform="rotate(36)"/>
+    <use href="#bract-sm" transform="rotate(108)"/>
+    <use href="#bract-sm" transform="rotate(180)"/>
+    <use href="#bract-sm" transform="rotate(252)"/>
+    <use href="#bract-sm" transform="rotate(324)"/>
+    <!-- Central floret cluster: 5 outer + 1 center (yellow faceted heads) -->
+    <!-- Center floret -->
+    <circle cx="0" cy="0" r="2.2" fill="#E8C840" stroke="#C8A830" stroke-width="0.4"/>
+    <!-- 5 outer florets in pentagonal arrangement -->
+    <circle cx="0" cy="-3.2" r="1.5" fill="#DCBA38" stroke="#C0A030" stroke-width="0.3" transform="rotate(0)"/>
+    <circle cx="0" cy="-3.2" r="1.5" fill="#DCBA38" stroke="#C0A030" stroke-width="0.3" transform="rotate(72)"/>
+    <circle cx="0" cy="-3.2" r="1.5" fill="#DCBA38" stroke="#C0A030" stroke-width="0.3" transform="rotate(144)"/>
+    <circle cx="0" cy="-3.2" r="1.5" fill="#DCBA38" stroke="#C0A030" stroke-width="0.3" transform="rotate(216)"/>
+    <circle cx="0" cy="-3.2" r="1.5" fill="#DCBA38" stroke="#C0A030" stroke-width="0.3" transform="rotate(288)"/>
+  </g>
+</svg>

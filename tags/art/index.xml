@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Art on Jonas Mehtali</title><link>https://jonasx.xyz/tags/art/</link><description>Recent content in Art on Jonas Mehtali</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>jonas.mht.private@gmail.com (Jonas Mehtali)</managingEditor><webMaster>jonas.mht.private@gmail.com (Jonas Mehtali)</webMaster><lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonasx.xyz/tags/art/index.xml" rel="self" type="application/rss+xml"/><item><title>Airship VR Game</title><link>https://jonasx.xyz/p/2023-project-airship/</link><pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/2023-project-airship/</guid><description>&lt;img src="https://jonasx.xyz/p/2023-project-airship/airship-render1.png" alt="Featured image of post Airship VR Game" /&gt;&lt;h2 id="description"&gt;Description
+&lt;/h2&gt;&lt;p&gt;I created a VR airship puzzle-survival game using Unity during my last semester at the University of Strasbourg. I wrote the game logic in Unity and created the 3D assets and textures using Blender.
+&lt;br&gt;
+The player&amp;rsquo;s goal is to repair a sinking airship by solving interactive puzzles by clocking buttons, switching switches and turning handles. The game is designed for the Meta VR headset and uses the handheld controller tracking feature to interact with the environment.
+&lt;br&gt;
+This project provided me with valuable hands-on experience in Unity game development for VR headsets and project management, which I believe, as for all projects undertaken, will come in handy in my future ventures.&lt;/p&gt;
+&lt;h2 id="additional-material"&gt;Additional Material
+&lt;/h2&gt;&lt;p&gt;&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-project-airship/airship-render2.png" width="100%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Airship Front&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-project-airship/airship-render3.png" width="100%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Airship Back&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item><item><title>Project Notre Dame</title><link>https://jonasx.xyz/p/project-notre-dame/</link><pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/project-notre-dame/</guid><description>&lt;img src="https://jonasx.xyz/p/project-notre-dame/ensemble-2.png" alt="Featured image of post Project Notre Dame" /&gt;&lt;h2 id="description"&gt;Description
+&lt;/h2&gt;&lt;p&gt;During a six-month long project, I led a 3D team of three students to create all the 3D assets and visuals for an artistic and cultural mediation app for the Musée Notre Dame de Strasbourg.&lt;/p&gt;
+&lt;h2 id="mission"&gt;Mission
+&lt;/h2&gt;&lt;p&gt;The goal of this project was to create 3D models of a painting displayed in the Musée Notre Dame de Strasbourg.
+&lt;br&gt;
+The 3D models were then used to create a mobile application that would allow visitors to discover the painting and its history in a new way.&lt;/p&gt;
+&lt;h2 id="videos"&gt;Videos
+&lt;/h2&gt;&lt;h3 id="sample-of-3d-models"&gt;Sample of 3D models
+&lt;/h3&gt;&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/hMwaHPiG-eM"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h3 id="tutorial-french"&gt;Tutorial (French)
+&lt;/h3&gt;&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/7xpeSMMu8_I"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;I recorded a tutorial in French to explain how I created the 3D models of the painting.
+&lt;br&gt;
+Its purpose was to help the other members of the team to create their own 3D models.&lt;/p&gt;
+&lt;h3 id="compilation-of-all-the-3d-models"&gt;Compilation of all the 3D models
+&lt;/h3&gt;&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/mtQCm5erVaw"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="images"&gt;Images
+&lt;/h2&gt;&lt;p&gt;&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/project-notre-dame/musee.jpg"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Exposition at the Museum&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/project-notre-dame/scene-render.png"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Full Scene Render&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion
+&lt;/h2&gt;&lt;p&gt;All along this project I develop my leadership and technical skills, as well as the ability to work in a collaborative environment.
+&lt;br&gt;
+It was a challenging and rewarding experience that allowed me to acquire valuable skills and knowledge for my future projects.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Image rendered for the &lt;a class="link" href="https://jonasx.xyz/p/project-notre-dame/" title="Projet Notre Dame"
+&gt;Projet Notre Dame&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>Nacht Der Teddybären</title><link>https://jonasx.xyz/p/project-nacht-der-teddyb%C3%A4ren/</link><pubDate>Tue, 07 Dec 2021 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/project-nacht-der-teddyb%C3%A4ren/</guid><description>&lt;img src="https://jonasx.xyz/p/project-nacht-der-teddyb%C3%A4ren/nacht-der-teddyb%C3%A4ren.jpg" alt="Featured image of post Nacht Der Teddybären" /&gt;&lt;h2 id="description"&gt;Description
+&lt;/h2&gt;&lt;p&gt;As part of a two-student team, I created a Teddy-Zombie survival game using Unity within a four-month timeframe. My responsibilities for the project included working on the AI, 3D asset modeling and texturing using Blender, fire control, enemy spawner, and wave system. This project provided me with valuable hands-on experience in Unity game development and project management, which I believe will come in handy in my future ventures.&lt;/p&gt;
+&lt;h2 id="videos"&gt;Videos
+&lt;/h2&gt;&lt;h3 id="full-gameplay"&gt;Full gameplay
+&lt;/h3&gt;&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/NNKAQUaYZ7k"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h3 id="blender-animations"&gt;Blender animations
+&lt;/h3&gt;&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/nyvyek3WAS0"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h3 id="how-waves-are-managed"&gt;How waves are managed
+&lt;/h3&gt;&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/WPh75-kgGAw"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Videos filmed for the &lt;a class="link" href="https://jonasx.xyz/p/project-nacht-der-teddyb%C3%A4ren/" title="Nacht Der Teddybären"
+&gt;Nacht Der Teddybären&lt;/a&gt; project&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>Sensha</title><link>https://jonasx.xyz/p/sensha/</link><pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/sensha/</guid><description>&lt;img src="https://jonasx.xyz/p/sensha/title.png" alt="Featured image of post Sensha" /&gt;&lt;h2 id="gameplay-videos"&gt;Gameplay Videos
+&lt;/h2&gt;&lt;p&gt;&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/iHjbx_x7N88"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/NNkgKb7eu5s"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;h2 id="introduction"&gt;Introduction
+&lt;/h2&gt;&lt;p&gt;In Japanese, &amp;ldquo;Sensha&amp;rdquo; means &amp;ldquo;tank&amp;rdquo;, an armored vehicle used in combat. The tank has become a symbol of power and stability and has made its way into comics, movies, television, and video games. In strategy games like &amp;ldquo;Arma,&amp;rdquo; &amp;ldquo;Battlefield,&amp;rdquo; and &amp;ldquo;Supreme Commander,&amp;rdquo; tanks are slow, cumbersome, and expensive, but they provide a significant strategic advantage if placed and used correctly on the battlefield.&lt;/p&gt;
+&lt;p&gt;Inspired by these strategic placements and investments, I created Sensha, a real-time game that allows the player to become a master strategist in modern battlefields. The game challenges players to make difficult decisions, invest limited resources, and place different tanks strategically to ensure a decisive victory.&lt;/p&gt;
+&lt;h2 id="the-project"&gt;The Project
+&lt;/h2&gt;&lt;p&gt;I was tasked with creating a program in Python (possibly with libraries) for the Informatique et Sciences Numérique exam of the Baccalauréat 2019. The project had to be limited to 2D visualization and not be too ambitious or time-consuming to complete. The finished program had to be functional and have few or no bugs.&lt;/p&gt;
+&lt;h3 id="product-objective"&gt;Product Objective
+&lt;/h3&gt;&lt;p&gt;The goal of this project is to allow us as young developers to discover the different stages of creating a program in Python and to be challenged by formative problems. I wanted the product to be entertaining, placing the player in an imaginative and immersive setting, which they control. The aim is to encourage players to think about their actions as every decision made in Sensha can have positive or negative repercussions on the game&amp;rsquo;s progression. Ultimately, the product aims to stand out from others through its original content, thus avoiding any trouble with intellectual property.&lt;/p&gt;
+&lt;h3 id="product-proposal"&gt;Product Proposal
+&lt;/h3&gt;&lt;p&gt;Every project begins with an initial idea. My initial idea was to create a &amp;ldquo;Brick Breaker,&amp;rdquo; but this project did not seem ambitious enough. That&amp;rsquo;s why I proposed developing a strategy game in the style of our childhood games like &amp;ldquo;Castle Attack&amp;rdquo;; &amp;ldquo;Heavy Mach Defense&amp;rdquo; or &amp;ldquo;Age of War&amp;rdquo;. This game must combine strategy and management elements in the style of large RTS (Real-Time Strategy) games. The subject of the game is the tank, around which all strategic issues revolve.&lt;/p&gt;
+&lt;h2 id="game-original-content"&gt;Game Original Content
+&lt;/h2&gt;&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/sensha/all-obj.png"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Game Sprites&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;</description></item></channel></rss>

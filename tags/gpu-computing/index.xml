@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GPU Computing on Jonas Mehtali</title><link>https://jonasx.xyz/tags/gpu-computing/</link><description>Recent content in GPU Computing on Jonas Mehtali</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>jonas.mht.private@gmail.com (Jonas Mehtali)</managingEditor><webMaster>jonas.mht.private@gmail.com (Jonas Mehtali)</webMaster><lastBuildDate>Tue, 01 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jonasx.xyz/tags/gpu-computing/index.xml" rel="self" type="application/rss+xml"/><item><title>HEAT: High-Efficiency Simulation for Thermal Ablation Therapy</title><link>https://jonasx.xyz/p/2025-heat-ijcars/</link><pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/2025-heat-ijcars/</guid><description>&lt;h2 id="abstract"&gt;Abstract
+&lt;/h2&gt;&lt;p&gt;Percutaneous thermal ablation is increasingly popular but still suffers from a complex preoperative planning, especially regarding the prediction of the ablation zone. We propose &lt;strong&gt;HEAT&lt;/strong&gt; (High-Efficiency simulation for thermal Ablation Therapy), a novel GPU-accelerated simulation framework for thermal ablation that enables real-time planning.&lt;/p&gt;
+&lt;p&gt;This work was published in the &lt;em&gt;International Journal of Computer Assisted Radiology and Surgery (IJCARS)&lt;/em&gt; in 2025.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://hal.science/hal-04973371" target="_blank" rel="noopener"
+&gt;📄 Read the Paper&lt;/a&gt; · &lt;a class="link" href="https://doi.org/10.1007/s11548-025-03350-z" target="_blank" rel="noopener"
+&gt;🔬 DOI&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="motivation"&gt;Motivation
+&lt;/h2&gt;&lt;p&gt;Thermal ablation is a minimally invasive cancer treatment that uses heat to destroy tumors. However, accurately predicting the ablation zone (the area that will be destroyed) remains challenging. Traditional simulation methods are too slow for clinical use, taking minutes or even hours to compute.&lt;/p&gt;
+&lt;h2 id="approach"&gt;Approach
+&lt;/h2&gt;&lt;p&gt;HEAT leverages GPU acceleration to achieve real-time performance:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fast computation&lt;/strong&gt;: Results in under 1 second for interactive planning&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GPU parallelization&lt;/strong&gt;: Efficient handling of 3D volumetric data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Physical accuracy&lt;/strong&gt;: Implements realistic heat transfer models including:
+&lt;ul&gt;
+&lt;li&gt;Pennes bioheat equation&lt;/li&gt;
+&lt;li&gt;Perfusion effects&lt;/li&gt;
+&lt;li&gt;Heat sink effects near blood vessels&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="results"&gt;Results
+&lt;/h2&gt;&lt;p&gt;The system demonstrates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Real-time performance&lt;/strong&gt;: Sub-second simulation times&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clinical accuracy&lt;/strong&gt;: Validated against experimental data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Practical utility&lt;/strong&gt;: Integrates with existing surgical planning workflows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="authors"&gt;Authors
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Jonas Mehtali&lt;/strong&gt; (Lead Author)&lt;/li&gt;
+&lt;li&gt;Juan Verde&lt;/li&gt;
+&lt;li&gt;Caroline Essert&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;ICube Laboratory, University of Strasbourg&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id="related-work"&gt;Related Work
+&lt;/h2&gt;&lt;p&gt;This work builds on my research internship in 2024 at ICube/IHU Strasbourg, which focused on networked computing for thermal ablation simulation. The HEAT project represents a significant advancement in computational efficiency and clinical applicability.&lt;/p&gt;
+&lt;p&gt;See also: &lt;a class="link" href="https://jonasx.xyz/p/2024-cryotrack-miccai/" &gt;Cryotrack: Planning and Navigation for Computer Assisted Cryoablation (MICCAI 2024)&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

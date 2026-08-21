@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Jonas Mehtali</title><link>https://jonasx.xyz/page/</link><description>Recent content in Pages on Jonas Mehtali</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>jonas.mht.private@gmail.com (Jonas Mehtali)</managingEditor><webMaster>jonas.mht.private@gmail.com (Jonas Mehtali)</webMaster><lastBuildDate>Sun, 06 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jonasx.xyz/page/index.xml" rel="self" type="application/rss+xml"/><item><title>Archives</title><link>https://jonasx.xyz/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/archives/</guid><description/></item><item><title>Contact</title><link>https://jonasx.xyz/contact/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/contact/</guid><description>&lt;img src="https://jonasx.xyz/contact/oviedo-spain-cover.png" alt="Featured image of post Contact" /&gt;&lt;!--
+## Contact me
+By email at [j.mehtali@unistra.fr](mailto:j.mehtali@unistra.fr).
+By phone at [+33 7 82 60 23 33](tel:+33782602333)
+--&gt;
+&lt;h2 id="follow-me-on-social-media"&gt;Follow me on social media
+&lt;/h2&gt;&lt;p&gt;On &lt;a class="link" href="https://www.linkedin.com/in/jonasmehtali/" target="_blank" rel="noopener"
+&gt;LinkedIn&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;On &lt;a class="link" href="https://www.youtube.com/@JonasMht" target="_blank" rel="noopener"
+&gt;Youtube&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Links</title><link>https://jonasx.xyz/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/links/</guid><description>&lt;h2 id="qr-code"&gt;QR Code
+&lt;/h2&gt;&lt;div style="text-align:center"&gt;
+&lt;span class="qr-light"&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/links/qr_prop_CD_light.png" width="280px"&gt;
+&lt;/figure&gt;
+&lt;p style="margin-top:8px; margin-bottom:0; color:var(--ew-text-muted); font-size:1.4rem;"&gt;scan to visit &lt;a href="https://jonasx.xyz"&gt;jonasx.xyz&lt;/a&gt;&lt;/p&gt;
+&lt;/span&gt;
+&lt;span class="qr-dark"&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/links/qr_prop_CD_dark.png" width="280px"&gt;
+&lt;/figure&gt;
+&lt;p style="margin-top:8px; margin-bottom:0; color:var(--ew-text-muted); font-size:1.4rem;"&gt;scan to visit &lt;a href="https://jonasx.xyz"&gt;jonasx.xyz&lt;/a&gt;&lt;/p&gt;
+&lt;/span&gt;
+&lt;/div&gt;</description></item><item><title>Publications</title><link>https://jonasx.xyz/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/publications/</guid><description>&lt;p&gt;A PDF of any paper below is available on request – please &lt;a class="link" href="https://jonasx.xyz/contact/" &gt;get in touch&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="2025"&gt;2025
+&lt;/h2&gt;&lt;h3 id="c-nca-chained-neural-cellular-automata-for-fast-and-accurate-thermal-ablation-estimation"&gt;C-NCA: Chained Neural Cellular Automata for Fast and Accurate Thermal Ablation Estimation
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Jonas Mehtali&lt;/strong&gt;, Juan Verde, Caroline Essert&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Medical Image Computing and Computer Assisted Interventions (MICCAI 2025)&lt;/em&gt;, Seoul, Korea, September 28 – October 2, 2025&lt;/p&gt;
+&lt;p&gt;&lt;span class="pub-type-badge"&gt;Conference Paper&lt;/span&gt; &lt;span class="pub-type-badge pub-type-badge--highlight"&gt;E-Poster&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Abstract.&lt;/strong&gt; We introduce an approach to estimate heat-induced tissue death in percutaneous thermal ablation based on a chained Neural Cellular Automata (NCA) architecture. The model accurately estimates cell death induced by thermal damage with low root mean square error and high speed. With only 12,210 learned parameters, it can compute 25 minutes of treatment at up to 476 fps, making it suitable for interactive simulations and optimization loops.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://papers.miccai.org/miccai-2025/0156-Paper4370.html" target="_blank" rel="noopener"
+&gt;Paper&lt;/a&gt; · &lt;a class="link" href="https://jonasx.xyz/p/cnca-2025/cnca-e-poster.pdf" &gt;E-Poster&lt;/a&gt; · &lt;a class="link" href="https://doi.org/10.1007/978-3-032-04965-0_7" target="_blank" rel="noopener"
+&gt;DOI&lt;/a&gt;&lt;/p&gt;
+&lt;details class="bibtex-block"&gt;
+&lt;summary&gt;BibTeX&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bibtex" data-lang="bibtex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nc"&gt;@inproceedings&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nl"&gt;mehtali2025cnca&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;author&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{Mehtali, Jonas and Verde, Juan and Essert, Caroline}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;title&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{C-NCA: Chained Neural Cellular Automata for Fast and Accurate
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; Thermal Ablation Estimation}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;booktitle&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{Medical Image Computing and Computer Assisted Interventions (MICCAI 2025)}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;year&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{2025}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;address&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{Seoul, Korea}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{156--165}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;doi&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{10.1007/978-3-032-04965-0\\_7}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/details&gt;
+&lt;hr&gt;
+&lt;h3 id="heat-high-efficiency-simulation-for-thermal-ablation-therapy"&gt;Heat: High-Efficiency Simulation for Thermal Ablation Therapy
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Jonas Mehtali&lt;/strong&gt;, Juan Verde, Caroline Essert&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;International Journal of Computer Assisted Radiology and Surgery (IJCARS)&lt;/em&gt;, 2025, 20(6), pp. 1135–1143&lt;/p&gt;
+&lt;p&gt;&lt;span class="pub-type-badge"&gt;Journal Article&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Abstract.&lt;/strong&gt; Percutaneous thermal ablation is increasingly popular but still suffers from complex preoperative planning, especially regarding the prediction of the ablation zone. We propose HEAT (High-Efficiency simulation for thermal Ablation Therapy), a novel GPU-accelerated simulation framework for thermal ablation that enables real-time planning.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://hal.science/hal-04973371" target="_blank" rel="noopener"
+&gt;Paper&lt;/a&gt; · &lt;a class="link" href="https://doi.org/10.1007/s11548-025-03350-z" target="_blank" rel="noopener"
+&gt;DOI&lt;/a&gt;&lt;/p&gt;
+&lt;details class="bibtex-block"&gt;
+&lt;summary&gt;BibTeX&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bibtex" data-lang="bibtex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nc"&gt;@article&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nl"&gt;mehtali2025heat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;author&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{Mehtali, Jonas and Verde, Juan and Essert, Caroline}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;title&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{Heat: High-Efficiency Simulation for Thermal Ablation Therapy}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;journal&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{International Journal of Computer Assisted Radiology and Surgery}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;year&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{2025}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;volume&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{20}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;number&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{6}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{1135--1143}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;doi&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{10.1007/s11548-025-03350-z}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/details&gt;
+&lt;hr&gt;
+&lt;h2 id="2024"&gt;2024
+&lt;/h2&gt;&lt;h3 id="cryotrack-planning-and-navigation-for-computer-assisted-cryoablation"&gt;Cryotrack: Planning and Navigation for Computer Assisted Cryoablation
+&lt;/h3&gt;&lt;p&gt;Henry J. Krumb, &lt;strong&gt;Jonas Mehtali&lt;/strong&gt;, Juan Verde, Anirban Mukhopadhyay, Caroline Essert&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Medical Image Computing and Computer Assisted Interventions (MICCAI 2024)&lt;/em&gt;, Marrakesh, Morocco, October 6–10, 2024
+Volume 15006, pp. 99–108&lt;/p&gt;
+&lt;p&gt;&lt;span class="pub-type-badge"&gt;Conference Paper&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Abstract.&lt;/strong&gt; Cryoablation is a minimally invasive technique that uses extreme cold to destroy cancerous tumors. However, it remains challenging to plan and navigate during the procedure. We present Cryotrack, a novel planning and navigation system for computer-assisted cryoablation.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://papers.miccai.org/miccai-2024/179-Paper1240.html" target="_blank" rel="noopener"
+&gt;Paper&lt;/a&gt; · &lt;a class="link" href="https://doi.org/10.1007/978-3-031-72089-5_10" target="_blank" rel="noopener"
+&gt;DOI&lt;/a&gt;&lt;/p&gt;
+&lt;details class="bibtex-block"&gt;
+&lt;summary&gt;BibTeX&lt;/summary&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bibtex" data-lang="bibtex"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nc"&gt;@inproceedings&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nl"&gt;krumb2024cryotrack&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;author&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{Krumb, Henry J. and Mehtali, Jonas and Verde, Juan and
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; Mukhopadhyay, Anirban and Essert, Caroline}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;title&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{Cryotrack: Planning and Navigation for Computer Assisted Cryoablation}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;booktitle&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{Medical Image Computing and Computer Assisted Interventions (MICCAI 2024)}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;year&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{2024}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;address&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{Marrakesh, Morocco}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{99--108}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;doi&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{10.1007/978-3-031-72089-5\\_10}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/details&gt;
+&lt;hr&gt;
+&lt;h2 id="research-interests"&gt;Research Interests
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Thermal ablation therapy planning&lt;/li&gt;
+&lt;li&gt;Cryoablation simulation and navigation&lt;/li&gt;
+&lt;li&gt;Medical image computing&lt;/li&gt;
+&lt;li&gt;Computer-assisted interventions&lt;/li&gt;
+&lt;li&gt;GPU-accelerated simulation&lt;/li&gt;
+&lt;li&gt;Image-guided surgery&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;Last updated: April 2026&lt;/em&gt;&lt;/p&gt;</description></item><item><title>Search</title><link>https://jonasx.xyz/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/search/</guid><description/></item><item><title>Teaching</title><link>https://jonasx.xyz/teaching/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/teaching/</guid><description>&lt;h2 id="teaching-activities"&gt;Teaching Activities
+&lt;/h2&gt;&lt;p&gt;As a PhD student at the University of Strasbourg, I participate in teaching activities within the Computer Science department. My focus areas include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Image Processing and Computer Vision&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Medical Imaging&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3D Graphics and Visualization&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scientific Programming (Python, C++)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="resources"&gt;Resources
+&lt;/h2&gt;&lt;h3 id="ppe1--projet-personnel-de-letudiant"&gt;PPE1 — Projet Personnel de l&amp;rsquo;Etudiant
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Resource&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class="link" href="Presentation-Orale-PPE1.pdf" &gt;Présentation Orale&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Guide and instructions for the oral presentation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="academic-supervision"&gt;Academic Supervision
+&lt;/h2&gt;&lt;p&gt;I&amp;rsquo;m available to supervise student projects in the following areas:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Medical image processing and analysis&lt;/li&gt;
+&lt;li&gt;Computer graphics and 3D visualization&lt;/li&gt;
+&lt;li&gt;GPU programming and parallel computing&lt;/li&gt;
+&lt;li&gt;Surgical planning simulation&lt;/li&gt;
+&lt;li&gt;Mixed reality applications in healthcare&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Interested students can contact me via the &lt;a class="link" href="https://jonasx.xyz/contact/" &gt;contact page&lt;/a&gt;.&lt;/p&gt;</description></item></channel></rss>

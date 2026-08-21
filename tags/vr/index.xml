@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VR on Jonas Mehtali</title><link>https://jonasx.xyz/tags/vr/</link><description>Recent content in VR on Jonas Mehtali</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>jonas.mht.private@gmail.com (Jonas Mehtali)</managingEditor><webMaster>jonas.mht.private@gmail.com (Jonas Mehtali)</webMaster><lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonasx.xyz/tags/vr/index.xml" rel="self" type="application/rss+xml"/><item><title>Airship VR Game</title><link>https://jonasx.xyz/p/2023-project-airship/</link><pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/2023-project-airship/</guid><description>&lt;img src="https://jonasx.xyz/p/2023-project-airship/airship-render1.png" alt="Featured image of post Airship VR Game" /&gt;&lt;h2 id="description"&gt;Description
+&lt;/h2&gt;&lt;p&gt;I created a VR airship puzzle-survival game using Unity during my last semester at the University of Strasbourg. I wrote the game logic in Unity and created the 3D assets and textures using Blender.
+&lt;br&gt;
+The player&amp;rsquo;s goal is to repair a sinking airship by solving interactive puzzles by clocking buttons, switching switches and turning handles. The game is designed for the Meta VR headset and uses the handheld controller tracking feature to interact with the environment.
+&lt;br&gt;
+This project provided me with valuable hands-on experience in Unity game development for VR headsets and project management, which I believe, as for all projects undertaken, will come in handy in my future ventures.&lt;/p&gt;
+&lt;h2 id="additional-material"&gt;Additional Material
+&lt;/h2&gt;&lt;p&gt;&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-project-airship/airship-render2.png" width="100%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Airship Front&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-project-airship/airship-render3.png" width="100%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Airship Back&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/p&gt;</description></item></channel></rss>

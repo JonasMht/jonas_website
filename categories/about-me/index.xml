@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>About Me on Jonas Mehtali</title><link>https://jonasx.xyz/categories/about-me/</link><description>Recent content in About Me on Jonas Mehtali</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>jonas.mht.private@gmail.com (Jonas Mehtali)</managingEditor><webMaster>jonas.mht.private@gmail.com (Jonas Mehtali)</webMaster><lastBuildDate>Mon, 20 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonasx.xyz/categories/about-me/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://jonasx.xyz/p/about-me/</link><pubDate>Mon, 20 Mar 2023 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/about-me/</guid><description>&lt;img src="https://jonasx.xyz/p/about-me/cryotrack-experiment.jpg" alt="Featured image of post About" /&gt;&lt;h1 id="jonas-mehtali"&gt;Jonas Mehtali
+&lt;/h1&gt;&lt;p&gt;PhD Student in Computer-Assisted Interventions · ICube Laboratory, University of Strasbourg&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="phd-student--icube-laboratory"&gt;PhD Student — ICube Laboratory
+&lt;/h2&gt;&lt;p&gt;Automatic multi-needle adaptive planning for percutaneous thermal ablation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PhD since September 2024&lt;/strong&gt; · Caroline Essert and Juan Verde · Strasbourg, France&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="research"&gt;Research
+&lt;/h2&gt;&lt;p&gt;Thermal ablation is an established option for treating small liver tumors. Comparable oncologic outcomes to surgery, minimally invasive, low morbidity. The problem: when a tumor exceeds what a single needle can cover, clinicians plan multiple overlapping ablations using 2D CT views and complex interfaces. Local recurrence rates sit between 10 and 39.1% within five years, often because adequate coverage is hard to achieve manually.&lt;/p&gt;
+&lt;p&gt;My PhD addresses this across three axes, built directly on my Master internships at ICube and IHU Strasbourg. Currently funded through the ITI HealthTech doctoral program at ED269 MSII.&lt;/p&gt;
+&lt;h3 id="multi-needle-trajectory-optimization"&gt;Multi-needle trajectory optimization
+&lt;/h3&gt;&lt;p&gt;Compare exhaustive and learning-based methods for optimal needle placement, accounting for vital anatomical structures. Explore search space reduction, adaptive simulation resolution, and DL-based ablation volume estimation.&lt;/p&gt;
+&lt;h3 id="intraoperative-replanning"&gt;Intraoperative replanning
+&lt;/h3&gt;&lt;p&gt;Extend optimization to real-time replanning. Track already-inserted needles, estimate partly treated volume dynamically, and adapt the plan for subsequent insertions as the procedure unfolds.&lt;/p&gt;
+&lt;h3 id="ergonomic-planning-interface"&gt;Ergonomic planning interface
+&lt;/h3&gt;&lt;p&gt;Design and implement a user-friendly GUI for planning, tracking, and replanning. Validate usability through studies with both clinical experts and novices.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="technical-toolkit"&gt;Technical Toolkit
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Category&lt;/th&gt;
+&lt;th&gt;Tools&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Languages&lt;/td&gt;
+&lt;td&gt;Python · C/C++ · CUDA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Medical Imaging&lt;/td&gt;
+&lt;td&gt;3D Slicer · PyTorch · VTK&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Graphics &amp;amp; XR&lt;/td&gt;
+&lt;td&gt;OpenGL · Unity · Blender · Maya&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="publications"&gt;Publications
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Paper&lt;/th&gt;
+&lt;th&gt;Venue&lt;/th&gt;
+&lt;th&gt;Highlights&lt;/th&gt;
+&lt;th&gt;DOI&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Cryotrack&lt;/strong&gt; — Planning and Navigation for Computer Assisted Cryoablation&lt;/td&gt;
+&lt;td&gt;MICCAI 2024&lt;/td&gt;
+&lt;td&gt;H.J. Krumb, J. Mehtali, J. Verde, A. Mukhopadhyay, C. Essert&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://doi.org/10.1007/978-3-031-72089-5_10" target="_blank" rel="noopener"
+&gt;10.1007/978-3-031-72089-5_10&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;HEAT&lt;/strong&gt; — High-Efficiency Simulation for Thermal Ablation Therapy&lt;/td&gt;
+&lt;td&gt;IJCARS 2025&lt;/td&gt;
+&lt;td&gt;J. Mehtali, J. Verde, C. Essert — GPU-accelerated multi-resolution simulation, results in under 1 second&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://doi.org/10.1007/s11548-025-03350-z" target="_blank" rel="noopener"
+&gt;10.1007/s11548-025-03350-z&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;C-NCA&lt;/strong&gt; — Chained Neural Cellular Automata for Fast Thermal Ablation Estimation&lt;/td&gt;
+&lt;td&gt;MICCAI 2025 &lt;span class="badge"&gt;Latest&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;J. Mehtali, J. Verde, C. Essert — 12,210 params · 476 fps · interactive optimization loops&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://doi.org/10.1007/978-3-032-04965-0_7" target="_blank" rel="noopener"
+&gt;10.1007/978-3-032-04965-0_7&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="beyond-research"&gt;Beyond Research
+&lt;/h2&gt;&lt;p&gt;When something annoying needs solving, I build tools for it. Small utilities, experiments with LLMs, whatever makes a recurring problem less tedious. Side projects include game development: started with Sensha (Python/PyGame) for my Baccalauréat, later revisited in Godot with multiplayer support.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="profiles"&gt;Profiles
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GitHub&lt;/strong&gt; — &lt;a class="link" href="https://github.com/JonasMht" target="_blank" rel="noopener"
+&gt;JonasMht&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Google Scholar&lt;/strong&gt; — &lt;a class="link" href="https://scholar.google.com/citations?user=0QQM6zIAAAAJ" target="_blank" rel="noopener"
+&gt;Jonas Mehtali&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ORCID&lt;/strong&gt; — &lt;a class="link" href="https://orcid.org/0009-0003-3688-7782" target="_blank" rel="noopener"
+&gt;0009-0003-3688-7782&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ResearchGate&lt;/strong&gt; — &lt;a class="link" href="https://www.researchgate.net/profile/Jonas-Mehtali" target="_blank" rel="noopener"
+&gt;Jonas Mehtali&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HAL&lt;/strong&gt; — &lt;a class="link" href="https://hal.science/search?q=Jonas%20Mehtali" target="_blank" rel="noopener"
+&gt;Jonas Mehtali&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

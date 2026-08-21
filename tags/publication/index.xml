@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Publication on Jonas Mehtali</title><link>https://jonasx.xyz/tags/publication/</link><description>Recent content in Publication on Jonas Mehtali</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>jonas.mht.private@gmail.com (Jonas Mehtali)</managingEditor><webMaster>jonas.mht.private@gmail.com (Jonas Mehtali)</webMaster><lastBuildDate>Tue, 01 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jonasx.xyz/tags/publication/index.xml" rel="self" type="application/rss+xml"/><item><title>HEAT: High-Efficiency Simulation for Thermal Ablation Therapy</title><link>https://jonasx.xyz/p/2025-heat-ijcars/</link><pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/2025-heat-ijcars/</guid><description>&lt;h2 id="abstract"&gt;Abstract
+&lt;/h2&gt;&lt;p&gt;Percutaneous thermal ablation is increasingly popular but still suffers from a complex preoperative planning, especially regarding the prediction of the ablation zone. We propose &lt;strong&gt;HEAT&lt;/strong&gt; (High-Efficiency simulation for thermal Ablation Therapy), a novel GPU-accelerated simulation framework for thermal ablation that enables real-time planning.&lt;/p&gt;
+&lt;p&gt;This work was published in the &lt;em&gt;International Journal of Computer Assisted Radiology and Surgery (IJCARS)&lt;/em&gt; in 2025.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://hal.science/hal-04973371" target="_blank" rel="noopener"
+&gt;📄 Read the Paper&lt;/a&gt; · &lt;a class="link" href="https://doi.org/10.1007/s11548-025-03350-z" target="_blank" rel="noopener"
+&gt;🔬 DOI&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="motivation"&gt;Motivation
+&lt;/h2&gt;&lt;p&gt;Thermal ablation is a minimally invasive cancer treatment that uses heat to destroy tumors. However, accurately predicting the ablation zone (the area that will be destroyed) remains challenging. Traditional simulation methods are too slow for clinical use, taking minutes or even hours to compute.&lt;/p&gt;
+&lt;h2 id="approach"&gt;Approach
+&lt;/h2&gt;&lt;p&gt;HEAT leverages GPU acceleration to achieve real-time performance:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fast computation&lt;/strong&gt;: Results in under 1 second for interactive planning&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GPU parallelization&lt;/strong&gt;: Efficient handling of 3D volumetric data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Physical accuracy&lt;/strong&gt;: Implements realistic heat transfer models including:
+&lt;ul&gt;
+&lt;li&gt;Pennes bioheat equation&lt;/li&gt;
+&lt;li&gt;Perfusion effects&lt;/li&gt;
+&lt;li&gt;Heat sink effects near blood vessels&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="results"&gt;Results
+&lt;/h2&gt;&lt;p&gt;The system demonstrates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Real-time performance&lt;/strong&gt;: Sub-second simulation times&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clinical accuracy&lt;/strong&gt;: Validated against experimental data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Practical utility&lt;/strong&gt;: Integrates with existing surgical planning workflows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="authors"&gt;Authors
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Jonas Mehtali&lt;/strong&gt; (Lead Author)&lt;/li&gt;
+&lt;li&gt;Juan Verde&lt;/li&gt;
+&lt;li&gt;Caroline Essert&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;ICube Laboratory, University of Strasbourg&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id="related-work"&gt;Related Work
+&lt;/h2&gt;&lt;p&gt;This work builds on my research internship in 2024 at ICube/IHU Strasbourg, which focused on networked computing for thermal ablation simulation. The HEAT project represents a significant advancement in computational efficiency and clinical applicability.&lt;/p&gt;
+&lt;p&gt;See also: &lt;a class="link" href="https://jonasx.xyz/p/2024-cryotrack-miccai/" &gt;Cryotrack: Planning and Navigation for Computer Assisted Cryoablation (MICCAI 2024)&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Cryotrack: Planning and Navigation for Computer Assisted Cryoablation</title><link>https://jonasx.xyz/p/2024-cryotrack-miccai/</link><pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/2024-cryotrack-miccai/</guid><description>&lt;h2 id="abstract"&gt;Abstract
+&lt;/h2&gt;&lt;p&gt;Cryoablation is a minimally invasive technique that uses extreme cold to destroy cancerous tumors. However, it remains challenging to plan and navigate during the procedure. We present &lt;strong&gt;Cryotrack&lt;/strong&gt;, a novel planning and navigation system for computer-assisted cryoablation.&lt;/p&gt;
+&lt;p&gt;This work was published at the &lt;em&gt;27th International Conference on Medical Image Computing and Computer Assisted Intervention (MICCAI 2024)&lt;/em&gt;, Marrakesh, Morocco, October 6-10, 2024.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://papers.miccai.org/miccai-2024/179-Paper1240.html" target="_blank" rel="noopener"
+&gt;📄 Read the Paper&lt;/a&gt; · &lt;a class="link" href="https://doi.org/10.1007/978-3-031-72089-5_10" target="_blank" rel="noopener"
+&gt;🔬 DOI&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="motivation"&gt;Motivation
+&lt;/h2&gt;&lt;p&gt;Cryoablation offers several advantages over thermal ablation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Precise control of the ablation zone&lt;/li&gt;
+&lt;li&gt;Minimal pain for the patient&lt;/li&gt;
+&lt;li&gt;Ability to treat tumors near sensitive structures&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;However, planning cryoablation procedures remains challenging due to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Complex ice ball formation dynamics&lt;/li&gt;
+&lt;li&gt;Difficulty in visualizing the ablation zone in real-time&lt;/li&gt;
+&lt;li&gt;Lack of dedicated planning tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="cryotrack-system"&gt;Cryotrack System
+&lt;/h2&gt;&lt;p&gt;Cryotrack provides:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Pre-operative Planning&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3D visualization of the target tumor&lt;/li&gt;
+&lt;li&gt;Simulation of ice ball growth&lt;/li&gt;
+&lt;li&gt;Optimization of probe placement&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Intra-operative Navigation&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Real-time tracking of cryoprobes&lt;/li&gt;
+&lt;li&gt;Augmented reality overlay of predicted ablation zone&lt;/li&gt;
+&lt;li&gt;Integration with imaging systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Visualization&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Clear visualization of the lethal ice zone vs. the benign cold zone&lt;/li&gt;
+&lt;li&gt;Heat sink effect awareness near blood vessels&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="results"&gt;Results
+&lt;/h2&gt;&lt;p&gt;The system was validated through:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Phantom experiments&lt;/li&gt;
+&lt;li&gt;Ex-vivo tissue testing&lt;/li&gt;
+&lt;li&gt;Clinical feasibility studies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="authors"&gt;Authors
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Henry J. Krumb&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Jonas Mehtali&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Juan Verde&lt;/li&gt;
+&lt;li&gt;Anirban Mukhopadhyay&lt;/li&gt;
+&lt;li&gt;Caroline Essert&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;ICube Laboratory, University of Strasbourg&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id="conference-experience"&gt;Conference Experience
+&lt;/h2&gt;&lt;p&gt;Presenting at MICCAI 2024 in Marrakesh was an incredible experience. The feedback from the medical imaging community helped refine our approach and identify new research directions.&lt;/p&gt;
+&lt;h2 id="related-work"&gt;Related Work
+&lt;/h2&gt;&lt;p&gt;This work complements my later research on thermal ablation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://jonasx.xyz/p/2025-heat-ijcars/" &gt;HEAT: High-Efficiency Simulation for Thermal Ablation Therapy (IJCARS 2025)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>End-of-Studies R&amp;D Internship in Computer-Assisted Interventions</title><link>https://jonasx.xyz/p/2024-assisted-surgery-internship/</link><pubDate>Fri, 06 Sep 2024 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/2024-assisted-surgery-internship/</guid><description>&lt;img src="https://jonasx.xyz/p/2024-assisted-surgery-internship/JonasMRPlanning.png" alt="Featured image of post End-of-Studies R&amp;D Internship in Computer-Assisted Interventions" /&gt;&lt;h2 id="context-and-objectives"&gt;Context and Objectives
+&lt;/h2&gt;&lt;p&gt;This internship, conducted from January 29th to August 8th, 2024, in the IMAGeS research group at the ICube laboratory and the IHU of Strasbourg, focused on advancing Computer-Assisted Intervention (CAI) techniques, particularly in percutaneous cancer treatments such as thermal ablation. The core objective was to research and implement real-time simulations and integrate these into surgical planning tools, using mixed reality (MR) technologies.&lt;/p&gt;
+&lt;p&gt;The key innovation of this project lies in its use of networked computing. By offloading computationally intensive tasks to networked servers, we achieved a system capable of interactive planning without burdening the operating room (OR) with extra infrastructure. This networked approach not only optimizes the computational process but also enhances the clinical environment by focusing resources on the surgical interventions themselves.&lt;/p&gt;
+&lt;h2 id="achievements-and-contributions"&gt;Achievements and Contributions
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Efficient Simulations:&lt;/b&gt; Leveraging networked computing, I implemented physical simulations that deliver results in under a second for low-resolution outputs and within five seconds for final results. Thus, interactive time planning was achieved.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--
+Side by side images
+--&gt;
+&lt;p&gt;&lt;img srcset="https://jonasx.xyz/p/2024-assisted-surgery-internship/MultiResolutionSimulation_hu_42bdc7052fe90f28.webp 320w, https://jonasx.xyz/p/2024-assisted-surgery-internship/MultiResolutionSimulation_hu_866216c0caa77ab4.webp 640w, https://jonasx.xyz/p/2024-assisted-surgery-internship/MultiResolutionSimulation_hu_224162f4a3576cb5.webp 960w" src="https://jonasx.xyz/p/2024-assisted-surgery-internship/MultiResolutionSimulation_hu_921e30449011200f.webp" sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 760px" width="1163" height="510" alt="Multi-Resolution Simulationm" loading="lazy" decoding="async"&gt; &lt;img srcset="https://jonasx.xyz/p/2024-assisted-surgery-internship/SimulationCells_hu_4165eec94e5f7db8.webp 320w, https://jonasx.xyz/p/2024-assisted-surgery-internship/SimulationCells_hu_2df857ea117e850.webp 640w" src="https://jonasx.xyz/p/2024-assisted-surgery-internship/SimulationCells_hu_cbc88778e778f15c.webp" sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 760px" width="687" height="506" alt="Independent Simulation Cells" loading="lazy" decoding="async"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Co-Planning:&lt;/b&gt; The simulation was deployed across multiple devices, connected through a secure Virtual Private Network (VPN). This allows for remote access and collaborative planning, potentially expanding the reach of expert consultations and surgical training.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2024-assisted-surgery-internship/CoPlanning.png" width="100%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Co-Planning : Three Concurrent Clients&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Mixed Reality Integration:&lt;/b&gt; MR tools were integrated to enhance spatial navigation and needle placement during planning. These immersive technologies proved more intuitive than traditional interfaces, offering significant improvements in the planning process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img srcset="https://jonasx.xyz/p/2024-assisted-surgery-internship/MRMenu_hu_fd9a9aa44db7b9be.webp 320w, https://jonasx.xyz/p/2024-assisted-surgery-internship/MRMenu_hu_bbc847b76957c1e3.webp 640w, https://jonasx.xyz/p/2024-assisted-surgery-internship/MRMenu_hu_71f92265478e8644.webp 960w" src="https://jonasx.xyz/p/2024-assisted-surgery-internship/MRMenu_hu_b21923edf2e5d91a.webp" sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 760px" width="1163" height="510" alt="MR Interface" loading="lazy" decoding="async"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img srcset="https://jonasx.xyz/p/2024-assisted-surgery-internship/MRHandNeedlePlacement_hu_e3d0ece5fbd0fdce.webp 320w, https://jonasx.xyz/p/2024-assisted-surgery-internship/MRHandNeedlePlacement_hu_52a8ca4014a9d5.webp 640w, https://jonasx.xyz/p/2024-assisted-surgery-internship/MRHandNeedlePlacement_hu_d223bcecb14db487.webp 960w" src="https://jonasx.xyz/p/2024-assisted-surgery-internship/MRHandNeedlePlacement_hu_83671badf571c994.webp" sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 760px" width="1163" height="510" alt="Hand Manipulation" loading="lazy" decoding="async"&gt; &lt;img srcset="https://jonasx.xyz/p/2024-assisted-surgery-internship/MRControllerNeedlePlacement_hu_c69071edbeaa8f56.webp 320w, https://jonasx.xyz/p/2024-assisted-surgery-internship/MRControllerNeedlePlacement_hu_210216a52419aa44.webp 640w, https://jonasx.xyz/p/2024-assisted-surgery-internship/MRControllerNeedlePlacement_hu_6e6effb6ed5ba2f2.webp 960w" src="https://jonasx.xyz/p/2024-assisted-surgery-internship/MRControllerNeedlePlacement_hu_685a1ce24ad0c1bf.webp" sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 760px" width="1163" height="510" alt="Controller Manipulation" loading="lazy" decoding="async"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;3D Visualization Software:&lt;/b&gt; The system was connected to 3D Slicer and other visualization tools, providing real-time feedback and interaction during surgical planning.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2024-assisted-surgery-internship/HeatAndColdPropagationHeatSinkEffect.png" width="100%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Heat and Cold Propagation Around Blood Vessels&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id="challenges-and-solutions"&gt;Challenges and Solutions
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Networked Computing:&lt;/b&gt; Tackling the challenge of connecting diverse machines for efficient computation, I developed a custom networking protocol and implemented compression methods such as the modified Huffman coding. This was a cornerstone of the project, enabling the effective integration of VR/MR technologies and ensuring the system&amp;rsquo;s flexibility for various deployment scenarios.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2024-assisted-surgery-internship/NetworkTopology.png" width="100%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Network Layout&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Software Optimization:&lt;/b&gt; Significant efforts were made to optimize the software for real-time performance. This included parallelization techniques and GPU acceleration to handle large datasets and complex calculations efficiently.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="future-prospects"&gt;Future Prospects
+&lt;/h2&gt;&lt;p&gt;This internship laid the groundwork for the upcoming PhD project, which aims to advance multi-needle planning in thermal ablation procedures. Building on the heat propagation simulation and cell death model developed during this internship, the project will focus on optimizing needle placement to improve both the speed, precision and efficiency of these procedures.&lt;/p&gt;
+&lt;p&gt;Future research could explore the incorporation of neural networks to achieve real-time planning capabilities and expand the cell death model to include hypothermia-induced cell death, broadening its clinical applicability.&lt;/p&gt;
+&lt;h2 id="acknowledgments"&gt;Acknowledgments
+&lt;/h2&gt;&lt;p&gt;I would like to express my sincere gratitude to Pr. Caroline Essert, a distinguished researcher in the IMAGeS team at the ICube lab, for her support and guidance throughout this project. I would also like to thank Dr. Juan Verde, Preclinical Research Scientist and Innovation Manager at the IHU of Strasbourg, for his valuable insights into the practical needs of the field.&lt;/p&gt;
+&lt;p&gt;This internship marks the beginning of an exciting journey in advancing computer-assisted interventions and improving patient outcomes in thermal ablation procedures.&lt;/p&gt;</description></item><item><title>R&amp;D Internship in Computer Assisted Surgery</title><link>https://jonasx.xyz/p/2023-assisted-surgery-internship/</link><pubDate>Wed, 30 Aug 2023 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/2023-assisted-surgery-internship/</guid><description>&lt;img src="https://jonasx.xyz/p/2023-assisted-surgery-internship/insertion.jpg" alt="Featured image of post R&amp;D Internship in Computer Assisted Surgery" /&gt;&lt;h2 id="context"&gt;Context
+&lt;/h2&gt;&lt;p&gt;As part of my first Master’s year internship, I present to you this in depth post about my 3 month dual internship in Darmstadt, Germany and Strasbourg, France.
+&lt;br&gt;
+It lasted from the 1st of June to the 1st of September 2023 and was conducted in the MEC-Lab research group in the Computer Science Department at the TU Darmstadt, Germany and in the IMAGeS research group of the ICube laboratory at the University of Strasbourg, France.&lt;/p&gt;
+&lt;h2 id="goal-of-the-internship"&gt;Goal of the Internship
+&lt;/h2&gt;&lt;p&gt;The goal of the internship was to take over and enhance the CryoTrack project which is a non-invasive surgery assistance tool developed for the 3D Slicer software.
+&lt;br&gt;&lt;br&gt;
+The primary focus was on synchronizing the surgical procedure with the breathing cycle. This involved the implementation of a breathing tracking tool based on multi-camera marker detection.
+Another important part was the streamlining of the 3D Slicer workflow, displaying the optimal areas of entry and correcting the needle orientation during the whole procedure.&lt;/p&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-assisted-surgery-internship/ArtificialRespirationMovement.gif" width="50%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Breathing Simulation and Marker Detection&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Throughout the internship, I worked extensively with Python, C++ and the 3D Slicer interface, learning to integrate a client and server for IGTLink communication between the different independent equipment pieces. I tackled challenges related to stereoscopic imaging, image processing, marker detection, synchronization of surgical procedures with breathing cycles and trajectory predictions for accurate needle placement.
+&lt;br&gt;&lt;br&gt;
+Collaborating with the team, I tested, debugged, and collected data on different algorithm optimizations culminating in a presentation of my progress to the IMAGeS team on the 21st of July 2023.
+&lt;br&gt;&lt;br&gt;
+The internship involved a deep dive into practical software development for non-invasive surgical guidance, contributing to the field of medical technology and patient care.&lt;/p&gt;
+&lt;h2 id="contributions"&gt;Contributions
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Real time visual needle trajectory correction&lt;/li&gt;
+&lt;li&gt;Needle entry area estimation and display&lt;/li&gt;
+&lt;li&gt;Breathing tracking through multi-camera marker detection&lt;/li&gt;
+&lt;li&gt;New interface for the CryoTrack module&lt;/li&gt;
+&lt;li&gt;Heavy tool workflow streamlining and automation&lt;/li&gt;
+&lt;li&gt;Quick setup and surgery preparation (less than 5 minutes)&lt;/li&gt;
+&lt;li&gt;Increased precision and accuracy of needle placement&lt;/li&gt;
+&lt;li&gt;Work on an EMT Linux driver&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="cryotrack-project"&gt;CryoTrack Project
+&lt;/h2&gt;&lt;p&gt;Triptych of the CryoTrack project&lt;/p&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-assisted-surgery-internship/triptych.png"&gt;&lt;figcaption&gt;
+&lt;h4&gt;CryoTrack Triptych&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;!-- youtube vide--&gt;
+&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/PqUruKKmM0Q"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;This video has been made to present the state of the project at the end of my internship.
+&lt;br&gt;
+The goal is to allow for quick pick up of the project by other researchers and to present the project to the public.&lt;/p&gt;
+&lt;h2 id="phantom"&gt;Phantom
+&lt;/h2&gt;&lt;p&gt;Phantoms play a crucial role in the field of surgery, serving as versatile tools for research, training and quality assurance. These phantoms are specially designed materials that mimic human tissues or structures, enabling surgeons and medical professionals to simulate and practice various surgical procedures before applying them to real patients.&lt;/p&gt;
+&lt;!--
+Side by side images
+--&gt;
+&lt;p&gt;&lt;img srcset="https://jonasx.xyz/p/2023-assisted-surgery-internship/PrintedTorso_hu_c1ce4aeeeb84ff4c.webp 320w, https://jonasx.xyz/p/2023-assisted-surgery-internship/PrintedTorso_hu_a8ee5f92bd907bfc.webp 640w, https://jonasx.xyz/p/2023-assisted-surgery-internship/PrintedTorso_hu_c1a0429184d6d925.webp 960w, https://jonasx.xyz/p/2023-assisted-surgery-internship/PrintedTorso_hu_3cc228d9dcd6fa1d.webp 1280w" src="https://jonasx.xyz/p/2023-assisted-surgery-internship/PrintedTorso_hu_f39b9f10ab21b642.webp" sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 760px" width="3000" height="2344" alt="Printed torso for the Phantom" loading="lazy" decoding="async"&gt; &lt;img srcset="https://jonasx.xyz/p/2023-assisted-surgery-internship/ScannerImage_hu_e00fcb3ee620f5ef.webp 320w, https://jonasx.xyz/p/2023-assisted-surgery-internship/ScannerImage_hu_33bce55151f462ce.webp 640w, https://jonasx.xyz/p/2023-assisted-surgery-internship/ScannerImage_hu_eb3b29669211c7e.webp 960w, https://jonasx.xyz/p/2023-assisted-surgery-internship/ScannerImage_hu_fe99993e56be21aa.webp 1280w" src="https://jonasx.xyz/p/2023-assisted-surgery-internship/ScannerImage_hu_533216ed4518c3f2.webp" sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 760px" width="3000" height="2461" alt="Scan of the Phantom" loading="lazy" decoding="async"&gt;&lt;/p&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-assisted-surgery-internship/traditional_planning.jpeg" width="100%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Phantom Before OP&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id="role-in-the-project"&gt;Role in the project
+&lt;/h3&gt;&lt;p&gt;For our tests we used a phantom of a torso at 1/2 of the scale of a grown man. We used agar-agar gel to simulate the patient&amp;rsquo;s tissue. We chose agar-agar for its material properties that closely resemble the ones of human tissue and is well suited for doing magnetic resonance imaging (MRI). Agar-agar is long lasting, can be melted and re-mold and is transparent, allowing us to see inside of the phantom and do a preliminary evaluation of the efficiency of our solution.
+The thoracic cage was printed using a flexible printing material called Z-Flex, the choice of this material is motivated by the need to simulate respiration and thus to deform the printed skeleton.
+Within the gel matrix we suspended risk structures such as a rigid printed trachea and rigid printed target beads of differing color.&lt;/p&gt;
+&lt;h2 id="insertion-feasibility-map"&gt;Insertion Feasibility Map
+&lt;/h2&gt;&lt;p&gt;The insertion feasibility map is a feature that allows the user to visualize the optimal entry areas for the needle placement.
+&lt;br&gt;
+The optimal entry areas are where the points of entry minimize the risk of damaging vital organs and structures.
+&lt;br&gt;
+The optimal entry areas are calculated using the patient&amp;rsquo;s scan and the target position.
+&lt;br&gt;
+These areas are displayed as a 3D colored map on the skin of the patient&amp;rsquo;s model.&lt;/p&gt;
+&lt;!-- Image --&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-assisted-surgery-internship/insertion_feasibility_map.png" width="50%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Needle Entry Area Estimation&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id="real-time-needle-trajectory-correction"&gt;Real Time Needle Trajectory Correction
+&lt;/h2&gt;&lt;p&gt;The hard part of real time needle correction by only using a 3D visualization is to find an intuitive way to display the correction to the user. The user needs to be able to understand the correction and to be able to apply it to the needle placement and orientation.&lt;/p&gt;
+&lt;h3 id="targeting-ring"&gt;Targeting ring
+&lt;/h3&gt;&lt;p&gt;The most intuitive solution I found was to represent the correction as a targeting ring with a sphere. The ring is displayed around the needle tip and the sphere is displayed on its edge in the opposite direction of the correction.
+&lt;br&gt;&lt;br&gt;
+The ring is displayed in the 3D view and is always oriented towards the target.
+The sphere is the direct projection of the needle end on the ring plane.
+The ring&amp;rsquo;s radius is the distance between the needle tip and the projection sphere.
+&lt;br&gt;&lt;br&gt;
+The user can then use the ring to correct the needle placement and orientation by placing the projection sphere in the middle of the ring, thereby closing the ring.
+&lt;br&gt;
+When the ring is closed the needle is aligned with the trajectory of the needle tip to the target.
+&lt;br&gt;&lt;br&gt;
+Adding to that there is a color code to the ring.
+It lights up is green when the needle is aligned with the trajectory, yellow when the needle is closely aligned and red otherwise.
+&lt;br&gt;
+In the case the needle is facing away from the target at an angle greater that 90° between the needle end, its tip and the target, the ring goes gray.&lt;/p&gt;
+&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/MkQSP9pbXxY"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img srcset="https://jonasx.xyz/p/2023-assisted-surgery-internship/TargetingRingRed_hu_931455fea162c0a.webp 320w" src="https://jonasx.xyz/p/2023-assisted-surgery-internship/TargetingRingRed_hu_8f22f57aac0cad1f.webp" sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 760px" width="600" height="571" alt="Red Targeting Ring : Incorrect Trajectory" loading="lazy" decoding="async"&gt; &lt;img srcset="https://jonasx.xyz/p/2023-assisted-surgery-internship/TargetingRingGreen_hu_9610433832a862cf.webp 320w" src="https://jonasx.xyz/p/2023-assisted-surgery-internship/TargetingRingGreen_hu_3fec71cb3e7f4b03.webp" sizes="(max-width: 640px) 100vw, (max-width: 960px) 80vw, 760px" width="600" height="571" alt="Green Targeting Ring : Correct Trajectory" loading="lazy" decoding="async"&gt;&lt;/p&gt;
+&lt;h2 id="studies-at-the-chu-of-strasbourg"&gt;Studies at the CHU of Strasbourg
+&lt;/h2&gt;&lt;p&gt;The CryoTrack project was tested at the CHU of Strasbourg on a phantom.
+We collected data on the efficiency of the solution and the time saved by the surgeon during the procedure in the light of a coming publication.&lt;/p&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-assisted-surgery-internship/OR_setup_labelled.png"&gt;&lt;figcaption&gt;
+&lt;h4&gt;OR Setup&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;ol&gt;
+&lt;li&gt;Computer running the software&lt;/li&gt;
+&lt;li&gt;Screen for the surgeon&lt;/li&gt;
+&lt;li&gt;Phantom&lt;/li&gt;
+&lt;li&gt;Electromagnetic tracking system&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="acknowledgements"&gt;Acknowledgements
+&lt;/h2&gt;&lt;p&gt;Firstly, I wish to extend my gratitude to Pr. Caroline Essert, a distinguished researcher in the IMAGeS team at the ICube lab and professor at the University of Strasbourg.
+Her unwavering support and expert guidance were instrumental in my successful completion of this internship.
+&lt;br&gt;&lt;br&gt;
+Additionally, I’d wish to thank Henry J. Krumb, a dedicated doctoral student in the MEC-Lab team and an associate professor at TU Darmstadt. Henry played a crucial role in acquainting me with the project during its initial phase and continued to provide invaluable assistance and contributions throughout the entirety of my internship.
+&lt;br&gt;&lt;br&gt;
+I am grateful to have had the opportunity to make meaningful contributions to the CryoTrack project.&lt;/p&gt;
+&lt;h2 id="supplementary-material"&gt;Supplementary Material
+&lt;/h2&gt;&lt;!--Image gallery--&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-assisted-surgery-internship/planning_model.png" width="50%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;3D Model : Phantom with Tumors&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-assisted-surgery-internship/Ziehm%20Vision%20RFD%203D%20X-Ray.jpg" width="50%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Phantom X-Ray Scan&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2023-assisted-surgery-internship/Ziehm%20Vision%20RFD%203D.jpg" width="50%"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Phantom X-Ray Visualization&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;</description></item><item><title>Research Internship in Computer Science</title><link>https://jonasx.xyz/p/2022-research-internship/</link><pubDate>Mon, 25 Jul 2022 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/2022-research-internship/</guid><description>&lt;img src="https://jonasx.xyz/p/2022-research-internship/presentation.png" alt="Featured image of post Research Internship in Computer Science" /&gt;&lt;h2 id="description"&gt;Description
+&lt;/h2&gt;&lt;p&gt;During the Summer of 2022, I participated in a Research Camp project at the University of Oviedo, Spain, where I conducted a full-scale research project and co-wrote and published a research paper with a local student titled &amp;ldquo;&lt;a class="link" href="https://peerj.com/articles/cs-1139/" target="_blank" rel="noopener"
+&gt;How does serif vs sans serif typeface impact the usability of e-commerce websites?&lt;/a&gt;&amp;rdquo;.&lt;/p&gt;
+&lt;h2 id="mission"&gt;Mission
+&lt;/h2&gt;&lt;p&gt;The goal of this internship was to participate in the development of a research project, understand all the typical phases of this kind of undertaking (study of the background, hypothesis development, experiment design and implementation, analysis, etc.) and participate in at least a part of them, including the dissemination that consists of the development of a poster and a research paper.&lt;/p&gt;
+&lt;h2 id="posts"&gt;Posts
+&lt;/h2&gt;&lt;figure&gt;&lt;img src="https://jonasx.xyz/p/2022-research-internship/oviedo-spain-diploma.png"&gt;&lt;figcaption&gt;
+&lt;h4&gt;Diploma Ceremony&lt;/h4&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FREUOviedo%2Fposts%2Fpfbid02ZUhia6rwrUsaKSKqhCRykvCu3JsbPKN5WCB9cJZPxHdvAyPgeJpJRH13jWJUXDF7l&amp;width=500&amp;show_text=true&amp;height=785&amp;appId" width="500" height="785" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"&gt;&lt;/iframe&gt;
+&lt;h2 id="conclusion"&gt;Conclusion
+&lt;/h2&gt;&lt;p&gt;I had the opportunity to discover Oviedo and the region of Asturias during my free time with my
+coworkers. I worked in a multicultural environment and learned a lot about the different cultures of my colleagues.
+&lt;br&gt;&lt;br&gt;
+I also had a truly immersive experience in the shoes of a researcher and could complete a full research project in only two months. I participated in the creation of a poster and in the writing of a paper which was new to me.
+&lt;br&gt;&lt;br&gt;
+This experience allowed me to develop my research skills, work in a team, and improved my communication and collaboration skills.&lt;/p&gt;</description></item></channel></rss>

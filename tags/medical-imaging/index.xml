@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Medical Imaging on Jonas Mehtali</title><link>https://jonasx.xyz/tags/medical-imaging/</link><description>Recent content in Medical Imaging on Jonas Mehtali</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>jonas.mht.private@gmail.com (Jonas Mehtali)</managingEditor><webMaster>jonas.mht.private@gmail.com (Jonas Mehtali)</webMaster><lastBuildDate>Tue, 01 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jonasx.xyz/tags/medical-imaging/index.xml" rel="self" type="application/rss+xml"/><item><title>HEAT: High-Efficiency Simulation for Thermal Ablation Therapy</title><link>https://jonasx.xyz/p/2025-heat-ijcars/</link><pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/2025-heat-ijcars/</guid><description>&lt;h2 id="abstract"&gt;Abstract
+&lt;/h2&gt;&lt;p&gt;Percutaneous thermal ablation is increasingly popular but still suffers from a complex preoperative planning, especially regarding the prediction of the ablation zone. We propose &lt;strong&gt;HEAT&lt;/strong&gt; (High-Efficiency simulation for thermal Ablation Therapy), a novel GPU-accelerated simulation framework for thermal ablation that enables real-time planning.&lt;/p&gt;
+&lt;p&gt;This work was published in the &lt;em&gt;International Journal of Computer Assisted Radiology and Surgery (IJCARS)&lt;/em&gt; in 2025.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://hal.science/hal-04973371" target="_blank" rel="noopener"
+&gt;📄 Read the Paper&lt;/a&gt; · &lt;a class="link" href="https://doi.org/10.1007/s11548-025-03350-z" target="_blank" rel="noopener"
+&gt;🔬 DOI&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="motivation"&gt;Motivation
+&lt;/h2&gt;&lt;p&gt;Thermal ablation is a minimally invasive cancer treatment that uses heat to destroy tumors. However, accurately predicting the ablation zone (the area that will be destroyed) remains challenging. Traditional simulation methods are too slow for clinical use, taking minutes or even hours to compute.&lt;/p&gt;
+&lt;h2 id="approach"&gt;Approach
+&lt;/h2&gt;&lt;p&gt;HEAT leverages GPU acceleration to achieve real-time performance:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fast computation&lt;/strong&gt;: Results in under 1 second for interactive planning&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GPU parallelization&lt;/strong&gt;: Efficient handling of 3D volumetric data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Physical accuracy&lt;/strong&gt;: Implements realistic heat transfer models including:
+&lt;ul&gt;
+&lt;li&gt;Pennes bioheat equation&lt;/li&gt;
+&lt;li&gt;Perfusion effects&lt;/li&gt;
+&lt;li&gt;Heat sink effects near blood vessels&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="results"&gt;Results
+&lt;/h2&gt;&lt;p&gt;The system demonstrates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Real-time performance&lt;/strong&gt;: Sub-second simulation times&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clinical accuracy&lt;/strong&gt;: Validated against experimental data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Practical utility&lt;/strong&gt;: Integrates with existing surgical planning workflows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="authors"&gt;Authors
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Jonas Mehtali&lt;/strong&gt; (Lead Author)&lt;/li&gt;
+&lt;li&gt;Juan Verde&lt;/li&gt;
+&lt;li&gt;Caroline Essert&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;ICube Laboratory, University of Strasbourg&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id="related-work"&gt;Related Work
+&lt;/h2&gt;&lt;p&gt;This work builds on my research internship in 2024 at ICube/IHU Strasbourg, which focused on networked computing for thermal ablation simulation. The HEAT project represents a significant advancement in computational efficiency and clinical applicability.&lt;/p&gt;
+&lt;p&gt;See also: &lt;a class="link" href="https://jonasx.xyz/p/2024-cryotrack-miccai/" &gt;Cryotrack: Planning and Navigation for Computer Assisted Cryoablation (MICCAI 2024)&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Cryotrack: Planning and Navigation for Computer Assisted Cryoablation</title><link>https://jonasx.xyz/p/2024-cryotrack-miccai/</link><pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate><author>jonas.mht.private@gmail.com (Jonas Mehtali)</author><guid>https://jonasx.xyz/p/2024-cryotrack-miccai/</guid><description>&lt;h2 id="abstract"&gt;Abstract
+&lt;/h2&gt;&lt;p&gt;Cryoablation is a minimally invasive technique that uses extreme cold to destroy cancerous tumors. However, it remains challenging to plan and navigate during the procedure. We present &lt;strong&gt;Cryotrack&lt;/strong&gt;, a novel planning and navigation system for computer-assisted cryoablation.&lt;/p&gt;
+&lt;p&gt;This work was published at the &lt;em&gt;27th International Conference on Medical Image Computing and Computer Assisted Intervention (MICCAI 2024)&lt;/em&gt;, Marrakesh, Morocco, October 6-10, 2024.&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://papers.miccai.org/miccai-2024/179-Paper1240.html" target="_blank" rel="noopener"
+&gt;📄 Read the Paper&lt;/a&gt; · &lt;a class="link" href="https://doi.org/10.1007/978-3-031-72089-5_10" target="_blank" rel="noopener"
+&gt;🔬 DOI&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="motivation"&gt;Motivation
+&lt;/h2&gt;&lt;p&gt;Cryoablation offers several advantages over thermal ablation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Precise control of the ablation zone&lt;/li&gt;
+&lt;li&gt;Minimal pain for the patient&lt;/li&gt;
+&lt;li&gt;Ability to treat tumors near sensitive structures&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;However, planning cryoablation procedures remains challenging due to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Complex ice ball formation dynamics&lt;/li&gt;
+&lt;li&gt;Difficulty in visualizing the ablation zone in real-time&lt;/li&gt;
+&lt;li&gt;Lack of dedicated planning tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="cryotrack-system"&gt;Cryotrack System
+&lt;/h2&gt;&lt;p&gt;Cryotrack provides:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Pre-operative Planning&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3D visualization of the target tumor&lt;/li&gt;
+&lt;li&gt;Simulation of ice ball growth&lt;/li&gt;
+&lt;li&gt;Optimization of probe placement&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Intra-operative Navigation&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Real-time tracking of cryoprobes&lt;/li&gt;
+&lt;li&gt;Augmented reality overlay of predicted ablation zone&lt;/li&gt;
+&lt;li&gt;Integration with imaging systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Visualization&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Clear visualization of the lethal ice zone vs. the benign cold zone&lt;/li&gt;
+&lt;li&gt;Heat sink effect awareness near blood vessels&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="results"&gt;Results
+&lt;/h2&gt;&lt;p&gt;The system was validated through:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Phantom experiments&lt;/li&gt;
+&lt;li&gt;Ex-vivo tissue testing&lt;/li&gt;
+&lt;li&gt;Clinical feasibility studies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="authors"&gt;Authors
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Henry J. Krumb&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Jonas Mehtali&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Juan Verde&lt;/li&gt;
+&lt;li&gt;Anirban Mukhopadhyay&lt;/li&gt;
+&lt;li&gt;Caroline Essert&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;ICube Laboratory, University of Strasbourg&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id="conference-experience"&gt;Conference Experience
+&lt;/h2&gt;&lt;p&gt;Presenting at MICCAI 2024 in Marrakesh was an incredible experience. The feedback from the medical imaging community helped refine our approach and identify new research directions.&lt;/p&gt;
+&lt;h2 id="related-work"&gt;Related Work
+&lt;/h2&gt;&lt;p&gt;This work complements my later research on thermal ablation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://jonasx.xyz/p/2025-heat-ijcars/" &gt;HEAT: High-Efficiency Simulation for Thermal Ablation Therapy (IJCARS 2025)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
