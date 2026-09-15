@@ -1,2 +1,7 @@
 public
 resources
+.playwright-mcp
+*.png
+!assets/img/*.png
+!content/**/*.png
+!static/**/*.png

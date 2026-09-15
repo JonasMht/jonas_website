@@ -1,0 +1,28 @@
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <p class="footer-name">Jonas Mehtali</p>
+            <p class="footer-blurb">PhD student in computer-assisted interventions at ICube, University of Strasbourg — and game developer in my spare time.</p>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Site</p>
+            <ul>
+                {{- range site.Menus.main }}
+                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                {{- end }}
+            </ul>
+        </div>
+        <div class="footer-col">
+            <p class="footer-heading">Elsewhere</p>
+            <ul class="footer-social">
+                {{- range site.Menus.social }}
+                <li><a href="{{ .URL }}"{{ if not (hasPrefix .URL "/") }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a></li>
+                {{- end }}
+            </ul>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <span>&copy; {{ if gt now.Year site.Params.footer.since }}{{ site.Params.footer.since }} – {{ end }}{{ now.Year }} {{ site.Params.author.name }}</span>
+        <span>Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+    </div>
+</footer>

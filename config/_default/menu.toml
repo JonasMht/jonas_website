@@ -1,20 +1,32 @@
-# Configure main menu and social menu
-#[[main]]
-#identifier = "home"
-#name = "Home"
-#url = "/"
-#[main.params]
-#icon = "home"
-#newtab = true
-
 [[main]]
-identifier = "writing"
-name = "Writing"
-url = "/post/"
+identifier = "pro"
+name = "Pro"
+url = "/pro/"
 weight = 1
 
-[main.params]
-icon = "edit"
+[[main]]
+identifier = "personal"
+name = "Personal"
+url = "/personal/"
+weight = 2
+
+[[main]]
+identifier = "publications"
+name = "Publications"
+url = "/pro/publications/"
+weight = 3
+
+[[main]]
+identifier = "teaching"
+name = "Teaching"
+url = "/pro/teaching/"
+weight = 4
+
+[[main]]
+identifier = "contact"
+name = "Contact"
+url = "/contact/"
+weight = 5
 
 # Icons can be found & downloaded here : https://tablericons.com/
 
@@ -24,33 +36,20 @@ name = "LinkedIn"
 url = "https://www.linkedin.com/in/jonasmehtali/"
 weight = 1
 
-[social.params]
-icon = "brand-linkedin"
-
 [[social]]
 identifier = "youtube"
 name = "YouTube"
 url = "https://www.youtube.com/@JonasMht"
 weight = 2
 
-[social.params]
-icon = "brand-youtube"
-
-
 [[social]]
 identifier = "cv"
 name = "My CV"
-url = "/p/about-me/jonas-mehtali-resume.pdf"
+url = "/pro/about/jonas-mehtali-resume.pdf"
 weight = 3
-
-[social.params]
-icon = "file-certificate"
 
 [[social]]
 identifier = "github"
 name = "GitHub"
 url = "https://github.com/JonasMht"
 weight = 4
-
-[social.params]
-icon = "brand-github"

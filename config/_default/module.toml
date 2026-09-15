@@ -1,2 +1,1 @@
-[[imports]]
-path = "github.com/CaiJimmy/hugo-theme-stack/v3"
+# No external theme — bespoke templates live in /layouts

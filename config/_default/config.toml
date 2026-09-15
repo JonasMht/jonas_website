@@ -16,7 +16,6 @@ DefaultContentLanguage = "en"
 hasCJKLanguage = false
 
 # Change it to your Disqus shortname before using
-disqusShortname = "hugo-theme-stack"
 
 # Robots TXT
 enableRobotsTXT = true
@@ -25,7 +24,6 @@ enableRobotsTXT = true
 [taxonomies]
   category = "categories"
   tag = "tags"
-  series = "series"
 
 [sitemap]
   changefreq = "weekly"

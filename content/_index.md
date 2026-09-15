@@ -1,10 +1,4 @@
 ---
 title: Jonas Mehtali
-description: Portfolio and blog of Jonas Mehtali — PhD student in Computer-Assisted Interventions.
-menu:
-    main:
-        name: Home
-        weight: 1
-        params:
-            icon: home
+description: "Two worlds, one site: my professional research in computer-assisted interventions, and the personal projects I build for fun."
 ---

@@ -1,0 +1,68 @@
+{{ define "main" }}
+{{- $pro := site.GetPage "/pro" -}}
+{{- $personal := site.GetPage "/personal" -}}
+
+<section class="home-hero container reveal">
+    {{- with resources.Get "img/avatar.jpg" }}
+    <img class="home-avatar" src="{{ .RelPermalink }}" width="112" height="112" alt="Portrait of Jonas Mehtali">
+    {{- end }}
+    <h1 class="home-title">Jonas Mehtali</h1>
+    <p class="home-role">PhD Student in Computer-Assisted Interventions</p>
+    <p class="home-bio">I research GPU-accelerated planning for thermal ablation at ICube, Strasbourg —
+    and I build games, tools, and 3D worlds in my spare time.</p>
+    <div class="pill-row">
+        {{- range site.Menus.social }}
+        <a class="pill" href="{{ .URL }}"{{ if not (hasPrefix .URL "/") }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
+        {{- end }}
+    </div>
+</section>
+
+<section class="home-deck container">
+    <a class="deck-card deck-card--pro reveal" href="{{ $pro.RelPermalink }}">
+        <div class="deck-card__inner">
+            <p class="deck-card__eyebrow">Professional</p>
+            <h2 class="deck-card__title">Research &amp; Engineering</h2>
+            <p class="deck-card__tagline">{{ $pro.Params.tagline }}</p>
+            <ul class="deck-card__list">
+                {{- $hl := first 3 $pro.Params.highlights }}
+                {{- range $hl }}
+                <li>
+                    <span class="deck-card__item-title">{{ .title }}</span>
+                    <span class="deck-card__item-desc">{{ .desc }}</span>
+                </li>
+                {{- end }}
+            </ul>
+            <span class="deck-card__cta">Explore the professional side
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+        </div>
+    </a>
+
+    {{- $featured := false }}
+    {{- with $personal.Params.featured }}{{ $featured = site.GetPage (printf "/personal/projects/%s" .) }}{{ end }}
+    <a class="deck-card deck-card--personal reveal" href="{{ $personal.RelPermalink }}">
+        {{- with $featured }}
+        <div class="deck-card__visual">
+            {{- with .Resources.GetMatch (.Params.image | default "") }}<img src="{{ .RelPermalink }}" alt="" loading="lazy">{{ end }}
+        </div>
+        {{- end }}
+        <div class="deck-card__inner">
+            <p class="deck-card__eyebrow">Personal</p>
+            <h2 class="deck-card__title">Projects &amp; Playground</h2>
+            <p class="deck-card__tagline">{{ $personal.Params.tagline }}</p>
+            <ul class="deck-card__list">
+                {{- $pp := (site.GetPage "/personal/projects").Pages }}
+                {{- range first 3 $pp }}
+                <li>
+                    <span class="deck-card__item-title">{{ .Title }}</span>
+                    <span class="deck-card__item-desc">{{ .Params.description | truncate 80 }}</span>
+                </li>
+                {{- end }}
+            </ul>
+            <span class="deck-card__cta">Explore the personal side
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+        </div>
+    </a>
+</section>
+{{ end }}

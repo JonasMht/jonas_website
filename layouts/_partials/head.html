@@ -1,0 +1,165 @@
+{{- $title := "" -}}
+{{- if .IsHome -}}
+  {{- $title = site.Title -}}
+{{- else -}}
+  {{- $title = printf "%s · %s" .Title site.Title -}}
+{{- end -}}
+{{- $description := .Params.description | default site.Params.description -}}
+{{- $ogImage := "" -}}
+{{- with .Params.image -}}
+  {{- $img := $.Resources.GetMatch . -}}
+  {{- if $img -}}
+    {{- $ogImage = $img.Permalink -}}
+  {{- else -}}
+    {{- $ogImage = . | absURL -}}
+  {{- end -}}
+{{- else -}}
+  {{- $img := resources.Get "img/avatar.jpg" -}}
+  {{- if $img -}}{{- $ogImage = $img.Permalink -}}{{- end -}}
+{{- end -}}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
+<meta name="theme-color" content="#4682B4">
+
+{{ with site.Params.keywords }}
+<meta name="keywords" content="{{ . }}">
+{{ end }}
+<meta name="author" content="{{ site.Params.author.name }}">
+
+{{- /* Theme init before paint to avoid FOUC */ -}}
+<script>
+(function () {
+    var stored = null;
+    try { stored = localStorage.getItem('scheme'); } catch (e) {}
+    var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.scheme = stored || (dark ? 'dark' : 'light');
+})();
+</script>
+
+{{- /* Open Graph / Twitter */ -}}
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+{{ with $ogImage }}
+<meta property="og:image" content="{{ . }}">
+<meta name="twitter:image" content="{{ . }}">
+{{ end }}
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+{{- if .IsPage }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@JonasMht">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{- /* Person JSON-LD */ -}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jonas Mehtali",
+    "url": "https://jonasx.xyz",
+    "jobTitle": "PhD Student in Computer-Assisted Interventions",
+    "description": "PhD student researching multi-needle trajectory optimization, intraoperative replanning, and ergonomic planning interfaces for percutaneous thermal ablation at ICube Laboratory, University of Strasbourg.",
+    "email": "jonas.mht.private@gmail.com",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Strasbourg",
+        "addressCountry": "FR"
+    },
+    "affiliation": {
+        "@type": "Organization",
+        "name": "ICube Laboratory, University of Strasbourg",
+        "url": "https://icube.unistra.fr"
+    },
+    "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Strasbourg"
+    },
+    "sameAs": [
+        "https://www.linkedin.com/in/jonasmehtali/",
+        "https://github.com/JonasMht",
+        "https://orcid.org/0009-0003-3688-7782",
+        "https://scholar.google.com/citations?user=0QQM6zIAAAAJ",
+        "https://www.researchgate.net/profile/Jonas-Mehtali",
+        "https://hal.science/search?q=Jonas%20Mehtali"
+    ],
+    "knowsAbout": [
+        "Medical Image Computing",
+        "Computer-Assisted Interventions",
+        "Thermal Ablation Planning",
+        "GPU-Accelerated Simulation",
+        "Deep Learning for Medical Imaging",
+        "Image-Guided Surgery",
+        "Cryoablation",
+        "Percutaneous Thermal Ablation"
+    ]
+}
+</script>
+
+{{- if .IsPage }}
+{{- $img := "" -}}
+{{- with .Params.image -}}
+  {{- $r := $.Resources.GetMatch . -}}
+  {{- if $r -}}{{- $img = $r.Permalink -}}{{- end -}}
+{{- end -}}
+{{- $desc := .Params.description | default (.Summary | plainify) -}}
+{{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "Article"
+    "headline" .Title
+    "description" $desc
+    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+    "author" (dict "@type" "Person" "name" site.Params.author.name "url" site.BaseURL)
+    "publisher" (dict "@type" "Person" "name" site.Params.author.name "url" site.BaseURL)
+    "url" .Permalink
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+-}}
+{{- if $img -}}{{- $schema = merge $schema (dict "image" $img) -}}{{- end -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+{{- end }}
+
+{{- if .Ancestors }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {{- $ancestors := .Ancestors.Reverse }}
+        {{- range $i, $a := $ancestors }}
+        {
+            "@type": "ListItem",
+            "position": {{ add $i 1 }},
+            "name": "{{ $a.Title }}",
+            "item": "{{ $a.Permalink }}"
+        }{{- if ne $i (sub (len $ancestors) 1) }},{{ end }}
+        {{- end }}
+    ]
+}
+</script>
+{{- end }}
+
+{{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="icon" href="/icons/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+{{- range .AlternativeOutputFormats }}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+{{- end }}
+
+{{- template "_internal/google_analytics.html" . }}

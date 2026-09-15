@@ -1,0 +1,30 @@
+<header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+        <a class="nav-brand" href="{{ site.Home.RelPermalink }}">
+            {{- with resources.Get "img/avatar.jpg" -}}
+            <img src="{{ .RelPermalink }}" width="32" height="32" alt="" class="nav-avatar">
+            {{- end }}
+            <span>Jonas Mehtali</span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+            <svg class="icon icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+            <svg class="icon icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+
+        <div class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+                {{- range site.Menus.main }}
+                {{- $url := .URL }}
+                {{- $active := eq $.RelPermalink $url }}
+                {{- if not $active }}{{ if in (slice "/pro/" "/personal/") $url }}{{ $active = hasPrefix $.RelPermalink $url }}{{ end }}{{ end }}
+                <li><a href="{{ $url }}" class="nav-link{{ if $active }} is-active{{ end }}{{ if in (slice `pro` `personal`) .Identifier }} nav-link--split{{ end }}">{{ .Name }}</a></li>
+                {{- end }}
+            </ul>
+            <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+                <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </div>
+    </nav>
+</header>

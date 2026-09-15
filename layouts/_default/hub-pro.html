@@ -1,0 +1,103 @@
+{{ define "main" }}
+<article class="hub hub--pro">
+    <section class="hub-hero container reveal">
+        <div class="hub-hero__text">
+            <p class="eyebrow">{{ .Params.eyebrow }}</p>
+            <h1 class="hub-hero__title">Jonas Mehtali</h1>
+            <p class="hub-hero__tagline">{{ .Params.tagline }}</p>
+            <div class="badge-row">
+                {{- range .Params.badges }}<span class="badge-chip">{{ . }}</span>{{ end }}
+            </div>
+            <div class="cta-row">
+                <a class="btn btn--primary" href="{{ .RelPermalink }}/about/jonas-mehtali-resume.pdf">Download CV</a>
+                <a class="btn btn--ghost" href="{{ (.GetPage `/contact`).RelPermalink }}">Get in touch</a>
+            </div>
+        </div>
+        {{- with resources.Get "img/avatar.jpg" }}
+        <img class="hub-avatar" src="{{ .RelPermalink }}" width="160" height="160" alt="Portrait of Jonas Mehtali">
+        {{- end }}
+    </section>
+
+    <section class="hub-stats container reveal" aria-label="Key numbers">
+        {{- range .Params.stats }}
+        <div class="stat">
+            <span class="stat__value">{{ .value }}</span>
+            <span class="stat__label">{{ .label }}</span>
+        </div>
+        {{- end }}
+    </section>
+
+    <section class="hub-section container reveal">
+        <h2 class="hub-heading">Research</h2>
+        <div class="axis-grid">
+            {{- range .Params.axes }}
+            <article class="axis-card">
+                <h3>{{ .title }}</h3>
+                <p>{{ .desc }}</p>
+            </article>
+            {{- end }}
+        </div>
+        <a class="see-all" href="{{ .RelPermalink }}research/">All research posts
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+    </section>
+
+    <section class="hub-section container reveal">
+        <h2 class="hub-heading">Selected publications</h2>
+        <ol class="pub-list">
+            {{- range .Params.publications }}
+            <li class="pub-item">
+                <span class="pub-year">{{ .year }}</span>
+                <div class="pub-body">
+                    <a class="pub-title" href="{{ .url }}">{{ .title }}</a>
+                    <span class="pub-venue">{{ .venue }}</span>
+                </div>
+            </li>
+            {{- end }}
+        </ol>
+        <a class="see-all" href="{{ .RelPermalink }}publications/">Full publication list
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+    </section>
+
+    <section class="hub-section container reveal">
+        <h2 class="hub-heading">Experience</h2>
+        <ol class="timeline">
+            {{- range .Params.timeline }}
+            <li class="timeline__item">
+                <span class="timeline__period">{{ .period }}</span>
+                <div class="timeline__body">
+                    <h3>{{ .title }}</h3>
+                    <p class="timeline__place">{{ .place }}</p>
+                    {{- with .desc }}<p>{{ . }}</p>{{ end }}
+                </div>
+            </li>
+            {{- end }}
+        </ol>
+    </section>
+
+    <section class="hub-section container reveal">
+        <h2 class="hub-heading">Beyond research</h2>
+        <div class="link-card-grid">
+            <a class="link-card" href="{{ .RelPermalink }}teaching/">
+                <h3>Teaching</h3>
+                <p>Image processing, medical imaging, GPU programming — and student project supervision.</p>
+            </a>
+            <a class="link-card" href="{{ .RelPermalink }}endorsements/">
+                <h3>Endorsements</h3>
+                <p>Reference letters from professors I have worked with in Strasbourg and Oviedo.</p>
+            </a>
+            <a class="link-card" href="{{ .RelPermalink }}about/">
+                <h3>About</h3>
+                <p>The full story: research focus, toolkit, publications, and profiles.</p>
+            </a>
+        </div>
+    </section>
+
+    {{- with .Content }}
+    <section class="hub-section container reveal article-content">
+        {{ . }}
+    </section>
+    {{- end }}
+</article>
+{{ end }}

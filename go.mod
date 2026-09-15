@@ -1,5 +1,3 @@
-module github.com/CaiJimmy/hugo-theme-stack-starter
+module github.com/JonasMht/jonas_website
 
 go 1.21
-
-require github.com/CaiJimmy/hugo-theme-stack/v3 v3.34.2 // indirect

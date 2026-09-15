@@ -1,0 +1,61 @@
+{{ define "main" }}
+<article class="hub hub--personal">
+    <section class="hub-hero hub-hero--warm container reveal">
+        <div class="hub-hero__text">
+            <p class="eyebrow">{{ .Params.eyebrow }}</p>
+            <h1 class="hub-hero__title">{{ .Title }}</h1>
+            <p class="hub-hero__tagline">{{ .Params.tagline }}</p>
+            <div class="badge-row">
+                {{- range .Params.badges }}<span class="badge-chip">{{ . }}</span>{{ end }}
+            </div>
+        </div>
+    </section>
+
+    {{- $projects := site.GetPage "/personal/projects" -}}
+    {{- $experiences := site.GetPage "/personal/experiences" -}}
+
+    {{- with .Params.featured }}
+    {{- $featured := site.GetPage (printf "/personal/projects/%s" .) }}
+    {{- with $featured }}
+    <section class="hub-section container reveal">
+        <h2 class="hub-heading">Featured project</h2>
+        {{- $img := "" }}
+        {{- with .Resources.GetMatch (.Params.image | default "") }}{{ $img = .RelPermalink }}{{ end }}
+        <a class="spotlight" href="{{ .RelPermalink }}">
+            {{- with $img }}
+            <div class="spotlight__media"><img src="{{ . }}" alt="" loading="lazy"></div>
+            {{- end }}
+            <div class="spotlight__body">
+                <p class="card__eyebrow">{{ .Date | time.Format "2006" }} · Featured</p>
+                <h3>{{ .Title }}</h3>
+                <p class="spotlight__desc">{{ .Params.description }}</p>
+                <span class="spotlight__cta">Open project
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+            </div>
+        </a>
+    </section>
+    {{- end }}
+    {{- end }}
+
+    <section class="hub-section container reveal">
+        <h2 class="hub-heading">Projects</h2>
+        <div class="card-grid">
+            {{- range $projects.Pages }}{{ partial "article-card" . }}{{ end }}
+        </div>
+    </section>
+
+    <section class="hub-section container reveal">
+        <h2 class="hub-heading">Beyond the lab</h2>
+        <div class="card-grid card-grid--compact">
+            {{- range $experiences.Pages }}{{ partial "article-card" . }}{{ end }}
+        </div>
+    </section>
+
+    {{- with .Content }}
+    <section class="hub-section container reveal article-content">
+        {{ . }}
+    </section>
+    {{- end }}
+</article>
+{{ end }}

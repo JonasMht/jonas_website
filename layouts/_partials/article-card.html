@@ -1,0 +1,25 @@
+{{- $img := "" -}}
+{{- with .Params.image -}}
+  {{- $r := $.Resources.GetMatch . -}}
+  {{- if $r -}}{{- $img = $r.RelPermalink -}}{{- end -}}
+{{- end -}}
+{{- $section := "" -}}
+{{- with .Ancestors -}}
+  {{- $last := index (last 1 .) 0 -}}
+  {{- if not $last.IsHome }}{{ $section = $last.Title }}{{ end -}}
+{{- end -}}
+<article class="card{{ if not $img }} card--noimg{{ end }}">
+    <a class="card__link" href="{{ .RelPermalink }}">
+        {{- with $img }}
+        <div class="card__media"><img src="{{ . }}" alt="" loading="lazy"></div>
+        {{- else }}
+        <div class="card__media card__media--ph"><span>{{ substr .Title 0 1 | upper }}</span></div>
+        {{- end }}
+        <div class="card__body">
+            {{- with $section }}<p class="card__eyebrow">{{ . }}</p>{{ end }}
+            <h3 class="card__title">{{ .Title }}</h3>
+            <p class="card__desc">{{ .Params.description | default (.Summary | plainify | truncate 140) }}</p>
+            <p class="card__meta">{{ .Date | time.Format "Jan 2006" }}</p>
+        </div>
+    </a>
+</article>

@@ -1,0 +1,62 @@
+{{ define "main" }}
+<article class="post">
+    <header class="post-header container-narrow reveal">
+        <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="{{ site.Home.RelPermalink }}">Home</a>
+            {{- range .Ancestors.Reverse }}
+            {{- if not .IsHome }}<span class="crumbs__sep">/</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+            {{- end }}
+            <span class="crumbs__sep">/</span><span aria-current="page">{{ .Title }}</span>
+        </nav>
+        <h1 class="post-title">{{ .Title }}</h1>
+        {{- with .Params.description }}<p class="post-subtitle">{{ . }}</p>{{ end }}
+        <p class="post-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 Jan 2006" }}</time>
+            <span class="post-meta__sep">·</span>{{ .ReadingTime }} min read
+            {{- with .Params.tags }}
+            <span class="post-meta__sep">·</span>
+            {{- range . }}<a class="tag-chip" href="{{ `/tags/` | relLangURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
+            {{- end }}
+        </p>
+        {{- $hero := "" }}
+        {{- with .Params.image }}{{ $r := $.Resources.GetMatch . }}{{ if $r }}{{ $hero = $r.RelPermalink }}{{ end }}{{ end }}
+        {{- with $hero }}
+        <figure class="post-hero"><img src="{{ . }}" alt=""></figure>
+        {{- end }}
+    </header>
+
+    <div class="container-narrow article-content reveal">
+        {{- if .Params.toc }}
+        <details class="toc">
+            <summary>On this page</summary>
+            {{ .TableOfContents }}
+        </details>
+        {{- end }}
+        {{ .Content }}
+    </div>
+
+    {{- with .Params.links }}
+    <aside class="container-narrow post-links reveal">
+        <h2>Links</h2>
+        <ul class="link-list">
+            {{- range . }}
+            {{- $href := .website }}
+            {{- if not (or (hasPrefix $href "http") (hasPrefix $href "/")) }}{{ $href = printf "%s%s" $.RelPermalink $href }}{{ end }}
+            <li>
+                <a href="{{ $href }}"{{ if hasPrefix $href "http" }} target="_blank" rel="noopener"{{ end }}>
+                    <span class="link-list__title">{{ .title }}</span>
+                    {{- with .description }}<span class="link-list__desc">{{ . }}</span>{{ end }}
+                </a>
+            </li>
+            {{- end }}
+        </ul>
+    </aside>
+    {{- end }}
+
+    <footer class="post-footer container-narrow reveal">
+        {{- with .Parent }}
+        <a class="btn btn--ghost" href="{{ .RelPermalink }}">&larr; Back to {{ .Title }}</a>
+        {{- end }}
+    </footer>
+</article>
+{{ end }}

@@ -9,12 +9,6 @@ links:
     website: https://mathinfo.unistra.fr/formations/diplome-duniversite/du-cursus-master-ingenierie-cmi-informatique-image-realite-virtuelle-interactions-et-jeux/
     image: cmi-image-icon.png
 
-menu:
-    main:
-        weight: 4
-        params:
-            icon: link
-
 ---
 
 ## QR Code

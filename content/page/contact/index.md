@@ -4,11 +4,6 @@ description: "Get in touch and follow on social media."
 slug: contact
 image: oviedo-spain-cover.png
 
-menu:
-    main: 
-        weight: 4
-        params:
-            icon: user-plus
 ---
 
 <!--
