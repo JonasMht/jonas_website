@@ -1,0 +1,173 @@
+/* JOURNAL — editorial print aesthetic */
+:root {
+    --paper: #F7F3EA;
+    --paper-deep: #EFE9DB;
+    --ink: #1D1A15;
+    --ink-soft: #4A443A;
+    --ink-mute: #8A8172;
+    --ox: #8C2F1B;          /* oxblood accent */
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, serif;
+    --caps: "Optima", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-color: rgba(140,47,27,.5); text-underline-offset: 3px; }
+a:hover { color: var(--ox); }
+
+.rule-label {
+    font-family: var(--caps);
+    font-size: 11px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--ox);
+    margin: 0 0 12px;
+    display: block;
+}
+
+/* masthead */
+.masthead { border-bottom: 3px double var(--ink); }
+.mast-inner { max-width: 1080px; margin: 0 auto; padding: 58px 32px 40px; }
+.mast-line {
+    display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    font-family: var(--caps); font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-mute);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 10px; margin: 0 0 34px;
+}
+.mast-name {
+    font-size: clamp(3.4rem, 11vw, 7.6rem);
+    line-height: .98;
+    letter-spacing: -0.015em;
+    margin: 0 0 22px;
+    font-weight: 500;
+}
+.mast-sub {
+    max-width: 46ch; margin: 0;
+    font-style: italic; font-size: 1.15rem; color: var(--ink-soft);
+}
+
+/* paper body */
+.paper { max-width: 1080px; margin: 0 auto; padding: 44px 32px 70px; }
+
+/* table of contents chapters */
+.toc-head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 12px; margin-bottom: 8px; }
+.folio { font-family: var(--caps); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute); }
+
+.chapter {
+    display: grid;
+    grid-template-columns: 110px 1fr 300px;
+    gap: 34px;
+    padding: 44px 0;
+    border-bottom: 1px solid var(--ink);
+    color: inherit;
+    align-items: start;
+}
+.chapter:hover { text-decoration: none; }
+.chapter:hover .chapter-go { color: var(--ox); }
+.chapter-no {
+    font-size: 4.4rem; line-height: 1;
+    font-weight: 500;
+    color: var(--ox);
+    border-top: 3px solid var(--ox);
+    padding-top: 14px;
+}
+.chapter-kicker { font-family: var(--caps); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 10px; }
+.chapter-body h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.12; margin: 0 0 14px; font-weight: 600; letter-spacing: -0.01em; }
+.chapter-desc { margin: 0 0 16px; color: var(--ink-soft); }
+.chapter-go { font-family: var(--caps); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); margin: 0; transition: color .15s; }
+.chapter-fig { margin: 0; border: 1px solid var(--ink); padding: 6px; background: #fff; box-shadow: 4px 4px 0 rgba(29,26,21,.14); }
+.chapter-fig img { display: block; width: 100%; height: 190px; object-fit: cover; }
+.chapter--alt { grid-template-columns: 300px 1fr 110px; }
+.chapter--alt .chapter-fig { grid-column: 1; grid-row: 1; order: 0; }
+.chapter--alt .chapter-body { grid-column: 2; grid-row: 1; }
+.chapter--alt .chapter-no { grid-column: 3; grid-row: 1; text-align: right; border-top-color: var(--ink); color: var(--ink); }
+
+/* colophon */
+.colophon { margin-top: 54px; }
+.colophon-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; padding-bottom: 30px; border-bottom: 3px double var(--ink); }
+.colophon p { margin: 0 0 0; color: var(--ink-soft); }
+.colophon-list { list-style: none; margin: 0; padding: 0; font-size: 15px; display: grid; gap: 6px; }
+.colophon-foot { font-family: var(--caps); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-mute); margin: 22px 0 0; }
+
+/* ============ hub pages ============ */
+.hub-head { border-bottom: 3px double var(--ink); padding: 58px 0 34px; margin-bottom: 0; }
+.hub-kicker { font-family: var(--caps); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ox); margin: 0 0 14px; }
+.hub-title { font-size: clamp(2.6rem, 6.5vw, 4.4rem); line-height: 1.02; margin: 0 0 14px; font-weight: 600; letter-spacing: -0.015em; }
+.hub-standfirst { font-size: 1.2rem; font-style: italic; color: var(--ink-soft); max-width: 52ch; margin: 0; }
+
+.section { padding: 40px 0; border-bottom: 1px solid rgba(29,26,21,.25); }
+.section-title { font-size: .95rem; font-weight: 700; margin: 0 0 22px; display: flex; align-items: center; gap: 14px; }
+.section-title::after { content: ""; flex: 1; height: 1px; background: var(--ink); }
+.section-title span { white-space: nowrap; }
+
+/* publication entries as typeset list */
+.pub-entry { display: grid; grid-template-columns: 66px 1fr; gap: 22px; padding: 16px 0; border-bottom: 1px dotted rgba(29,26,21,.35); }
+.pub-entry:last-child { border-bottom: none; }
+.pub-year { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--ox); padding-top: 2px; }
+.pub-title { font-size: 1.08rem; font-weight: 600; margin: 0 0 3px; }
+.pub-meta { font-style: italic; color: var(--ink-soft); font-size: .92rem; margin: 0; }
+
+/* dropcap essay */
+.essay::first-letter {
+    font-size: 3.4em; float: left; line-height: .82;
+    padding: 4px 10px 0 0; color: var(--ox); font-weight: 600;
+}
+
+/* two-column facts */
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.fact { padding: 18px 20px; border-right: 1px solid rgba(29,26,21,.25); }
+.fact:last-child { border-right: none; }
+.fact b { display: block; font-size: 1.9rem; font-weight: 500; color: var(--ox); }
+.fact span { font-family: var(--caps); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-mute); }
+
+/* timeline as dated ledger */
+.ledger { display: grid; grid-template-columns: 110px 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px dotted rgba(29,26,21,.35); }
+.ledger:last-child { border-bottom: none; }
+.ledger-period { font-family: var(--caps); font-size: 11px; letter-spacing: .1em; color: var(--ink-mute); padding-top: 4px; }
+.ledger h3 { margin: 0 0 2px; font-size: 1.05rem; font-weight: 600; }
+.ledger .place { font-style: italic; color: var(--ink-soft); font-size: .92rem; margin: 0 0 4px; }
+.ledger p:last-child { margin: 0; font-size: .95rem; color: var(--ink-soft); }
+
+/* plates (personal) */
+.plates { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+.plate { color: inherit; }
+.plate:hover { text-decoration: none; }
+.plate .frame { border: 1px solid var(--ink); padding: 8px; background: #fff; box-shadow: 5px 5px 0 rgba(29,26,21,.14); transition: transform .18s, box-shadow .18s; }
+.plate:hover .frame { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 rgba(29,26,21,.18); }
+.plate img { display: block; width: 100%; height: 230px; object-fit: cover; }
+.frame--text {
+    height: 230px;
+    display: grid;
+    align-content: center;
+    gap: 10px;
+    padding: 24px;
+    background: var(--paper-deep);
+}
+.frame-quote { font-size: 1.25rem; font-style: italic; line-height: 1.4; margin: 0; color: var(--ink); }
+.frame-cite { font-family: var(--caps); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-mute); }
+.plate figcaption { padding-top: 10px; }
+.plate .no { font-family: var(--caps); font-size: 10.5px; letter-spacing: .18em; color: var(--ink-mute); }
+.plate h3 { margin: 3px 0 2px; font-size: 1.15rem; font-weight: 600; }
+.plate p { margin: 0; font-size: .93rem; color: var(--ink-soft); }
+
+.hub-foot { font-family: var(--caps); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-mute); padding: 26px 0 10px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+@media (max-width: 900px) {
+    .chapter, .chapter--alt { grid-template-columns: 1fr; gap: 18px; }
+    .chapter--alt .chapter-fig { order: 0; }
+    .chapter-no { font-size: 2.6rem; border-top-width: 2px; }
+    .chapter--alt .chapter-no { text-align: left; }
+    .plates { grid-template-columns: 1fr; }
+    .facts { grid-template-columns: 1fr; }
+    .fact { border-right: none; border-bottom: 1px solid rgba(29,26,21,.25); }
+    .fact:last-child { border-bottom: none; }
+    .colophon-grid { grid-template-columns: 1fr; }
+}

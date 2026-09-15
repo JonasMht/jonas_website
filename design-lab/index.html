@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Lab — Jonas Mehtali website rework</title>
+<style>
+:root { --bg:#101114; --text:#e8e8ea; --dim:#9a9aa2; --line:#2a2a30; --blue:#5B8DEF; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; line-height:1.6; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 60px 28px 80px; }
+h1 { font-size: 2.4rem; letter-spacing: -0.02em; margin: 0 0 6px; }
+.sub { color: var(--dim); margin: 0 0 44px; }
+.design { display: grid; grid-template-columns: 240px 1fr; gap: 26px; padding: 26px 0; border-top: 1px solid var(--line); color: inherit; text-decoration: none; }
+.design:hover h2 { color: var(--blue); }
+.design img { width: 240px; border: 1px solid var(--line); border-radius: 8px; display: block; }
+.design .no { color: var(--dim); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 6px; }
+.design h2 { margin: 0 0 8px; font-size: 1.5rem; transition: color .15s; }
+.design p { margin: 0; color: var(--dim); font-size: .95rem; max-width: 60ch; }
+.links { margin-top: 12px; display: flex; gap: 14px; flex-wrap: wrap; font-size: .85rem; }
+.links a { color: var(--blue); text-decoration: none; border: 1px solid var(--line); border-radius: 99px; padding: 4px 14px; }
+.links a:hover { border-color: var(--blue); }
+@media (max-width: 720px) { .design { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <h1>Design Lab</h1>
+    <p class="sub">Three complete visual directions for the jonasx.xyz rework — each with landing, professional hub and personal hub, built with real content. The current implemented design (steel-blue card deck) remains on the branch as baseline. Pick one; it gets the full Hugo implementation.</p>
+
+    <a class="design" href="console/index.html">
+        <img src="console/preview.png" alt="Console design preview">
+        <div>
+            <p class="no">Option A</p>
+            <h2>Console</h2>
+            <p>Dark terminal aesthetic. Monospace everywhere, CRT scanlines, a shell prompt that "lists" your two worlds, career as a git log, personal projects as a game launcher. Developer-brain, memorable, unapologetically nerdy.</p>
+            <div class="links"><a href="console/index.html">Landing</a><a href="console/pro.html">Pro</a><a href="console/personal.html">Personal</a></div>
+        </div>
+    </a>
+
+    <a class="design" href="journal/index.html">
+        <img src="journal/preview.png" alt="Journal design preview">
+        <div>
+            <p class="no">Option B</p>
+            <h2>Journal</h2>
+            <p>Editorial print aesthetic. Cream paper, serif typography, double rules, oxblood accents. Landing reads as a magazine table of contents with two chapters; the CV is typeset like a serious publication; projects hang as framed plates. Distinctive, cultured, timeless.</p>
+            <div class="links"><a href="journal/index.html">Landing</a><a href="journal/pro.html">Pro</a><a href="journal/personal.html">Personal</a></div>
+        </div>
+    </a>
+
+    <a class="design" href="grid/index.html">
+        <img src="grid/preview.png" alt="Grid design preview">
+        <div>
+            <p class="no">Option C</p>
+            <h2>Grid</h2>
+            <p>Swiss brutalist aesthetic. Stark paper, giant grotesk type, International Klein Blue, exposed 2px grid lines, zero rounded corners. Landing is a numbered index that inverts on hover; research is a spec sheet; projects hang as a poster wall. Bold, confident, unmistakable.</p>
+            <div class="links"><a href="grid/index.html">Landing</a><a href="grid/pro.html">Pro</a><a href="grid/personal.html">Personal</a></div>
+        </div>
+    </a>
+</div>
+</body>
+</html>

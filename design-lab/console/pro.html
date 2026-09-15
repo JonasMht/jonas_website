@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>~/pro — Jonas Mehtali</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="scanlines"></div>
+
+<header class="bar">
+    <div class="bar-dots"><span></span><span></span><span></span></div>
+    <div class="bar-title">jonas@strasbourg: ~/pro</div>
+    <nav class="bar-nav">
+        <a href="index.html">~/</a>
+        <a href="pro.html" class="on">~/pro</a>
+        <a href="personal.html">~/personal</a>
+    </nav>
+</header>
+
+<main class="wrap">
+    <section class="hub-head">
+        <p class="path">❯ cd ~/pro && ls -la</p>
+        <h1 class="hub-title">PRO<span class="accent">/</span></h1>
+        <p class="hub-sub">Thermal ablation planning · GPU simulation · image-guided surgery</p>
+        <div class="stats">
+            <div class="stat"><b>3</b><span>publications</span></div>
+            <div class="stat"><b>2×</b><span>MICCAI papers</span></div>
+            <div class="stat"><b>476 fps</b><span>C-NCA inference</span></div>
+            <div class="stat"><b>12,210</b><span>learned parameters</span></div>
+        </div>
+    </section>
+
+    <section class="sec">
+        <h2 class="sec-title">research axes</h2>
+        <div class="grid-3">
+            <div class="box"><h3>Multi-needle trajectory optimization</h3><p>Exhaustive and learning-based methods for optimal needle placement, search-space reduction, DL-based ablation volume estimation.</p></div>
+            <div class="box"><h3>Intraoperative replanning</h3><p>Track inserted needles, estimate partly treated volume, adapt the plan in real time as the procedure unfolds.</p></div>
+            <div class="box"><h3>Ergonomic planning interface</h3><p>A user-friendly GUI for planning, tracking and replanning — validated with clinicians and novices.</p></div>
+        </div>
+    </section>
+
+    <section class="sec">
+        <h2 class="sec-title">selected publications</h2>
+        <div class="pub"><span class="yr">2025</span><span class="t">C-NCA: Chained Neural Cellular Automata for Fast Thermal Ablation Estimation<small>Mehtali, Verde, Essert — MICCAI 2025, Seoul</small></span><span class="tag">E-Poster</span></div>
+        <div class="pub"><span class="yr">2025</span><span class="t">HEAT: High-Efficiency Simulation for Thermal Ablation Therapy<small>Mehtali, Verde, Essert — IJCARS 20(6)</small></span><span class="tag">Journal</span></div>
+        <div class="pub"><span class="yr">2024</span><span class="t">Cryotrack: Planning and Navigation for Computer Assisted Cryoablation<small>Krumb, Mehtali, Verde, Mukhopadhyay, Essert — MICCAI 2024, Marrakesh</small></span><span class="tag">Conference</span></div>
+    </section>
+
+    <section class="sec">
+        <h2 class="sec-title">git log --career</h2>
+        <div class="gitlog">
+            <div class="entry"><span class="graph"></span><span class="hash">2024—<br>HEAD</span><span class="msg">PhD Student, Computer-Assisted Interventions<small>ICube Laboratory · University of Strasbourg · ITI HealthTech</small></span></div>
+            <div class="entry"><span class="graph"></span><span class="hash">2023—24</span><span class="msg">R&D internships, computer-assisted surgery<small>TU Darmstadt · IHU Strasbourg · ICube — CryoTrack, GPU simulation</small></span></div>
+            <div class="entry"><span class="graph"></span><span class="hash">2022</span><span class="msg">Research internship, computer science<small>University of Oviedo, Spain — published on PeerJ CS</small></span></div>
+            <div class="entry"><span class="graph"></span><span class="hash">2020</span><span class="msg">Research internship, landslide monitoring<small>EOST, Strasbourg — Python data-analysis tool</small></span></div>
+        </div>
+    </section>
+
+    <section class="sec">
+        <h2 class="sec-title">current experiment</h2>
+        <img src="img/cryotrack.jpg" alt="CryoTrack experiment" style="width:100%;border-radius:10px;border:1px solid var(--line);display:block">
+    </section>
+
+    <p class="footer-note"><span>~/pro — Jonas Mehtali</span><span>CV: <a href="#">jonas-mehtali-resume.pdf</a> · DOI: <a href="#">10.1007/978-3-032-04965-0_7</a></span></p>
+</main>
+</body>
+</html>

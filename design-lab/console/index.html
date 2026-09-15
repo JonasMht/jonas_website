@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jonas@strasbourg:~</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="scanlines"></div>
+
+<header class="bar">
+    <div class="bar-dots"><span></span><span></span><span></span></div>
+    <div class="bar-title">jonas@strasbourg: ~</div>
+    <nav class="bar-nav">
+        <a href="index.html" class="on">~/</a>
+        <a href="pro.html">~/pro</a>
+        <a href="personal.html">~/personal</a>
+    </nav>
+</header>
+
+<main class="wrap">
+    <section class="term">
+        <p class="line"><span class="prompt">jonas@strasbourg:~$</span> whoami</p>
+        <h1 class="whoami">JONAS<span class="cursor">▮</span></h1>
+        <p class="line">MEHTALI — PhD student in Computer-Assisted Interventions<br>
+        ICube Laboratory · University of Strasbourg</p>
+
+        <p class="line"><span class="prompt">jonas@strasbourg:~$</span> ls ./worlds</p>
+
+        <div class="worlds">
+            <a class="world world--pro" href="pro.html">
+                <div class="world-head">
+                    <span class="dir">drwxr-xr-x&nbsp; pro/</span>
+                    <span class="meta">3 papers · 2× MICCAI · 476 fps</span>
+                </div>
+                <p class="world-desc">Thermal ablation planning. GPU-accelerated simulation,
+                multi-needle optimization, intraoperative replanning, clinical ergonomics.</p>
+                <code class="world-cmd">$ cd pro &amp;&amp; make research</code>
+            </a>
+
+            <a class="world world--personal" href="personal.html">
+                <div class="world-head">
+                    <span class="dir">drwxr-xr-x&nbsp; personal/</span>
+                    <span class="meta">4 projects · ∞ side quests</span>
+                </div>
+                <p class="world-desc">Games, 3D art and tools built for the joy of building them.
+                Sensha · Airship VR · Notre-Dame · Nacht der Teddybären.</p>
+                <code class="world-cmd">$ cd personal &amp;&amp; ./play</code>
+            </a>
+        </div>
+
+        <p class="line"><span class="prompt">jonas@strasbourg:~$</span> cat contact.txt</p>
+        <p class="line out">
+            <a href="#">linkedin</a> · <a href="#">github</a> · <a href="#">scholar</a> · <a href="#">orcid</a> · <a href="mailto:jonas.mht.private@gmail.com">jonas.mht.private@gmail.com</a>
+        </p>
+        <p class="line"><span class="prompt">jonas@strasbourg:~$</span> <span class="cursor">▮</span></p>
+    </section>
+
+    <section class="ticker" aria-hidden="true">
+        <span>HEAT @ IJCARS 2025 — real-time ablation simulation</span>
+        <span>C-NCA @ MICCAI 2025 — 476 fps · 12,210 params</span>
+        <span>Cryotrack @ MICCAI 2024</span>
+        <span>building something? let's talk →</span>
+    </section>
+</main>
+</body>
+</html>
