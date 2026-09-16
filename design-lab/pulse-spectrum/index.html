@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jonas Mehtali — spectrum</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="wrap">
+    <nav class="nav">
+        <span class="brand"><img src="img/avatar.jpg" alt="">Jonas Mehtali<small></small></span>
+        <a class="t" href="pro.html">Pro</a>
+        <a class="t" href="personal.html">Personal</a>
+        <a class="t" href="#">CV</a>
+    </nav>
+    <div class="spectrum"></div>
+    <div class="spectrum-labels"><span>0° — after hours</span><span>37° — body temp</span><span>100° — ablation</span></div>
+
+    <section class="thermo">
+        <div class="thermo-bulb"><div class="thermo"><div class="tick" style="top:0">research, hot end</div><div class="tick" style="bottom:0">workshop, cool end</div></div></div>
+        <div style="position:relative">
+            <h1>Jonas Mehtali —<br>one spectrum, <span class="g">two temperatures</span>.</h1>
+            <p class="bio" style="color:var(--dim);max-width:56ch;margin:0 0 26px">PhD at ICube Laboratory, Strasbourg. By day I plan thermal ablation at
+            476 frames per second; by night I build games and 3D worlds. Everything I do sits somewhere on this spectrum.</p>
+            <img src="img/avatar.jpg" alt="Jonas Mehtali" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--panel);box-shadow:0 0 0 2px var(--line);display:block;margin-bottom:26px">
+            <div class="cta" style="display:flex;gap:10px;flex-wrap:wrap">
+                <a class="hotb" href="pro.html">100° — professional</a>
+                <a class="coolb" href="personal.html">0° — personal</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="zones">
+        <a class="zone hot" href="pro.html">
+            <span class="deg">93—100°C</span>
+            <h2>Professional</h2>
+            <p>Thermal ablation planning at ICube — simulation, multi-needle optimization, replanning, clinical interfaces. 3 publications, 2× MICCAI.</p>
+            <div class="spectrum" style="margin:0 0 18px"></div>
+            <span class="go">Enter the hot end →</span>
+        </a>
+        <a class="zone cold" href="personal.html">
+            <span class="deg">0—7°C</span>
+            <h2>Personal</h2>
+            <p>The after-hours workshop: games, 3D worlds, tools. Built slowly, joyfully, and shipped anyway.</p>
+            <div class="spectrum" style="margin:0 0 18px"></div>
+            <span class="go">Enter the workshop →</span>
+        </a>
+    </section>
+
+    <section class="sec">
+        <div class="sec-h"><span class="dot" style="background:var(--hot)"></span><h2>Hottest right now</h2><span class="tag">latest outputs</span><a class="more" href="pro.html">all →</a></div>
+        <div class="rail">
+            <a class="rcard" href="pro.html"><div class="im"><img src="img/heat.png" alt=""></div><div class="bd"><h3>C-NCA @ MICCAI 2025</h3><p>476 fps ablation estimation · 12,210 params · Seoul</p><div class="meta">2025 · e-poster</div></div></a>
+            <a class="rcard" href="pro.html"><div class="im"><img src="img/heat.png" alt="" style="filter:hue-rotate(-40deg)"></div><div class="bd"><h3>HEAT in IJCARS</h3><p>GPU simulation under 1 second · 20(6)</p><div class="meta">2025 · journal</div></div></a>
+            <a class="rcard" href="pro.html"><div class="im"><img src="img/cryotrack.jpg" alt=""></div><div class="bd"><h3>Cryotrack @ MICCAI 2024</h3><p>Planning &amp; navigation · LNCS 15006 · Marrakesh</p><div class="meta">2024 · conference</div></div></a>
+            <a class="rcard" href="personal.html"><div class="im"><img src="img/sensha.png" alt=""></div><div class="bd"><h3>Sensha — Godot rebuild</h3><p>Multiplayer update shipped · since 2019</p><div class="meta">ongoing · workshop</div></div></a>
+        </div>
+    </section>
+</div>
+
+<footer class="wrap foot"><span>© 2023–2026 jonas mehtali</span><span>the spectrum model of one career</span></footer>
+</body></html>

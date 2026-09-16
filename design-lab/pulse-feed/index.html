@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jonas Mehtali — feed</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="top"><div class="in">
+    <span class="me"><img src="img/avatar.jpg" alt="">jonasx.xyz</span>
+    <a class="n on" href="index.html">Feed</a>
+    <a class="n" href="pro.html">Pro</a>
+    <a class="n" href="personal.html">Personal</a>
+</div></div>
+
+<div class="wrap">
+    <header class="profile">
+        <img class="av" src="img/avatar.jpg" alt="Jonas Mehtali">
+        <div>
+            <p class="role">PhD · Computer-Assisted Interventions · ICube</p>
+            <h1>Jonas Mehtali</h1>
+            <p class="bio">I plan heat before it burns — GPU simulation and multi-needle optimization for
+            thermal ablation. After hours: games, 3D worlds, tools. Everything below is one tap from the full story.</p>
+            <div class="quick"><a href="#">CV.pdf</a><a href="#">Scholar</a><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">Contact</a></div>
+        </div>
+    </header>
+
+    <div class="statline">
+        <div><b class="h">3</b><span>publications</span></div>
+        <div><b class="c">476 fps</b><span>C-NCA</span></div>
+        <div><b class="w">&lt;1s</b><span>HEAT sim</span></div>
+        <div><b>4</b><span>projects</span></div>
+    </div>
+
+    <nav class="tabs">
+        <a class="on" href="index.html">All</a>
+        <a href="pro.html">Professional</a>
+        <a href="personal.html">Personal</a>
+    </nav>
+
+    <section class="feed">
+        <details class="item feat" open>
+            <summary>
+                <div class="hero-thumb"><img src="img/heat.png" alt="HEAT thermal simulation"></div>
+                <div class="t"><div><h3>Planning heat before it burns</h3><p>My PhD in one paragraph — the problem, the approach, the numbers.</p></div></div>
+                <span class="when">PINNED<span class="chev">▸</span></span>
+            </summary>
+            <div class="full">
+                <img src="img/heat.png" alt="">
+                <div class="txt">
+                    <p>Percutaneous thermal ablation treats small liver tumors — until one needle isn't enough.
+                    Manual multi-needle planning on 2D CT lets recurrence climb to 39.1%. I build the planning
+                    loop that fixes this: GPU simulation under a second (HEAT, IJCARS 2025), neural estimation
+                    at 476 fps (C-NCA, MICCAI 2025), and an interface clinicians validated with their own hands.</p>
+                    <div class="lnks"><a href="pro.html">full research record →</a><a href="#">CV.pdf</a></div>
+                </div>
+            </div>
+        </details>
+
+        <details class="item">
+            <summary><img class="thumb" src="img/cryotrack.jpg" alt=""><div class="t"><p class="k pro">paper · MICCAI 2024</p><h3>Cryotrack: planning &amp; navigation for cryoablation</h3><p>Krumb, Mehtali, Verde, Mukhopadhyay, Essert — LNCS 15006</p></div><span class="when">2024<span class="chev">▸</span></span></summary>
+            <div class="full"><img src="img/cryotrack.jpg" alt=""><div class="txt"><p>Planning and navigation for computer-assisted cryoablation, presented at MICCAI 2024 in
+            Marrakesh. My role: taking over the CryoTrack codebase and pushing its thermal simulation to the GPU.</p>
+            <div class="lnks"><a href="#">[paper]</a><a href="#">[doi]</a></div></div></div>
+        </details>
+
+        <details class="item">
+            <summary><img class="thumb" src="img/heat.png" alt=""><div class="t"><p class="k pro">journal · IJCARS 2025</p><h3>HEAT: high-efficiency ablation simulation</h3><p>Sub-second GPU results — IJCARS 20(6), pp. 1135–1143</p></div><span class="when">2025<span class="chev">▸</span></span></summary>
+            <div class="full"><img src="img/heat.png" alt=""><div class="txt"><p>Thermal ablation simulation fast enough to sit inside an interactive planning session.
+            The foundation everything else in the PhD builds on.</p><div class="lnks"><a href="#">[paper]</a><a href="#">[doi]</a></div></div></div>
+        </details>
+
+        <details class="item">
+            <summary><img class="thumb" src="img/sensha.png" alt=""><div class="t"><p class="k per">game · python → godot</p><h3>Sensha — real-time tank strategy</h3><p>Born for the Baccalauréat, reborn with multiplayer</p></div><span class="when">2019→<span class="chev">▸</span></span></summary>
+            <div class="full"><img src="img/sensha.png" alt=""><div class="txt"><p>A real-time strategy of tanks and hard choices — my first shipped game, later rebuilt
+            in Godot with multiplayer. Where the workshop started.</p><div class="lnks"><a href="personal.html">workshop →</a><a href="#">[gameplay]</a></div></div></div>
+        </details>
+
+        <details class="item">
+            <summary><img class="thumb" src="img/airship.png" alt=""><div class="t"><p class="k per">vr · unity 2023</p><h3>Airship VR — repair a sinking airship</h3><p>Meta headsets, hand-tracked interaction, Blender-built assets</p></div><span class="when">2023<span class="chev">▸</span></span></summary>
+            <div class="full"><img src="img/airship.png" alt=""><div class="txt"><p>A puzzle-survival aboard a failing airship: every valve, switch and crank is
+            hand-tracked. Built with two teammates for a VR course — shipped, polished, playable.</p>
+            <div class="lnks"><a href="#">[video]</a><a href="#">[github]</a></div></div></div>
+        </details>
+
+        <details class="item">
+            <summary><img class="thumb" src="img/notredame.png" alt=""><div class="t"><p class="k per">3d · blender 2022</p><h3>Notre-Dame — medieval stones for a museum</h3><p>Musée de l'Œuvre Notre-Dame, Strasbourg · cultural mediation app</p></div><span class="when">2022<span class="chev">▸</span></span></summary>
+            <div class="full"><img src="img/notredame.png" alt=""><div class="txt"><p>Six months leading a three-student team, reconstructing medieval architectural
+            elements in 3D for the museum's cultural mediation application.</p><div class="lnks"><a href="#">[render]</a><a href="#">[project]</a></div></div></div>
+        </details>
+    </section>
+</div>
+
+<footer class="wrap foot"><span>jonas mehtali · feed</span><span>48.58°N · updated 2026</span></footer>
+</body></html>

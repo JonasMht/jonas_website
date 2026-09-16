@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pro — Jonas Mehtali</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="wrap">
+    <nav class="nav">
+        <span class="brand"><img src="img/avatar.jpg" alt="">Jonas Mehtali<small></small></span>
+        <a class="t on pro" href="pro.html" style="background:var(--hot);color:#0B0C10">Pro · 100°</a>
+        <a class="t" href="personal.html">Personal</a>
+        <a class="t" href="#">CV</a>
+    </nav>
+    <div class="spectrum"></div>
+    <div class="spectrum-labels"><span>0° — after hours</span><span>37° — body temp</span><span style="color:var(--hot)">100° — you are here</span></div>
+
+    <section class="thermo" style="margin-top:36px">
+        <div style="position:relative">
+            <h1 style="font-size:clamp(1.9rem,4vw,3rem)">The hot end: <span class="g">thermal ablation</span>, plannable in real time.</h1>
+            <p class="bio" style="color:var(--dim);max-width:60ch;margin:0 0 22px">When a liver tumor outgrows one needle, clinicians plan overlapping ablations by hand —
+            and recurrence reaches 39.1% at five years. My PhD at ICube (ITI HealthTech program, supervised by
+            C. Essert &amp; J. Verde) builds the planning loop that fixes this.</p>
+            <img src="img/avatar.jpg" alt="" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--line)">
+        </div>
+    </section>
+
+    <section class="sec">
+        <div class="sec-h"><span class="dot" style="background:var(--hot)"></span><h2>Three research axes</h2><span class="tag">all active</span></div>
+        <details class="row" open><summary><span class="p">A1</span><h3>Multi-needle trajectory optimization</h3><span class="chev">▸</span></summary>
+            <div class="full"><b>Exhaustive and learning-based placement</b> under anatomical constraints — search-space reduction, adaptive simulation resolution, and DL-based ablation volume estimation feeding an interactive optimization loop.</div></details>
+        <details class="row"><summary><span class="p">A2</span><h3>Intraoperative replanning</h3><span class="chev">▸</span></summary>
+            <div class="full"><b>Live adaptation:</b> track inserted needles, estimate the partly treated volume, and re-plan for the next insertion while the procedure unfolds.</div></details>
+        <details class="row"><summary><span class="p">A3</span><h3>Ergonomic planning interface</h3><span class="chev">▸</span></summary>
+            <div class="full"><b>Validated with humans:</b> a planning/tracking/replanning GUI studied with clinical experts and novices — because a planner nobody enjoys is a planner nobody runs.</div></details>
+    </section>
+
+    <section class="sec">
+        <div class="sec-h"><span class="dot" style="background:var(--warm)"></span><h2>Publications</h2><span class="tag">expand for detail</span></div>
+        <details class="row" open><summary><span class="p">2025</span><h3>C-NCA: Chained Neural Cellular Automata for Fast Thermal Ablation Estimation</h3><span class="chev">▸</span></summary>
+            <div class="full">Mehtali, Verde, Essert — MICCAI 2025, Seoul, pp. 156–165. 476 fps, 12,210 parameters —
+            ablation estimation fast enough for real-time planning loops.
+            <div class="lnks"><a href="#">[paper]</a><a href="#">[e-poster]</a><a href="#">[doi]</a></div></div></details>
+        <details class="row"><summary><span class="p">2025</span><h3>HEAT: High-Efficiency Simulation for Thermal Ablation Therapy</h3><span class="chev">▸</span></summary>
+            <div class="full">Mehtali, Verde, Essert — IJCARS 20(6), pp. 1135–1143. Sub-second GPU simulation on consumer hardware.
+            <div class="lnks"><a href="#">[paper]</a><a href="#">[doi]</a></div></div></details>
+        <details class="row"><summary><span class="p">2024</span><h3>Cryotrack: Planning &amp; Navigation for Cryoablation</h3><span class="chev">▸</span></summary>
+            <div class="full"><b>Krumb, Mehtali, Verde, Mukhopadhyay, Essert</b> — MICCAI 2024, Marrakesh, LNCS 15006, pp. 99–108.
+            <div class="lnks"><a href="#">[paper]</a><a href="#">[doi]</a></div></div></details>
+    </section>
+
+    <section class="sec">
+        <div class="sec-h"><span class="dot" style="background:var(--warm)"></span><h2>Trajectory</h2><span class="tag">appointments</span></div>
+        <details class="row" open><summary><span class="p">2024 —</span><h3>PhD Student — ICube Laboratory, Strasbourg</h3><span class="chev">▸</span></summary>
+            <div class="full">Computer-assisted interventions · ITI HealthTech doctoral program · automatic multi-needle adaptive planning.</div></details>
+        <details class="row"><summary><span class="p">2023—24</span><h3>R&D internships — TU Darmstadt · IHU Strasbourg · ICube</h3><span class="chev">▸</span></summary>
+            <div class="full">CryoTrack takeover; GPU-accelerated thermal ablation simulation.</div></details>
+        <details class="row"><summary><span class="p">2022</span><h3>Research internship — University of Oviedo</h3><span class="chev">▸</span></summary>
+            <div class="full">Full research project in computer science, published in PeerJ Computer Science.</div></details>
+        <details class="row"><summary><span class="p">2020</span><h3>Landslide monitoring — EOST, Strasbourg</h3><span class="chev">▸</span></summary>
+            <div class="full">Python data-analysis tool for slope surveillance.</div></details>
+    </section>
+</div>
+
+<footer class="wrap foot"><span>100° — professional</span><span><a href="#">CV</a> · <a href="#">scholar</a> · <a href="#">contact</a></span></footer>
+</body></html>

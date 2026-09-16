@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pro — Jonas Mehtali</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="tstrip"></div>
+<nav class="nav">
+    <span class="sys"><i></i>MEHTALI/PRO</span>
+    <a class="t" href="index.html">Overview</a>
+    <a class="t on" href="pro.html">Pro</a>
+    <a class="t" href="personal.html">Personal</a>
+    <a class="t" href="#">CV</a>
+</nav>
+
+<div class="wrap">
+    <section class="hero">
+        <div class="operator">
+            <div class="photo"><img src="img/heat.png" alt="HEAT thermal simulation"></div>
+            <div class="idbar">
+                <p class="role" style="margin-top:0">Channel 01 · Professional</p>
+                <h1 class="name" style="font-size:1.6rem">Thermal ablation, plannable in real time.</h1>
+                <p class="bio">Automatic multi-needle adaptive planning for percutaneous thermal ablation.
+                ITI HealthTech doctoral program · supervision: C. Essert &amp; J. Verde.</p>
+                <div class="socials"><a href="#">CV.pdf</a><a href="#">Scholar</a><a href="#">ORCID</a><a href="#">Teaching</a></div>
+            </div>
+        </div>
+
+        <div class="livecard">
+            <div class="mh"><span>module status</span><span class="live">3 active</span></div>
+            <div class="cells">
+                <div class="cell"><span class="k">axis A1</span><span class="v hot">active</span><span class="sub">multi-needle optimization</span></div>
+                <div class="cell"><span class="k">axis A2</span><span class="v warm">active</span><span class="sub">intraoperative replanning</span></div>
+                <div class="cell"><span class="k">axis A3</span><span class="v cool">active</span><span class="sub">ergonomic interface</span></div>
+                <div class="cell"><span class="k">funding</span><span class="v" style="font-size:1rem">ITI HealthTech</span><span class="sub">ED269 MSII</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec">
+        <div class="sec-h"><b>Output log</b><span class="tag">publications — expand for detail</span></div>
+        <details class="detail" open>
+            <summary><span class="t"><span class="yr">2025</span>C-NCA: Chained Neural Cellular Automata for Fast Thermal Ablation Estimation</span><span class="chev">▸</span></summary>
+            <div class="body">Mehtali, Verde, Essert — MICCAI 2025, Seoul, pp. 156–165. Estimates 25 minutes of
+            treatment at up to 476 fps with 12,210 learned parameters — fast enough for interactive optimization loops.
+            <div class="lnks"><a href="#">[paper]</a><a href="#">[e-poster]</a><a href="#">[doi]</a><a href="#">[bibtex]</a></div></div>
+        </details>
+        <details class="detail">
+            <summary><span class="t"><span class="yr">2025</span>HEAT: High-Efficiency Simulation for Thermal Ablation Therapy</span><span class="chev">▸</span></summary>
+            <div class="body">Mehtali, Verde, Essert — IJCARS 20(6), pp. 1135–1143. GPU-accelerated simulation:
+            sub-second results on consumer hardware, removing the waiting time from planning sessions.
+            <div class="lnks"><a href="#">[paper]</a><a href="#">[doi]</a></div></div>
+        </details>
+        <details class="detail">
+            <summary><span class="t"><span class="yr">2024</span>Cryotrack: Planning and Navigation for Computer Assisted Cryoablation</span><span class="chev">▸</span></summary>
+            <div class="body">Krumb, Mehtali, Verde, Mukhopadhyay, Essert — MICCAI 2024, Marrakesh, LNCS 15006, pp. 99–108.
+            Planning and navigation system for cryoablation; my contribution: taking over the codebase and
+            pushing thermal simulation to the GPU.
+            <div class="lnks"><a href="#">[paper]</a><a href="#">[doi]</a></div></div>
+        </details>
+    </section>
+
+    <section class="sec">
+        <div class="sec-h"><b>Research axes</b><span class="tag">the three fronts</span></div>
+        <div class="modgrid" style="grid-template-columns:1fr">
+            <div class="mod wide" style="grid-template-columns:1fr">
+                <div class="bd"><h3>A1 — Multi-needle trajectory optimization</h3>
+                <p>Exhaustive and learning-based placement under anatomical constraints. Search-space reduction,
+                adaptive simulation resolution, DL-based ablation volume estimation — comparing methods head-to-head
+                on clinical data.</p></div>
+            </div>
+            <div class="mod wide" style="grid-template-columns:1fr"><div class="bd"><h3>A2 — Intraoperative replanning</h3>
+                <p>Track inserted needles, estimate the partly treated volume dynamically, adapt the plan for
+                the next insertion — while the patient is still on the table.</p></div></div>
+            <div class="mod wide" style="grid-template-columns:1fr"><div class="bd"><h3>A3 — Ergonomic planning interface</h3>
+                <p>A GUI for planning, tracking and replanning, validated through usability studies with
+                clinical experts and novices alike.</p></div></div>
+        </div>
+    </section>
+
+    <section class="sec">
+        <div class="sec-h"><b>Session history</b><span class="tag">appointments</span></div>
+        <div class="sessions">
+            <div class="sess"><span class="d">2024 —</span><span class="dot"></span><div><b>PhD Student — ICube Laboratory</b><p>Automatic multi-needle adaptive planning · University of Strasbourg</p></div></div>
+            <div class="sess"><span class="d">2023—24</span><span class="dot"></span><div><b>R&D Internships, Computer-Assisted Surgery</b><p>TU Darmstadt · IHU Strasbourg · ICube — CryoTrack, GPU simulation</p></div></div>
+            <div class="sess"><span class="d">2022</span><span class="dot"></span><div><b>Research Internship — University of Oviedo, Spain</b><p>Full research project, published in PeerJ Computer Science</p></div></div>
+            <div class="sess"><span class="d">2020</span><span class="dot"></span><div><b>Research Internship — Landslide Monitoring, EOST</b><p>Python data-analysis tool for slope surveillance</p></div></div>
+        </div>
+    </section>
+
+    <section class="sec">
+        <div class="sec-h"><b>Figures</b><span class="tag">from the lab</span></div>
+        <div class="modgrid" style="grid-template-columns:1fr 1fr">
+            <div class="mod"><div class="im" style="height:220px"><img src="img/heat.png" alt=""></div><div class="bd"><h3>Target vs. predicted ablation</h3><p>HEAT simulation output — the core figure of the thesis.</p></div></div>
+            <div class="mod"><div class="im" style="height:220px"><img src="img/cryotrack.jpg" alt=""></div><div class="bd"><h3>CryoTrack in the OR</h3><p>Navigation experiments at ICube laboratory, Strasbourg.</p></div></div>
+        </div>
+    </section>
+</div>
+
+<footer class="wrap foot"><span>channel 01 — professional</span><span><a href="#">scholar</a> · <a href="#">orcid</a> · <a href="#">contact</a></span></footer>
+</body></html>
