@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Two Careers of Jonas Mehtali [website]</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="bar"><div class="in">
+    <b>jonasx</b><span style="opacity:.6">/</span><span>website</span>
+    <span class="ctx"><a href="index.html">[v2]</a> &nbsp; <a href="#">cite this site</a></span>
+</div></div>
+
+<article class="sheet">
+    <p class="slac">jonasx.xyz/personal-site · 2026 · license CC BY-NC-SA</p>
+    <h1 class="title">The Two Careers of Jonas Mehtali:<br>Real-Time Planning for Thermal Ablation, and a Workshop of After-Hours Machines</h1>
+    <p class="authors"><b>Jonas Mehtali</b><sup>1</sup></p>
+    <p class="affil"><sup>1</sup>ICube Laboratory, University of Strasbourg, France</p>
+
+    <div class="btnrow">
+        <a class="pri" href="index.html">↪ Read the paper (you are here)</a>
+        <a href="#">⬇ CV.pdf</a>
+        <a href="https://github.com/JonasMht">⌨ code</a>
+        <a href="#">✉ contact</a>
+    </div>
+
+    <div class="abstract">
+        <b>Abstract</b>
+        Percutaneous thermal ablation destroys small liver tumors with needles and heat — but when one
+        needle is not enough, clinicians plan overlapping ablations manually, and recurrence follows.
+        This site presents the professional work of J. Mehtali (PhD, ICube): GPU-accelerated ablation
+        simulation, multi-needle trajectory optimization, and intraoperative replanning — together with
+        <a href="personal.html">Appendix B</a>, a personal appendix documenting games, 3D artifacts, and
+        prior trades, produced after hours with equivalent rigor and softer deadlines.
+    </div>
+
+    <nav class="jumps">
+        <span class="hl">Contents:</span>
+        <a href="#s1">1 Results</a>
+        <a href="#s2">2 Methods</a>
+        <a href="#s3">3 Trajectory</a>
+        <a href="#s4">4 Figures</a>
+        <a href="personal.html">Appendix B — the human</a>
+    </nav>
+
+    <h2 id="s1"><span class="n">1</span>Results</h2>
+    <table>
+        <tr><th>Contribution</th><th>Venue</th><th>Headline metric</th></tr>
+        <tr><td><b>C-NCA</b> — chained neural cellular automata for ablation estimation</td><td>MICCAI 2025, Seoul</td><td><b>476 fps</b> · 12,210 params</td></tr>
+        <tr><td><b>HEAT</b> — GPU-accelerated thermal ablation simulation</td><td>IJCARS 20(6), 2025</td><td>results in <b>&lt; 1 s</b></td></tr>
+        <tr><td><b>Cryotrack</b> — planning &amp; navigation for cryoablation</td><td>MICCAI 2024, Marrakesh</td><td>LNCS 15006, pp. 99–108</td></tr>
+    </table>
+
+    <h2 id="s2"><span class="n">2</span>Methods</h2>
+    <p>Research proceeds along three axes. <b>(i) Multi-needle trajectory optimization:</b> exhaustive and
+    learning-based placement under anatomical constraints, with search-space reduction and deep-learning
+    ablation-volume estimation. <b>(ii) Intraoperative replanning:</b> tracking of inserted needles,
+    estimation of the partly treated volume, and plan adaptation as the procedure unfolds.
+    <b>(iii) Ergonomic planning interfaces:</b> a GUI for planning, tracking and replanning, validated
+    through usability studies with clinical experts and novices.</p>
+    <p class="small">Funding: ITI HealthTech doctoral program, ED269 MSII. Supervisors: C. Essert, J. Verde.</p>
+
+    <h2 id="s3"><span class="n">3</span>Trajectory</h2>
+    <table>
+        <tr><th>Period</th><th>Position</th></tr>
+        <tr><td>2024 —</td><td><b>PhD student</b>, Computer-Assisted Interventions — ICube, Strasbourg</td></tr>
+        <tr><td>2023 — 24</td><td><b>R&amp;D internships</b>, computer-assisted surgery — TU Darmstadt · IHU Strasbourg · ICube</td></tr>
+        <tr><td>2022</td><td><b>Research internship</b>, computer science — University of Oviedo, Spain <span class="small">(PeerJ CS)</span></td></tr>
+        <tr><td>2020</td><td><b>Research internship</b>, landslide monitoring — EOST, Strasbourg</td></tr>
+    </table>
+
+    <h2 id="s4"><span class="n">4</span>Figures</h2>
+    <div class="figs">
+        <figure><img src="img/cryotrack.jpg" alt=""><figcaption>Fig. 1 — CryoTrack experiments, ICube laboratory.</figcaption></figure>
+        <figure><img src="img/sensha.png" alt=""><figcaption>Fig. 2 — Sensha (2019): see Appendix B.</figcaption></figure>
+    </div>
+
+    <h2><span class="n">5</span>References</h2>
+    <ol class="bib">
+        <li><div><span class="t">C-NCA: Chained Neural Cellular Automata for Fast and Accurate Thermal Ablation Estimation</span><span class="m">Mehtali, Verde, Essert — MICCAI 2025, Seoul, pp. 156–165</span><span class="lnks"><a href="#">[paper]</a><a href="#">[e-poster]</a><a href="#">[doi]</a></span></div></li>
+        <li><div><span class="t">HEAT: High-Efficiency Simulation for Thermal Ablation Therapy</span><span class="m">Mehtali, Verde, Essert — IJCARS 20(6), pp. 1135–1143</span><span class="lnks"><a href="#">[paper]</a><a href="#">[doi]</a></span></div></li>
+        <li><div><span class="t">Cryotrack: Planning and Navigation for Computer Assisted Cryoablation</span><span class="m">Krumb, Mehtali, Verde, Mukhopadhyay, Essert — MICCAI 2024, LNCS 15006</span><span class="lnks"><a href="#">[paper]</a><a href="#">[doi]</a></span></div></li>
+    </ol>
+
+    <section class="appendix">
+        <p class="app">Appendix B — the human behind the paper</p>
+        <h2 style="margin-top:.2em"><span class="n">B.1</span>After-hours artifacts</h2>
+        <div class="twocol">
+            <p>When something annoying needs solving, the author builds tools for it — small utilities and
+            LLM experiments (<i>side quests.txt</i>). The rest of the time goes to games and 3D:
+            <b>Sensha</b>, a real-time tank strategy born for the Baccalauréat and reborn in Godot;
+            <b>Airship VR</b>, a puzzle-survival for Meta headsets; <b>Notre-Dame</b>, medieval architecture
+            reconstructed in 3D for a Strasbourg museum; and <b>Nacht der Teddybären</b>, a teddy-zombie
+            survival built in Unity.</p>
+            <p>Full documentation of the workshop — with gameplay videos, Blender assets and museum
+            renders — is provided in <a href="personal.html">Appendix B (personal edition)</a>.</p>
+        </div>
+    </section>
+
+    <p class="foot">— end of main document · appendix B: <a href="personal.html">personal edition →</a> —</p>
+</article>
+</body></html>

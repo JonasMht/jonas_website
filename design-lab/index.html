@@ -5,57 +5,98 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Design Lab — Jonas Mehtali website rework</title>
 <style>
-:root { --bg:#101114; --text:#e8e8ea; --dim:#9a9aa2; --line:#2a2a30; --blue:#5B8DEF; }
-* { box-sizing: border-box; }
-body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; line-height:1.6; }
-.wrap { max-width: 960px; margin: 0 auto; padding: 60px 28px 80px; }
-h1 { font-size: 2.4rem; letter-spacing: -0.02em; margin: 0 0 6px; }
-.sub { color: var(--dim); margin: 0 0 44px; }
-.design { display: grid; grid-template-columns: 240px 1fr; gap: 26px; padding: 26px 0; border-top: 1px solid var(--line); color: inherit; text-decoration: none; }
-.design:hover h2 { color: var(--blue); }
-.design img { width: 240px; border: 1px solid var(--line); border-radius: 8px; display: block; }
-.design .no { color: var(--dim); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 6px; }
-.design h2 { margin: 0 0 8px; font-size: 1.5rem; transition: color .15s; }
-.design p { margin: 0; color: var(--dim); font-size: .95rem; max-width: 60ch; }
-.links { margin-top: 12px; display: flex; gap: 14px; flex-wrap: wrap; font-size: .85rem; }
-.links a { color: var(--blue); text-decoration: none; border: 1px solid var(--line); border-radius: 99px; padding: 4px 14px; }
-.links a:hover { border-color: var(--blue); }
-@media (max-width: 720px) { .design { grid-template-columns: 1fr; } }
+:root { --bg:#0E0F12; --text:#EAEAEC; --dim:#94949C; --line:#26262C; --blue:#6B9BFF; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,"Segoe UI",system-ui,sans-serif; line-height:1.6; }
+.wrap { max-width:1080px; margin:0 auto; padding:56px 26px 80px; }
+h1 { font-size:2.3rem; letter-spacing:-.02em; margin:0 0 6px; }
+.sub { color:var(--dim); margin:0 0 40px; max-width:70ch; }
+.design { display:grid; grid-template-columns:220px 96px 1fr; gap:18px; padding:24px 0; border-top:1px solid var(--line); color:inherit; text-decoration:none; align-items:start; }
+.design:hover h2 { color:var(--blue); }
+.design img { width:100%; border:1px solid var(--line); border-radius:8px; display:block; }
+.design .no { color:var(--dim); font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; margin:0 0 6px; }
+.design h2 { margin:0 0 8px; font-size:1.4rem; transition:color .15s; }
+.design p { margin:0; color:var(--dim); font-size:.92rem; max-width:58ch; }
+.design p b { color:var(--text); font-weight:600; }
+.links { margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; font-size:.8rem; }
+.links a { color:var(--blue); text-decoration:none; border:1px solid var(--line); border-radius:99px; padding:3px 12px; }
+.links a:hover { border-color:var(--blue); }
+.insp { font-size:.78rem; margin-top:8px !important; opacity:.75; }
+@media (max-width:760px) { .design { grid-template-columns:1fr 1fr; } .design > div:last-child { grid-column:1/-1; } }
 </style>
 </head>
 <body>
 <div class="wrap">
-    <h1>Design Lab</h1>
-    <p class="sub">Three complete visual directions for the jonasx.xyz rework — each with landing, professional hub and personal hub, built with real content. The current implemented design (steel-blue card deck) remains on the branch as baseline. Pick one; it gets the full Hugo implementation.</p>
+    <h1>Design Lab — 9 directions</h1>
+    <p class="sub">Nine complete visual directions for jonasx.xyz, each with landing / professional / personal pages, built with real content, shown desktop + phone. The current steel-blue implementation stays as baseline (V1, already on this branch). Click any design to open its live mockup.</p>
+
+    <a class="design" href="thermal/index.html">
+        <img src="thermal/preview.png" alt=""><img src="thermal/preview-phone.png" alt="">
+        <div><p class="no">Option D</p><h2>Thermal</h2>
+        <p><b>Born from the research itself.</b> Heat-map gradients, isotherm rings, breathing thermal bloom, scan-line marquee. The identity no template can fake — it looks like the science.</p>
+        <p class="insp">Inspired by: medical-viz dashboards, dark scientific UI (Linear/Chartier).</p>
+        <div class="links"><a href="thermal/index.html">Landing</a><a href="thermal/pro.html">Pro</a><a href="thermal/personal.html">Personal</a></div></div>
+    </a>
+
+    <a class="design" href="arxiv/index.html">
+        <img src="arxiv/preview.png" alt=""><img src="arxiv/preview-phone.png" alt="">
+        <div><p class="no">Option E</p><h2>arXiv</h2>
+        <p><b>The website IS a research paper.</b> Title block, abstract, numbered sections, results table, bibliography with [pdf][doi] links — and the personal side lives in "Appendix B". Unforgettable for academics; the pro page writes itself.</p>
+        <p class="insp">Inspired by: arXiv itself, Distill.pub, al-folio, "reads like a paper" portfolios.</p>
+        <div class="links"><a href="arxiv/index.html">The paper (landing+pro)</a><a href="arxiv/personal.html">Appendix B (personal)</a></div></div>
+    </a>
+
+    <a class="design" href="bento/index.html">
+        <img src="bento/preview.png" alt=""><img src="bento/preview-phone.png" alt="">
+        <div><p class="no">Option F</p><h2>Bento</h2>
+        <p><b>Dashboard grid, app-like.</b> Big Pro/Personal tiles among live "Now", "Latest paper", toolkit and social cards. The most mobile-native of all — it IS a phone screen stretched to desktop. Friendly, current, endlessly remixable.</p>
+        <p class="insp">Inspired by: bento.me, Traf, Bento Grids gallery, personal dashboards.</p>
+        <div class="links"><a href="bento/index.html">Landing</a><a href="bento/pro.html">Pro</a><a href="bento/personal.html">Personal</a></div></div>
+    </a>
+
+    <a class="design" href="kinetic/index.html">
+        <img src="kinetic/preview.png" alt=""><img src="kinetic/preview-phone.png" alt="">
+        <div><p class="no">Option G</p><h2>Kinetic</h2>
+        <p><b>Oversized type, marquee energy.</b> Outlined display name, acid-orange accents, doors that invert on hover, publications as "case studies", projects as filmstrip rows. The most designer-grade, awwwards-flavored option.</p>
+        <p class="insp">Inspired by: awwwards portfolios, brutalist-editorial studios, GIF-style marquees.</p>
+        <div class="links"><a href="kinetic/index.html">Landing</a><a href="kinetic/pro.html">Pro</a><a href="kinetic/personal.html">Personal</a></div></div>
+    </a>
+
+    <a class="design" href="blueprint/index.html">
+        <img src="blueprint/preview.png" alt=""><img src="blueprint/preview-phone.png" alt="">
+        <div><p class="no">Option H</p><h2>Blueprint</h2>
+        <p><b>Engineering drawing sheets.</b> Grid paper, title blocks, detail views, bills of research, part numbers, approval stamp. Speaks fluent med-tech engineering; nothing else on the internet looks like this.</p>
+        <p class="insp">Inspired by: technical drawings, NASA docs, Dieter Rams-spec sheets.</p>
+        <div class="links"><a href="blueprint/index.html">Landing</a><a href="blueprint/pro.html">Pro (DWG A)</a><a href="blueprint/personal.html">Personal (DWG B)</a></div></div>
+    </a>
+
+    <a class="design" href="nord/index.html">
+        <img src="nord/preview.png" alt=""><img src="nord/preview-phone.png" alt="">
+        <div><p class="no">Option I</p><h2>Nord</h2>
+        <p><b>Soft Scandinavian calm.</b> Cream paper, sage and butter pastels, serif headings, rounded soft-shadow cards. The warmest, most human option — academic without stiffness.</p>
+        <p class="insp">Inspired by: al-folio, Nordic design, Notion-era softness.</p>
+        <div class="links"><a href="nord/index.html">Landing</a><a href="nord/pro.html">Pro</a><a href="nord/personal.html">Personal</a></div></div>
+    </a>
 
     <a class="design" href="console/index.html">
-        <img src="console/preview.png" alt="Console design preview">
-        <div>
-            <p class="no">Option A</p>
-            <h2>Console</h2>
-            <p>Dark terminal aesthetic. Monospace everywhere, CRT scanlines, a shell prompt that "lists" your two worlds, career as a git log, personal projects as a game launcher. Developer-brain, memorable, unapologetically nerdy.</p>
-            <div class="links"><a href="console/index.html">Landing</a><a href="console/pro.html">Pro</a><a href="console/personal.html">Personal</a></div>
-        </div>
+        <img src="console/preview.png" alt=""><img src="console/preview-phone.png" alt="">
+        <div><p class="no">Option A</p><h2>Console</h2>
+        <p><b>Dark terminal aesthetic.</b> Shell prompts, git-log career, game launcher. Developer-brain charm.</p>
+        <div class="links"><a href="console/index.html">Landing</a><a href="console/pro.html">Pro</a><a href="console/personal.html">Personal</a></div></div>
     </a>
 
     <a class="design" href="journal/index.html">
-        <img src="journal/preview.png" alt="Journal design preview">
-        <div>
-            <p class="no">Option B</p>
-            <h2>Journal</h2>
-            <p>Editorial print aesthetic. Cream paper, serif typography, double rules, oxblood accents. Landing reads as a magazine table of contents with two chapters; the CV is typeset like a serious publication; projects hang as framed plates. Distinctive, cultured, timeless.</p>
-            <div class="links"><a href="journal/index.html">Landing</a><a href="journal/pro.html">Pro</a><a href="journal/personal.html">Personal</a></div>
-        </div>
+        <img src="journal/preview.png" alt=""><img src="journal/preview-phone.png" alt="">
+        <div><p class="no">Option B</p><h2>Journal</h2>
+        <p><b>Editorial print.</b> Cream paper, serif typesetting, two "editions" of one life, framed plates.</p>
+        <div class="links"><a href="journal/index.html">Landing</a><a href="journal/pro.html">Pro</a><a href="journal/personal.html">Personal</a></div></div>
     </a>
 
     <a class="design" href="grid/index.html">
-        <img src="grid/preview.png" alt="Grid design preview">
-        <div>
-            <p class="no">Option C</p>
-            <h2>Grid</h2>
-            <p>Swiss brutalist aesthetic. Stark paper, giant grotesk type, International Klein Blue, exposed 2px grid lines, zero rounded corners. Landing is a numbered index that inverts on hover; research is a spec sheet; projects hang as a poster wall. Bold, confident, unmistakable.</p>
-            <div class="links"><a href="grid/index.html">Landing</a><a href="grid/pro.html">Pro</a><a href="grid/personal.html">Personal</a></div>
-        </div>
+        <img src="grid/preview.png" alt=""><img src="grid/preview-phone.png" alt="">
+        <div><p class="no">Option C</p><h2>Grid</h2>
+        <p><b>Swiss brutalist.</b> Giant grotesk type, Klein blue, exposed 2px grid, poster wall.</p>
+        <div class="links"><a href="grid/index.html">Landing</a><a href="grid/pro.html">Pro</a><a href="grid/personal.html">Personal</a></div></div>
     </a>
 </div>
 </body>
