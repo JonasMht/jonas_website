@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pro — Jonas Mehtali</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="wrap">
+    <nav class="nav">
+        <span class="brand">jonas mehtali / pro</span>
+        <a href="index.html">home</a>
+        <a href="personal.html">personal</a>
+        <a href="#">cv</a>
+    </nav>
+
+    <section class="hero">
+        <img class="av" src="img/heat.png" alt="">
+        <div>
+            <p class="kick">Record A · ICube Laboratory · ITI HealthTech · supervision C. Essert &amp; J. Verde</p>
+            <h1>Thermal ablation, plannable in real time.</h1>
+            <p class="bio">One needle rarely covers the tumor. Manual planning on 2D CT lets recurrence
+            climb to 39.1% at five years. My PhD builds the loop that fixes this — three axes, three publications.</p>
+            <p class="now"><span class="dot"></span><b>Now:</b> replanning chapter · user studies queued</p>
+        </div>
+    </section>
+
+    <div class="stats">
+        <div><b>3</b><span>publications</span></div>
+        <div><b>476 fps</b><span>C-NCA</span></div>
+        <div><b>&lt;1 s</b><span>HEAT sim</span></div>
+        <div><b>3</b><span>active axes</span></div>
+    </div>
+
+    <section class="stream">
+        <p class="stream-h">Publications — expand what interests you</p>
+        <div class="entry" style="grid-template-columns:1fr">
+            <details><summary style="list-style:none;cursor:pointer;display:grid;grid-template-columns:132px 1fr;gap:22px;align-items:center">
+                <img class="im" src="img/heat.png" alt="">
+                <div><p class="k" style="color:var(--hot)">2025 · MICCAI, Seoul</p>
+                <h3 style="margin-bottom:4px">C-NCA: Chained Neural Cellular Automata for Fast Thermal Ablation Estimation</h3>
+                <p>Mehtali, Verde, Essert — pp. 156–165</p></div>
+            </summary>
+            <div style="padding:14px 0 0;color:var(--dim);font-size:.92rem;max-width:64ch">Chained neural cellular automata estimate 25 minutes of treatment at 476 fps with
+            12,210 learned parameters. The speed makes interactive optimization loops possible —
+            the surgeon explores plans the way they explore a 3D scene.
+            <div style="margin-top:12px;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase"><a href="#">[paper]</a> &nbsp; <a href="#">[e-poster]</a> &nbsp; <a href="#">[doi]</a></div></div></details>
+        </div>
+        <div class="entry" style="grid-template-columns:1fr">
+            <details><summary style="cursor:pointer;list-style:none"><p class="k" style="color:var(--hot)">Journal · IJCARS 2025</p>
+                <h3>HEAT: High-Efficiency Simulation for Thermal Ablation Therapy</h3>
+                <p>IJCARS 20(6) — sub-second GPU outcomes on consumer hardware</p></summary>
+                <div style="padding-top:12px;color:var(--dim);font-size:.92rem;max-width:64ch">The computational foundation of the thesis: thermal simulation fast enough that
+                waiting stops being part of planning.<div style="margin-top:10px;font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.12em"><a href="#">[paper]</a> · <a href="#">[doi]</a></div></div>
+            </details>
+        </div>
+        <div class="entry" style="grid-template-columns:1fr">
+            <details><summary style="cursor:pointer;list-style:none"><p class="k" style="color:var(--hot)">Paper · MICCAI 2024</p>
+                <h3>Cryotrack: Planning and Navigation for Cryoablation</h3>
+                <p>Krumb, Mehtali, Verde, Mukhopadhyay, Essert — LNCS 15006, Marrakesh</p></summary>
+                <div style="padding-top:12px;color:var(--dim);font-size:.92rem;max-width:64ch">My first co-authored conference paper: taking over the CryoTrack codebase
+                during the Darmstadt/Strasbourg internships and pushing its thermal simulation to the GPU.
+                <div style="margin-top:10px;font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.12em"><a href="#">[paper]</a> · <a href="#">[doi]</a></div></div>
+            </details>
+        </div>
+    </section>
+
+    <section class="stream" style="margin-top:34px">
+        <p class="stream-h">The three fronts</p>
+        <div class="entry" style="grid-template-columns:1fr;padding:20px 0">
+            <div><p class="k" style="color:var(--hot)">A1 · optimization</p><h3>Multi-needle trajectory planning</h3>
+            <p>Exhaustive and learning-based placement under anatomical constraints; search-space reduction; DL ablation-volume estimation.</p></div>
+        </div>
+        <div class="entry" style="grid-template-columns:1fr;padding:20px 0">
+            <div><p class="k" style="color:var(--hot)">A2 · replanning</p><h3>Intraoperative adaptation</h3>
+            <p>Track inserted needles, estimate the partly treated volume, re-plan while the procedure unfolds.</p></div>
+        </div>
+        <div class="entry" style="grid-template-columns:1fr;padding:20px 0">
+            <div><p class="k" style="color:var(--hot)">A3 · ergonomics</p><h3>The planning interface</h3>
+            <p>Validated with clinical experts and novices — because a planner nobody enjoys is a planner nobody runs.</p></div>
+        </div>
+    </section>
+</div>
+
+<footer class="foot wrap"><span>record a — professional</span><span><a href="#">cv</a> · <a href="#">scholar</a> · <a href="#">contact</a></span></footer>
+</body></html>

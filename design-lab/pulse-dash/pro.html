@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pro — Jonas Mehtali</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="wrap">
+    <nav class="nav">
+        <span class="brand"><i style="width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)"></i>J.MEHTALI / PRO</span>
+        <a class="t" href="index.html">Overview</a>
+        <a class="t on" href="pro.html">Pro</a>
+        <a class="t" href="personal.html">Personal</a>
+        <a class="t" href="#">CV</a>
+    </nav>
+
+    <div class="dash">
+        <div class="w w-profile">
+            <div class="photo"><img src="img/heat.png" alt="HEAT thermal simulation"></div>
+            <div class="id">
+                <p class="role" style="margin-top:0">Channel 01 · Professional</p>
+                <h1 style="font-size:1.45rem">Thermal ablation, plannable in real time.</h1>
+                <p>Automatic multi-needle adaptive planning for percutaneous thermal ablation.
+                ITI HealthTech doctoral program · supervision: C. Essert &amp; J. Verde.</p>
+                <div class="links"><a href="#">CV.pdf</a><a href="#">Scholar</a><a href="#">ORCID</a><a href="#">Teaching</a></div>
+            </div>
+        </div>
+
+        <div class="w w-kpi">
+            <div class="k">axis 01</div>
+            <div class="v hot" style="font-size:1.1rem">optimization</div>
+            <div class="sub">multi-needle placement · search-space reduction</div>
+        </div>
+        <div class="w w-kpi">
+            <div class="k">axis 02</div>
+            <div class="v warm" style="font-size:1.1rem">replanning</div>
+            <div class="sub">intraoperative, live adaptation</div>
+        </div>
+        <div class="w w-kpi">
+            <div class="k">axis 03</div>
+            <div class="v cool" style="font-size:1.1rem">interface</div>
+            <div class="sub">ergonomic GUI · usability studies</div>
+        </div>
+        <div class="w w-kpi">
+            <div class="k">funding</div>
+            <div class="v ok" style="font-size:1.1rem">ITI HealthTech</div>
+            <div class="sub">ED269 MSII · year 2 of 3</div>
+        </div>
+
+        <div class="w w-act">
+            <div class="w-h"><span>publications by year</span><span style="color:var(--ok)">↑ rising</span></div>
+            <div class="act-row"><span class="y">2025</span><span class="bar"><i style="width:100%;background:linear-gradient(90deg,var(--hot),var(--warm))"></i></span><span class="n">2</span></div>
+            <div class="act-row"><span class="y">2024</span><span class="bar"><i style="width:50%;background:var(--cool)"></i></span><span class="n">1</span></div>
+            <div class="act-row"><span class="y">2022</span><span class="bar"><i style="width:25%;background:var(--cool)"></i></span><span class="n">1</span></div>
+            <div class="act-row"><span class="y">2020</span><span class="bar"><i style="width:0"></i></span><span class="lbl">first internship</span></div>
+        </div>
+    </div>
+
+    <section class="dash-sec">
+        <div class="sec-h"><b>Readings</b><span class="k">tap to expand</span></div>
+        <details class="row" open>
+            <summary><span class="yr">2025</span><h3>C-NCA: Chained Neural Cellular Automata for Fast Thermal Ablation Estimation<small>MICCAI 2025, Seoul — pp. 156–165</small></h3><span class="v">e-poster</span></summary>
+            <div class="body">Mehtali, Verde, Essert. Estimates 25 minutes of treatment at <b style="color:var(--text)">476 fps</b>
+            with 12,210 learned parameters — fast enough for interactive planning loops, not just offline checks.
+            <div style="display:flex;gap:12px;margin-top:10px;font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.12em"><a href="#">[paper]</a><a href="#">[e-poster]</a><a href="#">[doi]</a></div></div>
+        </details>
+        <details class="row">
+            <summary><span class="yr">2025</span><h3>HEAT: High-Efficiency Simulation for Thermal Ablation Therapy<small>IJCARS 20(6) — pp. 1135–1143</small></h3><span class="v">journal</span></summary>
+            <div class="body">GPU-accelerated simulation: sub-second outcomes on consumer hardware.
+            The computational foundation of the whole thesis.</div>
+        </details>
+        <details class="row">
+            <summary><span class="yr">2024</span><h3>Cryotrack: Planning &amp; Navigation for Cryoablation<small>MICCAI 2024, Marrakesh — LNCS 15006, pp. 99–108</small></h3><span class="v">conference</span></summary>
+            <div class="body">Krumb, Mehtali, Verde, Mukhopadhyay, Essert. My contribution: taking over
+            CryoTrack and moving thermal simulation to the GPU.</div>
+        </details>
+    </section>
+
+    <section class="dash-sec">
+        <div class="sec-h"><b>Research axes</b><span class="k">the three fronts</span></div>
+        <div class="dash" style="margin-top:0;grid-template-columns:1fr 1fr 1fr">
+            <div class="w"><div class="w-h"><span>axis 01</span></div><div style="padding:16px 18px"><h3 style="margin:0 0 6px;font-size:1rem">Multi-needle trajectory optimization</h3><p style="margin:0;color:var(--dim);font-size:.86rem">Exhaustive vs. learning-based placement under anatomical constraints; search-space reduction; DL volume estimation.</p></div></div>
+            <div class="w"><div class="w-h"><span>axis 02</span></div><div style="padding:16px 18px"><h3 style="margin:0 0 6px;font-size:1rem">Intraoperative replanning</h3><p style="margin:0;color:var(--dim);font-size:.86rem">Track inserted needles, estimate the partly treated volume, adapt the plan live.</p></div></div>
+            <div class="w"><div class="w-h"><span>axis 03</span></div><div style="padding:16px 18px"><h3 style="margin:0 0 6px;font-size:1rem">Ergonomic interface</h3><p style="margin:0;color:var(--dim);font-size:.86rem">Planning GUI validated with clinical experts and novices via usability studies.</p></div></div>
+        </div>
+    </section>
+
+    <section class="dash-sec">
+        <div class="sec-h"><b>Figures</b><span class="k">from the lab</span></div>
+        <div class="dash" style="margin-top:0;grid-template-columns:1fr 1fr">
+            <a class="w w-img" href="#"><div class="im"><img src="img/heat.png" alt=""><span class="cap">Target vs. predicted ablation</span></div><p class="desc">HEAT simulation — the core figure of the thesis.</p></a>
+            <a class="w w-img" href="#"><div class="im"><img src="img/cryotrack.jpg" alt=""><span class="cap">CryoTrack in the OR</span></div><p class="desc">Navigation experiments at ICube laboratory.</p></a>
+        </div>
+    </section>
+</div>
+
+<footer class="wrap foot"><span>channel 01 — professional</span><span><a href="#">scholar</a> · <a href="#">orcid</a> · <a href="#">contact</a></span></footer>
+</body></html>
