@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pro — Jonas Mehtali</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="wrap">
+    <header class="mast">
+        <span class="name">JONAS <em>MEHTALI</em> — FIELD NOTES</span>
+        <nav>
+            <a href="index.html">Front page</a>
+            <a class="on" href="pro.html">The research</a>
+            <a href="personal.html">The workshop</a>
+            <a href="#">CV</a>
+        </nav>
+    </header>
+
+    <section class="feature" style="padding-top:50px">
+        <p class="kick">Chapter I — the professional edition</p>
+        <h1 class="headline">Making heat predictable.</h1>
+        <p class="standfirst">Percutaneous thermal ablation treats small liver tumors — but when one needle
+        isn't enough, clinicians plan overlapping burns on 2D CT slices and recurrence reaches 39.1% at five
+        years. This chapter documents a PhD spent fixing that.</p>
+        <div class="byline">
+            <span>Researcher <b>Jonas Mehtali</b></span>
+            <span>Lab <b>ICube · University of Strasbourg</b></span>
+            <span>Program <b>ITI HealthTech · ED269 MSII</b></span>
+        </div>
+    </section>
+
+    <div class="facts">
+        <div><b>3</b><span>publications</span></div>
+        <div><b>476 fps</b><span>C-NCA inference</span></div>
+        <div><b>&lt; 1 s</b><span>HEAT simulation</span></div>
+    </div>
+
+    <article class="article-body">
+        <p class="dropcap">The research proceeds along three fronts. First, <b>multi-needle trajectory
+        optimization</b> — comparing exhaustive and learning-based placement methods while respecting
+        vital structures, with search-space reduction and deep-learning ablation-volume estimation.
+        Second, <b>intraoperative replanning</b>: tracking inserted needles, estimating the partly
+        treated volume, and adapting the plan as the procedure unfolds. Third, an <b>ergonomic
+        planning interface</b> validated with the clinicians who actually use it.</p>
+
+        <figure class="leaf">
+            <img src="img/heat.png" alt="">
+            <figcaption><b>fig. 1</b> — HEAT simulation: target vs. predicted ablation zones</figcaption>
+        </figure>
+
+        <p>The simulation work began during Master internships split between the MEC-Lab at TU Darmstadt
+        and the IMAGeS group at ICube, Strasbourg — taking over <b>CryoTrack</b>, a planning and
+        navigation system for cryoablation, and pushing its thermal simulation onto the GPU. The result,
+        <b>HEAT</b>, computes ablation outcomes in under a second; <b>C-NCA</b>, a chained neural cellular
+        automaton, estimates twenty-five minutes of treatment at up to 476 frames per second with barely
+        12,210 learned parameters — fast enough to sit inside an interactive optimization loop.</p>
+    </article>
+
+    <div class="pull">
+        <p>"Every publication is one degree of freedom removed between the surgeon and the outcome."</p>
+        <cite>— research statement</cite>
+    </div>
+
+    <article class="article-body">
+        <h2 style="font-size:1.5rem;margin:0 0 18px">Prior dispatches</h2>
+        <p><b>2022 — University of Oviedo, Spain.</b> A full research internship in computer science,
+        published in PeerJ Computer Science.</p>
+        <p><b>2020 — EOST, Strasbourg.</b> Built the Python data-analysis tool behind a landslide
+        monitoring study — first taste of science as software.</p>
+        <figure class="leaf">
+            <img src="img/cryotrack.jpg" alt="">
+            <figcaption><b>fig. 2</b> — CryoTrack experiments, ICube laboratory</figcaption>
+        </figure>
+    </article>
+</div>
+
+<footer class="wrap wrap-wide foot"><span>the research — chapter I</span><span><a href="#">CV.pdf</a> · <a href="#">scholar</a> · <a href="#">teaching</a> · <a href="#">contact</a></span></footer>
+</body></html>
