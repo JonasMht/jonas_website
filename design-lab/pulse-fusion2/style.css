@@ -45,10 +45,12 @@ a:hover { color:var(--text); }
 .nav a.t:hover { color:var(--text); border-color:var(--line2); }
 .nav a.t.on { color:var(--accent); border-color:var(--accent-dim); background:var(--accent-faint); }
 
-/* focus frame — corner ticks ONLY on focal elements */
+/* focus frame — corner ticks ONLY on focal elements.
+   ticks float 8px OFF the element: a moat of dark ground between
+   bracket and image so bright pictures can never swallow them. */
 .focus { position:relative; }
 .focus::before {
-    content:""; position:absolute; inset:-1px; pointer-events:none; z-index:3;
+    content:""; position:absolute; inset:-8px; pointer-events:none; z-index:3;
     --tk: 16px; --g: -1px;
     background:
         linear-gradient(var(--accent), var(--accent)) left var(--g) top var(--g) / 2px var(--tk),
@@ -74,9 +76,9 @@ a:hover { color:var(--text); }
 .mhead .live::before { content:"● "; animation:blink 2.6s infinite; }
 .mbody { display:grid; grid-template-columns:1.02fr .98fr; }
 .mleft { padding:24px; border-right:1px solid var(--line); }
-.mleft .photo { position:relative; overflow:hidden; border-radius:8px; border:1px solid var(--line2); }
-.mleft .photo img { width:100%; height:280px; object-fit:cover; object-position:center 18%; display:block; }
-.mleft .photo::after { content:""; position:absolute; inset:0; background:linear-gradient(transparent 55%, rgba(12,15,20,.88)); }
+.mleft .photo { position:relative; border-radius:8px; border:1px solid var(--line2); }
+.mleft .photo img { width:100%; height:280px; object-fit:cover; object-position:center 18%; display:block; border-radius:7px; }
+.mleft .photo::after { content:""; position:absolute; inset:0; border-radius:7px; background:linear-gradient(transparent 55%, rgba(12,15,20,.88)); }
 .mleft .photo .tag { position:absolute; left:14px; bottom:12px; z-index:2; font-family:var(--mono);
     font-size:.58rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
 .mleft h1 { font-size:clamp(1.8rem,4vw,2.6rem); line-height:1.1; letter-spacing:-.03em; margin:22px 0 12px; font-weight:800; }
@@ -110,12 +112,16 @@ a:hover { color:var(--text); }
 /* module grid */
 .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; }
 .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
-.mod { display:block; color:var(--text); overflow:hidden; transition:transform .22s cubic-bezier(.2,.8,.3,1), border-color .2s; }
+.mod { display:block; color:var(--text); transition:transform .22s cubic-bezier(.2,.8,.3,1), border-color .2s; }
 .mod:hover { transform:translateY(-3px); border-color:var(--line2); }
-.mod .im { position:relative; height:150px; overflow:hidden; }
+.mod .im { position:relative; height:150px; overflow:hidden; border-radius:11px 11px 0 0; }
 .mod .im img { width:100%; height:100%; object-fit:cover; transition:transform .4s; }
 .mod:hover .im img { transform:scale(1.04); }
-.mod .im::after { content:""; position:absolute; inset:0; background:linear-gradient(transparent 58%, rgba(12,15,20,.72)); }
+.mod .im::after { content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(transparent 58%, rgba(12,15,20,.72)); }
+/* focus images unclip: ticks live OUTSIDE the image, so no zoom-flourish there */
+.mod .im.focus { overflow:visible; }
+.mod .im.focus img { border-radius:inherit; transition:none; }
+.mod:hover .im.focus img { transform:none; }
 .mod .st { position:absolute; top:10px; left:12px; z-index:2; font-family:var(--mono); font-size:.56rem;
     letter-spacing:.12em; text-transform:uppercase; padding:4px 9px; border-radius:5px;
     background:rgba(12,15,20,.78); color:var(--accent); backdrop-filter:blur(5px); }
@@ -126,7 +132,7 @@ a:hover { color:var(--text); }
     font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
 .mod .meta .open { color:var(--accent); white-space:nowrap; }
 .mod.wide { grid-column:span 3; display:grid; grid-template-columns:1fr 1.08fr; }
-.mod.wide .im { height:auto; min-height:230px; }
+.mod.wide .im { height:auto; min-height:230px; border-radius:11px 0 0 11px; }
 
 /* gauges — accent ring */
 .gauges { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; }
@@ -174,6 +180,7 @@ a:hover { color:var(--text); }
     .mleft { border-right:none; border-bottom:1px solid var(--line); }
     .grid3 { grid-template-columns:1fr 1fr; }
     .mod.wide { grid-column:span 2; grid-template-columns:1fr; }
+    .mod.wide .im { border-radius:11px 11px 0 0; }
     .gauges { grid-template-columns:1fr; }
     .dossier .body { grid-template-columns:1fr; }
     .dossier .body img { width:100%; height:150px; }
