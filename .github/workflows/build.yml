@@ -1,0 +1,29 @@
+name: build-check
+on:
+  push:
+    branches-ignore: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  hugo-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install Hugo
+        run: |
+          curl -sL https://github.com/gohugoio/hugo/releases/download/v0.152.2/hugo_extended_0.152.2_linux-amd64.tar.gz | tar -xz hugo
+          chmod +x hugo
+      - name: Build
+        run: ./hugo --gc --minify
+      - name: Zero-JS sanity (content must exist in raw HTML)
+        run: |
+          for probe in "Planning heat" "OPEN PRO" "476 fps"; do
+            grep -q "$probe" public/index.html || { echo "MISSING: $probe"; exit 1; }
+          done
+          grep -q "No cookies" public/legal/index.html || { echo "legal missing"; exit 1; }

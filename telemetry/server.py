@@ -1,0 +1,256 @@
+#!/usr/bin/env python3
+"""
+JONASX STATION TELEMETRY — self-hosted event collector + dashboard.
+
+Stdlib only (no pip). Designed to run sandboxed behind Caddy:
+    caddy:  reverse_proxy /e*  /dash*  /api*  ->  127.0.0.1:8765
+
+Endpoints
+  POST /e                event intake (public, CORS-restricted, rate-limited)
+  GET  /dash?key=KEY     owner dashboard
+  GET  /api/summary?key=KEY           totals, top pages, referrers, devices
+  GET  /api/heatmap?key=KEY&page=P    click coordinates for one page
+  GET  /api/visitors?key=KEY&limit=N  pseudonymous visitor profiles
+  GET  /api/visitor?key=KEY&id=ID     one profile's full timeline
+
+Env
+  TELEMETRY_KEY   dashboard/API key (default: random, printed at start)
+  TELEMETRY_DB    sqlite path             (default: ./telemetry.db)
+  TELEMETRY_PORT  listen port             (default: 8765)
+  TELEMETRY_ORIGIN allowed CORS origin    (default: https://jonasx.xyz)
+
+Retention: events 90 days, visitor rows 400 days (pruned hourly).
+"""
+import json, os, random, sqlite3, string, time, threading, hashlib
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import urlparse, parse_qs
+
+KEY = os.environ.get("TELEMETRY_KEY") or "".join(random.choices(string.ascii_letters + string.digits, k=32))
+DB = os.environ.get("TELEMETRY_DB", os.path.join(os.path.dirname(os.path.abspath(__file__)), "telemetry.db"))
+PORT = int(os.environ.get("TELEMETRY_PORT", "8765"))
+ORIGIN = os.environ.get("TELEMETRY_ORIGIN", "https://jonasx.xyz")
+HERE = os.path.dirname(os.path.abspath(__file__))
+EVENT_TTL = 90 * 86400
+VISITOR_TTL = 400 * 86400
+RATE = {}  # ip -> [window_start, count]
+RATE_MAX, RATE_WIN = 240, 60
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ts INTEGER NOT NULL, v TEXT, s TEXT, t TEXT NOT NULL, p TEXT,
+    x REAL, y REAL, d INTEGER, w INTEGER, r TEXT, b TEXT, ip TEXT, c TEXT
+);
+CREATE INDEX IF NOT EXISTS ev_ts ON events(ts);
+CREATE INDEX IF NOT EXISTS ev_p ON events(p);
+CREATE TABLE IF NOT EXISTS visitors (
+    v TEXT PRIMARY KEY, first INTEGER NOT NULL, last INTEGER NOT NULL,
+    visits INTEGER NOT NULL DEFAULT 1
+);
+"""
+
+def db():
+    c = sqlite3.connect(DB, timeout=10)
+    c.execute("PRAGMA journal_mode=WAL")
+    c.execute("PRAGMA busy_timeout=5000")
+    return c
+
+def prune_loop():
+    while True:
+        try:
+            with db() as c:
+                now = int(time.time())
+                c.execute("DELETE FROM events WHERE ts < ?", (now - EVENT_TTL,))
+                c.execute("DELETE FROM visitors WHERE last < ?", (now - VISITOR_TTL,))
+        except Exception:
+            pass
+        time.sleep(3600)
+
+def rate_ok(ip):
+    now = time.time()
+    win, n = RATE.get(ip, (0, 0))
+    if now - win > RATE_WIN:
+        RATE[ip] = (now, 1); return True
+    if n >= RATE_MAX: return False
+    RATE[ip] = (win, n + 1); return True
+
+def touch_visitor(cur, v, ts):
+    cur.execute("INSERT INTO visitors(v, first, last) VALUES(?,?,?) ON CONFLICT(v) DO UPDATE SET last=excluded.last, visits=visits+1", (v, ts, ts))
+
+class Handler(BaseHTTPRequestHandler):
+    server_version = "StationTelemetry/1.0"
+    def log_message(self, fmt, *a): pass
+
+    def _cors(self):
+        self.send_header("Access-Control-Allow-Origin", ORIGIN)
+        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Allow-Credentials", "true")
+        self.send_header("Vary", "Origin")
+
+    def _json(self, code, obj, cors=False):
+        body = json.dumps(obj).encode()
+        self.send_response(code)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
+        if cors: self._cors()
+        self.end_headers()
+        self.wfile.write(body)
+
+    def do_OPTIONS(self):
+        self.send_response(204); self._cors(); self.end_headers()
+
+    def do_POST(self):
+        ip = self.client_address[0]
+        if urlparse(self.path).path != "/e":
+            return self._json(404, {"e": "not found"})
+        if not rate_ok(ip):
+            return self._json(429, {"e": "rate limited"}, cors=True)
+        try:
+            n = int(self.headers.get("Content-Length", "0"))
+            if n <= 0 or n > 16384: return self._json(413, {"e": "bad size"}, cors=True)
+            data = json.loads(self.rfile.read(n))
+        except Exception:
+            return self._json(400, {"e": "bad json"}, cors=True)
+        if not isinstance(data, list): data = [data]
+        now = int(time.time())
+        iph = hashlib.sha256(("jm:" + ip).encode()).hexdigest()[:16]
+        rows = []
+        for ev in data[:40]:
+            if not isinstance(ev, dict): continue
+            t = str(ev.get("t", ""))[:8]
+            if t not in ("pv", "clk", "dur"): continue
+            rows.append((now, str(ev.get("v", ""))[:40], str(ev.get("s", ""))[:40], t,
+                         str(ev.get("p", "/"))[:200],
+                         max(0.0, min(1.0, float(ev.get("x", 0) or 0))),
+                         max(0.0, min(1.0, float(ev.get("y", 0) or 0))),
+                         max(0, min(100, int(ev.get("d", 0) or 0))),
+                         max(0, min(36000, int(ev.get("w", 0) or 0))),
+                         str(ev.get("r", ""))[:120],
+                         str(ev.get("b", ""))[:160], iph,
+                         self.headers.get("CF-IPCountry", "")[:8]))
+        try:
+            with db() as c:
+                cur = c.cursor()
+                for v in {r[1] for r in rows if r[1]}:
+                    touch_visitor(cur, v, now)
+                cur.executemany(
+                    "INSERT INTO events(ts,v,s,t,p,x,y,d,w,r,b,ip,c) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
+        except Exception:
+            return self._json(500, {"e": "db"}, cors=True)
+        self._json(204, {}, cors=True)
+
+    def _auth(self, q):
+        return q.get("key", [""])[0] == KEY
+
+    def do_GET(self):
+        u = urlparse(self.path)
+        q = parse_qs(u.query)
+        if u.path == "/dash" and self._auth(q):
+            try:
+                with open(os.path.join(HERE, "dashboard.html"), "rb") as f:
+                    body = f.read().replace(b"__KEY__", KEY.encode())
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(body)))
+                self.send_header("X-Robots-Tag", "noindex, nofollow")
+                self.end_headers(); self.wfile.write(body)
+            except Exception:
+                self._json(500, {"e": "dashboard missing"})
+            return
+        if u.path.startswith("/api/"):
+            if not self._auth(q):
+                return self._json(403, {"e": "bad key"})
+            name = u.path[5:]
+            fn = {"summary": api_summary, "heatmap": api_heatmap,
+                  "visitors": api_visitors, "visitor": api_visitor}.get(name)
+            if not fn: return self._json(404, {"e": "unknown endpoint"})
+            self._json(200, fn(q), cors=True)
+            return
+        self._json(404, {"e": "not found"})
+
+def _q_days(q, default=30):
+    try: return max(1, min(365, int(q.get("days", [default])[0])))
+    except Exception: return default
+
+def api_summary(q):
+    days = _q_days(q)
+    since = int(time.time()) - days * 86400
+    day_ago = int(time.time()) - 86400
+    with db() as c:
+        cur = c.cursor()
+        def one(sql, *a):
+            cur.execute(sql, a); r = cur.fetchone(); return r[0] if r else 0
+        def many(sql, *a):
+            cur.execute(sql, a); return [list(r) for r in cur.fetchall()]
+        return {
+            "days": days,
+            "views_total": one("SELECT COUNT(*) FROM events WHERE t='pv' AND ts>?", since),
+            "views_today": one("SELECT COUNT(*) FROM events WHERE t='pv' AND ts>?", day_ago),
+            "uniques_total": one("SELECT COUNT(DISTINCT v) FROM events WHERE t='pv' AND ts>?", since),
+            "uniques_today": one("SELECT COUNT(DISTINCT v) FROM events WHERE t='pv' AND ts>?", day_ago),
+            "sessions": one("SELECT COUNT(DISTINCT s) FROM events WHERE ts>?", since),
+            "clicks": one("SELECT COUNT(*) FROM events WHERE t='clk' AND ts>?", since),
+            "returns": one("SELECT COUNT(*) FROM visitors WHERE visits>1 AND last>?", since),
+            "pages": many("SELECT p, COUNT(*) n FROM events WHERE t='pv' AND ts>? GROUP BY p ORDER BY n DESC LIMIT 12", since),
+            "refs": many("SELECT COALESCE(NULLIF(r,''),'(direct)'), COUNT(*) n FROM events WHERE t='pv' AND ts>? GROUP BY 1 ORDER BY n DESC LIMIT 10", since),
+            "devices": many("SELECT CASE WHEN b LIKE '%mobile%' OR b LIKE '%Android%' OR b LIKE '%iPhone%' THEN 'mobile' WHEN b LIKE '%iPad%' OR b LIKE '%tablet%' THEN 'tablet' ELSE 'desktop' END k, COUNT(*) n FROM events WHERE t='pv' AND ts>? GROUP BY k", since),
+            "hours": many("SELECT (ts/3600)*3600 h, COUNT(*) n FROM events WHERE t='pv' AND ts>? GROUP BY h ORDER BY h", day_ago),
+        }
+
+def api_heatmap(q):
+    days = _q_days(q, 30)
+    page = q.get("page", ["/"])[0]
+    since = int(time.time()) - days * 86400
+    with db() as c:
+        cur = c.cursor()
+        cur.execute("SELECT x, y FROM events WHERE t='clk' AND p=? AND ts>?", (page, since))
+        clicks = cur.fetchall()
+        cur.execute("SELECT AVG(d) FROM events WHERE t='dur' AND p=? AND ts>?", (page, since))
+        avg_depth = (cur.fetchone() or [0])[0]
+        cur.execute("SELECT COUNT(*) FROM events WHERE t='pv' AND p=? AND ts>?", (page, since))
+        views = cur.fetchone()[0]
+    return {"page": page, "days": days, "views": views, "avg_depth": round(avg_depth or 0, 1), "clicks": clicks}
+
+def api_visitors(q):
+    days = _q_days(q, 30)
+    try: limit = max(1, min(200, int(q.get("limit", [50])[0])))
+    except Exception: limit = 50
+    since = int(time.time()) - days * 86400
+    with db() as c:
+        cur = c.cursor()
+        cur.execute("SELECT v, first, last, visits FROM visitors WHERE last>? ORDER BY last DESC LIMIT ?", (since, limit))
+        out = []
+        for v, first, last, visits in cur.fetchall():
+            short = v[:8] if v else "?"
+            cur.execute("SELECT p, COUNT(*) FROM events WHERE v=? AND t='pv' AND ts>? GROUP BY p ORDER BY 2 DESC LIMIT 5", (v, since))
+            pages = cur.fetchall()
+            cur.execute("SELECT COUNT(DISTINCT s) FROM events WHERE v=? AND ts>?", (v, since))
+            sess = cur.fetchone()[0]
+            out.append({"id": short, "first": first, "last": last, "visits": visits,
+                        "sessions": sess, "pages": pages})
+    return {"days": days, "visitors": out}
+
+def api_visitor(q):
+    vid = q.get("id", [""])[0]
+    since = int(time.time()) - _q_days(q) * 86400
+    with db() as c:
+        cur = c.cursor()
+        cur.execute("SELECT rowid FROM visitors WHERE v LIKE ?", (vid + "%",))
+        row = cur.fetchone()
+        if not row: return {"e": "unknown"}
+        cur.execute("SELECT v FROM visitors WHERE rowid=?", (row[0],))
+        full = cur.fetchone()[0]
+        cur.execute("SELECT ts, t, p, w, d FROM events WHERE v=? AND ts>? ORDER BY ts LIMIT 500", (full, since))
+        evs = cur.fetchall()
+    return {"id": vid, "events": evs}
+
+def run():
+    with db() as c: c.executescript(SCHEMA)
+    threading.Thread(target=prune_loop, daemon=True).start()
+    print(f"[station-telemetry] dashboard key: {KEY}")
+    print(f"[station-telemetry] listening on 127.0.0.1:{PORT}, db={DB}, origin={ORIGIN}")
+    ThreadingHTTPServer(("127.0.0.1", PORT), Handler).serve_forever()
+
+if __name__ == "__main__":
+    run()

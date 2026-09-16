@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Station Telemetry</title>
+<style>
+:root { --bg:#0C0F14; --panel:#12161D; --panel2:#171D27; --line:#232A36; --line2:#303A4A;
+    --text:#E5EAF1; --dim:#8C97A7; --faint:#5A6678; --accent:#6FA8DC; --ok:#46B98C;
+    --mono:"SF Mono",ui-monospace,Menlo,monospace; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:15px -apple-system,"Segoe UI",system-ui,sans-serif; padding:26px; }
+h1 { font-size:1.5rem; letter-spacing:-.02em; margin:0 0 4px; }
+.kick { font-family:var(--mono); font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin:0 0 22px; }
+.gauges { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:24px; }
+.g { border:1px solid var(--line); border-radius:10px; background:var(--panel); padding:14px 16px; }
+.g b { display:block; font-size:1.6rem; font-weight:800; }
+.g span { font-family:var(--mono); font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); }
+.g.acc b { color:var(--accent); }
+.cols { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.panel { border:1px solid var(--line); border-radius:10px; background:var(--panel); padding:14px 16px; min-width:0; }
+.panel h2 { font-size:.95rem; margin:0 0 10px; font-weight:700; }
+.row { display:flex; justify-content:space-between; gap:10px; padding:6px 0; border-bottom:1px dashed var(--line); font-size:.82rem; }
+.row:last-child { border:none; }
+.row .n { color:var(--dim); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.row .v { font-family:var(--mono); color:var(--accent); }
+.bar { height:4px; background:var(--line); border-radius:99px; margin-top:4px; }
+.bar i { display:block; height:100%; background:var(--accent); border-radius:99px; }
+canvas { width:100%; border:1px solid var(--line2); border-radius:8px; background:
+    repeating-linear-gradient(0deg, transparent 0 23px, rgba(111,168,220,.04) 23px 24px), #0d1219; }
+select, input { background:var(--panel2); color:var(--text); border:1px solid var(--line2); border-radius:6px; padding:6px 10px; font-family:var(--mono); font-size:.7rem; }
+table { width:100%; border-collapse:collapse; font-size:.8rem; }
+th { text-align:left; font-family:var(--mono); font-size:.56rem; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); border-bottom:1px solid var(--line2); padding:6px 8px; }
+td { padding:6px 8px; border-bottom:1px dashed var(--line); color:var(--dim); }
+td.mono, .mono { font-family:var(--mono); font-size:.7rem; }
+tr:hover td { color:var(--text); cursor:pointer; }
+.timeline { max-height:260px; overflow:auto; font-family:var(--mono); font-size:.68rem; line-height:1.9; color:var(--dim); }
+.timeline .p { color:var(--accent); }
+@media (max-width:900px){ .cols { grid-template-columns:1fr; } }
+</style></head><body>
+<h1>Station Telemetry</h1>
+<p class="kick">Self-hosted · local profiles · no third parties</p>
+<div class="gauges" id="gauges"></div>
+<div class="cols">
+    <div class="panel"><h2>Hot pages</h2><div id="pages"></div></div>
+    <div class="panel"><h2>Sources</h2><div id="refs"></div></div>
+    <div class="panel"><h2>Heatmap — clicks <select id="hpage"></select> <span id="hinfo" class="mono" style="color:var(--faint)"></span></h2>
+        <canvas id="hm" width="720" height="450"></canvas></div>
+    <div class="panel"><h2>Visitor profiles <span class="mono" style="color:var(--faint)">click for timeline</span></h2>
+        <table id="vis"><thead><tr><th>id</th><th>visits</th><th>sessions</th><th>last seen</th><th>top pages</th></tr></thead><tbody></tbody></table>
+        <div class="timeline" id="tl" style="margin-top:10px"></div></div>
+</div>
+<script>
+const K = new URLSearchParams(location.search).get("key") || "";
+const j = (u) => fetch(u + (u.includes("?") ? "&" : "?") + "key=" + K).then(r => r.json());
+const fmt = (ts) => new Date(ts * 1000).toISOString().slice(0, 16).replace("T", " ");
+function drawHeat(d) {
+    const c = document.getElementById("hm"), ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.strokeStyle = "rgba(111,168,220,.25)";
+    ctx.strokeRect(1, 1, c.width - 2, c.height - 2);
+    ctx.fillStyle = "rgba(111,168,220,.14)";
+    for (const [x, y] of d.clicks || []) {
+        ctx.beginPath(); ctx.arc(x * c.width, y * c.height, 14, 0, 7); ctx.fill();
+    }
+    ctx.fillStyle = "#EAF4FF";
+    for (const [x, y] of d.clicks || []) {
+        ctx.beginPath(); ctx.arc(x * c.width, y * c.height, 2.5, 0, 7); ctx.fill();
+    }
+    document.getElementById("hinfo").textContent =
+        (d.views || 0) + " views · avg depth " + (d.avg_depth || 0) + "% · " + (d.clicks || []).length + " clicks";
+}
+function render() {
+    j("/api/summary?days=30").then(d => {
+        document.getElementById("gauges").innerHTML =
+            `<div class="g acc"><b>${d.views_today}</b><span>views today</span></div>
+             <div class="g"><b>${d.views_total}</b><span>views · 30d</span></div>
+             <div class="g"><b>${d.uniques_today}</b><span>uniques today</span></div>
+             <div class="g"><b>${d.uniques_total}</b><span>uniques · 30d</span></div>
+             <div class="g"><b>${d.returns}</b><span>returning visitors</span></div>
+             <div class="g"><b>${d.clicks}</b><span>clicks · 30d</span></div>`;
+        const mx = Math.max(1, ...d.pages.map(p => p[1]));
+        document.getElementById("pages").innerHTML = d.pages.map(([p, n]) =>
+            `<div class="row"><span class="n">${p}</span><span class="v">${n}</span></div>
+             <div class="bar"><i style="width:${(n / mx) * 100}%"></i></div>`).join("");
+        document.getElementById("refs").innerHTML = d.refs.map(([r, n]) =>
+            `<div class="row"><span class="n">${r}</span><span class="v">${n}</span></div>`).join("");
+        const sel = document.getElementById("hpage");
+        if (!sel.options.length) {
+            d.pages.forEach(([p]) => { const o = document.createElement("option"); o.value = o.textContent = p; sel.appendChild(o); });
+            sel.onchange = () => j("/api/heatmap?page=" + encodeURIComponent(sel.value)).then(drawHeat);
+        }
+        j("/api/heatmap?page=" + encodeURIComponent(sel.value || "/")).then(drawHeat);
+    });
+    j("/api/visitors?limit=60").then(d => {
+        const tb = document.querySelector("#vis tbody");
+        tb.innerHTML = "";
+        d.visitors.forEach(v => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td class="mono">${v.id}</td><td class="mono">${v.visits}</td><td class="mono">${v.sessions}</td>
+                <td class="mono">${fmt(v.last)}</td><td>${v.pages.map(p => p[0]).join("<br>")}</td>`;
+            tr.onclick = () => j("/api/visitor?id=" + v.id).then(tl => {
+                document.getElementById("tl").innerHTML = tl.events.map(e =>
+                    `<div><span class="p">${fmt(e[0])}</span> ${e[1]} ${e[2]}` +
+                    (e[1] === "dur" ? ` · ${e[3]}s · depth ${e[4]}%` : "") + `</div>`).join("") || "no events";
+            });
+            tb.appendChild(tr);
+        });
+    });
+}
+render(); setInterval(render, 30000);
+</script>
+</body></html>

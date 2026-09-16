@@ -1,0 +1,36 @@
+{{ define "main" }}
+<div class="container">
+    <header class="list-hero reveal">
+        <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="{{ site.Home.RelPermalink }}">STATION</a><span>/</span>
+            <span aria-current="page" style="color:var(--accent)">LAB</span>
+        </nav>
+        <h1 class="list-title">The Lab</h1>
+        <p class="list-desc">Where the research becomes something you can operate. Interactive artifacts, honest numbers, nothing staged.</p>
+    </header>
+
+    <section class="sec reveal" aria-label="Comparison instrument">
+        <div class="sec-h"><span class="mark"></span><b>Comparison instrument</b><span class="k">drag the seam</span></div>
+        <div class="slider" id="cmp">
+            <img class="s-base" src="/img/nd2.png" alt="Notre-Dame reconstruction — shaded render">
+            <img class="s-top" src="/img/nd1.png" alt="Notre-Dame reconstruction — wireframe render">
+            <div class="s-handle"><span>⇄</span></div>
+            <span class="s-tag s-tag-l">RENDER · SHADED</span>
+            <span class="s-tag s-tag-r">RENDER · WIREFRAME</span>
+        </div>
+        <p class="below">Notre-Dame reconstruction — the same scene, two render passes. Ticket 1 of the playground:
+        the same instrument will later hold <b>target vs. predicted</b> ablation maps from the papers.</p>
+    </section>
+
+    <section class="sec reveal" aria-label="Key figures">
+        <div class="sec-h"><span class="mark"></span><b>Key figures</b><span class="k">the honest numbers</span></div>
+        <div class="grid3">
+            <div class="mcell vcard"><span class="k">C-NCA inference</span><div><span class="v acc">476 fps</span><span class="sub">25 min of treatment, real time</span></div></div>
+            <div class="mcell vcard"><span class="k">Model size</span><div><span class="v">12,210</span><span class="sub">learned parameters</span></div></div>
+            <div class="mcell vcard"><span class="k">HEAT simulation</span><div><span class="v">≤ 1 s</span><span class="sub">sub-second ablation zones</span></div></div>
+        </div>
+        <p class="below">Full benchmarks live in the papers — <a href="/pro/publications/">publications →</a>. The interactive
+        sandbox (WebGL planner) is ticket 3 of this page.</p>
+    </section>
+</div>
+{{ end }}

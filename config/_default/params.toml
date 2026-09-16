@@ -6,6 +6,11 @@ favicon = "/icons/favicon.svg"
 description = "Jonas Mehtali — PhD student at ICube Laboratory, University of Strasbourg, researching thermal ablation planning and GPU simulation for image-guided surgery."
 keywords = "Jonas Mehtali, PhD Student, Computer-Assisted Interventions, Medical Image Computing, Thermal Ablation, Strasbourg, ICube Laboratory, GPU Simulation, Image-Guided Surgery"
 
+# Self-hosted station telemetry — endpoint of the VPS collector.
+# Empty = beacon disabled. Set to e.g. "https://jonasx.xyz/e" after deploying
+# telemetry/server.py (see telemetry/README.md). Disclosure lives in /legal.
+telemetryEndpoint = ""
+
 [author]
 name = "Jonas Mehtali"
 email = "jonas.mht.private@gmail.com"

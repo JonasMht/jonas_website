@@ -1,6 +1,68 @@
 (function () {
     "use strict";
 
+    /* ===== station telemetry — self-hosted, first-party, disclosed in /legal ===== */
+    var TEP = window.TELEMETRY_ENDPOINT || "";
+    var dnt = navigator.doNotTrack === "1" || window.doNotTrack === "1";
+    var teleOff = null;
+    try { teleOff = localStorage.getItem("jm.telemetry") === "off"; } catch (e) {}
+    function teleActive() { return TEP && !dnt && !teleOff; }
+    function uuid() {
+        try { return crypto.randomUUID ? crypto.randomUUID() : "v-" + Date.now() + "-" + Math.random().toString(36).slice(2, 10); }
+        catch (e) { return "v-" + Date.now(); }
+    }
+    function vid() {
+        try {
+            var v = localStorage.getItem("jm.visitor.v1");
+            if (!v) { v = uuid(); localStorage.setItem("jm.visitor.v1", v); }
+            return v;
+        } catch (e) { return null; }
+    }
+    function sid() {
+        try {
+            var s = JSON.parse(sessionStorage.getItem("jm.session.v1") || "null");
+            if (!s || Date.now() - s.t > 1800000) { s = { id: uuid(), t: Date.now() }; }
+            s.t = Date.now();
+            sessionStorage.setItem("jm.session.v1", JSON.stringify(s));
+            return s.id;
+        } catch (e) { return null; }
+    }
+    if (teleActive()) {
+        var queue = [], maxDepth = 0, t0 = Date.now(), flushed = false;
+        var BR = (function () { var a = navigator.userAgent; return /Android|iPhone|Mobile/.test(a) ? "mobile" : /iPad|Tablet/.test(a) ? "tablet" : "desktop"; })();
+        function push(ev) {
+            ev.v = vid(); ev.s = sid(); ev.b = BR; ev.r = document.referrer ? new URL(document.referrer).origin : "";
+            queue.push(ev);
+            if (queue.length >= 8) flush();
+        }
+        function flush() {
+            if (!queue.length || !teleActive()) return;
+            var batch = JSON.stringify(queue); queue = [];
+            try { navigator.sendBeacon(TEP, new Blob([batch], { type: "text/plain;charset=UTF-8" })); }
+            catch (e) { try { fetch(TEP, { method: "POST", body: batch, keepalive: true }); } catch (e2) {} }
+        }
+        push({ t: "pv", p: location.pathname });
+        document.addEventListener("click", function (ev) {
+            if (!teleActive()) return;
+            var dh = Math.max(1, document.documentElement.scrollHeight);
+            push({ t: "clk", p: location.pathname, x: +(ev.clientX / window.innerWidth).toFixed(3),
+                y: +((ev.clientY + window.scrollY) / dh).toFixed(3) });
+        }, true);
+        document.addEventListener("scroll", function () {
+            var h = document.documentElement;
+            var d = Math.round(((h.scrollTop + h.clientHeight) / Math.max(1, h.scrollHeight)) * 100);
+            if (d > maxDepth) maxDepth = d;
+        }, { passive: true });
+        function onLeave() {
+            if (flushed || !teleActive()) return; flushed = true;
+            push({ t: "dur", p: location.pathname, d: maxDepth, w: Math.round((Date.now() - t0) / 1000) });
+            flush();
+        }
+        window.addEventListener("pagehide", onLeave);
+        document.addEventListener("visibilitychange", function () { if (document.visibilityState === "hidden") onLeave(); });
+        setInterval(flush, 5000);
+    }
+
     /* ignition blink — ≤300ms, once per session, skipped under reduced-motion */
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!reduce) document.body.classList.add("rm-ok");
@@ -32,6 +94,26 @@
             });
         }, { threshold: 0, rootMargin: "0px 0px 360px 0px" });
         els.forEach(function (el) { io.observe(el); });
+    }
+
+    /* lab comparison slider */
+    var cmp = document.getElementById("cmp");
+    if (cmp) {
+        var top = cmp.querySelector(".s-top"), handle = cmp.querySelector(".s-handle");
+        var setPct = function (pct) {
+            pct = Math.max(0, Math.min(100, pct));
+            top.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
+            handle.style.left = pct + "%";
+        };
+        var dragging = false;
+        var move = function (ev) {
+            if (!dragging) return;
+            var r = cmp.getBoundingClientRect();
+            setPct(((ev.clientX - r.left) / r.width) * 100);
+        };
+        cmp.addEventListener("pointerdown", function (ev) { dragging = true; move(ev); });
+        window.addEventListener("pointermove", move);
+        window.addEventListener("pointerup", function () { dragging = false; });
     }
 
     /* station console — opt-in, local only, nothing tracked */
@@ -104,6 +186,7 @@
         var cmd = parts[0].toLowerCase();
         if (cmd === "help") {
             line("help — this list");
+            line("telemetry on|off — opt out of / back into station telemetry (see /legal)");
             line("session — your visit, as local telemetry");
             line("goto <path> — jump to a station path (e.g. goto /pro/)");
             line("clear — wipe the local profile");
@@ -116,6 +199,17 @@
             if (!/\/$/.test(path)) path += "/";
             line("▸ navigating to " + path + " …");
             setTimeout(function () { window.location.href = path; }, 250);
+        } else if (cmd === "telemetry") {
+            var mode = (parts[1] || "").toLowerCase();
+            if (mode === "off") {
+                try { localStorage.setItem("jm.telemetry", "off"); localStorage.removeItem("jm.visitor.v1"); } catch (e) {}
+                teleOff = true;
+                line("▸ telemetry disabled — local profile wiped. nothing more leaves your browser.");
+            } else if (mode === "on") {
+                try { localStorage.removeItem("jm.telemetry"); } catch (e) {}
+                teleOff = false;
+                line("▸ telemetry re-enabled — see /legal for exactly what is stored.");
+            } else { line("telemetry on — or — telemetry off"); }
         } else if (cmd === "clear") {
             try { localStorage.removeItem(KEY); } catch (e) {}
             body.textContent = "";

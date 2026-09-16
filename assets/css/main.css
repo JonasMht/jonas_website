@@ -226,6 +226,33 @@ html:not(.js) .ignition { display: none; }
 .paper-card h3 a.stretch::after { content: ""; position: absolute; inset: 0; }
 .paper-card .chiprow a { position: relative; z-index: 2; }
 
+/* ===== lab: comparison slider ===== */
+.slider { position: relative; max-width: 880px; border: 1px solid var(--line); border-radius: var(--r);
+    overflow: hidden; cursor: ew-resize; touch-action: none; }
+.slider img { display: block; width: 100%; height: auto; user-select: none; pointer-events: none; }
+.slider .s-top { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); object-fit: cover; }
+.slider .s-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+    background: var(--accent); box-shadow: 0 0 12px var(--accent-dim); }
+.slider .s-handle span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: var(--accent); color: #0C0F14; width: 34px; height: 34px; border-radius: 50%;
+    display: grid; place-items: center; font-size: .85rem; box-shadow: 0 4px 14px rgba(0,0,0,.5); }
+.s-tag { position: absolute; top: 12px; z-index: 2; font-family: var(--mono); font-size: .54rem;
+    letter-spacing: .14em; text-transform: uppercase; padding: 4px 10px; border-radius: 5px;
+    background: rgba(12, 15, 20, .8); color: var(--accent); }
+.s-tag-l { left: 12px; } .s-tag-r { right: 12px; }
+.below { margin-top: 12px; color: var(--dim); font-size: .84rem; }
+.below b { color: var(--text); font-weight: 600; }
+.vcard { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    border: 1px solid var(--line); border-radius: 10px; background: var(--panel); padding: 14px 18px; }
+.vcard .k { font-family: var(--mono); color: var(--dim); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
+.vcard .v { display: block; font-size: 1.25rem; font-weight: 800; color: var(--text); line-height: 1.1; text-align: right; }
+.vcard .v.acc { color: var(--accent); }
+.vcard .sub { display: block; font-size: .66rem; color: var(--faint); font-family: var(--mono); text-align: right; margin-top: 3px; }
+
+/* ===== view transitions — additive garnish ===== */
+@view-transition { navigation: auto; }
+.nav .sys { view-transition-name: brand; }
+
 /* ===== console-lite ===== */
 .console { position: fixed; inset: auto 0 0 0; z-index: 80; display: none; }
 .console.is-open { display: block; }
