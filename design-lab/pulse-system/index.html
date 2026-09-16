@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System — Pulse·Fusion 2</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="layout">
+
+    <aside class="side">
+        <p class="t">Index</p>
+        <ul>
+            <li><a href="#system">The system</a></li>
+            <li><a href="#tokens">Tokens</a></li>
+            <li><a href="#chrome">Chrome</a></li>
+            <li><a href="#identity">Identity layer</a></li>
+            <li><a href="#orientation">Orientation layer</a></li>
+            <li><a href="#browse">Browse layer</a></li>
+            <li><a href="#depth">Depth layer</a></li>
+            <li><a href="#focus">Focus brackets</a></li>
+        </ul>
+        <p class="ver"><b>Pulse·Fusion 2</b><br>design system v1.0<br>sober build · 2026<br>accent: steel #6FA8DC<br>surface: slate #0C0F14</p>
+    </aside>
+
+    <main>
+        <header class="head">
+            <p class="kick">Pulse·Fusion 2 — design system</p>
+            <h1>Every element, and why it exists.</h1>
+            <p class="lede">Fusion 2 is not a pile of components — it is one system: a control-room reading of a
+            researcher's life. This dashboard documents every element, what it does, and the rule that
+            keeps the whole coherent.</p>
+        </header>
+
+        <!-- ============ SYSTEM ============ -->
+        <section class="sec" id="system">
+            <div class="sec-h"><span class="no">00</span><h2>The system</h2></div>
+            <p class="sec-p">Every page answers one question per layer. A visitor who reads nothing still
+            gets layer 1; a visitor who taps everything reaches layer 4. Elements never mix layers.</p>
+            <div class="layers">
+                <div class="layer"><span class="n">L1</span><div><h4>Identity — "who is this?"</h4><p>Photo with focus brackets, name, role, one bold statement. Above the fold, always.</p></div><span class="u">every landing</span></div>
+                <div class="layer"><span class="n">L2</span><div><h4>Orientation — "what are the numbers?"</h4><p>Telemetry cells: publications, speed, output. Mono voice, right-aligned values.</p></div><span class="u">hero · hubs</span></div>
+                <div class="layer"><span class="n">L3</span><div><h4>Browse — "what's interesting?"</h4><p>Image-led module cards. One line of meaning each; scan in seconds.</p></div><span class="u">hubs · home</span></div>
+                <div class="layer"><span class="n">L4</span><div><h4>Depth — "tell me more."</h4><p>Expandable dossiers, logs and sessions. Full detail, only on demand.</p></div><span class="u">on tap</span></div>
+            </div>
+        </section>
+
+        <!-- ============ TOKENS ============ -->
+        <section class="sec" id="tokens">
+            <div class="sec-h"><span class="no">01</span><h2>Tokens</h2></div>
+            <p class="sec-p">One accent, three surface tones, neutral text ramp. No gradients, no second
+            accent — color is information, not decoration.</p>
+            <div class="tokens">
+                <div class="tok"><div class="sw" style="background:#0C0F14"></div><div class="i"><b>--bg #0C0F14</b>page ground</div></div>
+                <div class="tok"><div class="sw" style="background:#12161D"></div><div class="i"><b>--panel #12161D</b>panels, cards</div></div>
+                <div class="tok"><div class="sw" style="background:#171D27"></div><div class="i"><b>--panel2 #171D27</b>raised: headers, hovers</div></div>
+                <div class="tok"><div class="sw" style="background:#232A36"></div><div class="i"><b>--line #232A36</b>hairlines &amp; borders</div></div>
+                <div class="tok"><div class="sw" style="background:#6FA8DC"></div><div class="i"><b>--accent #6FA8DC</b>steel — links, ticks, CTAs</div></div>
+                <div class="tok"><div class="sw" style="background:#46B98C"></div><div class="i"><b>--ok #46B98C</b>live states only</div></div>
+                <div class="tok"><div class="sw" style="background:#E5EAF1"></div><div class="i"><b>--text #E5EAF1</b>primary reading</div></div>
+                <div class="tok"><div class="sw" style="background:#8C97A7"></div><div class="i"><b>--dim #8C97A7</b>secondary reading</div></div>
+                <div class="tok"><div class="sw" style="background:#5A6678"></div><div class="i"><b>--faint #5A6678</b>meta &amp; labels</div></div>
+            </div>
+            <div style="margin-top:22px" class="panel" >
+                <div style="padding:18px 22px">
+                    <div class="type-row"><span class="k">display / 800</span><span style="font-size:1.7rem;font-weight:800;letter-spacing:-.03em;line-height:1.1">Planning heat <em style="font-style:normal;color:var(--accent)">before</em> it burns.</span></div>
+                    <div class="type-row"><span class="k">module title / 700</span><span style="font-weight:700;font-size:1rem">Cryotrack — planning &amp; navigation</span></div>
+                    <div class="type-row"><span class="k">body / 400</span><span style="color:var(--dim);font-size:.92rem">Reading text: sans, 15.5px, 1.6 line height, dim color.</span></div>
+                    <div class="type-row"><span class="k">label / mono·caps</span><span style="font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)">TELEMETRY · CHANNEL 01 · FIG.01</span></div>
+                </div>
+            </div>
+            <p class="sec-p" style="margin-top:14px">Voice rule: <b style="color:var(--text)">sans</b> speaks to humans; <b style="color:var(--text)">mono caps</b> is the machine/telemetry voice. Mono never writes prose; sans never shouts labels.</p>
+        </section>
+
+        <!-- ============ CHROME ============ -->
+        <section class="sec" id="chrome">
+            <div class="sec-h"><span class="no">02</span><h2>Chrome</h2></div>
+            <p class="sec-p">The persistent frame of every page: hairline, navigation, footer.</p>
+
+            <div class="spec">
+                <div class="demo">
+                    <div class="d-nav">
+                        <span class="sys"><i></i>J.MEHTALI <span style="color:var(--faint);font-weight:400">// STATION</span></span>
+                        <a class="t on" href="#chrome">Overview</a>
+                        <a class="t" href="#chrome">Pro</a>
+                        <a class="t" href="#chrome">Personal</a>
+                        <a class="t" href="#chrome">CV</a>
+                    </div>
+                </div>
+                <div class="doc"><p class="id">CHROME / nav</p><h3>Accent hairline + mono nav</h3>
+                <p>A 2px solid steel line crowns the sticky nav — the sober replacement for the temperature
+                gradient. Brand carries a live dot; active page is a bordered chip.</p>
+                <div class="rule">Wraps on mobile — never overflows.<i>the round dot is the only green on the page</i></div></div>
+            </div>
+
+            <div class="spec">
+                <div class="demo">
+                    <span class="d-chip"><span class="ok"></span>ONLINE</span>
+                    <span class="d-chip">STREAMING</span>
+                    <span class="d-chip">3 AXES ACTIVE</span>
+                </div>
+                <div class="doc"><p class="id">CHROME / status chips</p><h3>Live-state chips</h3>
+                <p>Mono caps in bordered pills. Green dot reserved for genuinely-live states
+                ("online", "streaming"); everything else is neutral.</p>
+                <div class="rule">One green element per viewport.<i>status is information, not decoration</i></div></div>
+            </div>
+
+            <div class="spec">
+                <div class="demo">
+                    <div class="d-sech"><span class="mark"></span><b>Research</b><span class="k">image modules</span><span class="more" style="color:var(--accent)">full record →</span></div>
+                    <div class="d-sech"><span class="mark"></span><b>Career log</b><span class="k">session history</span></div>
+                </div>
+                <div class="doc"><p class="id">CHROME / section header</p><h3>Mark · title · tag · rule · link</h3>
+                <p>A fixed five-part grammar: accent square, bold title, optional mono tag, hairline,
+                optional "see all" link. Same order every time — the page becomes predictable.</p>
+                <div class="rule">The square marks the layer color.<i>links always end with →</i></div></div>
+            </div>
+        </section>
+
+        <!-- ============ IDENTITY ============ -->
+        <section class="sec" id="identity">
+            <div class="sec-h"><span class="no">03</span><h2>Identity layer — L1</h2></div>
+            <p class="sec-p">The first five seconds of any visit. Answers "who is this" without a single tap.</p>
+
+            <div class="spec">
+                <div class="demo">
+                    <div class="d-photo focus">
+                        <img src="img/avatar.jpg" alt="">
+                        <span class="tag">J. MEHTALI · OR 2 · ICUBE</span>
+                    </div>
+                </div>
+                <div class="doc"><p class="id">IDENTITY / operator photo</p><h3>Focus-bracketed portrait</h3>
+                <p>The one image that must be seen. Corner brackets route attention; the mono caption
+                grounds it in a real place and time ("OR 2 · ICUBE").</p>
+                <div class="rule">Brackets appear here and on key figures only.<i>if everything is highlighted, nothing is</i></div></div>
+            </div>
+
+            <div class="spec">
+                <div class="demo">
+                    <p class="d-h1">Planning heat <em>before</em> it burns.</p>
+                    <div class="d-btns"><span class="d-lnk pri">OPEN PRO →</span><span class="d-lnk">OPEN PERSONAL →</span><span class="d-lnk">CV.PDF</span></div>
+                </div>
+                <div class="doc"><p class="id">IDENTITY / statement + CTAs</p><h3>Headline with one accent word</h3>
+                <p>The thesis-as-headline. Exactly one word carries the accent color; the rest stays ink.
+                Buttons: one filled primary, ghosts for the rest, mono caps, arrows on links.</p>
+                <div class="rule">One accent word per headline.<i>primary button count per view: 1</i></div></div>
+            </div>
+        </section>
+
+        <!-- ============ ORIENTATION ============ -->
+        <section class="sec" id="orientation">
+            <div class="sec-h"><span class="no">04</span><h2>Orientation layer — L2</h2></div>
+            <p class="sec-p">Numbers before narratives. The visitor learns the scale of the work in one glance.</p>
+
+            <div class="spec">
+                <div class="demo">
+                    <div class="d-mcells">
+                        <div class="d-mcell"><span class="k">publications</span><div><span class="v">3</span><div class="s">MICCAI ×2 · IJCARS ×1</div></div></div>
+                        <div class="d-mcell"><span class="k">C-NCA inference</span><div><span class="v">476 fps</span><div class="s">12,210 parameters</div></div></div>
+                        <div class="d-mcell"><span class="k">workshop output</span><div><span class="v n">4</span><div class="s">games · 3D · museum app</div></div></div>
+                    </div>
+                </div>
+                <div class="doc"><p class="id">ORIENTATION / telemetry cells</p><h3>Key · value · sub</h3>
+                <p>The control-room cell: mono key left, large value right, faint sub beneath. Values that
+                are "alive" (speed, counts) take the accent; static facts stay ink.</p>
+                <div class="rule">Max 4 cells per rail.<i>every number is real — never decoration</i></div></div>
+            </div>
+
+            <div class="spec">
+                <div class="demo">
+                    <div class="d-gauge"><div class="d-dial" style="--p:85"><b>85%</b></div><div><h4 style="margin:0 0 3px;font-size:.95rem;font-weight:700">GPU simulation</h4><p style="margin:0;color:var(--dim);font-size:.78rem">CUDA · real-time pipelines</p></div></div>
+                </div>
+                <div class="doc"><p class="id">ORIENTATION / capability gauge</p><h3>Conic dial</h3>
+                <p>Self-assessed skill rings. Used sparingly — at most one row of three per page,
+                always with a concrete sub-caption naming the tools behind the number.</p>
+                <div class="rule">Dials always carry proof text.<i>no gauge without named tooling</i></div></div>
+            </div>
+        </section>
+
+        <!-- ============ BROWSE ============ -->
+        <section class="sec" id="browse">
+            <div class="sec-h"><span class="no">05</span><h2>Browse layer — L3</h2></div>
+            <p class="sec-p">Image-led cards that can be scanned in seconds. Meaning lives in the first line; detail never leaks into the scan.</p>
+
+            <div class="spec">
+                <div class="demo">
+                    <div class="d-mod">
+                        <div class="im focus"><img src="img/heat.png" alt=""><span class="st">ch.01 · current</span></div>
+                        <div class="bd"><h4>Thermal ablation, plannable in real time</h4><p>One needle is rarely enough — the PhD builds the planning loop.</p>
+                        <div class="meta"><span>ICUBE · ITI HEALTHTECH</span><span class="open">open module →</span></div></div>
+                    </div>
+                </div>
+                <div class="doc"><p class="id">BROWSE / featured module</p><h3>Wide module — image gets the brackets</h3>
+                <p>One per page, spanning the full grid. The bracketed element is the <b style="color:var(--text)">image</b>,
+                not the card — focus brackets mark the visual worth looking at.</p>
+                <div class="rule">≤ 1 featured module per page.<i>status chip rides the image, top-left</i></div></div>
+            </div>
+
+            <div class="spec">
+                <div class="demo">
+                    <div class="d-mod" style="grid-template-columns:150px 1fr">
+                        <div class="im"><img src="img/cryotrack.jpg" alt=""><span class="st">2024</span></div>
+                        <div class="bd"><h4>CryoTrack @ MICCAI 2024</h4><p>Planning &amp; navigation for cryoablation — Marrakesh.</p>
+                        <div class="meta"><span>conference</span><span class="open">→</span></div></div>
+                    </div>
+                </div>
+                <div class="doc"><p class="id">BROWSE / standard module</p><h3>Compact card</h3>
+                <p>The scanning unit: real image, status chip, one-line meaning, meta row.
+                No brackets — brackets are earned by importance, not by presence.</p>
+                <div class="rule">Grids of 3 desktop / 2 tablet / 1 phone.<i>first line must survive truncation</i></div></div>
+            </div>
+        </section>
+
+        <!-- ============ DEPTH ============ -->
+        <section class="sec" id="depth">
+            <div class="sec-h"><span class="no">06</span><h2>Depth layer — L4</h2></div>
+            <p class="sec-p">Everything that opens on demand. The scan stays clean because the detail lives here.</p>
+
+            <div class="spec">
+                <div class="demo">
+                    <details class="d-dossier" open>
+                        <summary><span class="yr">2025</span><h5>C-NCA: Chained Neural Cellular Automata<small>MICCAI 2025, Seoul — pp. 156–165</small></h5><span class="st">e-poster</span></summary>
+                        <div class="body">476 fps estimation with 12,210 parameters — real-time inside the planning loop.
+                        <div class="lnks"><a href="#">[paper]</a><a href="#">[doi]</a></div></div>
+                    </details>
+                </div>
+                <div class="doc"><p class="id">DEPTH / dossier</p><h3>Expandable publication record</h3>
+                <p>Closed: year, title, venue chip. Open: abstract-grade summary plus action links.
+                The only element allowed to grow vertically on tap.</p>
+                <div class="rule">First entry may ship open.<i>links: [paper] [doi] — mono brackets</i></div></div>
+            </div>
+
+            <div class="spec">
+                <div class="demo">
+                    <div class="d-sess">
+                        <div class="d-sess-r"><span class="d">2024 —</span><span class="dot"></span><div><b>PhD Student — ICube Laboratory</b><p>Computer-assisted interventions · ITI HealthTech</p></div></div>
+                        <div class="d-sess-r"><span class="d">2023—24</span><span class="dot"></span><div><b>R&D internships — Darmstadt · IHU</b><p>CryoTrack takeover · GPU simulation</p></div></div>
+                    </div>
+                </div>
+                <div class="doc"><p class="id">DEPTH / session log</p><h3>Career as connected sessions</h3>
+                <p>Monotonic timeline: date, glowing node, title, one-line context. Frames the career
+                as an ongoing operation rather than a static CV list.</p>
+                <div class="rule">Newest node glows.<i>one line of context per entry</i></div></div>
+            </div>
+        </section>
+
+        <!-- ============ FOCUS ============ -->
+        <section class="sec" id="focus">
+            <div class="sec-h"><span class="no">07</span><h2>Focus brackets</h2></div>
+            <p class="sec-p">The EdelVideo corner-tick frame — full border plus doubled L-ticks at all four
+            corners — is the system's only "shout". Budget: three per page, maximum.</p>
+            <div class="spec">
+                <div class="demo">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+                        <div class="d-photo focus"><img src="img/avatar.jpg" alt=""><span class="tag">ALLOWED · IDENTITY</span></div>
+                        <div class="d-photo"><img src="img/cryotrack.jpg" alt="" style="filter:grayscale(.4) brightness(.8)"><span class="tag" style="color:var(--faint)">NOT ALLOWED · DECOR</span></div>
+                    </div>
+                </div>
+                <div class="doc"><p class="id">SYSTEM / bracket budget</p><h3>Brackets mark meaning, not boxes</h3>
+                <p>Allowed: the identity portrait, the featured module image, the single key figure.
+                Never: chrome, cards, telemetry, footers — those speak through hairlines.</p>
+                <div class="rule">≤ 3 bracketed elements per page.<i>when in doubt, unbracket</i></div></div>
+            </div>
+        </section>
+
+        <footer class="foot"><span>pulse·fusion 2 — design system v1.0</span><span>sober build · strasbourg · 2026</span></footer>
+    </main>
+</div>
+</body></html>
