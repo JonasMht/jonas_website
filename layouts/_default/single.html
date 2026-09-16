@@ -2,26 +2,24 @@
 <article class="post">
     <header class="post-header container-narrow reveal">
         <nav class="crumbs" aria-label="Breadcrumb">
-            <a href="{{ site.Home.RelPermalink }}">Home</a>
+            <a href="{{ site.Home.RelPermalink }}">STATION</a>
             {{- range .Ancestors.Reverse }}
-            {{- if not .IsHome }}<span class="crumbs__sep">/</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+            {{- if not .IsHome }}<span>/</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
             {{- end }}
-            <span class="crumbs__sep">/</span><span aria-current="page">{{ .Title }}</span>
+            <span>/</span><span aria-current="page" style="color:var(--accent)">{{ .Title }}</span>
         </nav>
         <h1 class="post-title">{{ .Title }}</h1>
         {{- with .Params.description }}<p class="post-subtitle">{{ . }}</p>{{ end }}
         <p class="post-meta">
-            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 Jan 2006" }}</time>
-            <span class="post-meta__sep">·</span>{{ .ReadingTime }} min read
-            {{- with .Params.tags }}
-            <span class="post-meta__sep">·</span>
-            {{- range . }}<a class="tag-chip" href="{{ `/tags/` | relLangURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
-            {{- end }}
+            {{- $yr := .Date | time.Format "2006" }}
+            {{- with .Params.venue }}<span class="tag-chip">{{ . }} · {{ $yr }}</span>{{ else }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 JAN 2006" }}</time>{{ end }}
+            <span>{{ .ReadingTime }} MIN</span>
+            {{- with .Params.tags }}{{ range first 4 . }}<span class="tag-chip">{{ . }}</span>{{ end }}{{ end }}
         </p>
         {{- $hero := "" }}
         {{- with .Params.image }}{{ $r := $.Resources.GetMatch . }}{{ if $r }}{{ $hero = $r.RelPermalink }}{{ end }}{{ end }}
         {{- with $hero }}
-        <figure class="post-hero"><img src="{{ . }}" alt=""></figure>
+        <figure class="post-hero focus"><img src="{{ . }}" alt="{{ $.Params.description | default $.Title }}"></figure>
         {{- end }}
     </header>
 
@@ -37,25 +35,42 @@
 
     {{- with .Params.links }}
     <aside class="container-narrow post-links reveal">
-        <h2>Links</h2>
+        <div class="sec-h"><span class="mark"></span><b>Links</b><span class="k">actions</span></div>
         <ul class="link-list">
             {{- range . }}
             {{- $href := .website }}
             {{- if not (or (hasPrefix $href "http") (hasPrefix $href "/")) }}{{ $href = printf "%s%s" $.RelPermalink $href }}{{ end }}
-            <li>
-                <a href="{{ $href }}"{{ if hasPrefix $href "http" }} target="_blank" rel="noopener"{{ end }}>
-                    <span class="link-list__title">{{ .title }}</span>
-                    {{- with .description }}<span class="link-list__desc">{{ . }}</span>{{ end }}
-                </a>
-            </li>
+            <li><a href="{{ $href }}"{{ if hasPrefix $href "http" }} target="_blank" rel="noopener"{{ end }}>
+                <span class="link-list__title">{{ .title }}</span>
+                {{- with .description }}<span class="link-list__desc">{{ . }}</span>{{ end }}</a></li>
             {{- end }}
         </ul>
     </aside>
     {{- end }}
 
+    {{/* bridges — siblings in the same section, descriptive labels, no dead ends */}}
+    {{- $sibs := where .Parent.Pages "RelPermalink" "!=" .RelPermalink }}
+    {{- with $sibs }}
+    <aside class="container-narrow bridges reveal">
+        <div class="sec-h"><span class="mark"></span><b>Continue</b><span class="k">nearby modules</span></div>
+        <div class="bgrid">
+            {{- range first 3 $sibs }}
+            <a class="bridge" href="{{ .RelPermalink }}">
+                <span class="btag">{{ .Parent.Title | upper }}</span>
+                <b>{{ .Title }}</b>
+                <span>{{ .Params.description | default (.Summary | plainify | truncate 90) }}</span>
+            </a>
+            {{- end }}
+        </div>
+    </aside>
+    {{- end }}
+
     <footer class="post-footer container-narrow reveal">
         {{- with .Parent }}
-        <a class="btn btn--ghost" href="{{ .RelPermalink }}">&larr; Back to {{ .Title }}</a>
+        <a class="lnk" href="{{ .RelPermalink }}">← BACK TO {{ .Title | upper }}</a>
+        {{- end }}
+        {{- with .Params.doi }}
+        <a class="lnk" href="https://doi.org/{{ . }}" target="_blank" rel="noopener">DOI.ORG/{{ . }} →</a>
         {{- end }}
     </footer>
 </article>

@@ -1,103 +1,97 @@
 {{ define "main" }}
-<article class="hub hub--pro">
-    <section class="hub-hero container reveal">
-        <div class="hub-hero__text">
-            <p class="eyebrow">{{ .Params.eyebrow }}</p>
-            <h1 class="hub-hero__title">Jonas Mehtali</h1>
-            <p class="hub-hero__tagline">{{ .Params.tagline }}</p>
-            <div class="badge-row">
-                {{- range .Params.badges }}<span class="badge-chip">{{ . }}</span>{{ end }}
-            </div>
-            <div class="cta-row">
-                <a class="btn btn--primary" href="{{ .RelPermalink }}/about/jonas-mehtali-resume.pdf">Download CV</a>
-                <a class="btn btn--ghost" href="{{ (.GetPage `/contact`).RelPermalink }}">Get in touch</a>
-            </div>
-        </div>
-        {{- with resources.Get "img/avatar.jpg" }}
-        <img class="hub-avatar" src="{{ .RelPermalink }}" width="160" height="160" alt="Portrait of Jonas Mehtali">
-        {{- end }}
-    </section>
-
-    <section class="hub-stats container reveal" aria-label="Key numbers">
-        {{- range .Params.stats }}
-        <div class="stat">
-            <span class="stat__value">{{ .value }}</span>
-            <span class="stat__label">{{ .label }}</span>
-        </div>
-        {{- end }}
-    </section>
-
-    <section class="hub-section container reveal">
-        <h2 class="hub-heading">Research</h2>
-        <div class="axis-grid">
-            {{- range .Params.axes }}
-            <article class="axis-card">
-                <h3>{{ .title }}</h3>
-                <p>{{ .desc }}</p>
-            </article>
-            {{- end }}
-        </div>
-        <a class="see-all" href="{{ .RelPermalink }}research/">All research posts
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-    </section>
-
-    <section class="hub-section container reveal">
-        <h2 class="hub-heading">Selected publications</h2>
-        <ol class="pub-list">
-            {{- range .Params.publications }}
-            <li class="pub-item">
-                <span class="pub-year">{{ .year }}</span>
-                <div class="pub-body">
-                    <a class="pub-title" href="{{ .url }}">{{ .title }}</a>
-                    <span class="pub-venue">{{ .venue }}</span>
+<div class="container">
+    <section class="monitor reveal" aria-label="Professional overview">
+        <div class="mhead"><span>RECORD A — PROFESSIONAL · {{ .Params.eyebrow }}</span><span class="live">ACTIVE</span></div>
+        <div class="mbody">
+            <div class="mleft">
+                <div class="photo focus">
+                    {{- with resources.Get "img/cryotrack.jpg" }}
+                    <img src="{{ .RelPermalink }}" width="640" height="270" alt="CryoTrack experiment setup">
+                    {{- end }}
+                    <span class="tag">CRYOTRACK · PLANNING LAB</span>
                 </div>
-            </li>
-            {{- end }}
-        </ol>
-        <a class="see-all" href="{{ .RelPermalink }}publications/">Full publication list
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+                <h1>Making thermal ablation planning <em>faster, safer, more intuitive.</em></h1>
+                <p class="lede">{{ .Params.tagline }}</p>
+                <div class="links">
+                    <a class="lnk pri" href="/pro/about/jonas-mehtali-resume.pdf">CV.PDF</a>
+                    <a class="lnk" href="{{ (.GetPage `/pro/publications`).RelPermalink }}">PUBLICATIONS →</a>
+                    <a class="lnk" href="{{ (.GetPage `/pro/about`).RelPermalink }}">ABOUT →</a>
+                </div>
+            </div>
+            <div class="mright" role="list" aria-label="Key numbers">
+                {{- range .Params.cells }}
+                <div class="mcell" role="listitem">
+                    <span class="k">{{ .k }}</span>
+                    <div><span class="v{{ if .acc }} acc{{ end }}">{{ .v }}</span><span class="sub">{{ .sub }}</span></div>
+                </div>
+                {{- end }}
+            </div>
+        </div>
     </section>
 
-    <section class="hub-section container reveal">
-        <h2 class="hub-heading">Experience</h2>
-        <ol class="timeline">
+    <section class="sec reveal" aria-label="Research routes">
+        <div class="sec-h"><span class="mark"></span><b>Routes</b><span class="k">three research lines</span></div>
+        <div class="route-row">
+            {{- range $i, $r := .Params.routes }}
+            <a class="route" href="{{ .url }}">
+                {{- if eq $i 0 }}<span class="start">START HERE</span>{{ end }}
+                <span class="no">{{ .no }}</span><h3>{{ .title }}</h3><p>{{ .desc }}</p>
+            </a>
+            {{- end }}
+        </div>
+    </section>
+
+    <section class="sec reveal" aria-label="Selected publications">
+        <div class="sec-h"><span class="mark"></span><b>Selected publications</b><span class="k">figure first</span>
+            <a class="more" href="{{ (.GetPage `/pro/publications`).RelPermalink }}" style="color:var(--accent)">FULL LIST →</a></div>
+        {{- range first 2 .Params.featuredPubs }}
+        {{- with site.GetPage . }}
+        {{- $venue := .Params.venue }}
+        <div class="paper-card">
+            {{- $pimg := "" }}
+            {{- $p := . }}
+            {{- with .Params.image }}{{ $pimg = $p.Resources.GetMatch . }}{{ end }}
+            {{- if not $pimg }}{{ with .Resources.GetMatch "*.png" }}{{ $pimg = . }}{{ end }}{{ end }}
+            {{- with $pimg }}
+            <div class="im"><img src="{{ .RelPermalink }}" alt="" loading="lazy"><span class="st">{{ $venue }}</span></div>
+            {{- end }}
+            <div class="bd">
+                <h3><a class="stretch" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                <span class="ven">{{ .Params.venue }}</span>
+                <p class="tldr">{{ .Params.tldr | default .Params.description }}</p>
+                <div class="chiprow">
+                    {{- with .Params.doi }}<a href="https://doi.org/{{ . }}" target="_blank" rel="noopener">[DOI]</a>{{ end }}
+                    {{- with .Params.paper }}<a href="{{ . }}" target="_blank" rel="noopener">[PAPER]</a>{{ end }}
+                    {{- with .Params.hal }}<a href="{{ . }}" target="_blank" rel="noopener">[HAL PDF]</a>{{ end }}
+                    <span>[CITE ↓]</span>
+                </div>
+            </div>
+        </div>
+        {{- end }}
+        {{- end }}
+    </section>
+
+    <section class="sec reveal" aria-label="Career log">
+        <div class="sec-h"><span class="mark"></span><b>Career log</b><span class="k">session history</span></div>
+        <ol class="sess-list">
             {{- range .Params.timeline }}
-            <li class="timeline__item">
-                <span class="timeline__period">{{ .period }}</span>
-                <div class="timeline__body">
-                    <h3>{{ .title }}</h3>
-                    <p class="timeline__place">{{ .place }}</p>
-                    {{- with .desc }}<p>{{ . }}</p>{{ end }}
-                </div>
-            </li>
+            <li class="sess"><span class="d">{{ .period }}</span><span class="dot" aria-hidden="true"></span>
+                <div><b>{{ .title }}</b><p>{{ .place }}{{ with .desc }} — {{ . }}{{ end }}</p></div></li>
             {{- end }}
         </ol>
     </section>
 
-    <section class="hub-section container reveal">
-        <h2 class="hub-heading">Beyond research</h2>
-        <div class="link-card-grid">
-            <a class="link-card" href="{{ .RelPermalink }}teaching/">
-                <h3>Teaching</h3>
-                <p>Image processing, medical imaging, GPU programming — and student project supervision.</p>
-            </a>
-            <a class="link-card" href="{{ .RelPermalink }}endorsements/">
-                <h3>Endorsements</h3>
-                <p>Reference letters from professors I have worked with in Strasbourg and Oviedo.</p>
-            </a>
-            <a class="link-card" href="{{ .RelPermalink }}about/">
-                <h3>About</h3>
-                <p>The full story: research focus, toolkit, publications, and profiles.</p>
-            </a>
+    <section class="sec reveal" aria-label="Beyond research">
+        <div class="sec-h"><span class="mark"></span><b>Beyond research</b><span class="k">the rest of the record</span></div>
+        <div class="grid3">
+            <a class="card" href="{{ (.GetPage `/pro/teaching`).RelPermalink }}"><div class="card__body"><p class="card__eyebrow">TEACHING</p><h3 class="card__title">Teaching</h3><p class="card__desc">Image processing, medical imaging, GPU programming — and student project supervision.</p></div></a>
+            <a class="card" href="{{ (.GetPage `/pro/endorsements`).RelPermalink }}"><div class="card__body"><p class="card__eyebrow">ENDORSEMENTS</p><h3 class="card__title">Endorsements</h3><p class="card__desc">Reference letters from professors I have worked with in Strasbourg and Oviedo.</p></div></a>
+            <a class="card" href="{{ (.GetPage `/pro/about`).RelPermalink }}"><div class="card__body"><p class="card__eyebrow">ABOUT</p><h3 class="card__title">About</h3><p class="card__desc">The full story: research focus, toolkit, publications, and profiles.</p></div></a>
         </div>
     </section>
 
     {{- with .Content }}
-    <section class="hub-section container reveal article-content">
-        {{ . }}
-    </section>
+    <section class="sec reveal article-content">{{ . }}</section>
     {{- end }}
-</article>
+</div>
 {{ end }}

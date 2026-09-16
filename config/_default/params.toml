@@ -23,8 +23,33 @@ local = true
 src = "img/avatar.jpg"
 
 [colorScheme]
-toggle = true
-default = "light"
+toggle = false
+default = "dark"
+
+# Verified channels — identity block on the overview page
+[[identity]]
+name = "ORCID"
+url = "https://orcid.org/0009-0003-3688-7782"
+
+[[identity]]
+name = "Scholar"
+url = "https://scholar.google.com/citations?user=0QQM6zIAAAAJ"
+
+[[identity]]
+name = "HAL"
+url = "https://hal.science/search?q=Jonas%20Mehtali"
+
+[[identity]]
+name = "GitHub"
+url = "https://github.com/JonasMht"
+
+[[identity]]
+name = "LinkedIn"
+url = "https://www.linkedin.com/in/jonasmehtali/"
+
+[[identity]]
+name = "YouTube"
+url = "https://www.youtube.com/@JonasMht"
 
 [imageProcessing.cover]
 enabled = true

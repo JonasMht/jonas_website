@@ -1,28 +1,27 @@
 <footer class="site-footer">
-    <div class="container footer-grid">
-        <div class="footer-col">
-            <p class="footer-name">Jonas Mehtali</p>
-            <p class="footer-blurb">PhD student in computer-assisted interventions at ICube, University of Strasbourg — and game developer in my spare time.</p>
-        </div>
-        <div class="footer-col">
-            <p class="footer-heading">Site</p>
-            <ul>
-                {{- range site.Menus.main }}
-                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-                {{- end }}
-            </ul>
-        </div>
-        <div class="footer-col">
-            <p class="footer-heading">Elsewhere</p>
-            <ul class="footer-social">
-                {{- range site.Menus.social }}
-                <li><a href="{{ .URL }}"{{ if not (hasPrefix .URL "/") }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a></li>
-                {{- end }}
-            </ul>
-        </div>
+    <div class="foot-in">
+        <span>PULSE·FUSION 2 — SOBER BUILD · {{ site.Params.footer.since }}–{{ now.Year }}</span>
+        {{- $home := site.Home.RelPermalink }}
+        {{- $next := "/personal/" }}
+        {{- if hasPrefix .RelPermalink "/personal" }}{{ $next = "/pro/" }}{{ else if hasPrefix .RelPermalink "/pro" }}{{ $next = "/personal/" }}{{ else if ne .RelPermalink $home }}{{ $next = $home }}{{ end }}
+        {{- with site.GetPage $next }}
+        <a class="foot-next" href="{{ .RelPermalink }}">{{ if eq $next "/pro/" }}NEXT STATION: PRO →{{ else if eq $next "/personal/" }}NEXT STATION: PERSONAL →{{ else }}BACK TO OVERVIEW →{{ end }}</a>
+        {{- end }}
+        <span><a href="/legal/">LEGAL</a> · <a href="/pro/about/jonas-mehtali-resume.pdf">CV.PDF</a></span>
     </div>
-    <div class="container footer-bottom">
-        <span>&copy; {{ if gt now.Year site.Params.footer.since }}{{ site.Params.footer.since }} – {{ end }}{{ now.Year }} {{ site.Params.author.name }}</span>
-        <span>Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+    <div class="foot-bottom">
+        <span>© {{ site.Params.author.name }} — ICUBE · UNISTRA</span>
+        <span>BUILT WITH HUGO · NO COOKIES · NO TRACKING BEYOND GA</span>
     </div>
 </footer>
+
+{{/* console-lite: hidden shell, revealed only by JS (zero-JS safe) */}}
+<div class="console" id="console" hidden>
+    <div class="console__panel" role="dialog" aria-label="Station console">
+        <div class="console__bar"><b>STATION CONSOLE — GUEST@JONASX</b><span>LOCAL ONLY</span></div>
+        <div class="console__body" id="console-body"></div>
+        <div class="console__input"><span class="p">›</span><input id="console-input" type="text"
+            autocomplete="off" spellcheck="false" aria-label="Console command"></div>
+        <div class="console__ft"><span>HELP · SESSION · GOTO &lt;PATH&gt; · CLEAR</span><span>~ OR ESC TO CLOSE</span></div>
+    </div>
+</div>

@@ -4,6 +4,7 @@ description: "Published at MICCAI 2024 - A novel planning and navigation system 
 slug: 2024-cryotrack-miccai
 aliases: ["/p/2024-cryotrack-miccai/"]
 date: 2024-10-06 00:00:00+0000
+image: cryotrack-experiment.jpg
 categories:
     - Research
 tags:
@@ -13,7 +14,10 @@ tags:
     - Navigation
     - Medical Imaging
     - Python
-
+venue: "MICCAI 2024 · Marrakesh"
+tldr: "Planning and navigation for cryoablation — ice-ball simulation, probe tracking and AR overlay of the lethal zone, validated on phantoms and ex-vivo tissue."
+doi: "10.1007/978-3-031-72089-5_10"
+paper: "https://papers.miccai.org/miccai-2024/179-Paper1240.html"
 ---
 
 ## Abstract

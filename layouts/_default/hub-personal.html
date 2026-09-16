@@ -1,12 +1,30 @@
 {{ define "main" }}
-<article class="hub hub--personal">
-    <section class="hub-hero hub-hero--warm container reveal">
-        <div class="hub-hero__text">
-            <p class="eyebrow">{{ .Params.eyebrow }}</p>
-            <h1 class="hub-hero__title">{{ .Title }}</h1>
-            <p class="hub-hero__tagline">{{ .Params.tagline }}</p>
-            <div class="badge-row">
-                {{- range .Params.badges }}<span class="badge-chip">{{ . }}</span>{{ end }}
+<div class="container">
+    <section class="monitor reveal" aria-label="Personal overview">
+        <div class="mhead"><span>RECORD B — THE AFTER-HOURS WORKSHOP</span><span class="live">RECREATIONAL</span></div>
+        <div class="mbody">
+            <div class="mleft">
+                <div class="photo focus">
+                    {{- with resources.Get "img/sensha.png" }}
+                    <img src="{{ .RelPermalink }}" width="640" height="270" alt="Sensha title screen" style="object-position:center 35%">
+                    {{- end }}
+                    <span class="tag">SENSHA · TITLE SCREEN · 2019</span>
+                </div>
+                {{- $parts := split .Params.headline "|" }}
+                <h1>{{ index $parts 0 }}{{ with index $parts 1 }}<em>{{ . }}</em>{{ end }}{{ with index $parts 2 }}{{ . }}{{ end }}</h1>
+                <p class="lede">{{ .Params.lede }}</p>
+                <div class="links">
+                    <a class="lnk pri" href="https://github.com/JonasMht" target="_blank" rel="noopener">GITHUB →</a>
+                    <a class="lnk" href="https://www.youtube.com/@JonasMht" target="_blank" rel="noopener">GAMEPLAY VIDEOS →</a>
+                </div>
+            </div>
+            <div class="mright" role="list" aria-label="Key numbers">
+                {{- range .Params.cells }}
+                <div class="mcell" role="listitem">
+                    <span class="k">{{ .k }}</span>
+                    <div><span class="v{{ if .acc }} acc{{ end }}">{{ .v }}</span><span class="sub">{{ .sub }}</span></div>
+                </div>
+                {{- end }}
             </div>
         </div>
     </section>
@@ -14,48 +32,48 @@
     {{- $projects := site.GetPage "/personal/projects" -}}
     {{- $experiences := site.GetPage "/personal/experiences" -}}
 
-    {{- with .Params.featured }}
-    {{- $featured := site.GetPage (printf "/personal/projects/%s" .) }}
-    {{- with $featured }}
-    <section class="hub-section container reveal">
-        <h2 class="hub-heading">Featured project</h2>
-        {{- $img := "" }}
-        {{- with .Resources.GetMatch (.Params.image | default "") }}{{ $img = .RelPermalink }}{{ end }}
+    {{- with .Params.featured }}{{ $featured := site.GetPage (printf "/personal/projects/%s" .) }}
+        {{- with $featured }}
+    <section class="sec reveal" aria-label="Featured project">
+        {{- $year := .Date | time.Format "2006" }}
+        <div class="sec-h"><span class="mark"></span><b>Flagship</b><span class="k">featured module</span></div>
         <a class="spotlight" href="{{ .RelPermalink }}">
+            {{- $img := "" }}
+            {{- $p := . }}
+            {{- with .Params.image }}{{ $img = $p.Resources.GetMatch . }}{{ end }}
+            {{- if not $img }}{{ with .Resources.GetMatch "*.png" }}{{ $img = . }}{{ end }}{{ end }}
             {{- with $img }}
-            <div class="spotlight__media"><img src="{{ . }}" alt="" loading="lazy"></div>
+            <div class="spotlight__media focus"><img src="{{ .RelPermalink }}" alt="" loading="lazy"><span class="st">FLAGSHIP · {{ $year }}</span></div>
             {{- end }}
             <div class="spotlight__body">
-                <p class="card__eyebrow">{{ .Date | time.Format "2006" }} · Featured</p>
-                <h3>{{ .Title }}</h3>
-                <p class="spotlight__desc">{{ .Params.description }}</p>
-                <span class="spotlight__cta">Open project
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                </span>
+                <p class="card__eyebrow">{{ .Title }}</p>
+                <h3 style="margin:0 0 6px;font-size:1.08rem">{{ .Params.description }}</h3>
+                <div class="card__meta" style="margin-top:12px"><span>{{ .Date | time.Format "2006" }}</span><span style="color:var(--accent)">OPEN MODULE →</span></div>
             </div>
         </a>
     </section>
     {{- end }}
     {{- end }}
 
-    <section class="hub-section container reveal">
-        <h2 class="hub-heading">Projects</h2>
-        <div class="card-grid">
-            {{- range $projects.Pages }}{{ partial "article-card" . }}{{ end }}
+    <section class="sec reveal" aria-label="Projects">
+        <div class="sec-h"><span class="mark"></span><b>Collection</b><span class="k">image modules</span>
+            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">GITHUB →</a></div>
+        <div class="grid3">
+            {{- $featPage := "" }}
+            {{- with .Params.featured }}{{ $featPage = site.GetPage (printf "/personal/projects/%s" .) }}{{ end }}
+            {{- range $projects.Pages }}{{ if or (not $featPage) (ne .RelPermalink $featPage.RelPermalink) }}{{ partial "article-card" . }}{{ end }}{{ end }}
         </div>
     </section>
 
-    <section class="hub-section container reveal">
-        <h2 class="hub-heading">Beyond the lab</h2>
-        <div class="card-grid card-grid--compact">
+    <section class="sec reveal" aria-label="Beyond the lab">
+        <div class="sec-h"><span class="mark"></span><b>Beyond the lab</b><span class="k">the ledger</span></div>
+        <div class="grid3">
             {{- range $experiences.Pages }}{{ partial "article-card" . }}{{ end }}
         </div>
     </section>
 
     {{- with .Content }}
-    <section class="hub-section container reveal article-content">
-        {{ . }}
-    </section>
+    <section class="sec reveal article-content">{{ . }}</section>
     {{- end }}
-</article>
+</div>
 {{ end }}

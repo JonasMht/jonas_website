@@ -1,0 +1,42 @@
+{{ define "main" }}
+<div class="container">
+    <header class="list-hero reveal">
+        <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="{{ site.Home.RelPermalink }}">STATION</a><span>/</span><a href="/pro/">PRO</a><span>/</span>
+            <span aria-current="page" style="color:var(--accent)">PUBLICATIONS</span>
+        </nav>
+        <h1 class="list-title">Publications</h1>
+        {{- with .Params.description }}<p class="list-desc">{{ . }}</p>{{ end }}
+    </header>
+
+    <section class="sec reveal" style="margin-top:24px" aria-label="Peer-reviewed publications">
+        {{- range .Params.papers }}
+        {{- with site.GetPage . }}
+        {{- $venue := .Params.venue }}
+        <div class="paper-card">
+            {{- $pimg := "" }}
+            {{- $p := . }}
+            {{- with .Params.image }}{{ $pimg = $p.Resources.GetMatch . }}{{ end }}
+            {{- if not $pimg }}{{ with .Resources.GetMatch "*.png" }}{{ $pimg = . }}{{ end }}{{ end }}
+            {{- with $pimg }}
+            <div class="im"><img src="{{ .RelPermalink }}" alt="" loading="lazy"><span class="st">{{ $venue }}</span></div>
+            {{- end }}
+            <div class="bd">
+                <h3><a class="stretch" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                <span class="ven">{{ .Params.venue }}</span>
+                <p class="tldr">{{ .Params.tldr | default .Params.description }}</p>
+                <div class="chiprow">
+                    {{- with .Params.doi }}<a href="https://doi.org/{{ . }}" target="_blank" rel="noopener">[DOI]</a>{{ end }}
+                    {{- with .Params.paper }}<a href="{{ . }}" target="_blank" rel="noopener">[PAPER]</a>{{ end }}
+                    {{- with .Params.hal }}<a href="{{ . }}" target="_blank" rel="noopener">[HAL PDF]</a>{{ end }}
+                    <span>[CITE ↓]</span>
+                </div>
+            </div>
+        </div>
+        {{- end }}
+        {{- end }}
+    </section>
+
+    {{ with .Content }}<section class="sec reveal article-content" style="max-width:820px">{{ . }}</section>{{ end }}
+</div>
+{{ end }}

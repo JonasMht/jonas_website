@@ -22,22 +22,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $description }}">
-<meta name="theme-color" content="#4682B4">
+<meta name="theme-color" content="#0C0F14">
 
 {{ with site.Params.keywords }}
 <meta name="keywords" content="{{ . }}">
 {{ end }}
 <meta name="author" content="{{ site.Params.author.name }}">
 
-{{- /* Theme init before paint to avoid FOUC */ -}}
-<script>
-(function () {
-    var stored = null;
-    try { stored = localStorage.getItem('scheme'); } catch (e) {}
-    var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.dataset.scheme = stored || (dark ? 'dark' : 'light');
-})();
-</script>
+<script>document.documentElement.classList.add("js");</script>
+
+{{- /* Always-dark station: no scheme flash, no toggle. Reduced-motion = designed peer. */ -}}
 
 {{- /* Open Graph / Twitter */ -}}
 <meta property="og:title" content="{{ $title }}">
@@ -69,7 +63,6 @@
     "url": "https://jonasx.xyz",
     "jobTitle": "PhD Student in Computer-Assisted Interventions",
     "description": "PhD student researching multi-needle trajectory optimization, intraoperative replanning, and ergonomic planning interfaces for percutaneous thermal ablation at ICube Laboratory, University of Strasbourg.",
-    "email": "jonas.mht.private@gmail.com",
     "address": {
         "@type": "PostalAddress",
         "addressLocality": "Strasbourg",
@@ -87,6 +80,7 @@
     "sameAs": [
         "https://www.linkedin.com/in/jonasmehtali/",
         "https://github.com/JonasMht",
+        "https://www.youtube.com/@JonasMht",
         "https://orcid.org/0009-0003-3688-7782",
         "https://scholar.google.com/citations?user=0QQM6zIAAAAJ",
         "https://www.researchgate.net/profile/Jonas-Mehtali",

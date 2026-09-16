@@ -1,51 +1,45 @@
+# Main navigation — the station grammar: overview · pro · personal · cv
+[[main]]
+identifier = "overview"
+name = "Overview"
+url = "/"
+weight = 1
+
 [[main]]
 identifier = "pro"
 name = "Pro"
 url = "/pro/"
-weight = 1
+weight = 2
 
 [[main]]
 identifier = "personal"
 name = "Personal"
 url = "/personal/"
-weight = 2
-
-[[main]]
-identifier = "publications"
-name = "Publications"
-url = "/pro/publications/"
 weight = 3
 
 [[main]]
-identifier = "teaching"
-name = "Teaching"
-url = "/pro/teaching/"
+identifier = "cv"
+name = "CV.PDF"
+url = "/pro/about/jonas-mehtali-resume.pdf"
 weight = 4
 
-[[main]]
-identifier = "contact"
-name = "Contact"
-url = "/contact/"
-weight = 5
-
-# Icons can be found & downloaded here : https://tablericons.com/
-
+# Verified channels — identity block + footer
 [[social]]
-identifier = "linkedin"
-name = "LinkedIn"
-url = "https://www.linkedin.com/in/jonasmehtali/"
+identifier = "orcid"
+name = "ORCID"
+url = "https://orcid.org/0009-0003-3688-7782"
 weight = 1
 
 [[social]]
-identifier = "youtube"
-name = "YouTube"
-url = "https://www.youtube.com/@JonasMht"
+identifier = "scholar"
+name = "Scholar"
+url = "https://scholar.google.com/citations?user=0QQM6zIAAAAJ"
 weight = 2
 
 [[social]]
-identifier = "cv"
-name = "My CV"
-url = "/pro/about/jonas-mehtali-resume.pdf"
+identifier = "hal"
+name = "HAL"
+url = "https://hal.science/search?q=Jonas%20Mehtali"
 weight = 3
 
 [[social]]
@@ -53,3 +47,15 @@ identifier = "github"
 name = "GitHub"
 url = "https://github.com/JonasMht"
 weight = 4
+
+[[social]]
+identifier = "linkedin"
+name = "LinkedIn"
+url = "https://www.linkedin.com/in/jonasmehtali/"
+weight = 5
+
+[[social]]
+identifier = "youtube"
+name = "YouTube"
+url = "https://www.youtube.com/@JonasMht"
+weight = 6

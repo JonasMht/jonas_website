@@ -4,6 +4,7 @@ description: "GPU-accelerated real-time thermal ablation simulation published in
 slug: 2025-heat-ijcars
 aliases: ["/p/2025-heat-ijcars/"]
 date: 2025-04-01 00:00:00+0000
+image: heat_sim_color.png
 categories:
     - Research
 tags:
@@ -13,7 +14,11 @@ tags:
     - Python
     - Medical Imaging
     - Simulation
-
+venue: "IJCARS 2025"
+tldr: "HEAT computes ablation zones in under a second — Pennes bioheat, perfusion and heat-sink effects on the GPU, fast enough for interactive planning."
+doi: "10.1007/s11548-025-03350-z"
+paper: "https://hal.science/hal-04973371"
+hal: "https://hal.science/hal-04973371"
 ---
 
 ## Abstract

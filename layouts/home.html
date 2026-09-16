@@ -2,67 +2,99 @@
 {{- $pro := site.GetPage "/pro" -}}
 {{- $personal := site.GetPage "/personal" -}}
 
-<section class="home-hero container reveal">
-    {{- with resources.Get "img/avatar.jpg" }}
-    <img class="home-avatar" src="{{ .RelPermalink }}" width="112" height="112" alt="Portrait of Jonas Mehtali">
-    {{- end }}
-    <h1 class="home-title">Jonas Mehtali</h1>
-    <p class="home-role">PhD Student in Computer-Assisted Interventions</p>
-    <p class="home-bio">I research GPU-accelerated planning for thermal ablation at ICube, Strasbourg —
-    and I build games, tools, and 3D worlds in my spare time.</p>
-    <div class="pill-row">
-        {{- range site.Menus.social }}
-        <a class="pill" href="{{ .URL }}"{{ if not (hasPrefix .URL "/") }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
-        {{- end }}
-    </div>
-</section>
-
-<section class="home-deck container">
-    <a class="deck-card deck-card--pro reveal" href="{{ $pro.RelPermalink }}">
-        <div class="deck-card__inner">
-            <p class="deck-card__eyebrow">Professional</p>
-            <h2 class="deck-card__title">Research &amp; Engineering</h2>
-            <p class="deck-card__tagline">{{ $pro.Params.tagline }}</p>
-            <ul class="deck-card__list">
-                {{- $hl := first 3 $pro.Params.highlights }}
-                {{- range $hl }}
-                <li>
-                    <span class="deck-card__item-title">{{ .title }}</span>
-                    <span class="deck-card__item-desc">{{ .desc }}</span>
-                </li>
+<div class="container">
+    <section class="monitor reveal" aria-label="Overview">
+        <div class="mhead"><span>RECORD A — THE STATION</span><span class="live">ONLINE</span></div>
+        <div class="mbody">
+            <div class="mleft">
+                <div class="photo focus">
+                    {{- with resources.Get "img/avatar.jpg" }}
+                    <img src="{{ .RelPermalink }}" width="640" height="270" alt="Jonas Mehtali in the operating room">
+                    {{- end }}
+                    <span class="tag">J. MEHTALI · OR 2 · ICUBE</span>
+                </div>
+                <p class="role">{{ .Params.kicker }}</p>
+                {{- $parts := split .Params.headline "|" }}
+                <h1>{{ index $parts 0 }}{{ with index $parts 1 }}<em>{{ . }}</em>{{ end }}{{ with index $parts 2 }}{{ . }}{{ end }}</h1>
+                <p class="lede">{{ .Params.lede }}</p>
+                <div class="links">
+                    <a class="lnk pri" href="{{ $pro.RelPermalink }}">OPEN PRO →</a>
+                    <a class="lnk" href="{{ $personal.RelPermalink }}">OPEN PERSONAL →</a>
+                    <a class="lnk" href="/pro/about/jonas-mehtali-resume.pdf">CV.PDF</a>
+                </div>
+            </div>
+            <div class="mright" role="list" aria-label="Key numbers">
+                {{- range .Params.cells }}
+                <div class="mcell" role="listitem">
+                    <span class="k">{{ .k }}</span>
+                    <div><span class="v{{ if .acc }} acc{{ end }}">{{ .v }}</span><span class="sub">{{ .sub }}</span></div>
+                </div>
                 {{- end }}
-            </ul>
-            <span class="deck-card__cta">Explore the professional side
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </span>
+            </div>
         </div>
-    </a>
+    </section>
 
-    {{- $featured := false }}
-    {{- with $personal.Params.featured }}{{ $featured = site.GetPage (printf "/personal/projects/%s" .) }}{{ end }}
-    <a class="deck-card deck-card--personal reveal" href="{{ $personal.RelPermalink }}">
+    <section class="sec reveal" aria-label="Verified channels">
+        <div class="sec-h"><span class="mark"></span><b>Identity</b><span class="k">verified channels</span></div>
+        <div class="idrow">
+            {{- range site.Params.identity }}
+            <a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }} →</a>
+            {{- end }}
+            <span class="mono-id">ORCID 0009-0003-3688-7782</span>
+        </div>
+    </section>
+
+    <section class="sec reveal" aria-label="Research">
+        {{- $research := site.GetPage "/pro/research" }}
+        {{- $pubs := where $research.Pages "Params.venue" "!=" nil }}
+        {{- $featured := index $pubs 0 }}
+        {{- $rest := after 1 (first 4 $pubs) }}
+        <div class="sec-h"><span class="mark"></span><b>Research</b><span class="k">image modules</span>
+            <a class="more" href="{{ $pro.RelPermalink }}" style="color:var(--accent)">FULL RECORD →</a></div>
         {{- with $featured }}
-        <div class="deck-card__visual">
-            {{- with .Resources.GetMatch (.Params.image | default "") }}<img src="{{ .RelPermalink }}" alt="" loading="lazy">{{ end }}
-        </div>
+        {{- $fpage := . }}
+        {{- $fimg := "" }}
+        {{- with .Params.image }}{{ $fimg = $fpage.Resources.GetMatch . }}{{ end }}
+        {{- if not $fimg }}{{ with $fpage.Resources.GetMatch "*.png" }}{{ $fimg = . }}{{ end }}{{ end }}
+        {{- $fdesc := .Params.description | default .Title }}
+        <a class="spotlight" href="{{ .RelPermalink }}">
+            {{- with $fimg }}
+            <div class="spotlight__media focus"><img src="{{ .RelPermalink }}" alt="{{ $fdesc }}" loading="lazy"><span class="st">CH.01 · CURRENT</span></div>
+            {{- end }}
+            <div class="spotlight__body">
+                <p class="card__eyebrow">{{ .Params.venue | default (.Date | time.Format "2006") }} · {{ .Title }}</p>
+                <h3 style="margin:0 0 6px;font-size:1.08rem">{{ .Params.tldr | default .Params.description }}</h3>
+                <p class="spotlight__desc">{{ $fdesc }}</p>
+                <div class="card__meta" style="margin-top:12px"><span>ICUBE · ITI HEALTHTECH</span><span style="color:var(--accent)">OPEN MODULE →</span></div>
+            </div>
+        </a>
         {{- end }}
-        <div class="deck-card__inner">
-            <p class="deck-card__eyebrow">Personal</p>
-            <h2 class="deck-card__title">Projects &amp; Playground</h2>
-            <p class="deck-card__tagline">{{ $personal.Params.tagline }}</p>
-            <ul class="deck-card__list">
-                {{- $pp := (site.GetPage "/personal/projects").Pages }}
-                {{- range first 3 $pp }}
-                <li>
-                    <span class="deck-card__item-title">{{ .Title }}</span>
-                    <span class="deck-card__item-desc">{{ .Params.description | truncate 80 }}</span>
-                </li>
-                {{- end }}
-            </ul>
-            <span class="deck-card__cta">Explore the personal side
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </span>
+        <div class="grid3" style="margin-top:13px">
+            {{- range $rest }}{{ partial "article-card" . }}{{ end }}
+            {{- with $research.Pages.ByDate.Reverse | last 1 }}{{ range . }}{{ partial "article-card" . }}{{ end }}{{ end }}
         </div>
-    </a>
-</section>
+    </section>
+
+    <section class="sec reveal" aria-label="Workshop">
+        {{- $projects := site.GetPage "/personal/projects" }}
+        <div class="sec-h"><span class="mark"></span><b>Workshop</b><span class="k">side quests</span>
+            <a class="more" href="{{ $personal.RelPermalink }}" style="color:var(--accent)">FULL COLLECTION →</a></div>
+        <div class="grid3">
+            {{- range first 3 $projects.Pages }}{{ partial "article-card" . }}{{ end }}
+        </div>
+    </section>
+
+    {{- $news := site.GetPage "/news" }}
+    {{- with $news }}
+    <section class="sec reveal" aria-label="Station log">
+        <div class="sec-h"><span class="mark"></span><b>Station log</b><span class="k">recent activity</span></div>
+        <div class="news">
+            {{- range first 3 .Pages }}
+            <div class="nrow"><span class="nd">{{ .Date | time.Format "2006-01-02" }}</span>
+                <span class="nt">{{ .Title }}{{ with .Params.description }}<small>{{ . }}</small>{{ end }}</span></div>
+            {{- end }}
+        </div>
+    </section>
+    {{- end }}
+</div>
 {{ end }}
