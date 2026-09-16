@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fusion 3 — Loop 2 · The Roster</title>
+<link rel="stylesheet" href="../pulse-system/style.css"><link rel="stylesheet" href="style.css"></head>
+<body>
+
+<!-- ===== SHEET 01 · LOOP 2 FINDINGS ===== -->
+<section class="sheet">
+    <div class="sh-hd"><span class="l"><b>Fusion 3 · loop 2</b> — 01/04 · three critics attacked the plan</span><span class="r">Sheet 01</span></div>
+    <div class="bd-meta"><span class="mtag goal">Multi-agent loop · round 2</span><span class="mtag">3 critics · adversarial</span></div>
+    <h2 class="board-t">What the critics broke — <em>and what survived.</em></h2>
+    <p class="board-p">Three independent critics (design-adversarial, audience-conversion, Hugo-engineering) attacked the
+    Station OS plan. Consensus hits were accepted as <b>plan deltas</b>; everything else survived. The plan is stronger
+    for it — smaller where it was fat, armored where it was exposed.</p>
+    <div class="sec">
+        <div class="crit3">
+            <div class="crit">
+                <div class="ch"><i></i><b>Design · adversarial</b><span>12 findings</span></div>
+                <div class="cf"><div class="t"><b>Boot preloader = LCP wound</b><span class="sev h">HIGH</span></div><p>2s splash delays first paint; consensus 3/3 critics → demote.</p></div>
+                <div class="cf"><div class="t"><b>Toy sim mistaken for research</b><span class="sev h">HIGH</span></div><p>Clinicians will assume the hero is the validated tool → honesty caption + paper link.</p></div>
+                <div class="cf"><div class="t"><b>Motion = vestibular hazard</b><span class="sev h">HIGH</span></div><p>~35% of adults 40+ have vestibular dysfunction → reduced-motion designed FIRST, as a peer theme.</p></div>
+                <div class="cf"><div class="t"><b>Canvas invisible to crawlers/no-JS</b><span class="sev h">HIGH</span></div><p>Hero copy must live in HTML; sim is enhancement only.</p></div>
+                <div class="cf"><div class="t"><b>Site becomes about the site</b><span class="sev m">MED</span></div><p>5 layers of self-referential chrome → v1 ships exactly ONE signature interaction.</p></div>
+                <div class="cf"><div class="t"><b>Dark-only + coined term</b><span class="sev m">MED</span></div><p>Light theme via prefers-color-scheme; coin stays voice, nav keeps searchable terms.</p></div>
+            </div>
+            <div class="crit">
+                <div class="ch"><i></i><b>Audience · conversion</b><span>12 gaps</span></div>
+                <div class="cf"><div class="t"><b>Identity block — verified absent</b><span class="sev h">HIGH</span></div><p>No Scholar profile; ORCID orphaned on one paper → 5-icon verification row + contact CTA.</p></div>
+                <div class="cf"><div class="t"><b>CV PDF missing</b><span class="sev h">HIGH</span></div><p>Hiring workflows expect a dated PDF → auto-built from the same Markdown.</p></div>
+                <div class="cf"><div class="t"><b>Hero converts to zero when WebGL is blocked</b><span class="sev m">MED</span></div><p>Hospital/corporate machines → 30s MP4 fallback layer.</p></div>
+                <div class="cf"><div class="t"><b>C-NCA paper is closed-access</b><span class="sev m">MED</span></div><p>Springer LNCS allows author deposit → HAL self-archive, OA badge on cards.</p></div>
+                <div class="cf"><div class="t"><b>No "how to cite me"</b><span class="sev m">MED</span></div><p>6 citations already exist — remove friction → BibTeX affordance on every card.</p></div>
+                <div class="cf"><div class="t"><b>Legal: mentions légales + RGPD</b><span class="sev m">MED</span></div><p>LCEN art. 6 + analytics disclosure → single /legal page.</p></div>
+            </div>
+            <div class="crit">
+                <div class="ch"><i></i><b>Engineering · Hugo reality</b><span>14 findings</span></div>
+                <div class="cf"><div class="t"><b>Boot: ≤300ms, sessionStorage, or cut</b><span class="sev h">HIGH</span></div><p>noscript would trap visitors on a static splash → JS-gated fade only.</p></div>
+                <div class="cf"><div class="t"><b>Firefox gap</b><span class="sev m">MED</span></div><p>No cross-doc VT; scroll-driven still preview → IO as universal path, VT purely additive.</p></div>
+                <div class="cf"><div class="t"><b>/lab is four projects in a trenchcoat</b><span class="sev h">HIGH</span></div><p>Slider S · plots M · sandbox L · game M → split into 4 tickets, slider ships first.</p></div>
+                <div class="cf"><div class="t"><b>Freeze the front-matter schema</b><span class="sev m">MED</span></div><p>One field rename later = sed across the whole tree → freeze before content batch.</p></div>
+                <div class="cf"><div class="t"><b>Zero-JS core is the load-bearing wall</b><span class="sev h">HIGH</span></div><p>Everything JS adds must degrade; verify with disable-JS audit + CI screenshots.</p></div>
+                <div class="cf"><div class="t"><b>i18n FR/EN = ongoing L</b><span class="sev l">LOW</span></div><p>Defer; externalize strings from day one so it stays addable.</p></div>
+            </div>
+        </div>
+        <div class="deltas">
+            <p class="dh">Plan deltas — accepted into v2</p>
+            <ul>
+                <li><b>02 boot</b> demoted: 2s sequence → ≤300ms "ignition blink", JS-only, once/session, reduced-motion skip</li>
+                <li><b>01 hero</b> re-architected: static thermal poster is the LCP element; sim = idle enhancement; tap-to-place on touch</li>
+                <li><b>Honesty guard</b>: hero carries "toy model — validated pipeline in the papers" caption + [VIDEO] fallback</li>
+                <li><b>Theme contract</b>: light "clinical" theme + reduced-motion mode designed as first-class peers, not ports</li>
+                <li><b>Scope guillotine</b>: v1 = one signature interaction; achievements + konami deferred, reworded as lab-notebook lore</li>
+                <li><b>New credibility layer</b>: CV PDF · identity block · HAL · cite/BibTeX · defense timeline · legal · SEO pack</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sh-ft"><span>critique is cheap — ignoring it is expensive</span><span>loop 2 · complete</span></div>
+</section>
+
+<!-- ===== SHEET 02 · THE ROSTER ===== -->
+<section class="sheet">
+    <div class="sh-hd"><span class="l"><b>Fusion 3 · loop 2</b> — 02/04 · the roster</span><span class="r">Sheet 02</span></div>
+    <div class="bd-meta"><span class="mtag goal">The definitive backlog</span><span class="mtag">29 items · build order</span><span class="mtag hi">~ 10–12 focused days</span></div>
+    <h2 class="board-t">The Roster — <em>what ships, in what order.</em></h2>
+    <p class="board-p">Build order = impact × synergy ÷ cost. <b>Black = original 16</b> · <b style="color:var(--ok)">green = new from loop 2</b>.</p>
+    <div class="sec">
+        <div class="roster">
+            <div class="rrow"><div class="l1"><span class="rk">01</span><span class="idc">06</span><span class="nm">One-line thesis — "see heat before they cut"</span><span class="vchip core">CORE</span></div><div class="l2"><span>P0 · voice</span><span class="eff">S</span><span>opens every page · words hyperlink to proof</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">02</span><span class="idc">05</span><span class="nm">Coined term — voice only, nav stays searchable</span><span class="vchip core">CORE</span></div><div class="l2"><span>P0 · voice</span><span class="eff">S</span><span>recall handle · paired with searchable synonyms</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">03</span><span class="idc new">R-02</span><span class="nm">Identity block — ORCID · Scholar · HAL · GitHub · LinkedIn + contact CTA</span><span class="vchip core">CORE</span></div><div class="l2"><span>P0 · credibility</span><span class="eff">S</span><span>fixes verified absences · 5-second authenticity check</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">04</span><span class="idc new">R-09</span><span class="nm">/legal — mentions légales · RGPD note · analytics disclosure</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P0 · credibility</span><span class="eff">S</span><span>LCEN art. 6 · "no cookies, no tracking" line</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">05</span><span class="idc">07</span><span class="nm">Figure-first publication cards + TL;DR + chips</span><span class="vchip core">CORE</span></div><div class="l2"><span>P1 · structure</span><span class="eff">S</span><span>kills the citation wall · front-matter schema frozen first</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">06</span><span class="idc new">R-06</span><span class="nm">Cite affordance — BibTeX copy on every card</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P1 · structure</span><span class="eff">S</span><span>6 citations already exist · remove the friction</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">07</span><span class="idc">10</span><span class="nm">Cross-link bridges — zero dead ends</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P1 · structure</span><span class="eff">M</span><span>every module links 2–3 siblings · relref fails build = feature</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">08</span><span class="idc">08</span><span class="nm">Research-line anchors on /pro (simplified)</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P1 · structure</span><span class="eff">S</span><span>3 routes: simulation → planning → translation</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">09</span><span class="idc new">R-08</span><span class="nm">Defense timeline strip — "when do you defend?"</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P1 · structure</span><span class="eff">S</span><span>first question every committee asks</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">10</span><span class="idc new">R-10</span><span class="nm">SEO identity pack — JSON-LD Person/Article · RSS · alt-text · OG cards</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P1 · structure</span><span class="eff">S–M</span><span>RSS free per section · OG previews designed for dark</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">11</span><span class="idc new">R-07</span><span class="nm">HAL self-archive of C-NCA + OA badges on cards</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P1 · off-site</span><span class="eff">M</span><span>Springer LNCS permits author deposit · CNRS visibility</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">12</span><span class="idc new">R-05</span><span class="nm">Print stylesheet — white CV page, no sim, no HUD</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P1 · structure</span><span class="eff">S</span><span>surgeons &amp; HR print things · @media print</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">13</span><span class="idc">09</span><span class="nm">High-scent link audit — site-wide copy</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P1 · voice</span><span class="eff">S</span><span>"learn more" is banned · labels carry previews</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">14</span><span class="idc new">R-13</span><span class="nm">Zero-JS baseline audit + CI screenshot smoke tests</span><span class="vchip core">CORE</span></div><div class="l2"><span>P2 · contract</span><span class="eff">S–M</span><span>the load-bearing wall · 3 key pages, every deploy</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">15</span><span class="idc new">R-04</span><span class="nm">Light "clinical" theme + reduced-motion peer mode</span><span class="vchip core">CORE</span></div><div class="l2"><span>P2 · contract</span><span class="eff">M</span><span>designed FIRST — if either looks second-class, v1 doesn't ship</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">16</span><span class="idc">13</span><span class="nm">View transitions — one CSS line, purely additive</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P2 · engine</span><span class="eff">S</span><span>Chrome/Safari only · instant nav elsewhere is correct</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">17</span><span class="idc">14</span><span class="nm">Scroll power-on — rail + reveals only</span><span class="vchip">TRIM</span></div><div class="l2"><span>P2 · engine</span><span class="eff">S</span><span>IO as universal path · reduced-motion = instant on</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">18</span><span class="idc">15</span><span class="nm">Reticle cursor (CSS-only) + label scramble</span><span class="vchip">SELECT</span></div><div class="l2"><span>P2 · engine</span><span class="eff">S</span><span>pointer:fine only · never cursor:none · decorative labels only</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">19</span><span class="idc">P-19</span><span class="nm">Thermal LUT tokens — one gradient, semantic heat only</span><span class="vchip keep">KEEP</span></div><div class="l2"><span>P2 · tokens</span><span class="eff">S</span><span>CVD-safe ramp · value readout is primary encoding</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">20</span><span class="idc">02</span><span class="nm">Ignition blink — ≤300ms fade, JS-only</span><span class="vchip">DEMOTED</span></div><div class="l2"><span>P2 · engine</span><span class="eff">S</span><span>was a 2s boot sequence · consensus demotion 3/3</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">21</span><span class="idc">16</span><span class="nm">Performance budget — static-first, LCP gate</span><span class="vchip core">CORE</span></div><div class="l2"><span>P3 · contract</span><span class="eff">M</span><span>measured on Moto-G-class in CI · LCP &lt; 2.0s hard budget</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">22</span><span class="idc">01</span><span class="nm">Ablation Planner hero — poster LCP + sim enhancement</span><span class="vchip core">CORE</span></div><div class="l2"><span>P3 · signature</span><span class="eff">M+L</span><span>absorbs 04 lens + honesty caption + video fallback · ~200 lines raw WebGL2</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">23</span><span class="idc">P-17</span><span class="nm">Station console (~) — opt-in, 4 commands, no achievements v1</span><span class="vchip keep">KEEP · SCOPED</span></div><div class="l2"><span>P3 · signature</span><span class="eff">M</span><span>absent from nav &amp; sitemap · namespaced localStorage · try/catch</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">24</span><span class="idc">P-18</span><span class="nm">/lab playground — ticket 1: before/after slider</span><span class="vchip keep">KEEP · SPLIT</span></div><div class="l2"><span>P4 · playground</span><span class="eff">S→L</span><span>4 tickets: slider → build-time SVG plots → sandbox → challenge</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">25</span><span class="idc">11a</span><span class="nm">Achievements — as "lab notebook" lore entries</span><span class="vchip">DEFERRED</span></div><div class="l2"><span>P5 · post-v1</span><span class="eff">M</span><span>returns reworded: each cites real work, never game-speak</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">26</span><span class="idc">11b</span><span class="nm">Konami's ghost</span><span class="vchip">DEFERRED</span></div><div class="l2"><span>P5 · post-v1</span><span class="eff">S</span><span>console accepts it from day one — reward comes later</span></div></div>
+            <div class="rrow"><div class="l1"><span class="rk">27</span><span class="idc">15b</span><span class="nm">Magnetic buttons + console blips</span><span class="vchip">DEFERRED</span></div><div class="l2"><span>P5 · post-v1</span><span class="eff">S</span><span>opt-in WebAudio, remembered per visit</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">28</span><span class="idc new">R-11</span><span class="nm">Press kit — bio · headshot · licensed figures</span><span class="vchip">DEFERRED</span></div><div class="l2"><span>P5 · post-v1</span><span class="eff">S–M</span><span>organizers need it on deadline day · license field per card</span></div></div>
+            <div class="rrow newr"><div class="l1"><span class="rk">29</span><span class="idc new">R-12</span><span class="nm">FR one-pager — translated thesis + CV summary</span><span class="vchip">DEFERRED</span></div><div class="l2"><span>P5 · post-v1</span><span class="eff">M</span><span>full i18n deferred forever · strings externalized from day one</span></div></div>
+        </div>
+        <div class="rlegend"><span><b>9 CORE</b> — v1 first-class</span><span><b>12 KEEP</b> — v1 scoped</span><span><b>4 ADJUSTED</b> — trimmed/selected/demoted</span><span><b>9 NEW</b> — from loop 2</span><span><b>5 DEFERRED</b> — post-v1 quarter</span></div>
+    </div>
+    <div class="sh-ft"><span>nothing was deleted — everything found its honest place</span><span>the roster · v2</span></div>
+</section>
+
+<!-- ===== SHEET 03 · NEW PIECES, RENDERED ===== -->
+<section class="sheet">
+    <div class="sh-hd"><span class="l"><b>Fusion 3 · loop 2</b> — 03/04 · the new credibility layer, rendered</span><span class="r">Sheet 03</span></div>
+    <div class="bd-meta"><span class="mtag goal">New pieces · live mocks</span><span class="mtag">R-02 · R-03 · R-04 · R-01/R-05</span></div>
+    <h2 class="board-t">The additions the critics forced in — <em>rendered.</em></h2>
+    <p class="board-p">The loop's biggest additions, shown in the Fusion 2 language. Each protects a conversion surface
+    the original plan left exposed: <b>identity verification, honest simulation, light mode, and the PDF CV.</b></p>
+    <div class="sec">
+        <div class="np2">
+            <div class="npc"><span class="k">R-02 · IDENTITY VERIFICATION BLOCK — page 1, under the name</span>
+                <div class="idblock"><img src="../improve/img/avatar.jpg" alt=""><div class="who"><b>Jonas Mehtali</b><span>COMPUTE-FIRST SURGICAL PLANNING · PHD CANDIDATE</span></div></div>
+                <div class="idrow"><span>ORCID 0009-0003-3688-7782</span><span>SCHOLAR</span><span>HAL</span><span>GITHUB</span><span>LINKEDIN</span><span class="cta">CONTACT →</span></div>
+                <p class="why"><b>Why:</b> no Scholar profile exists, ORCID sits orphaned on one paper. This row is the 5-second authenticity check every committee and recruiter performs anyway.</p>
+            </div>
+            <div class="npc"><span class="k">R-03 · HONESTY GUARD + VIDEO FALLBACK — on the hero</span>
+                <div style="height:120px;border-radius:8px;position:relative;overflow:hidden;border:1px solid var(--line);background:radial-gradient(180px 150px at 60% 45%, rgba(255,255,255,.4), rgba(111,168,220,.25) 45%, transparent 75%), repeating-linear-gradient(90deg, transparent 0 19px, rgba(111,168,220,.05) 19px 20px), #0d1219"></div>
+                <div class="honest-cap" style="margin-top:10px"><b>TOY MODEL</b> illustrative diffusion — the validated pipeline lives in the papers <span class="vid">WATCH 30S MP4</span></div>
+                <p class="why"><b>Why:</b> a clinician must never mistake the demo for the tool — and hospital machines block WebGL. The video fallback protects the 476fps claim everywhere.</p>
+            </div>
+            <div class="npc"><span class="k">R-04 · LIGHT "CLINICAL" THEME — prefers-color-scheme peer</span>
+                <div class="lightmock">
+                    <div class="lmnav"><b>J.MEHTALI</b><span class="on">OVERVIEW</span><span>PRO</span><span>PERSONAL</span></div>
+                    <div class="card"><span class="thl">CH.01 · CURRENT</span><br><b>Thermal ablation, plannable in real time</b><p>Same structure, printed-paper voice — heat stays dark inside the canvas only.</p></div>
+                </div>
+                <p class="why"><b>Why:</b> projectors, conference rooms, astigmatism, OS defaults. The LUT token rule survives: gradients live where heat is semantically true — inside the sim.</p>
+            </div>
+            <div class="npc"><span class="k">R-01 + R-05 · CV.PDF — auto-built from the same Markdown</span>
+                <div class="cvrow"><i>PDF</i><div><b>J-MEHTALI-CV-2026-09.PDF</b><span>210 KB · generated at deploy · print stylesheet: white, no sim, no HUD</span></div><span class="dl">DOWNLOAD ↓</span></div>
+                <p class="why" style="margin-top:12px"><b>Why:</b> hiring workflows operate on PDFs, not WebGL heroes. One Markdown source, two artifacts: the station for exploring, the paper CV for deciding.</p>
+            </div>
+        </div>
+    </div>
+    <div class="sh-ft"><span>credibility is a feature — it ships with the aesthetic or not at all</span><span>new pieces · v2</span></div>
+</section>
+
+<!-- ===== SHEET 04 · ROADMAP V2 ===== -->
+<section class="sheet">
+    <div class="sh-hd"><span class="l"><b>Fusion 3 · loop 2</b> — 04/04 · roadmap v2 + scope guillotine</span><span class="r">Sheet 04</span></div>
+    <div class="bd-meta"><span class="mtag goal">Updated build order</span><span class="mtag hi">~ 10–12 days total</span><span class="mtag">every phase shippable alone</span></div>
+    <h2 class="board-t">Roadmap v2 — <em>contract first, wow last.</em></h2>
+    <p class="board-p">Loop 2 reordered the build: credibility and contracts come before spectacle. The signature moment
+    still lands — but on a foundation that converts reviewers, recruiters and clinicians even if the shader never runs.</p>
+    <div class="sec">
+        <div class="ph"><div class="pn">P0<b>Voice + credibility</b></div><div class="pc"><span class="core">06 THESIS</span><span class="core">05 COINED TERM</span><span class="newi">R-02 IDENTITY BLOCK</span><span class="newi">R-09 LEGAL</span></div><div class="pt"><b>~ 1 day</b>copy + one Hugo partial</div></div>
+        <div class="ph"><div class="pn">P1<b>Structure</b></div><div class="pc"><span class="core">07 PAPER CARDS</span><span class="newi">R-06 CITE</span><span>10 BRIDGES</span><span>08 ROUTES</span><span class="newi">R-08 TIMELINE</span><span class="newi">R-10 SEO PACK</span><span class="newi">R-05 PRINT</span><span>09 SCENT</span></div><div class="pt"><b>~ 2 days</b>templates + copy · schema frozen first</div></div>
+        <div class="ph"><div class="pn">P2<b>Contracts + cheap engine</b></div><div class="pc"><span class="core">R-13 ZERO-JS + CI</span><span class="core">R-04 LIGHT + REDUCED-MOTION</span><span>13 TRANSITIONS</span><span>14 POWER-ON</span><span>15 RETICLE/SCRAMBLE</span><span>P-19 LUT</span><span>02 IGNITION BLINK</span></div><div class="pt"><b>~ 2 days</b>CSS-first · both themes designed here</div></div>
+        <div class="ph"><div class="pn">P3<b>Signature</b></div><div class="pc"><span class="core">16 PERF BUDGET</span><span class="core">01 PLANNER HERO (+04 LENS, +R-03 HONESTY/VIDEO)</span><span>P-17 CONSOLE</span></div><div class="pt"><b>~ 3–4 days</b>the wow — guarded by everything above</div></div>
+        <div class="ph"><div class="pn">P4<b>Playground</b></div><div class="pc"><span>P-18 ·1 SLIDER</span><span>·2 PLOTS</span><span>·3 SANDBOX</span><span>·4 CHALLENGE</span></div><div class="pt"><b>~ 1–3 days</b>4 tickets — stop after any</div></div>
+        <div class="ph"><div class="pn">P5<b>Post-v1 quarter</b></div><div class="pc"><span>11a LAB-NOTEBOOK ACHIEVEMENTS</span><span>11b KONAMI</span><span>15b MAGNETS/BLIPS</span><span class="newi">R-11 PRESS KIT</span><span class="newi">R-12 FR ONE-PAGER</span></div><div class="pt"><b>later</b>the guillotine keeps v1 honest</div></div>
+        <div class="guill">
+            <p class="gh">Scope guillotine — v1 ships with exactly one signature interaction</p>
+            <p>The probe hero stays; everything self-referential waits. Test for every v1 element: <b>"would this survive
+            being screenshot in a hiring email?"</b> The station may feel like hardware — the content must behave like paper.</p>
+        </div>
+    </div>
+    <div class="sh-ft"><span>next: begin P0 on the real Hugo tree, or build the P3 hero prototype first — your call</span><span>roadmap v2 · end</span></div>
+</section>
+
+</body></html>

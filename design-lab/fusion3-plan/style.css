@@ -1,4 +1,13 @@
 /* FUSION 3 PLAN — master system, evaluation matrix, regenerated proposals, roadmap */
+.bd-meta { display:flex; gap:8px; margin:2px 0 14px; flex-wrap:wrap; }
+.mtag { font-family:var(--mono); font-size:.58rem; letter-spacing:.14em; text-transform:uppercase;
+    padding:4px 10px; border-radius:99px; border:1px solid var(--line2); color:var(--dim); }
+.mtag.goal { color:var(--accent); border-color:var(--accent-dim); background:var(--accent-faint); }
+.mtag.hi { color:var(--ok); }
+.board-t { margin:0 0 6px; font-size:2rem; font-weight:800; letter-spacing:-.03em; }
+.board-t em { font-style:normal; color:var(--accent); }
+.board-p { color:var(--dim); font-size:.98rem; max-width:92ch; margin:0 0 18px; }
+.board-p b { color:var(--text); font-weight:600; }
 .band { border:1px solid var(--line); border-radius:10px; background:var(--panel); padding:13px 16px; margin-bottom:9px; }
 .band .bh { display:flex; align-items:baseline; gap:10px; margin-bottom:8px; }
 .band .bh .bn { font-family:var(--mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
