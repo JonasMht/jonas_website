@@ -28,15 +28,26 @@ a { color:var(--cool); text-decoration:none; }
 a:hover { color:var(--warm); }
 .wrap { max-width:1140px; margin:0 auto; padding:0 30px 70px; }
 
-/* corner-bracket frames — the HUD signature */
-.hud { position:relative; border:1px solid var(--line); background:rgba(6,10,16,.6); }
-.hud::before, .hud::after, .hud .c3::before, .hud .c3::after {
-    content:""; position:absolute; width:14px; height:14px; border:2px solid var(--cool); z-index:2; pointer-events:none;
+/* corner-bracket frames — the EdelVideo frame (limelight T.frame):
+   full border + doubled corner ticks at ALL FOUR corners */
+.hud { position:relative; border:1px solid var(--line); background:rgba(5,9,14,.6); }
+.hud::before {
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:3;
+    --tk: 13px; --g: 4px;
+    background:
+        linear-gradient(var(--cool), var(--cool)) left var(--g) top var(--g) / 2px var(--tk),
+        linear-gradient(var(--cool), var(--cool)) left var(--g) top var(--g) / var(--tk) 2px,
+        linear-gradient(var(--cool), var(--cool)) right var(--g) top var(--g) / 2px var(--tk),
+        linear-gradient(var(--cool), var(--cool)) right var(--g) top var(--g) / var(--tk) 2px,
+        linear-gradient(var(--cool), var(--cool)) left var(--g) bottom var(--g) / 2px var(--tk),
+        linear-gradient(var(--cool), var(--cool)) left var(--g) bottom var(--g) / var(--tk) 2px,
+        linear-gradient(var(--cool), var(--cool)) right var(--g) bottom var(--g) / 2px var(--tk),
+        linear-gradient(var(--cool), var(--cool)) right var(--g) bottom var(--g) / var(--tk) 2px;
+    background-repeat:no-repeat;
 }
-.hud::before { top:-2px; left:-2px; border-right:none; border-bottom:none; }
-.hud::after { top:-2px; right:-2px; border-left:none; border-bottom:none; }
-.hud .c3::before { bottom:-2px; left:-2px; border-right:none; border-top:none; }
-.hud .c3::after { bottom:-2px; right:-2px; border-left:none; border-top:none; }
+/* round elements opt out of the square frame */
+.hud.round, .reticle.hud { border-radius:50%; }
+.hud.round::before, .reticle.hud::before { display:none; }
 .hud-label { font-family:var(--mono); font-size:.6rem; letter-spacing:.22em; text-transform:uppercase; color:var(--dim); }
 
 /* nav */
