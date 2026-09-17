@@ -126,30 +126,31 @@
         els.forEach(function (el) { io.observe(el); });
     }
 
-    /* press-and-hold lock-on — touch devices get the focus wedges while holding */
+    /* press-and-hold lock-on — touch devices get the focus wedges while holding.
+       touch events (not pointer events): browsers fire pointercancel when their
+       own link gestures take over, which killed the hold on tablets. */
     var hold = { t: null, card: null, x: 0, y: 0, fired: false };
     function holdEnd() {
         clearTimeout(hold.t);
         if (hold.card) hold.card.classList.remove("hold");
         hold.card = null; hold.t = null;
     }
-    document.addEventListener("pointerdown", function (ev) {
-        if (ev.pointerType !== "touch") return;
+    document.addEventListener("touchstart", function (ev) {
         var card = ev.target.closest && ev.target.closest(".card");
-        if (!card) return;
+        if (!card || !ev.touches.length) return;
         holdEnd();
-        hold.card = card; hold.x = ev.clientX; hold.y = ev.clientY; hold.fired = false;
+        hold.card = card; hold.x = ev.touches[0].clientX; hold.y = ev.touches[0].clientY; hold.fired = false;
         hold.t = setTimeout(function () {
             hold.card.classList.add("hold");
             hold.fired = true;
             if (navigator.vibrate) { try { navigator.vibrate(12); } catch (e) {} }
         }, 380);
     }, { passive: true });
-    document.addEventListener("pointermove", function (ev) {
-        if (!hold.t) return;
-        if (Math.abs(ev.clientX - hold.x) > 10 || Math.abs(ev.clientY - hold.y) > 10) holdEnd();
+    document.addEventListener("touchmove", function (ev) {
+        if (!hold.t || !ev.touches.length) return;
+        if (Math.abs(ev.touches[0].clientX - hold.x) > 12 || Math.abs(ev.touches[0].clientY - hold.y) > 12) holdEnd();
     }, { passive: true });
-    ["pointerup", "pointercancel", "touchcancel", "scroll"].forEach(function (t) {
+    ["touchend", "touchcancel"].forEach(function (t) {
         document.addEventListener(t, holdEnd, { passive: true });
     });
     document.addEventListener("contextmenu", function (ev) {

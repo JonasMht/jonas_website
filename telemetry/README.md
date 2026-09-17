@@ -132,6 +132,8 @@ The collector is hardened `telemetry/server.py` (stdlib only). The edge
 
 **Edge (Caddyfile):**
 - `script-src 'self' 'sha256-…' 'sha256-…'` — no inline JS unless hashed.
+  `frame-src` allows YouTube embeds (`youtube-nocookie.com` + `youtube.com`);
+  extend it if you embed other video hosts.
   **If you edit `layouts/_partials/footer.html` or `baseof.html`**, the
   inline script hash changes → recompute both `sha256` values:
   `openssl dgst -sha256 -binary < extracted-script | openssl base64`
