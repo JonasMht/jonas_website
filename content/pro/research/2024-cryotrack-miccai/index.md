@@ -15,7 +15,7 @@ tags:
     - Medical Imaging
     - Python
 venue: "MICCAI 2024 · Marrakesh"
-tldr: "Planning and navigation for cryoablation — ice-ball simulation, probe tracking and AR overlay of the lethal zone, validated on phantoms and ex-vivo tissue."
+tldr: "Planning and navigation for cryoablation: ice-ball simulation, probe tracking and AR overlay of the lethal zone, validated on phantoms and ex-vivo tissue."
 doi: "10.1007/978-3-031-72089-5_10"
 paper: "https://papers.miccai.org/miccai-2024/179-Paper1240.html"
 ---
@@ -79,7 +79,7 @@ The system was validated through:
 
 ## Conference Experience
 
-Presenting at MICCAI 2024 in Marrakesh was an incredible experience. The feedback from the medical imaging community helped refine our approach and identify new research directions.
+I presented Cryotrack at MICCAI 2024 in Marrakesh. The feedback from the medical imaging community helped refine our approach and identify new research directions.
 
 ## Related Work
 

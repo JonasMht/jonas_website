@@ -54,8 +54,6 @@ Its purpose was to help the other members of the team to create their own 3D mod
 {{< figure src="scene-render.png" title="Full Scene Render" >}}
 
 ## Conclusion
-All along this project I develop my leadership and technical skills, as well as the ability to work in a collaborative environment.
-<br>
-It was a challenging and rewarding experience that allowed me to acquire valuable skills and knowledge for my future projects.
+The renders were shown in the museum's presentation of the reconstruction work.
 
 > Image rendered for the [Projet Notre Dame]({{< ref "/personal/projects/project-notre-dame" >}} "Projet Notre Dame")

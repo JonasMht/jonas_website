@@ -44,4 +44,4 @@ coworkers. I worked in a multicultural environment and learned a lot about the d
 <br><br>
 I also had a truly immersive experience in the shoes of a researcher and could complete a full research project in only two months. I participated in the creation of a poster and in the writing of a paper which was new to me.
 <br><br>
-This experience allowed me to develop my research skills, work in a team, and improved my communication and collaboration skills.
+Two months produced a full pipeline, a poster and a first paper: the internship confirmed that research was the right path.

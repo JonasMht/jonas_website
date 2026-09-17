@@ -23,5 +23,5 @@ preparation.
 I had to perform all these tasks simultaneously and efficiently as I was the only employee in the store during my shifts.
 
 ## Conclusion
-This experience allowed me to discover work as a store associate and to develop my skills in planning, accounting and punctuality.
+Solo shifts in a small store: sales, stock, accounting and order preparation, all on the same day.
 

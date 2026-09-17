@@ -182,6 +182,15 @@
         cmp.addEventListener("pointerdown", function (ev) { dragging = true; move(ev); });
         window.addEventListener("pointermove", move);
         window.addEventListener("pointerup", function () { dragging = false; });
+        var pct = 50;
+        var apply = function () { setPct(pct); handle.setAttribute("aria-valuenow", Math.round(pct)); };
+        handle.addEventListener("keydown", function (ev) {
+            if (ev.key === "ArrowLeft" || ev.key === "ArrowRight") {
+                ev.preventDefault();
+                pct = Math.max(0, Math.min(100, pct + (ev.key === "ArrowRight" ? 4 : -4)));
+                apply();
+            }
+        });
     }
 
     /* station console — opt-in, local only, nothing tracked */
