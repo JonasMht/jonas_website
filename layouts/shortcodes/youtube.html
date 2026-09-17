@@ -1,0 +1,5 @@
+{{- $id := .Get 0 | default (.Get "id") -}}
+<div class="yt-facade" data-yt="{{ $id }}" tabindex="0" role="button" aria-label="Play the YouTube video">
+    <img src="https://i.ytimg.com/vi/{{ $id }}/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+    <span class="yt-play" aria-hidden="true">▶</span>
+</div>

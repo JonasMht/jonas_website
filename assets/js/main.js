@@ -164,6 +164,29 @@
         }
     }, true);
 
+    /* youtube facades — nothing third-party loads until the user presses play */
+    function playFacade(f) {
+        var ifr = document.createElement("iframe");
+        ifr.src = "https://www.youtube-nocookie.com/embed/" + f.dataset.yt + "?autoplay=1";
+        ifr.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen";
+        ifr.title = f.getAttribute("aria-label") || "YouTube video";
+        ifr.setAttribute("allowfullscreen", "");
+        f.textContent = "";
+        f.appendChild(ifr);
+        f.classList.add("is-live");
+        f.removeAttribute("role");
+        f.removeAttribute("tabindex");
+    }
+    document.addEventListener("click", function (ev) {
+        var f = ev.target.closest && ev.target.closest(".yt-facade");
+        if (f && !f.classList.contains("is-live")) playFacade(f);
+    });
+    document.addEventListener("keydown", function (ev) {
+        if (ev.key !== "Enter" && ev.key !== " ") return;
+        var f = ev.target.closest && ev.target.closest(".yt-facade");
+        if (f && !f.classList.contains("is-live")) { ev.preventDefault(); playFacade(f); }
+    });
+
     /* lab comparison slider */
     var cmp = document.getElementById("cmp");
     if (cmp) {

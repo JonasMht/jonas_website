@@ -19,12 +19,11 @@ application: no database, no forms, no server-side sessions.
 ## Vie privée / Privacy
 
 - **No cookies.** The site sets none.
-- **Console & preferences** (the `~` terminal, theme memory) live in your
-  browser's `localStorage` and never leave your machine; `clear` in the console
-  wipes them.
-- **Google Analytics** is used with a configured anonymization flow. It is the
-  only third-party script on this site. You can block it with any ad blocker —
-  the site works identically without it.
+- **Console & preferences** (the `~` terminal) live in your browser's
+  `localStorage` and never leave your machine; `clear` in the console wipes them.
+- **No third-party scripts.** The site loads none. YouTube videos appear as a
+  static thumbnail (fetched from `i.ytimg.com` when the article renders); the
+  embedded player only contacts Google when you press play.
 
 ## Accessibilité
 

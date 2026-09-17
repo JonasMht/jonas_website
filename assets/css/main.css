@@ -329,6 +329,16 @@ html:not(.js) .ignition { display: none; }
 }
 .article-content figure { margin: 1.4em auto; max-width: 640px; }
 .article-content figure img { border: 1px solid var(--line); border-radius: 8px; width: 100%; height: auto; }
+/* youtube facade — thumbnail only, player on click */
+.yt-facade { position: relative; width: 100%; max-width: 640px; aspect-ratio: 16/9;
+    margin: 1.4em auto; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+    cursor: pointer; background: var(--panel2); }
+.yt-facade img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .82; transition: opacity .2s; }
+.yt-facade:hover img, .yt-facade:focus-visible img { opacity: 1; }
+.yt-facade iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 58px; height: 40px; border-radius: 10px; background: var(--accent);
+    color: #0C0F14; display: grid; place-items: center; font-size: .85rem; }
 .article-content figcaption { font-family: var(--mono); font-size: .62rem; letter-spacing: .12em;
     text-transform: uppercase; color: var(--faint); margin-top: 8px; text-align: center; }
 .article-content code { font-family: var(--mono); font-size: .82em; background: var(--panel2);
