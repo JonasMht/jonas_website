@@ -10,7 +10,7 @@
                     {{- end }}
                     <span class="tag">CRYOTRACK · PLANNING LAB</span>
                 </div>
-                <h1>Making thermal ablation planning <em>faster, safer, more intuitive.</em></h1>
+                <h1>{{- $parts := split .Params.headline "|" }}{{ index $parts 0 }}{{ with index $parts 1 }}<em>{{ . }}</em>{{ end }}{{ with index $parts 2 }}{{ . }}{{ end }}</h1>
                 <p class="lede">{{ .Params.tagline }}</p>
                 <div class="links">
                     <a class="lnk pri" href="/pro/about/jonas-mehtali-resume.pdf">CV.PDF</a>
@@ -29,6 +29,15 @@
         </div>
     </section>
 
+    {{- with .Params.now }}
+    <div class="now-strip reveal" role="status">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="now-k">NOW</span>
+        <span class="now-v">{{ . }}</span>
+        <span class="now-place">ICUBE · STRASBOURG</span>
+    </div>
+    {{- end }}
+
     <section class="sec reveal" aria-label="Research routes">
         <div class="sec-h"><span class="mark"></span><b>Routes</b><span class="k">three research lines</span></div>
         <div class="route-row">
@@ -36,6 +45,7 @@
             <a class="route" href="{{ .url }}">
                 {{- if eq $i 0 }}<span class="start">START HERE</span>{{ end }}
                 <span class="no">{{ .no }}</span><h3>{{ .title }}</h3><p>{{ .desc }}</p>
+                <span class="route-meta"><span class="status st-{{ .st }}">{{ .status }}</span><span class="metric">{{ .metric }}</span></span>
             </a>
             {{- end }}
         </div>
@@ -71,14 +81,51 @@
         {{- end }}
     </section>
 
+    <section class="sec reveal" aria-label="Workbench">
+        <div class="sec-h"><span class="mark"></span><b>Workbench</b><span class="k">the actual stack</span></div>
+        <div class="bench">
+            {{- range .Params.workbench }}
+            <div class="bench-row"><span class="bench-k">{{ .group }}</span>
+                <span class="bench-items">{{- range .items }}<span class="tag-chip">{{ . }}</span>{{ end }}</span></div>
+            {{- end }}
+        </div>
+    </section>
+
     <section class="sec reveal" aria-label="Career log">
         <div class="sec-h"><span class="mark"></span><b>Career log</b><span class="k">session history</span></div>
         <ol class="sess-list">
             {{- range .Params.timeline }}
             <li class="sess"><span class="d">{{ .period }}</span><span class="dot" aria-hidden="true"></span>
-                <div><b>{{ .title }}</b><p>{{ .place }}{{ with .desc }} — {{ . }}{{ end }}</p></div></li>
+                {{- if .url }}
+                <a href="{{ .url }}"><div><b>{{ .title }}</b><p>{{ .place }}{{ with .desc }} — {{ . }}{{ end }}</p><span class="out">→ {{ .out }}</span></div></a>
+                {{- else }}
+                <div><b>{{ .title }}</b><p>{{ .place }}{{ with .desc }} — {{ . }}{{ end }}</p><span class="out">→ {{ .out }}</span></div>
+                {{- end }}</li>
             {{- end }}
         </ol>
+    </section>
+
+    <section class="sec reveal" aria-label="Open source">
+        <div class="sec-h"><span class="mark"></span><b>Open source</b><span class="k">github.com/JonasMht</span>
+            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">ALL REPOS →</a></div>
+        <div class="repo-row stagger">
+            {{- range .Params.repos }}
+            <a class="repo" href="{{ .url }}" target="_blank" rel="noopener">
+                <span class="repo-name">{{ .name }}</span><span class="repo-lang">{{ .lang }}</span>
+                <p>{{ .desc }}</p>
+            </a>
+            {{- end }}
+        </div>
+    </section>
+
+    <section class="sec reveal" aria-label="Talks">
+        <div class="sec-h"><span class="mark"></span><b>Talks</b><span class="k">conferences</span></div>
+        <ul class="talk-list">
+            {{- range .Params.talks }}
+            <li><span class="talk-venue">{{ .venue }}</span><span class="talk-what">{{ .what }}</span>
+                {{- with .url }}<a class="more" href="{{ . }}">RECORD →</a>{{ end }}</li>
+            {{- end }}
+        </ul>
     </section>
 
     <section class="sec reveal" aria-label="Beyond research">
