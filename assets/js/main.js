@@ -187,6 +187,46 @@
         if (f && !f.classList.contains("is-live")) { ev.preventDefault(); playFacade(f); }
     });
 
+    /* copy buttons on code blocks — one click, drawn check, clipboard fallback for plain HTTP */
+    document.querySelectorAll(".article-content .highlight, .post .highlight").forEach(function (hl) {
+        var pre = hl.querySelector("pre");
+        if (!pre) return;
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "copy-btn";
+        btn.setAttribute("aria-label", "Copy to clipboard");
+        btn.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>COPY</span>';
+        hl.appendChild(btn);
+        var label = btn.querySelector("span"), t = null;
+        function done() {
+            btn.classList.add("is-done");
+            label.textContent = "COPIED";
+            hl.classList.add("is-copied");
+            clearTimeout(t);
+            t = setTimeout(function () {
+                btn.classList.remove("is-done");
+                label.textContent = "COPY";
+                hl.classList.remove("is-copied");
+            }, 1600);
+        }
+        function fallback() {
+            var ta = document.createElement("textarea");
+            ta.value = pre.innerText.replace(/\n+$/, "");
+            ta.setAttribute("readonly", "");
+            ta.style.position = "fixed"; ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            try { if (document.execCommand("copy")) done(); } catch (e) {}
+            ta.remove();
+        }
+        btn.addEventListener("click", function () {
+            var text = pre.innerText.replace(/\n+$/, "");
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(done, fallback);
+            } else fallback();
+        });
+    });
+
     /* lab comparison slider */
     var cmp = document.getElementById("cmp");
     if (cmp) {
