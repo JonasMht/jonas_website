@@ -1,0 +1,10 @@
+{{- $ar := div (float .r.Width) (float .r.Height) -}}
+{{- $cls := "art-img--std" -}}
+{{- if lt $ar 0.9 -}}
+  {{- $cls = "art-img--side" -}}
+{{- else if lt $ar 1.25 -}}
+  {{- $cls = "art-img--small" -}}
+{{- else if ge $ar 2.2 -}}
+  {{- $cls = "art-img--wide" -}}
+{{- end -}}
+{{- return $cls -}}

@@ -3,12 +3,16 @@
 {{- if not (or (hasPrefix $src "http") (hasPrefix $src "/")) -}}
   {{- $r = .Page.Resources.GetMatch (printf "*%s*" $src) -}}
 {{- end -}}
-<figure class="art-fig">
+{{- $pt := .Page.Title -}}
+{{- $fcls := "" -}}
+{{- if $r -}}{{- $fcls = partial "img-class.html" (dict "r" $r) -}}{{- else -}}{{- $fcls = "art-img--std" -}}{{- end -}}
+<figure class="art-fig {{ $fcls }}">
     {{- if $r -}}
     {{- $v := partial "img-variants.html" (dict "r" $r "widths" (slice 360 540 750 1080)) -}}
-    <img class="art-img" src="{{ $v.src }}"{{ with $v.srcset }} srcset="{{ . }}" sizes="(max-width:820px) 94vw, 640px"{{ end }} width="{{ $v.w }}" height="{{ $v.h }}" alt="{{ .Get "alt" | default (.Get "title") }}" loading="lazy" decoding="async">
+    {{- $cls := partial "img-class.html" (dict "r" $r) -}}
+    <img class="art-img {{ $cls }}" src="{{ $v.src }}"{{ with $v.srcset }} srcset="{{ . }}" sizes="(max-width:820px) 94vw, 620px"{{ end }} width="{{ $v.w }}" height="{{ $v.h }}" alt="{{ .Get "alt" | default (.Get "title") | default $pt }}" loading="lazy" decoding="async">
     {{- else -}}
-    <img class="art-img" src="{{ $src | safeURL }}" alt="{{ .Get "alt" | default (.Get "title") }}" loading="lazy" decoding="async">
+    <img class="art-img art-img--std" src="{{ $src | safeURL }}" alt="{{ .Get "alt" | default (.Get "title") | default $pt }}" loading="lazy" decoding="async">
     {{- end -}}
     {{- with .Get "title" }}<figcaption>{{ . }}</figcaption>{{ end -}}
 </figure>

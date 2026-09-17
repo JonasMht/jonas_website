@@ -1,3 +1,4 @@
-{{- /* in: dict "r" "widths" "sizes" "alt" "eager" (bool) "attrs" (raw attr string) */ -}}
+{{- /* in: dict "r" "widths" "sizes" "alt" "eager" (bool) "attrs" (raw attr string) — classifies by aspect ratio */ -}}
 {{- $v := partial "img-variants.html" (dict "r" .r "widths" .widths) -}}
-<img src="{{ $v.src }}"{{ with $v.srcset }} srcset="{{ . }}" sizes="{{ $.sizes }}"{{ end }} width="{{ $v.w }}" height="{{ $v.h }}" alt="{{ .alt }}"{{ if .eager }} fetchpriority="high" decoding="async"{{ else }} loading="lazy" decoding="async"{{ end }}{{ with .attrs }} {{ . | safeHTMLAttr }}{{ end }}>
+{{- $cls := partial "img-class.html" (dict "r" .r) -}}
+<img class="art-img {{ $cls }}" src="{{ $v.src }}"{{ with $v.srcset }} srcset="{{ . }}" sizes="{{ $.sizes }}"{{ end }} width="{{ $v.w }}" height="{{ $v.h }}" alt="{{ .alt }}"{{ if .eager }} fetchpriority="high" decoding="async"{{ else }} loading="lazy" decoding="async"{{ end }}{{ with .attrs }} {{ . | safeHTMLAttr }}{{ end }}>

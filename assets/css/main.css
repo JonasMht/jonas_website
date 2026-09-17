@@ -318,16 +318,32 @@ html:not(.js) .ignition { display: none; }
 .article-content blockquote { margin: 1em 0; padding: 8px 16px; border-left: 2px solid var(--accent);
     background: var(--accent-faint); color: var(--dim); border-radius: 0 8px 8px 0; }
 .article-content hr { border: none; border-top: 1px dashed var(--line); margin: 2em 0; }
-/* imagery sized to the text column, not the full width */
-.article-content img { display: block; max-width: min(100%, 640px); height: auto;
-    border: 1px solid var(--line); border-radius: 8px; margin: 1.2em auto; }
+/* imagery sized to the text column, sized by content, placed to complement */
+.article-content img { display: block; height: auto;
+    border: 1px solid var(--line); border-radius: 8px; margin: 1.3em auto; }
+.article-content img.art-img--wide { width: 100%; max-width: 100%; }
+.article-content img.art-img--std { width: min(100%, 620px); }
+.article-content img.art-img--small { width: min(100%, 480px); }
+.article-content img.art-img--side { width: min(100%, 420px); }
+@media (min-width: 900px) {
+    .article-content img.art-img--side { float: right; width: 350px;
+        margin: .3em 0 1em 1.8em; }
+    .article-content figure.art-img--side { float: right; width: 350px;
+        margin: .3em 0 1em 1.8em; }
+    .article-content figure.art-img--side img { width: 100%; margin: 0; }
+    .article-content figure.art-img--side figcaption { text-align: center; }
+    .article-content figure.art-img--small { max-width: 480px; }
+    .article-content h2, .article-content h3 { clear: both; }
+}
 .article-content p:has(img + img) { display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
     margin: 1.2em 0; }
 .article-content p:has(img + img) img { margin: 0; max-width: 100%; width: 100%; align-self: start; }
 @media (max-width: 700px) {
     .article-content p:has(img + img) { grid-template-columns: 1fr; }
 }
-.article-content figure { margin: 1.4em auto; max-width: 640px; }
+.article-content figure { margin: 1.4em auto; width: min(100%, 620px); }
+.article-content figure.art-img--wide { width: 100%; max-width: none; }
+.article-content figure.art-img--small { width: min(100%, 480px); }
 .article-content figure img { border: 1px solid var(--line); border-radius: 8px; width: 100%; height: auto; }
 /* youtube facade — thumbnail only, player on click */
 .yt-facade { position: relative; width: 100%; max-width: 640px; aspect-ratio: 16/9;
