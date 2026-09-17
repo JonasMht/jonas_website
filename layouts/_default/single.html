@@ -17,9 +17,9 @@
             {{- with .Params.tags }}{{ range first 4 . }}<span class="tag-chip">{{ . }}</span>{{ end }}{{ end }}
         </p>
         {{- $hero := "" }}
-        {{- with .Params.image }}{{ $r := $.Resources.GetMatch . }}{{ if $r }}{{ $hero = $r.RelPermalink }}{{ end }}{{ end }}
+        {{- with .Params.image }}{{ $r := $.Resources.GetMatch . }}{{ if $r }}{{ $hero = $r }}{{ end }}{{ end }}
         {{- with $hero }}
-        <figure class="post-hero focus"><img src="{{ . }}" alt="{{ $.Params.description | default $.Title }}"></figure>
+        <figure class="post-hero focus">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080 1440) "sizes" "(max-width:820px) 94vw, 768px" "alt" ($.Params.description | default $.Title) "eager" true) }}</figure>
         {{- end }}
     </header>
 

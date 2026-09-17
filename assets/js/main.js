@@ -96,10 +96,15 @@
         }
     } else if (ign) { ign.remove(); }
 
-    /* power-on reveals — progressive enhancement, visible by default without JS */
+    /* power-on reveals — progressive enhancement, visible by default without JS.
+       back/forward navigations: everything is already in place, zero motion. */
+    var navType = "";
+    try { navType = (performance.getEntriesByType("navigation")[0] || {}).type || ""; } catch (e) {}
+    var backFwd = navType === "back_forward";
     var els = document.querySelectorAll(".reveal");
-    if (reduce || !("IntersectionObserver" in window)) {
+    if (reduce || backFwd || !("IntersectionObserver" in window)) {
         els.forEach(function (el) { el.classList.add("is-in"); });
+        if (backFwd) document.querySelectorAll(".stagger").forEach(function (g) { g.classList.add("is-in"); });
     } else {
         var io = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {

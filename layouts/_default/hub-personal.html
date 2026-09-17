@@ -5,9 +5,9 @@
         <div class="mbody">
             <div class="mleft">
                 <div class="photo focus">
-                    {{- with resources.Get "img/sensha.png" }}
-                    <img src="{{ .RelPermalink }}" width="640" height="270" alt="Sensha title screen" style="object-position:center 35%">
-                    {{- end }}
+                {{- with resources.Get "img/sensha.png" }}
+                {{ partial "img.html" (dict "r" . "widths" (slice 480 960 1440) "sizes" "(max-width:700px) 92vw, 480px" "alt" "Sensha title screen" "eager" true "attrs" (printf "style=%q" "object-position:center 35%")) }}
+                {{- end }}
                     <span class="tag">SENSHA · TITLE SCREEN · 2019</span>
                 </div>
                 {{- $parts := split .Params.headline "|" }}
@@ -43,7 +43,7 @@
             {{- with .Params.image }}{{ $img = $p.Resources.GetMatch . }}{{ end }}
             {{- if not $img }}{{ with .Resources.GetMatch "*.png" }}{{ $img = . }}{{ end }}{{ end }}
             {{- with $img }}
-            <div class="spotlight__media focus"><img src="{{ .RelPermalink }}" alt="" loading="lazy"><span class="st">FLAGSHIP · {{ $year }}</span></div>
+            <div class="spotlight__media focus">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080) "sizes" "(max-width:700px) 92vw, (max-width:1100px) 46vw, 520px" "alt" "") }}<span class="st">FLAGSHIP · {{ $year }}</span></div>
             {{- end }}
             <div class="spotlight__body">
                 <p class="card__eyebrow">{{ .Title }}</p>

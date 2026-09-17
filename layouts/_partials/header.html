@@ -2,7 +2,8 @@
     <nav class="nav" aria-label="Main navigation">
         <a class="sys" href="{{ site.Home.RelPermalink }}">
             {{- with resources.Get "img/avatar.jpg" -}}
-            <img src="{{ .RelPermalink }}" width="22" height="22" alt="">
+            {{ $av := .Resize "44x webp q85" }}
+            <img src="{{ $av.RelPermalink }}" srcset="{{ $av.RelPermalink }} 44w" width="22" height="22" alt="">
             {{- end }}
             <span>J.MEHTALI <span class="suffix">// STATION</span></span>
             <i aria-hidden="true"></i>

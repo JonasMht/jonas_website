@@ -1,0 +1,16 @@
+{{- /* in: dict "r" (resource) "widths" (slice int) — webp variants, returns src/srcset/w/h */ -}}
+{{- $r := .r -}}
+{{- $parts := slice -}}
+{{- $best := $r -}}
+{{- range .widths -}}
+  {{- if le . $r.Width -}}
+    {{- $v := $r.Resize (printf "%dx webp q85" .) -}}
+    {{- $parts = $parts | append (printf "%s %dw" $v.RelPermalink $v.Width) -}}
+    {{- $best = $v -}}
+  {{- end -}}
+{{- end -}}
+{{- $out := dict "src" $r.RelPermalink "srcset" "" "w" $r.Width "h" $r.Height -}}
+{{- if $parts -}}
+  {{- $out = dict "src" $r.RelPermalink "srcset" (delimit $parts ", ") "w" $best.Width "h" $best.Height -}}
+{{- end -}}
+{{- return $out -}}

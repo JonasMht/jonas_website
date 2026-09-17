@@ -31,6 +31,29 @@
 
 <script>document.documentElement.classList.add("js");</script>
 
+{{- /* LCP hero preload — matches the img partial's variants exactly */ -}}
+{{- $hero := dict -}}
+{{- $heroSizes := "" -}}
+{{- if and (eq .Kind "page") .Params.image -}}
+  {{- with .Resources.GetMatch .Params.image -}}
+    {{- $hero = partial "img-variants.html" (dict "r" . "widths" (slice 540 750 1080 1440)) -}}
+    {{- $heroSizes = "(max-width:820px) 94vw, 768px" -}}
+  {{- end -}}
+{{- else if eq .Layout "hub-personal" -}}
+  {{- with resources.Get "img/sensha.png" -}}
+    {{- $hero = partial "img-variants.html" (dict "r" . "widths" (slice 480 960 1440)) -}}
+    {{- $heroSizes = "(max-width:700px) 92vw, 480px" -}}
+  {{- end -}}
+{{- else if eq .Layout "hub-pro" -}}
+  {{- with resources.Get "img/cryotrack.jpg" -}}
+    {{- $hero = partial "img-variants.html" (dict "r" . "widths" (slice 480 960 1440)) -}}
+    {{- $heroSizes = "(max-width:700px) 92vw, 480px" -}}
+  {{- end -}}
+{{- end -}}
+{{- with $hero.srcset -}}
+{{ (printf `<link rel="preload" as="image" href=%q imagesrcset=%q imagesizes=%q fetchpriority="high">` $hero.src $hero.srcset $heroSizes) | safeHTML }}
+{{- end -}}
+
 {{- /* Always-dark station: no scheme flash, no toggle. Reduced-motion = designed peer. */ -}}
 
 {{- /* Open Graph / Twitter */ -}}
