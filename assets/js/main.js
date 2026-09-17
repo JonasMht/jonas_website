@@ -187,31 +187,37 @@
         if (f && !f.classList.contains("is-live")) { ev.preventDefault(); playFacade(f); }
     });
 
-    /* copy buttons on code blocks — one click, drawn check, clipboard fallback for plain HTTP */
-    document.querySelectorAll(".article-content .highlight, .post .highlight").forEach(function (hl) {
-        var pre = hl.querySelector("pre");
-        if (!pre) return;
+    /* copy system — one interaction grammar everywhere:
+       clipboard icon → check draws inside it → spring pop → settles back */
+    var CLIP_SVG = '<svg viewBox="0 0 16 16" aria-hidden="true">' +
+        '<rect x="4" y="3.9" width="8" height="10.2" rx="1.3" fill="none" stroke="currentColor" stroke-width="1.4"/>' +
+        '<path d="M6.1 3.9V3.1a1.2 1.2 0 0 1 1.2-1.2h1.4a1.2 1.2 0 0 1 1.2 1.2v.8" fill="none" stroke="currentColor" stroke-width="1.4"/>' +
+        '<path class="ck" d="M6.1 9 7.8 10.6 10.7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>COPY</span>';
+
+    function makeCopyBtn() {
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "copy-btn";
         btn.setAttribute("aria-label", "Copy to clipboard");
-        btn.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>COPY</span>';
-        hl.appendChild(btn);
+        btn.innerHTML = CLIP_SVG;
+        return btn;
+    }
+    function wireCopy(btn, getText, after) {
         var label = btn.querySelector("span"), t = null;
         function done() {
             btn.classList.add("is-done");
             label.textContent = "COPIED";
-            hl.classList.add("is-copied");
+            if (after) after(true);
             clearTimeout(t);
             t = setTimeout(function () {
                 btn.classList.remove("is-done");
                 label.textContent = "COPY";
-                hl.classList.remove("is-copied");
+                if (after) after(false);
             }, 1600);
         }
         function fallback() {
             var ta = document.createElement("textarea");
-            ta.value = pre.innerText.replace(/\n+$/, "");
+            ta.value = getText();
             ta.setAttribute("readonly", "");
             ta.style.position = "fixed"; ta.style.opacity = "0";
             document.body.appendChild(ta);
@@ -220,11 +226,39 @@
             ta.remove();
         }
         btn.addEventListener("click", function () {
-            var text = pre.innerText.replace(/\n+$/, "");
             if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(done, fallback);
+                navigator.clipboard.writeText(getText()).then(done, fallback);
             } else fallback();
         });
+        return btn;
+    }
+
+    /* code blocks */
+    document.querySelectorAll(".article-content .highlight, .post .highlight").forEach(function (hl) {
+        var pre = hl.querySelector("pre");
+        if (!pre) return;
+        var btn = makeCopyBtn();
+        hl.appendChild(btn);
+        wireCopy(btn, function () { return pre.innerText.replace(/\n+$/, ""); },
+            function (on) { hl.classList.toggle("is-copied", on); });
+    });
+
+    /* copyable identifiers — ORCID-style ids and DOI links get an inline chip */
+    var ORCID = /^\d{4}-\d{4}-\d{4}-[\dXx]{4}$/;
+    document.querySelectorAll("main a").forEach(function (a) {
+        if (a.closest(".highlight") || a.querySelector("img")) return;
+        var text = (a.textContent || "").trim();
+        var href = a.getAttribute("href") || "";
+        var value = null;
+        if (ORCID.test(text)) value = text;
+        else if (href.indexOf("https://doi.org/") === 0) value = href.slice(16);
+        else if (href.indexOf("http://doi.org/") === 0) value = href.slice(15);
+        if (!value) return;
+        var chip = makeCopyBtn();
+        chip.classList.add("inline");
+        chip.setAttribute("aria-label", "Copy " + (ORCID.test(text) ? "ORCID iD" : "DOI") + ": " + value);
+        wireCopy(chip, function () { return value; });
+        a.insertAdjacentElement("afterend", chip);
     });
 
     /* lab comparison slider */

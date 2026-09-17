@@ -356,13 +356,18 @@ html:not(.js) .ignition { display: none; }
     transition: opacity .15s ease, border-color .15s ease, color .15s ease, transform .15s ease; }
 .copy-btn:hover, .copy-btn:focus-visible { opacity: 1; color: var(--accent); border-color: var(--accent); }
 .copy-btn:active { transform: scale(.94); }
-.copy-btn svg { width: 10px; height: 10px; display: block; }
-.copy-btn svg path { stroke-dasharray: 18; stroke-dashoffset: 18; }
+.copy-btn svg { width: 10px; height: 10px; display: block; flex: none; }
+.copy-btn svg .ck { stroke-dasharray: 7.5; stroke-dashoffset: 7.5; }
 .copy-btn.is-done { color: var(--accent); border-color: var(--accent); opacity: 1;
     animation: copy-pop .38s cubic-bezier(.2, .8, .3, 1.4); }
-.copy-btn.is-done svg path { animation: copy-draw .32s .04s ease-out forwards; }
+.copy-btn.is-done svg .ck { animation: copy-draw .32s .04s ease-out forwards; }
 @keyframes copy-pop { 0% { transform: scale(.9); } 55% { transform: scale(1.09); } 100% { transform: scale(1); } }
 @keyframes copy-draw { to { stroke-dashoffset: 0; } }
+/* inline variant — chips after copyable identifiers (ORCID, DOI) */
+.copy-btn.inline { position: static; display: inline-flex; vertical-align: middle;
+    margin: 0 0 0 7px; padding: 2px 7px; font-size: .52rem; opacity: .5; transform: none; }
+.copy-btn.inline:hover, .copy-btn.inline:focus-visible { opacity: 1; }
+.copy-btn.inline:active { transform: scale(.94); }
 .article-content table { width: 100%; border-collapse: collapse; font-size: .85rem; }
 .article-content th, .article-content td { border: 1px solid var(--line); padding: 7px 10px; text-align: left; color: var(--dim); }
 .article-content th { font-family: var(--mono); font-size: .62rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text); }
