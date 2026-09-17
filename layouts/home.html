@@ -69,7 +69,7 @@
             </div>
         </a>
         {{- end }}
-        <div class="grid3" style="margin-top:13px">
+        <div class="grid3 stagger" style="margin-top:13px">
             {{- range $rest }}{{ partial "article-card" . }}{{ end }}
             {{- with $research.Pages.ByDate.Reverse | last 1 }}{{ range . }}{{ partial "article-card" . }}{{ end }}{{ end }}
         </div>
@@ -79,7 +79,7 @@
         {{- $projects := site.GetPage "/personal/projects" }}
         <div class="sec-h"><span class="mark"></span><b>Workshop</b><span class="k">side quests</span>
             <a class="more" href="{{ $personal.RelPermalink }}" style="color:var(--accent)">FULL COLLECTION →</a></div>
-        <div class="grid3">
+        <div class="grid3 stagger">
             {{- range first 3 $projects.Pages }}{{ partial "article-card" . }}{{ end }}
         </div>
     </section>

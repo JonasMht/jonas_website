@@ -9,13 +9,14 @@ OUT.mkdir(parents=True, exist_ok=True)
 RAW = OUT / "raw"
 RAW.mkdir(exist_ok=True)
 
-def record(name, fn, seconds_pad=1.0):
+def record(name, fn, seconds_pad=1.0, viewport=None):
+    vp = viewport or {"width": 1440, "height": 900}
     with sync_playwright() as p:
         browser = p.chromium.launch()
         ctx = browser.new_context(
-            viewport={"width": 1440, "height": 900},
+            viewport=vp,
             record_video_dir=str(RAW),
-            record_video_size={"width": 1440, "height": 900},
+            record_video_size=vp,
         )
         page = ctx.new_page()
         try:
@@ -85,6 +86,39 @@ def v3(page):  # lab slider drag
     page.wait_for_timeout(500)
     scroll_pass(page, 400, 220)
 
+def v6(page):  # micro-interaction reel: nav, buttons, reticles, progress rail
+    page.goto(BASE)
+    page.wait_for_timeout(1000)
+    for sel in ["nav a.t[href='/pro/']", "nav a.t[href='/personal/']", "nav a.t[href='/']"]:
+        page.locator(sel).hover()
+        page.wait_for_timeout(420)
+    page.locator(".links .lnk:nth-child(2)").hover()
+    page.wait_for_timeout(420)
+    page.locator(".links .lnk.pri").hover()
+    page.wait_for_timeout(420)
+    page.evaluate("window.scrollTo({top: document.querySelector('.sec:nth-of-type(2)').offsetTop - 80, behavior:'instant'})")
+    page.wait_for_timeout(900)
+    cards = page.locator(".grid3 .card")
+    for i in range(min(cards.count(), 3)):
+        cards.nth(i).hover()
+        page.wait_for_timeout(800)
+        page.mouse.move(10, 500)
+        page.wait_for_timeout(420)
+    page.evaluate("window.scrollTo({top:0,behavior:'instant'})")
+    page.wait_for_timeout(600)
+    page.evaluate("window.scrollTo({top: document.body.scrollHeight, behavior:'instant'})")
+    page.wait_for_timeout(900)
+
+def v7(page):  # mobile arrival
+    pass  # viewport set by record()
+    page.goto(BASE)
+    page.wait_for_timeout(1000)
+    scroll_pass(page, 400, 300)
+    page.evaluate("window.scrollTo({top:0,behavior:'instant'})")
+    page.wait_for_timeout(600)
+    page.locator(".links .lnk.pri").hover()
+    page.wait_for_timeout(700)
+
 def v4(page):  # view transitions across stations
     page.goto(BASE)
     page.wait_for_timeout(900)
@@ -119,11 +153,13 @@ if __name__ == "__main__":
     import sys
     only = sys.argv[1] if len(sys.argv) > 1 else None
     jobs = {"v1-arrival-power-on": v1, "v2-console-session": v2, "v3-lab-instrument": v3,
-            "v4-view-transitions": v4, "v5-station-telemetry": v5}
+            "v4-view-transitions": v4, "v5-station-telemetry": v5,
+            "v6-microinteractions": v6, "v7-mobile-arrival": v7}
     for name, fn in jobs.items():
         if only and not name.startswith(only):
             continue
         try:
-            record(name, fn, 1.2)
+            vp = {"width": 390, "height": 844} if name == "v7-mobile-arrival" else None
+            record(name, fn, 1.2, vp)
         except Exception as e:
             print("FAILED", name, e)

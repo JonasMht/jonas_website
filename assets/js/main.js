@@ -1,6 +1,22 @@
 (function () {
     "use strict";
 
+    /* scroll progress rail */
+    var bar = document.createElement("div");
+    bar.id = "progress";
+    document.body.appendChild(bar);
+    var tick = false;
+    function paint() {
+        var h = document.documentElement;
+        var p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
+        bar.style.transform = "scaleX(" + p + ")";
+        tick = false;
+    }
+    window.addEventListener("scroll", function () {
+        if (!tick) { tick = true; requestAnimationFrame(paint); }
+    }, { passive: true });
+    paint();
+
     /* ===== station telemetry — self-hosted, first-party, disclosed in /legal ===== */
     var TEP = window.TELEMETRY_ENDPOINT || "";
     var dnt = navigator.doNotTrack === "1" || window.doNotTrack === "1";

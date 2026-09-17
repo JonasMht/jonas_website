@@ -58,7 +58,7 @@
     <section class="sec reveal" aria-label="Projects">
         <div class="sec-h"><span class="mark"></span><b>Collection</b><span class="k">image modules</span>
             <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">GITHUB →</a></div>
-        <div class="grid3">
+        <div class="grid3 stagger">
             {{- $featPage := "" }}
             {{- with .Params.featured }}{{ $featPage = site.GetPage (printf "/personal/projects/%s" .) }}{{ end }}
             {{- range $projects.Pages }}{{ if or (not $featPage) (ne .RelPermalink $featPage.RelPermalink) }}{{ partial "article-card" . }}{{ end }}{{ end }}
@@ -67,7 +67,7 @@
 
     <section class="sec reveal" aria-label="Beyond the lab">
         <div class="sec-h"><span class="mark"></span><b>Beyond the lab</b><span class="k">the ledger</span></div>
-        <div class="grid3">
+        <div class="grid3 stagger">
             {{- range $experiences.Pages }}{{ partial "article-card" . }}{{ end }}
         </div>
     </section>

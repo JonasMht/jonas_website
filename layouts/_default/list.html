@@ -12,7 +12,7 @@
 </header>
 
 <section class="container">
-    <div class="card-grid reveal">
+    <div class="card-grid reveal stagger">
         {{- range .RegularPages }}{{ partial "article-card" . }}{{ end }}
     </div>
     {{ partial "pager.html" . }}
