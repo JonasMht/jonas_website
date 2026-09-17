@@ -86,7 +86,7 @@
     if (ign && !reduce) {
         var seen = null;
         try { seen = sessionStorage.getItem("jm.ignited"); } catch (e) {}
-        if (seen) { ign.classList.add("is-done"); }
+        if (seen) { ign.remove(); }
         else {
             try { sessionStorage.setItem("jm.ignited", "1"); } catch (e) {}
             setTimeout(function () {
@@ -105,6 +105,15 @@
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("is-in");
+                    entry.target.querySelectorAll(".stagger").forEach(function (g) {
+                        if (g.classList.contains("is-in")) return;
+                        g.classList.add("is-in");
+                        var kids = g.children;
+                        for (var i = 0; i < kids.length; i++) kids[i].style.transitionDelay = (i * 60) + "ms";
+                        setTimeout(function () {
+                            for (var i = 0; i < kids.length; i++) kids[i].style.transitionDelay = "";
+                        }, 900);
+                    });
                     io.unobserve(entry.target);
                 }
             });

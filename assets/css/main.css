@@ -50,7 +50,7 @@ img { max-width: 100%; height: auto; }
     display: grid; place-items: center; font-family: var(--mono); font-size: .72rem;
     letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
     opacity: 1; transition: opacity .28s ease; pointer-events: none; }
-.ignition.is-done { opacity: 0; }
+.ignition.is-done { opacity: 0; pointer-events: none; }
 html.js .ignition { pointer-events: all; }
 html:not(.js) .ignition { display: none; }
 
@@ -93,7 +93,7 @@ html:not(.js) .ignition { display: none; }
 .mcell .sub { display: block; font-size: .68rem; color: var(--faint); font-family: var(--mono); text-align: right; margin-top: 3px; }
 .mcell > div { text-align: right; min-width: 0; }
 
-.mleft .photo { position: relative; border-radius: 8px; border: 1px solid var(--line2); max-width: 480px; }
+.mleft .photo { position: relative; border-radius: 8px; border: 1px solid var(--line2); max-width: 480px; margin-bottom: 20px; }
 .mleft .photo img { width: 100%; height: 270px; object-fit: cover; object-position: center 20%; display: block; border-radius: 7px; }
 .mleft .photo::after { content: ""; position: absolute; inset: 0; border-radius: 7px;
     background: linear-gradient(transparent 55%, rgba(12, 15, 20, .88)); }
@@ -156,6 +156,7 @@ html:not(.js) .ignition { display: none; }
             linear-gradient(var(--accent), var(--accent)) right var(--g) bottom var(--g) / 2px var(--tk),
             linear-gradient(var(--accent), var(--accent)) right var(--g) bottom var(--g) / var(--tk) 2px;
         background-repeat: no-repeat; }
+    .card:hover::after { opacity: 1; }
 }
 .card:hover { transform: translateY(-3px); border-color: var(--line2); }
 .card__media { position: relative; height: 150px; overflow: hidden; border-radius: 11px 11px 0 0; }
@@ -390,14 +391,8 @@ html:not(.js) .ignition { display: none; }
     text-transform: uppercase; color: var(--faint); }
 
 /* staggered children — grids power on as a cascade */
-html.js .rm-ok .stagger > * { opacity: 0; transform: translateY(14px);
-    transition: opacity .5s ease, transform .5s cubic-bezier(.2, .8, .3, 1); }
-.reveal.is-in .stagger > * { opacity: 1 !important; transform: none !important; }
-.reveal.is-in .stagger > *:nth-child(2) { transition-delay: 60ms; }
-.reveal.is-in .stagger > *:nth-child(3) { transition-delay: 120ms; }
-.reveal.is-in .stagger > *:nth-child(4) { transition-delay: 180ms; }
-.reveal.is-in .stagger > *:nth-child(5) { transition-delay: 240ms; }
-.reveal.is-in .stagger > *:nth-child(6) { transition-delay: 300ms; }
+.stagger > * { transition: opacity .5s ease, transform .5s cubic-bezier(.2, .8, .3, 1); }
+html.js .rm-ok .stagger:not(.is-in) > * { opacity: 0; transform: translateY(14px); }
 
 /* live dot pulse */
 @keyframes livepulse { 0%, 100% { box-shadow: 0 0 4px var(--ok); opacity: 1; } 50% { box-shadow: 0 0 10px var(--ok); opacity: .75; } }
