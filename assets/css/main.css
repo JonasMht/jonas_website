@@ -138,12 +138,12 @@ html:not(.js) .ignition { display: none; }
 
 /* ===== module cards ===== */
 .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
-.card { position: relative; display: block; color: var(--text); overflow: hidden; border: 1px solid var(--line);
+.card { position: relative; display: block; color: var(--text); overflow: visible; border: 1px solid var(--line);
     border-radius: var(--r); background: var(--panel);
     transition: transform .22s cubic-bezier(.2, .8, .3, 1), border-color .2s; }
 /* lock-on reticle — the focus grammar snaps inward on hover (pointer devices only) */
 @media (pointer: fine) {
-    .card::after { content: ""; position: absolute; inset: 6px; pointer-events: none; z-index: 3;
+    .card::after { content: ""; position: absolute; inset: -7px; pointer-events: none; z-index: 3;
         opacity: 0; transition: opacity .18s ease;
         --tk: 12px; --g: -1px;
         background:
