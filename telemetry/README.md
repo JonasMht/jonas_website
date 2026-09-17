@@ -121,5 +121,44 @@ Rebuild + deploy. The dashboard: `https://jonasx.xyz/dash?key=YOUR_KEY`.
 ```bash
 curl -s -X POST https://jonasx.xyz/e -H 'Content-Type: application/json' \
   -d '{"t":"pv","p":"/","v":"test-visitor","s":"test-session"}' -o /dev/null -w '%{http_code}\n'
-# expect 204 — then open the dashboard and see the event land.
 ```
+
+Expect `204`. Dashboard `200` with the key; `403`/`404` without it.
+
+## Security posture (as deployed)
+
+The collector is hardened `telemetry/server.py` (stdlib only). The edge
+(Caddy) and the app layer share the work:
+
+**Edge (Caddyfile):**
+- `script-src 'self' 'sha256-…' 'sha256-…'` — no inline JS unless hashed.
+  **If you edit `layouts/_partials/footer.html` or `baseof.html`**, the
+  inline script hash changes → recompute both `sha256` values:
+  `openssl dgst -sha256 -binary < extracted-script | openssl base64`
+  (or grab them from the browser console CSP violation report) and update
+  the Caddyfile, then `caddy reload`.
+- 16 KB `request_body max_size` on `/e` (`413` beyond), `GET /e` locked
+  to the proxy (`405`), read timeouts, `-Server`, `X-Frame-Options DENY`,
+  `Permissions-Policy` locks, COOP same-origin.
+- **Routing rule:** the catch-all site `handle` must use an explicit
+  `@site { not path /e; not path /dash*; not path /api* }` matcher — a bare
+  catch-all `handle` sorts before the proxy routes and shadows them.
+
+**Collector:**
+- Real client IP = **last** `X-Forwarded-For` entry (the one the local Caddy
+  appends) — clients cannot spoof their way past throttles.
+- `Origin` must equal the configured origin or `403`.
+- Throttle: **120 requests / 60 s / IP**; over → `429` + `Retry-After`.
+  Each rejection is a strike; 3 strikes → temp ban, escalating
+  (15 min → 30 min → 1 h …). Bans clear on restart or when they expire.
+- Hard cut-off: append an IP (one per line) to `telemetry/blocked.txt`
+  → instant `403`, hot-reloaded (mtime-checked), no restart needed.
+- Key compared with `hmac.compare_digest`; 16 KB body cap; connection
+  semaphore sheds load with `503` under saturation; keep-alive safe
+  (bodies drained before every rejection).
+
+**Ops:**
+- Firewall: `sudo ufw allow 8090/tcp comment "jonasx station"` (done).
+- Rotate the key: delete `telemetry/.key`, run `start-telemetry.sh`,
+  it prints the new dashboard URL.
+- Inspect bans/strikes: `tail -f telemetry/server.log`.

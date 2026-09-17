@@ -21,7 +21,7 @@ Env
 
 Retention: events 90 days, visitor rows 400 days (pruned hourly).
 """
-import json, os, random, sqlite3, string, time, threading, hashlib
+import json, os, pathlib, random, sqlite3, string, time, threading, hashlib, hmac, socket
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
@@ -33,7 +33,34 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 EVENT_TTL = 90 * 86400
 VISITOR_TTL = 400 * 86400
 RATE = {}  # ip -> [window_start, count]
-RATE_MAX, RATE_WIN = 240, 60
+RATE_MAX, RATE_WIN = 120, 60          # requests per IP per minute
+BAN_AFTER = 3                          # 429s within the window before a temp ban
+BAN_SECS = 900                         # 15-minute escalating temp ban
+BANS = {}                              # ip -> [banned_until, strikes]
+BLOCKED_HIT = [False]                  # set when a blocklisted IP is refused
+BLOCKFILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "blocked.txt")
+BLOCKED = set()
+BLOCKED_MTIME = 0
+MAX_CONNS = 32
+CONN_SEM = threading.BoundedSemaphore(MAX_CONNS)
+
+def _load_blockfile():
+    global BLOCKED, BLOCKED_MTIME
+    try:
+        m = os.path.getmtime(BLOCKFILE)
+        if m != BLOCKED_MTIME:
+            with open(BLOCKFILE) as f:
+                BLOCKED = {ln.strip() for ln in f if ln.strip() and not ln.startswith("#")}
+            BLOCKED_MTIME = m
+    except FileNotFoundError:
+        BLOCKED = set(); BLOCKED_MTIME = 0
+
+def _prune_rates(now):
+    if len(RATE) > 4096:
+        for ip in [ip for ip, (w, _) in RATE.items() if now - w > RATE_WIN]:
+            RATE.pop(ip, None)
+    for ip in [ip for ip, (until, _) in BANS.items() if until < now]:
+        BANS.pop(ip, None)
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS events (
@@ -67,19 +94,40 @@ def prune_loop():
         time.sleep(3600)
 
 def rate_ok(ip):
+    """Per-IP throttle with escalating temp bans + permanent blocklist. Returns (ok, retry_after)."""
+    global BLOCKED_MTIME
     now = time.time()
+    _prune_rates(now)
+    _load_blockfile()
+    if ip in BLOCKED:
+        BLOCKED_HIT[:] = [True]
+        return False, -403
+    until, strikes = BANS.get(ip, (0, 0))
+    if until > now:
+        return False, int(until - now)
     win, n = RATE.get(ip, (0, 0))
     if now - win > RATE_WIN:
-        RATE[ip] = (now, 1); return True
-    if n >= RATE_MAX: return False
-    RATE[ip] = (win, n + 1); return True
+        RATE[ip] = (now, 1); return True, 0
+    if n >= RATE_MAX:
+        strikes += 1
+        BANS[ip] = (now + BAN_SECS * strikes, strikes)   # each repeat doubles down
+        RATE.pop(ip, None)
+        return False, BAN_SECS * strikes
+    RATE[ip] = (win, n + 1); return True, 0
 
 def touch_visitor(cur, v, ts):
     cur.execute("INSERT INTO visitors(v, first, last) VALUES(?,?,?) ON CONFLICT(v) DO UPDATE SET last=excluded.last, visits=visits+1", (v, ts, ts))
 
 class Handler(BaseHTTPRequestHandler):
     server_version = "StationTelemetry/1.0"
+    timeout = 15                              # kill slow/idle connections
+    protocol_version = "HTTP/1.1"
     def log_message(self, fmt, *a): pass
+    def handle_one_request(self):
+        try:
+            BaseHTTPRequestHandler.handle_one_request(self)
+        except (socket.timeout, ConnectionError):
+            self.close_connection = True
 
     def _cors(self):
         self.send_header("Access-Control-Allow-Origin", ORIGIN)
@@ -89,8 +137,13 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Vary", "Origin")
 
     def _json(self, code, obj, cors=False):
-        body = json.dumps(obj).encode()
         self.send_response(code)
+        if code == 204 or obj is None:
+            if cors: self._cors()
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
+        body = json.dumps(obj).encode()
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
         if cors: self._cors()
@@ -101,15 +154,42 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(204); self._cors(); self.end_headers()
 
     def do_POST(self):
-        ip = self.client_address[0]
+        xff = (self.headers.get("X-Forwarded-For") or "").split(",")
+        ip = xff[-1].strip() if xff and xff[-1].strip() else self.client_address[0]
+        origin = self.headers.get("Origin", "")
+        if origin and origin != ORIGIN:
+            self.close_connection = True
+            return self._json(403, {"e": "bad origin"}, cors=True)
         if urlparse(self.path).path != "/e":
             return self._json(404, {"e": "not found"})
-        if not rate_ok(ip):
-            return self._json(429, {"e": "rate limited"}, cors=True)
         try:
-            n = int(self.headers.get("Content-Length", "0"))
-            if n <= 0 or n > 16384: return self._json(413, {"e": "bad size"}, cors=True)
-            data = json.loads(self.rfile.read(n))
+            n = int(self.headers.get("Content-Length", "0") or 0)
+        except ValueError:
+            n = 0
+        if n > 16384:
+            self.rfile.read(16384)                     # drain a bounded slice
+            self.send_response(413)
+            self.send_header("Content-Length", "0")
+            self.send_header("Connection", "close")
+            self._cors(); self.end_headers()
+            self.close_connection = True
+            return
+        body = self.rfile.read(n) if n > 0 else b""
+
+        ok, retry = rate_ok(ip)
+        if not ok:
+            self.close_connection = True
+            if retry == -403:
+                return self._json(403, {"e": "blocked"}, cors=True)
+            self.send_response(429)
+            self.send_header("Retry-After", str(retry))
+            self.send_header("Content-Length", "0")
+            self.send_header("Connection", "close")
+            self._cors(); self.end_headers()
+            self.close_connection = True
+            return
+        try:
+            data = json.loads(body) if body else []
         except Exception:
             return self._json(400, {"e": "bad json"}, cors=True)
         if not isinstance(data, list): data = [data]
@@ -141,7 +221,7 @@ class Handler(BaseHTTPRequestHandler):
         self._json(204, {}, cors=True)
 
     def _auth(self, q):
-        return q.get("key", [""])[0] == KEY
+        return hmac.compare_digest(q.get("key", [""])[0], KEY)
 
     def do_GET(self):
         u = urlparse(self.path)
@@ -245,12 +325,34 @@ def api_visitor(q):
         evs = cur.fetchall()
     return {"id": vid, "events": evs}
 
+class LimitedServer(ThreadingHTTPServer):
+    daemon_threads = True
+    def process_request(self, request, client_address):
+        if not CONN_SEM.acquire(blocking=False):        # shed load when saturated
+            try:
+                request.sendall(b"HTTP/1.1 503 Service Unavailable\r\nContent-Length: 0\r\nRetry-After: 5\r\nConnection: close\r\n\r\n")
+            except Exception:
+                pass
+            self.shutdown_request(request)
+            return
+        threading.Thread(target=self._guarded, args=(request, client_address), daemon=True).start()
+    def _guarded(self, request, client_address):
+        try:
+            self.finish_request(request, client_address)
+        except Exception:
+            pass
+        finally:
+            self.shutdown_request(request)
+            CONN_SEM.release()
+
 def run():
     with db() as c: c.executescript(SCHEMA)
+    pathlib.Path(BLOCKFILE).touch(exist_ok=True)
     threading.Thread(target=prune_loop, daemon=True).start()
     print(f"[station-telemetry] dashboard key: {KEY}")
+    print(f"[station-telemetry] rate: {RATE_MAX}/{RATE_WIN}s per IP, ban after {BAN_AFTER} violations for {BAN_SECS}s, blocklist={BLOCKFILE}")
     print(f"[station-telemetry] listening on 127.0.0.1:{PORT}, db={DB}, origin={ORIGIN}")
-    ThreadingHTTPServer(("127.0.0.1", PORT), Handler).serve_forever()
+    LimitedServer(("127.0.0.1", PORT), Handler).serve_forever()
 
 if __name__ == "__main__":
     run()
