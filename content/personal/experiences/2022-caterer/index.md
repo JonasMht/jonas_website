@@ -12,14 +12,14 @@ tags:
 ---
 
 ## Description
-Back in 2022, I was enrolled as a caterer for two consecutive years at the University of Strasbourg's Service de la Vie Universitaire (SVU).
+I worked as a caterer for two years at the University of Strasbourg's Service de la Vie Universitaire (SVU), alongside my studies.
 {{< figure src="alumni.jpg"   title="Alumni event" >}}
 
 ## Mission
-I was responsible for coordinating with my colleagues in the catering department to set up buffets, welcome guests, and ensure the smooth execution of events. 
+With the catering team, I set up buffets, welcomed guests, and helped events run on schedule. 
 
 {{< figure src="rentree.jpg"   title="University employee event" >}}
 
 
 ## Conclusion
-This experience allowed me to discover catering and to develop my skills in attention to detail, guest relations and communication.
+Two years of event catering: setup, service and cleanup, always against the clock.

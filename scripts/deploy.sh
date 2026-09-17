@@ -18,4 +18,5 @@ echo "[3/3] syncing telemetry pack → ${USER_HOST}:${TEL_DIR}"
 rsync -az --delete telemetry/server.py telemetry/dashboard.html "${USER_HOST}:${TEL_DIR}/"
 
 echo "done. dashboard: https://jonasx.xyz/dash?key=<your TELEMETRY_KEY>"
-echo "if the collector changed, restart it: sudo systemctl restart station-telemetry"
+echo "if the collector changed: ssh ${USER_HOST} 'systemctl --user restart jonasx-telemetry'"
+echo "if the Caddyfile changed:  ssh ${USER_HOST} 'systemctl --user reload jonasx-caddy'"

@@ -1,9 +1,9 @@
 ---
 title: "Professional"
-description: "Jonas Mehtali — PhD student in computer-assisted interventions at ICube Laboratory, University of Strasbourg."
+description: "PhD student in computer-assisted interventions at ICube Laboratory, University of Strasbourg."
 layout: "hub-pro"
 eyebrow: "ICube Laboratory · University of Strasbourg"
-tagline: "My research focuses on percutaneous thermal ablation: when a liver tumor outgrows what one needle can destroy, clinicians must plan multiple overlapping ablations — and local recurrence sits between 10 and 39% within five years. My PhD builds the planning loop that makes this fast, adaptive and usable in the OR."
+tagline: "Percutaneous thermal ablation treats liver tumors with needle-mounted heat. When one needle is not enough, clinicians must plan several overlapping ablations, and local recurrence reaches 10 to 39% within five years. My PhD builds the planning software that runs fast enough to use during the procedure."
 cells:
   - k: "Publications"
     v: "3"
@@ -22,7 +22,7 @@ cells:
 routes:
   - no: "R1 · SIMULATION"
     title: "Make heat computable"
-    desc: "Real-time thermal estimation — C-NCA, 476 fps, GPU pipelines that behave like instruments."
+    desc: "C-NCA thermal simulation at 476 fps on consumer GPUs."
     url: "/pro/research/2024-assisted-surgery-internship/"
   - no: "R2 · PLANNING"
     title: "Make plans real-time"
@@ -30,7 +30,7 @@ routes:
     url: "/pro/research/2024-cryotrack-miccai/"
   - no: "R3 · TRANSLATION"
     title: "Make it clinical"
-    desc: "Ergonomic planning interfaces validated with clinicians — the ITI HealthTech bridge."
+    desc: "Planning interfaces designed and tested with clinicians, within the ITI HealthTech program."
     url: "/pro/about/"
 featuredPubs:
   - "/pro/research/cnca-2025"
@@ -54,10 +54,10 @@ timeline:
     desc: "Python data-analysis tool for landslide surveillance."
 ---
 
-My research focuses on **percutaneous thermal ablation** — a minimally invasive
+My research topic is **percutaneous thermal ablation**, a minimally invasive
 treatment for small liver tumors. When a tumor exceeds what a single needle can
 cover, clinicians must plan multiple overlapping ablations manually, and local
-recurrence rates sit between 10 and 39&nbsp;% within five years.
+recurrence rates reach 10 to 39&nbsp;% within five years.
 
-My PhD attacks this problem on three axes, from optimization to intraoperative
-replanning and clinical ergonomics.
+My PhD works on three parts of this problem: faster simulation, replanning
+during the procedure, and the interfaces clinicians use to do both.

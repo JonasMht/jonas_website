@@ -1,9 +1,9 @@
 ---
 title: Jonas Mehtali
-description: "Two worlds, one site: my professional research in computer-assisted interventions, and the personal projects I build for fun."
+description: "PhD candidate in computer-assisted interventions at ICube, Strasbourg. Research, publications, and personal projects."
 kicker: "PHD CANDIDATE · COMPUTER-ASSISTED INTERVENTIONS"
-headline: "Planning heat |before| it burns."
-lede: "I research real-time GPU planning for percutaneous thermal ablation at ICube, Strasbourg — one needle is rarely enough, and local recurrence punishes improvisation. Off shift, I build games, tools and 3D worlds."
+headline: "Real-time |planning| for thermal ablation."
+lede: "I research real-time planning for percutaneous thermal ablation at ICube, Strasbourg: when a liver tumor needs several overlapping ablations, my work computes and adapts the needle plan during the procedure. Off shift, I build games, tools and 3D worlds."
 cells:
   - k: "Publications"
     v: "3"

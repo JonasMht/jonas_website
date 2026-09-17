@@ -1,6 +1,6 @@
 ---
 title: "Publications"
-description: "Peer-reviewed work on real-time thermal ablation planning — MICCAI ×2, IJCARS ×1. Every entry leads with the figure, a one-sentence takeaway, and the links that matter."
+description: "Peer-reviewed work on real-time thermal ablation planning: MICCAI ×2, IJCARS ×1. Each entry leads with the figure, a one-sentence takeaway, and links."
 slug: publications
 layout: "pubs"
 papers:

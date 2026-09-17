@@ -9,7 +9,11 @@
 {{- with .Params.image -}}
   {{- $img := $.Resources.GetMatch . -}}
   {{- if $img -}}
-    {{- $ogImage = $img.Permalink -}}
+    {{- if ge $img.Width 1200 -}}
+      {{- $ogImage = ($img.Resize "1200x jpg q85").Permalink -}}
+    {{- else -}}
+      {{- $ogImage = $img.Permalink -}}
+    {{- end -}}
   {{- else -}}
     {{- $ogImage = . | absURL -}}
   {{- end -}}
@@ -126,7 +130,10 @@
 {{- $img := "" -}}
 {{- with .Params.image -}}
   {{- $r := $.Resources.GetMatch . -}}
-  {{- if $r -}}{{- $img = $r.Permalink -}}{{- end -}}
+  {{- if $r -}}
+    {{- if ge $r.Width 1200 -}}{{- $img = ($r.Resize "1200x jpg q85").Permalink -}}
+    {{- else -}}{{- $img = $r.Permalink -}}{{- end -}}
+  {{- end -}}
 {{- end -}}
 {{- $desc := .Params.description | default (.Summary | plainify) -}}
 {{- $schema := dict

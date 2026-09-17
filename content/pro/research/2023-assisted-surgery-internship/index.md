@@ -17,9 +17,7 @@ tags:
 
 ## Context
 
-As part of my first Master’s year internship, I present to you this in depth post about my 3 month dual internship in Darmstadt, Germany and Strasbourg, France.
-<br>
-It lasted from the 1st of June to the 1st of September 2023 and was conducted in the MEC-Lab research group in the Computer Science Department at the TU Darmstadt, Germany and in the IMAGeS research group of the ICube laboratory at the University of Strasbourg, France.
+This three-month internship took place from June 1st to September 1st, 2023, during the first year of my Master's. It was split between the MEC-Lab in the Computer Science Department at TU Darmstadt, Germany, and the IMAGeS group of the ICube laboratory at the University of Strasbourg, France.
 
 ## Goal of the Internship
 The goal of the internship was to take over and enhance the CryoTrack project which is a non-invasive surgery assistance tool developed for the 3D Slicer software.
@@ -29,11 +27,9 @@ Another important part was the streamlining of the 3D Slicer workflow, displayin
 
 {{< figure src="ArtificialRespirationMovement.gif" width=50% title="Breathing Simulation and Marker Detection">}}
 
-Throughout the internship, I worked extensively with Python, C++ and the 3D Slicer interface, learning to integrate a client and server for IGTLink communication between the different independent equipment pieces. I tackled challenges related to stereoscopic imaging, image processing, marker detection, synchronization of surgical procedures with breathing cycles and trajectory predictions for accurate needle placement.
-<br><br>
-Collaborating with the team, I tested, debugged, and collected data on different algorithm optimizations culminating in a presentation of my progress to the IMAGeS team on the 21st of July 2023.
-<br><br>
-The internship involved a deep dive into practical software development for non-invasive surgical guidance, contributing to the field of medical technology and patient care.
+Throughout the internship, I worked mostly in Python and C++ inside 3D Slicer: integrating IGTLink client/server communication between the different equipment pieces, marker detection from multiple cameras, and trajectory prediction for needle placement.
+
+Collaborating with the team, I tested and debugged several algorithm optimizations, and presented my progress to the IMAGeS group on July 21st, 2023.
 
 ## Contributions
 - Real time visual needle trajectory correction
@@ -59,7 +55,7 @@ This video has been made to present the state of the project at the end of my in
 The goal is to allow for quick pick up of the project by other researchers and to present the project to the public.
 
 ## Phantom
-Phantoms play a crucial role in the field of surgery, serving as versatile tools for research, training and quality assurance. These phantoms are specially designed materials that mimic human tissues or structures, enabling surgeons and medical professionals to simulate and practice various surgical procedures before applying them to real patients.
+A phantom is a tissue-mimicking stand-in used to rehearse a procedure safely before operating on a patient. For this project, we printed a torso phantom and scanned it to obtain a realistic geometry for planning tests.
 
 <!--
 Side by side images

@@ -17,7 +17,7 @@ links:
 ---
 
 ## Description
-Back in 2020, I was enrolled as a public servant in my hometown of Niffer for two consecutive years.
+In 2020 I started a two-year job with the town council of Niffer, my hometown.
 <br>
 I was in charge of the surveillance of the recycling center, the maintenance of green spaces and the hauling and escorting of equipment.
 <br>
@@ -41,4 +41,4 @@ I would drive various vehicles such as a tractor and a van for the purpose of ha
 {{< figure src="escort.jpg"   title="Escorting a tractor" >}}
 
 ## Conclusion
-This experience allowed me to discover work as a public servant and to develop my skills in the field of teamwork, planning and versatile equipment use.
+Two years of municipal work: heavy equipment, public-facing service, and daily planning.
