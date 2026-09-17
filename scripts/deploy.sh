@@ -15,8 +15,11 @@ echo "[2/3] syncing site → ${USER_HOST}:${SITE_DIR}"
 rsync -az --delete public/ "${USER_HOST}:${SITE_DIR}/"
 
 echo "[3/3] syncing telemetry pack → ${USER_HOST}:${TEL_DIR}"
-rsync -az --delete telemetry/server.py telemetry/dashboard.html "${USER_HOST}:${TEL_DIR}/"
+CHANGED=$(rsync -az --delete --itemize-changes telemetry/server.py telemetry/dashboard.html "${USER_HOST}:${TEL_DIR}/" | grep -c "^>f" || true)
 
 echo "done. dashboard: https://jonasx.xyz/dash?key=<your TELEMETRY_KEY>"
-echo "if the collector changed: ssh ${USER_HOST} 'systemctl --user restart jonasx-telemetry'"
+if [ "${CHANGED:-0}" -gt 0 ]; then
+    echo "collector files changed — restarting service…"
+    ssh "${USER_HOST}" "systemctl --user restart jonasx-telemetry"
+fi
 echo "if the Caddyfile changed:  ssh ${USER_HOST} 'systemctl --user reload jonasx-caddy'"

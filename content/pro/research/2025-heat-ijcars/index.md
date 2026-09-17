@@ -31,6 +31,17 @@ This work was published in the *International Journal of Computer Assisted Radio
 
 ---
 
+## BibTeX
+```bibtex
+@article{mehtali2025heat,
+  title     = {HEAT: High-Efficiency Simulation for Thermal Ablation Therapy},
+  author    = {Mehtali, Jonas and Verde, Juan and Essert, Caroline},
+  journal   = {International Journal of Computer Assisted Radiology and Surgery},
+  year      = {2025},
+  doi       = {10.1007/s11548-025-03350-z}
+}
+```
+
 ## Motivation
 
 Thermal ablation is a minimally invasive cancer treatment that uses heat to destroy tumors. However, accurately predicting the ablation zone (the area that will be destroyed) remains challenging. Traditional simulation methods are too slow for clinical use, taking minutes or even hours to compute.

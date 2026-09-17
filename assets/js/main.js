@@ -289,6 +289,7 @@
             line("telemetry on|off — opt out of / back into station telemetry (see /legal)");
             line("session — your visit, as local telemetry");
             line("goto <path> — jump to a station path (e.g. goto /pro/)");
+            line("find <words> — search the station (titles, tags, descriptions)");
             line("clear — wipe the local profile");
         } else if (cmd === "session") {
             sessionLine();
@@ -299,6 +300,16 @@
             if (!/\/$/.test(path)) path += "/";
             line("▸ navigating to " + path + " …");
             setTimeout(function () { window.location.href = path; }, 250);
+        } else if (cmd === "find") {
+            var q = parts.slice(1).join(" ").toLowerCase();
+            if (!q) { line("find needs words — e.g. find ablation"); return; }
+            fetch("/searchindex.json").then(function (r) { return r.json(); }).then(function (idx) {
+                var hits = idx.filter(function (p) {
+                    return ((p.t + " " + (p.d || "") + " " + (p.g || []).join(" ")).toLowerCase().indexOf(q) !== -1);
+                }).slice(0, 8);
+                if (!hits.length) { line("no module matches: " + q); return; }
+                hits.forEach(function (h) { line("▸ " + h.t + " → " + h.u); });
+            }).catch(function () { line("search index unavailable"); });
         } else if (cmd === "telemetry") {
             var mode = (parts[1] || "").toLowerCase();
             if (mode === "off") {

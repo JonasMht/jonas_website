@@ -30,6 +30,18 @@ This work was published at the *27th International Conference on Medical Image C
 
 ---
 
+## BibTeX
+```bibtex
+@inproceedings{krumb2024cryotrack,
+  title     = {Cryotrack: Planning and Navigation for Computer Assisted Cryoablation},
+  author    = {Krumb, Henry J. and Mehtali, Jonas and Verde, Juan and Mukhopadhyay, Anirban and Essert, Caroline},
+  booktitle = {Medical Image Computing and Computer Assisted Intervention -- MICCAI 2024},
+  year      = {2024},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-031-72089-5_10}
+}
+```
+
 ## Motivation
 
 Cryoablation offers several advantages over thermal ablation:
