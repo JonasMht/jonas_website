@@ -1,0 +1,11 @@
+{{- $r := "" -}}
+{{- $src := .Destination -}}
+{{- if not (or (hasPrefix $src "http") (hasPrefix $src "/")) -}}
+  {{- $r = .Page.Resources.GetMatch (printf "*%s*" $src) -}}
+{{- end -}}
+{{- if $r -}}
+{{- $v := partial "img-variants.html" (dict "r" $r "widths" (slice 360 540 750 1080)) -}}
+<img class="art-img" src="{{ $v.src }}"{{ with $v.srcset }} srcset="{{ . }}" sizes="(max-width:820px) 60vw, 500px"{{ end }} width="{{ $v.w }}" height="{{ $v.h }}" alt="{{ .PlainText | default .Page.Title }}" loading="lazy" decoding="async">
+{{- else -}}
+<img class="art-img" src="{{ $src | safeURL }}" alt="{{ .PlainText }}" loading="lazy" decoding="async">
+{{- end -}}

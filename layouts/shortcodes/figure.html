@@ -1,0 +1,14 @@
+{{- $src := .Get "src" -}}
+{{- $r := "" -}}
+{{- if not (or (hasPrefix $src "http") (hasPrefix $src "/")) -}}
+  {{- $r = .Page.Resources.GetMatch (printf "*%s*" $src) -}}
+{{- end -}}
+<figure class="art-fig">
+    {{- if $r -}}
+    {{- $v := partial "img-variants.html" (dict "r" $r "widths" (slice 360 540 750 1080)) -}}
+    <img class="art-img" src="{{ $v.src }}"{{ with $v.srcset }} srcset="{{ . }}" sizes="(max-width:820px) 94vw, 640px"{{ end }} width="{{ $v.w }}" height="{{ $v.h }}" alt="{{ .Get "alt" | default (.Get "title") }}" loading="lazy" decoding="async">
+    {{- else -}}
+    <img class="art-img" src="{{ $src | safeURL }}" alt="{{ .Get "alt" | default (.Get "title") }}" loading="lazy" decoding="async">
+    {{- end -}}
+    {{- with .Get "title" }}<figcaption>{{ . }}</figcaption>{{ end -}}
+</figure>
