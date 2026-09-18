@@ -417,7 +417,7 @@ html:not(.js) .ignition { display: none; }
 .copy-btn { position: absolute; top: 8px; right: 8px; z-index: 2; display: flex; align-items: center; gap: 5px;
     font-family: var(--mono); font-size: .56rem; letter-spacing: .14em; text-transform: uppercase;
     color: var(--dim); background: var(--panel); border: 1px solid var(--line2); border-radius: 6px;
-    padding: 4px 9px; cursor: pointer; opacity: .72;
+    padding: 4px 9px; cursor: pointer; opacity: .72; -webkit-user-select: none; user-select: none;
     transition: opacity .15s ease, border-color .15s ease, color .15s ease, transform .15s ease; }
 .copy-btn:hover, .copy-btn:focus-visible { opacity: 1; color: var(--accent); border-color: var(--accent); }
 .copy-btn:active { transform: scale(.94); }
@@ -428,11 +428,17 @@ html:not(.js) .ignition { display: none; }
 .copy-btn.is-done svg .ck { animation: copy-draw .32s .04s ease-out forwards; }
 @keyframes copy-pop { 0% { transform: scale(.9); } 55% { transform: scale(1.09); } 100% { transform: scale(1); } }
 @keyframes copy-draw { to { stroke-dashoffset: 0; } }
-/* inline variant — chips after copyable identifiers (ORCID, DOI) */
+/* inline variant — chips after copyable identifiers (DOI) */
 .copy-btn.inline { position: static; display: inline-flex; vertical-align: middle;
     margin: 0 0 0 7px; padding: 2px 7px; font-size: .52rem; opacity: .5; transform: none; }
 .copy-btn.inline:hover, .copy-btn.inline:focus-visible { opacity: 1; }
 .copy-btn.inline:active { transform: scale(.94); }
+/* bare identifier links — the id itself is the copy button (ORCID) */
+.copy-btn.copy-id { position: static; display: inline-flex; align-items: center; gap: 6px;
+    vertical-align: middle; background: none; border: none; border-bottom: 1px dashed var(--accent-dim);
+    border-radius: 0; padding: 0 0 1px; opacity: 1; transform: none;
+    font-family: var(--mono); font-size: .8rem; color: var(--text); cursor: copy; }
+.copy-btn.copy-id:hover, .copy-btn.copy-id:focus-visible { color: var(--accent); border-color: var(--accent); opacity: 1; }
 .article-content table { width: 100%; border-collapse: collapse; font-size: .85rem; }
 .article-content th, .article-content td { border: 1px solid var(--line); padding: 7px 10px; text-align: left; color: var(--dim); }
 .article-content th { font-family: var(--mono); font-size: .62rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text); }

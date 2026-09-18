@@ -238,7 +238,9 @@
         return btn;
     }
     function wireCopy(btn, getText, after) {
-        var label = btn.querySelector("span"), t = null;
+        var label = btn.querySelector("span");
+        var label0 = label.textContent;
+        var t = null;
         function done() {
             btn.classList.add("is-done");
             label.textContent = "COPIED";
@@ -246,21 +248,28 @@
             clearTimeout(t);
             t = setTimeout(function () {
                 btn.classList.remove("is-done");
-                label.textContent = "COPY";
+                label.textContent = label0;
                 if (after) after(false);
             }, 1600);
+        }
+        function clearSel() {
+            var sel = window.getSelection;
+            if (sel) { var s = window.getSelection(); if (s && s.rangeCount) s.removeAllRanges(); }
         }
         function fallback() {
             var ta = document.createElement("textarea");
             ta.value = getText();
             ta.setAttribute("readonly", "");
-            ta.style.position = "fixed"; ta.style.opacity = "0";
+            ta.style.position = "fixed"; ta.style.top = "0"; ta.style.left = "-9999px";
             document.body.appendChild(ta);
+            clearSel();
             ta.select();
             try { if (document.execCommand("copy")) done(); } catch (e) {}
+            clearSel();
             ta.remove();
         }
         btn.addEventListener("click", function () {
+            clearSel();
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(getText()).then(done, fallback);
             } else fallback();
@@ -278,7 +287,8 @@
             function (on) { hl.classList.toggle("is-copied", on); });
     });
 
-    /* copyable identifiers — ORCID-style ids and DOI links get an inline chip */
+    /* copyable identifiers — ORCID links become click-to-copy themselves;
+       DOI links keep navigation and gain an inline copy chip */
     var ORCID = /^\d{4}-\d{4}-\d{4}-[\dXx]{4}$/;
     document.querySelectorAll("main a").forEach(function (a) {
         if (a.closest(".highlight") || a.querySelector("img")) return;
@@ -289,11 +299,20 @@
         else if (href.indexOf("https://doi.org/") === 0) value = href.slice(16);
         else if (href.indexOf("http://doi.org/") === 0) value = href.slice(15);
         if (!value) return;
-        var chip = makeCopyBtn();
-        chip.classList.add("inline");
-        chip.setAttribute("aria-label", "Copy " + (ORCID.test(text) ? "ORCID iD" : "DOI") + ": " + value);
-        wireCopy(chip, function () { return value; });
-        a.insertAdjacentElement("afterend", chip);
+        if (ORCID.test(text)) {
+            a.classList.add("copy-btn", "copy-id");
+            a.setAttribute("role", "button");
+            a.setAttribute("aria-label", "Copy ORCID iD " + value + " to clipboard");
+            a.innerHTML = CLIP_SVG.replace("<span>COPY</span>", "<span>" + value + "</span>");
+            a.addEventListener("click", function (ev) { ev.preventDefault(); }, true);
+            wireCopy(a, function () { return value; });
+        } else {
+            var chip = makeCopyBtn();
+            chip.classList.add("inline");
+            chip.setAttribute("aria-label", "Copy DOI: " + value);
+            wireCopy(chip, function () { return value; });
+            a.insertAdjacentElement("afterend", chip);
+        }
     });
 
     /* lab comparison slider */
