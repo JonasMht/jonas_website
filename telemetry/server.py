@@ -37,6 +37,7 @@ RATE_MAX, RATE_WIN = 120, 60          # requests per IP per minute
 BAN_AFTER = 3                          # 429s within the window before a temp ban
 BAN_SECS = 900                         # 15-minute escalating temp ban
 BANS = {}                              # ip -> [banned_until, strikes]
+STARTED = int(time.time())             # collector boot time, exposed via /api/pulse
 BLOCKED_HIT = [False]                  # set when a blocklisted IP is refused
 BLOCKFILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "blocked.txt")
 BLOCKED = set()
@@ -238,6 +239,9 @@ class Handler(BaseHTTPRequestHandler):
             except Exception:
                 self._json(500, {"e": "dashboard missing"})
             return
+        if u.path == "/api/pulse":
+            self._json(200, api_pulse(), cors=True)
+            return
         if u.path.startswith("/api/"):
             if not self._auth(q):
                 return self._json(403, {"e": "bad key"})
@@ -252,6 +256,20 @@ class Handler(BaseHTTPRequestHandler):
 def _q_days(q, default=30):
     try: return max(1, min(365, int(q.get("days", [default])[0])))
     except Exception: return default
+
+def api_pulse():
+    """Public, keyless aggregates — nothing personal, safe to publish."""
+    now = int(time.time())
+    week = now - 7 * 86400
+    with db() as c:
+        cur = c.cursor()
+        def one(sql, *a):
+            cur.execute(sql, a); r = cur.fetchone(); return r[0] if r else 0
+        v7 = one("SELECT COUNT(DISTINCT v) FROM events WHERE ts >= ?", week)
+        pv_total = one("SELECT COUNT(*) FROM events WHERE t = 'pv'")
+        pages = one("SELECT COUNT(DISTINCT p) FROM events WHERE t = 'pv'")
+    return {"v7": v7, "pv_total": pv_total, "pages": pages,
+            "since": STARTED, "now": now}
 
 def api_summary(q):
     days = _q_days(q)

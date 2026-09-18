@@ -32,6 +32,17 @@
     {{- $projects := site.GetPage "/personal/projects" -}}
     {{- $experiences := site.GetPage "/personal/experiences" -}}
 
+    {{- $latest := first 1 (where site.RegularPages "Section" "personal").ByDate.Reverse }}
+    {{- with index $latest 0 }}
+    <div class="now-strip reveal" role="status">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="now-k">LATEST</span>
+        <a class="now-latest" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="latest-meta">{{ .Date.Format "JAN 2006" }}</span>
+        <span class="now-place">AFTER-HOURS WORKSHOP</span>
+    </div>
+    {{- end }}
+
     {{- with .Params.featured }}{{ $featured := site.GetPage (printf "/personal/projects/%s" .) }}
         {{- with $featured }}
     <section class="sec reveal" aria-label="Featured project">

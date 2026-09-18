@@ -11,10 +11,9 @@ cells:
     v: "3"
     sub: "MICCAI ×2 · IJCARS ×1"
     acc: true
-  - k: "C-NCA inference"
-    v: "476 fps"
-    sub: "12,210 parameters"
-    acc: true
+  - k: "Station pulse"
+    pulse: true
+    sub: "visitors · 7 days"
   - k: "Research routes"
     v: "3"
     sub: "simulation → planning → translation"
@@ -26,7 +25,7 @@ routes:
     status: "SHIPPED"
     st: "ship"
     title: "Make heat computable"
-    metric: "476 fps · 12,210 params"
+    metric: "2 papers · in the planning loop"
     desc: "C-NCA estimates tissue death fast enough to plan interactively; HEAT computes the ablation zone in under a second."
     url: "/pro/research/cnca-2025/"
   - no: "R2 · PLANNING"

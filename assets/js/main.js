@@ -126,6 +126,41 @@
         els.forEach(function (el) { io.observe(el); });
     }
 
+    /* hover prefetch — pages start loading before the click, navigation feels instant */
+    var prefetched = {};
+    document.addEventListener("mouseover", function (ev) {
+        var a = ev.target.closest && ev.target.closest('a[href^="/"]');
+        if (!a || a.closest(".yt-facade")) return;
+        var href = (a.getAttribute("href") || "").split("#")[0];
+        if (!href || prefetched[href] || /\.(pdf|jpe?g|png|webp|svg|gif|ico|css|js|json|xml|txt)$/i.test(href)) return;
+        prefetched[href] = 1;
+        var l = document.createElement("link");
+        l.rel = "prefetch";
+        l.href = href;
+        document.head.appendChild(l);
+    }, { passive: true });
+
+    /* station pulse — public aggregates only, refreshes every 30s */
+    var pulseV = document.getElementById("pulse-v7");
+    if (pulseV && TEP) {
+        var pulseBase = TEP.replace(/\/e$/, "");
+        var pulseTick = function () {
+            fetch(pulseBase + "/api/pulse").then(function (r) { return r.json(); }).then(function (d) {
+                pulseV.textContent = String(d.v7);
+                var sub = document.getElementById("pulse-sub");
+                if (!sub) return;
+                var up = Math.max(0, d.now - d.since);
+                var days = Math.floor(up / 86400), hrs = Math.floor((up % 86400) / 3600);
+                sub.textContent = "visitors · 7d · up " + (days ? days + "d " : "") + hrs + "h";
+            }).catch(function () {
+                var sub = document.getElementById("pulse-sub");
+                if (sub) sub.textContent = "pulse offline";
+            });
+        };
+        pulseTick();
+        setInterval(pulseTick, 30000);
+    }
+
     /* press-and-hold lock-on — touch devices get the focus wedges while holding.
        touch events (not pointer events): browsers fire pointercancel when their
        own link gestures take over, which killed the hold on tablets. */
@@ -318,6 +353,33 @@
         body.appendChild(el);
         body.scrollTop = body.scrollHeight;
     }
+    var hist = [], hIdx = -1, sIdx = null;
+    var COMMANDS = ["help", "session", "goto", "find", "telemetry", "clear"];
+    function ensureIndex() {
+        if (sIdx) return Promise.resolve(sIdx);
+        return fetch("/searchindex.json").then(function (r) { return r.json(); }).then(function (d) {
+            sIdx = d; return sIdx;
+        }).catch(function () { return []; });
+    }
+    function complete() {
+        var v = input.value;
+        var parts = v.split(/\s+/);
+        if (parts.length <= 1 && !/:\s*$/.test(v)) {
+            var hits = COMMANDS.filter(function (c) { return c.indexOf(parts[0].toLowerCase()) === 0; });
+            if (hits.length === 1) input.value = hits[0] + " ";
+            else if (hits.length > 1) { line("▸ " + hits.join("  "), "p"); }
+            return;
+        }
+        if (parts[0].toLowerCase() === "goto" && parts.length >= 2) {
+            var frag = parts[parts.length - 1].toLowerCase();
+            ensureIndex().then(function (idx) {
+                var paths = idx.map(function (p) { return p.u; })
+                    .filter(function (u) { return u.toLowerCase().indexOf(frag) === 0; });
+                if (paths.length === 1) input.value = "goto " + paths[0];
+                else if (paths.length > 1) paths.slice(0, 6).forEach(function (p) { line("▸ " + p, "p"); });
+            });
+        }
+    }
     function sessionLine() {
         var d = store();
         var pages = (d.pages || []).length;
@@ -351,10 +413,24 @@
         }
     });
     input.addEventListener("keydown", function (ev) {
+        if (ev.key === "ArrowUp" || ev.key === "ArrowDown") {
+            if (!hist.length) return;
+            ev.preventDefault();
+            if (ev.key === "ArrowUp") { if (hIdx === -1) hIdx = hist.length; hIdx = Math.max(0, hIdx - 1); }
+            else { hIdx = Math.min(hist.length, hIdx + 1); if (hIdx === hist.length) { input.value = ""; return; } }
+            input.value = hist[hIdx] || "";
+            return;
+        }
+        if (ev.key === "Tab") {
+            ev.preventDefault();
+            complete();
+            return;
+        }
         if (ev.key !== "Enter") return;
         var raw = input.value.trim();
         input.value = "";
         if (!raw) return;
+        hist.push(raw); hIdx = -1;
         line("› " + raw, "p");
         var parts = raw.split(/\s+/);
         var cmd = parts[0].toLowerCase();

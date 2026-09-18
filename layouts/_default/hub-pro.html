@@ -22,7 +22,7 @@
                 {{- range .Params.cells }}
                 <div class="mcell" role="listitem">
                     <span class="k">{{ .k }}</span>
-                    <div><span class="v{{ if .acc }} acc{{ end }}">{{ .v }}</span><span class="sub">{{ .sub }}</span></div>
+                    <div>{{ if .pulse }}<span class="v acc" id="pulse-v7" title="unique visitors, last 7 days">···</span><span class="sub" id="pulse-sub">{{ .sub }}</span>{{ else }}<span class="v{{ if .acc }} acc{{ end }}">{{ .v }}</span><span class="sub">{{ .sub }}</span>{{ end }}</div>
                 </div>
                 {{- end }}
             </div>
@@ -30,10 +30,20 @@
     </section>
 
     {{- with .Params.now }}
+    {{- $sec := site.GetPage "/pro/research" }}
+    {{- $latest := first 1 $sec.RegularPages.ByDate.Reverse }}
+    {{- $l := index $latest 0 }}
     <div class="now-strip reveal" role="status">
         <span class="dot" aria-hidden="true"></span>
         <span class="now-k">NOW</span>
         <span class="now-v">{{ . }}</span>
+        {{- with $l }}
+        {{- $days := math.Round (div (sub now.Unix .Date.Unix) 86400) }}
+        <span class="now-sep" aria-hidden="true"></span>
+        <span class="now-k">LATEST</span>
+        <a class="now-latest" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="latest-meta">{{ .Params.venue }} · {{ $days }}d ago</span>
+        {{- end }}
         <span class="now-place">ICUBE · STRASBOURG</span>
     </div>
     {{- end }}
