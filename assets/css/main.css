@@ -252,6 +252,7 @@ html:not(.js) .ignition { display: none; }
     border: 1px solid var(--line2); color: var(--dim); padding: 6px 11px; border-radius: 6px; }
 .idrow a:hover { color: var(--accent); border-color: var(--accent-dim); }
 .idrow .mono-id { font-family: var(--mono); font-size: .58rem; color: var(--faint); letter-spacing: .06em; padding: 6px 0; }
+.idrow .mono-id-num { border: none; padding: 6px 0; background: none; border-radius: 0; }
 
 /* ===== dossiers (publications compact) ===== */
 .pub-list { list-style: none; margin: 0; padding: 0; }
@@ -408,8 +409,7 @@ html:not(.js) .ignition { display: none; }
     text-transform: uppercase; color: var(--faint); margin-top: 8px; text-align: center; }
 .article-content code { font-family: var(--mono); font-size: .82em; background: var(--panel2);
     border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; color: var(--text); }
-.article-content .highlight { position: relative; margin: 1.4em 0; transition: box-shadow .25s ease; }
-.article-content .highlight.is-copied { box-shadow: 0 0 0 1px var(--accent-dim), 0 0 18px rgba(111, 168, 220, .12); }
+.article-content .highlight { position: relative; margin: 1.4em 0; }
 .article-content .highlight pre { margin: 0; padding: 14px 16px; background: var(--panel2);
     border: 1px solid var(--line); border-radius: var(--r); overflow-x: auto; font-size: .8rem; line-height: 1.55; }
 .article-content .highlight pre code { background: none; border: none; padding: 0; font-size: inherit; }
