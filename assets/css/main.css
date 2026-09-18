@@ -433,12 +433,15 @@ html:not(.js) .ignition { display: none; }
     margin: 0 0 0 7px; padding: 2px 7px; font-size: .52rem; opacity: .5; transform: none; }
 .copy-btn.inline:hover, .copy-btn.inline:focus-visible { opacity: 1; }
 .copy-btn.inline:active { transform: scale(.94); }
-/* bare identifier links — the id itself is the copy button (ORCID) */
-.copy-btn.copy-id { position: static; display: inline-flex; align-items: center; gap: 6px;
-    vertical-align: middle; background: none; border: none; border-bottom: 1px dashed var(--accent-dim);
-    border-radius: 0; padding: 0 0 1px; opacity: 1; transform: none;
-    font-family: var(--mono); font-size: .8rem; color: var(--text); cursor: copy; }
-.copy-btn.copy-id:hover, .copy-btn.copy-id:focus-visible { color: var(--accent); border-color: var(--accent); opacity: 1; }
+/* bare copyable identifiers — element looks untouched; feedback is a floating badge */
+.copyable { position: relative; cursor: copy; }
+.copy-badge { position: absolute; bottom: calc(100% + 5px); left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: .55rem; letter-spacing: .14em; color: var(--accent);
+    background: var(--panel); border: 1px solid var(--accent-dim); border-radius: 5px; padding: 3px 8px;
+    white-space: nowrap; pointer-events: none; z-index: 20;
+    animation: badge-in .18s ease-out, badge-out .3s ease-in 1.1s forwards; }
+@keyframes badge-in { from { opacity: 0; transform: translate(-50%, 4px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@keyframes badge-out { to { opacity: 0; transform: translate(-50%, -3px); } }
 .article-content table { width: 100%; border-collapse: collapse; font-size: .85rem; }
 .article-content th, .article-content td { border: 1px solid var(--line); padding: 7px 10px; text-align: left; color: var(--dim); }
 .article-content th { font-family: var(--mono); font-size: .62rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text); }

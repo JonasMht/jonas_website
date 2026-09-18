@@ -237,44 +237,71 @@
         btn.innerHTML = CLIP_SVG;
         return btn;
     }
+    function clearSel() {
+        var sel = window.getSelection;
+        if (sel) { var s = window.getSelection(); if (s && s.rangeCount) s.removeAllRanges(); }
+    }
+    function doCopy(text) {
+        return new Promise(function (resolve) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(function () { resolve(true); }, function () { resolve(fallbackCopy(text)); });
+            } else resolve(fallbackCopy(text));
+        });
+    }
+    function fallbackCopy(text) {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed"; ta.style.top = "0"; ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        clearSel();
+        ta.focus();
+        ta.setSelectionRange(0, ta.value.length);
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (e) {}
+        clearSel();
+        ta.blur(); ta.remove();
+        return ok;
+    }
+    function showBadge(el) {
+        var old = el.querySelector(".copy-badge");
+        if (old) old.remove();
+        var b = document.createElement("span");
+        b.className = "copy-badge";
+        b.textContent = "COPIED";
+        b.setAttribute("aria-hidden", "true");
+        el.appendChild(b);
+        setTimeout(function () { b.remove(); }, 1500);
+    }
+    var liveRegion = null;
+    function announce(msg) {
+        if (!liveRegion) {
+            liveRegion = document.createElement("div");
+            liveRegion.setAttribute("aria-live", "polite");
+            liveRegion.style.cssText = "position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);";
+            document.body.appendChild(liveRegion);
+        }
+        liveRegion.textContent = msg;
+    }
     function wireCopy(btn, getText, after) {
         var label = btn.querySelector("span");
         var label0 = label.textContent;
         var t = null;
-        function done() {
-            btn.classList.add("is-done");
-            label.textContent = "COPIED";
-            if (after) after(true);
-            clearTimeout(t);
-            t = setTimeout(function () {
-                btn.classList.remove("is-done");
-                label.textContent = label0;
-                if (after) after(false);
-            }, 1600);
-        }
-        function clearSel() {
-            var sel = window.getSelection;
-            if (sel) { var s = window.getSelection(); if (s && s.rangeCount) s.removeAllRanges(); }
-        }
-        function fallback() {
-            var ta = document.createElement("textarea");
-            ta.value = getText();
-            ta.setAttribute("readonly", "");
-            ta.style.position = "fixed"; ta.style.top = "0"; ta.style.left = "-9999px";
-            document.body.appendChild(ta);
-            clearSel();
-            ta.focus();
-            ta.setSelectionRange(0, ta.value.length);
-            try { if (document.execCommand("copy")) done(); } catch (e) {}
-            clearSel();
-            ta.blur();
-            ta.remove();
-        }
         btn.addEventListener("click", function () {
             clearSel();
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(getText()).then(done, fallback);
-            } else fallback();
+            doCopy(getText()).then(function (ok) {
+                if (!ok) return;
+                btn.classList.add("is-done");
+                label.textContent = "COPIED";
+                if (after) after(true);
+                announce("Copied to clipboard");
+                clearTimeout(t);
+                t = setTimeout(function () {
+                    btn.classList.remove("is-done");
+                    label.textContent = label0;
+                    if (after) after(false);
+                }, 1600);
+            });
         });
         return btn;
     }
@@ -302,11 +329,10 @@
         else if (href.indexOf("http://doi.org/") === 0) value = href.slice(15);
         if (!value) return;
         if (ORCID.test(text)) {
-            a.classList.add("copy-btn", "copy-id");
+            a.classList.add("copyable");
             a.setAttribute("role", "button");
             a.setAttribute("tabindex", "0");
             a.setAttribute("aria-label", "Copy ORCID iD " + value + " to clipboard");
-            a.innerHTML = "<span>" + value + "</span>";
             if (a.tagName !== "A") {
                 a.addEventListener("keydown", function (ev) {
                     if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); a.click(); }
@@ -314,7 +340,11 @@
             } else {
                 a.addEventListener("click", function (ev) { ev.preventDefault(); }, true);
             }
-            wireCopy(a, function () { return value; });
+            a.addEventListener("click", function () {
+                doCopy(value).then(function (ok) {
+                    if (ok) { showBadge(a); announce("Copied to clipboard"); }
+                });
+            });
         } else {
             var chip = makeCopyBtn();
             chip.classList.add("inline");
