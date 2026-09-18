@@ -17,11 +17,29 @@ cells:
     v: "3"
     sub: "2020 — 2022"
 featured: "sensha"
+workbench:
+  - group: "Engines & tools"
+    items: ["Unity", "Godot", "Blender", "PyGame"]
+  - group: "Languages"
+    items: ["Python", "C#", "GLSL"]
 badges:
   - "Game Dev"
   - "3D Art"
   - "Blender"
   - "Unity"
+repos:
+  - name: "Sensha-Game-2019"
+    lang: "Python"
+    desc: "2D real-time strategy tank game built with PyGame."
+    url: "https://github.com/JonasMht/Sensha-Game-2019"
+  - name: "Image_Manipulation_Tool"
+    lang: "Python"
+    desc: "Utility to trim images and strip transparent alpha margins."
+    url: "https://github.com/JonasMht/Image_Manipulation_Tool"
+  - name: "My_Neural_Nets"
+    lang: "C++"
+    desc: "Student project (archived): neural nets implemented from scratch."
+    url: "https://github.com/JonasMht/My_Neural_Nets"
 ---
 
 When something annoying needs solving, I build tools for it: small utilities,

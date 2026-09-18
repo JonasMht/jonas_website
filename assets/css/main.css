@@ -180,11 +180,27 @@ html:not(.js) .ignition { display: none; }
 .talk-list .more { margin-left: auto; font-family: var(--mono); font-size: .6rem; letter-spacing: .12em; color: var(--accent); }
 @media (max-width: 700px) { .talk-list li { flex-wrap: wrap; } }
 
+/* console toggle — touch-reachable opt-out entry */
+.console-toggle { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px;
+    margin-top: 14px; font-family: var(--mono); font-size: .62rem; letter-spacing: .16em;
+    color: var(--dim); background: var(--panel); border: 1px solid var(--line2); border-radius: 6px;
+    cursor: pointer; transition: color .15s ease, border-color .15s ease; }
+.console-toggle:hover, .console-toggle:focus-visible { color: var(--accent); border-color: var(--accent-dim); }
+/* touch targets — HIG/Android minimums on coarse pointers */
+@media (pointer: coarse) {
+    .nav a.t, .chiprow a, .chiprow span, .idrow a, .copy-btn, .pager a, .more { min-height: 44px; }
+    .nav a.t { padding: 12px 10px; }
+    .chiprow a, .chiprow span { padding: 12px 10px; }
+    .idrow a { padding: 12px 11px; }
+    .copy-btn { padding: 10px 12px; }
+    .copy-btn.inline { padding: 8px 10px; }
+}
+
 /* ===== section headers ===== */
 .sec { margin-top: 46px; }
 .sec-h { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 .sec-h .mark { width: 8px; height: 8px; background: var(--accent); flex: none; }
-.sec-h b { font-weight: 750; font-size: 1.12rem; letter-spacing: -.01em; white-space: nowrap; flex: none; }
+.sec-h h2, .sec-h b { margin: 0; font-weight: 750; font-size: 1.12rem; letter-spacing: -.01em; white-space: nowrap; flex: none; }
 .sec-h .k { font-family: var(--mono); font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); }
 .sec-h .more { margin-left: auto; font-family: var(--mono); font-size: .62rem; letter-spacing: .12em;
     text-transform: uppercase; white-space: nowrap; order: 5; flex: none; }
@@ -277,6 +293,8 @@ html:not(.js) .ignition { display: none; }
 
 /* ===== station log (news) ===== */
 .news { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); overflow: hidden; max-width: 720px; }
+.news a.nrow { text-decoration: none; color: inherit; display: flex; }
+a.nrow:hover .nt { color: var(--accent); }
 .news .nrow { display: flex; gap: 14px; align-items: baseline; padding: 10px 16px; border-bottom: 1px solid var(--line); }
 .news .nrow:last-child { border-bottom: none; }
 .news .nd { flex: none; font-family: var(--mono); font-size: .62rem; color: var(--accent); white-space: nowrap; }

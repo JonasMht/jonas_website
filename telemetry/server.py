@@ -231,7 +231,8 @@ class Handler(BaseHTTPRequestHandler):
         self._json(204, {}, cors=True)
 
     def _auth(self, q):
-        return hmac.compare_digest(q.get("key", [""])[0], KEY)
+        k = self.headers.get("X-Telemetry-Key", "") or q.get("key", [""])[0]
+        return hmac.compare_digest(k, KEY)
 
     def do_GET(self):
         u = urlparse(self.path)

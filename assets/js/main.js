@@ -462,11 +462,40 @@
             logVisited();
             sessionLine();
         }
+        if (consoleBtn) consoleBtn.setAttribute("aria-expanded", "true");
         setTimeout(function () { input.focus(); }, 30);
+        /* focus trap — tab stays inside the dialog while it is open */
+        var focusables = function () {
+            return [input].filter(function (el) { return el.offsetParent !== null; });
+        };
+        box.addEventListener("keydown", function (ev) {
+            if (ev.key !== "Tab") return;
+            var els = focusables();
+            if (els.length < 2) { ev.preventDefault(); return; }
+            var first = els[0], last = els[els.length - 1];
+            if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
+            else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+        });
     }
     function closeConsole() {
         box.classList.remove("is-open");
         box.hidden = true;
+        if (consoleBtn) {
+            consoleBtn.setAttribute("aria-expanded", "false");
+            if (viaBtn) { consoleBtn.focus(); viaBtn = false; }
+        }
+    }
+    /* touch users get a real button — the console (and the opt-out) must be reachable */
+    var consoleBtn = document.getElementById("console-toggle");
+    var viaBtn = false;
+    if (consoleBtn) {
+        consoleBtn.setAttribute("aria-expanded", "false");
+        consoleBtn.setAttribute("aria-controls", "console");
+        consoleBtn.addEventListener("click", function () {
+            viaBtn = box.classList.contains("is-open");
+            if (box.classList.contains("is-open")) closeConsole();
+            else { viaBtn = true; openConsole(); }
+        });
     }
     document.addEventListener("keydown", function (ev) {
         var tag = (ev.target.tagName || "").toLowerCase();

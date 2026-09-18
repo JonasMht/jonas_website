@@ -35,7 +35,7 @@
 
     {{- with .Params.links }}
     <aside class="container-narrow post-links reveal">
-        <div class="sec-h"><span class="mark"></span><b>Links</b><span class="k">actions</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Links</h2><span class="k">actions</span></div>
         <ul class="link-list">
             {{- range . }}
             {{- $href := .website }}
@@ -52,7 +52,7 @@
     {{- $sibs := where .Parent.Pages "RelPermalink" "!=" .RelPermalink }}
     {{- with $sibs }}
     <aside class="container-narrow bridges reveal">
-        <div class="sec-h"><span class="mark"></span><b>Continue</b><span class="k">nearby modules</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Continue</h2><span class="k">nearby modules</span></div>
         <div class="bgrid">
             {{- range first 3 $sibs }}
             <a class="bridge" href="{{ .RelPermalink }}">

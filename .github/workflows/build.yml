@@ -23,7 +23,11 @@ jobs:
         run: ./hugo --gc --minify
       - name: Zero-JS sanity (content must exist in raw HTML)
         run: |
-          for probe in "Planning heat" "OPEN PRO" "476 fps"; do
+          for probe in "in real time" "OPEN PRO" "Station pulse"; do
             grep -q "$probe" public/index.html || { echo "MISSING: $probe"; exit 1; }
           done
           grep -q "No cookies" public/legal/index.html || { echo "legal missing"; exit 1; }
+      - name: Internal link check (no broken refs, no orphaned assets)
+        run: python3 scripts/link-check.py
+      - name: Collector syntax check
+        run: python3 -m py_compile telemetry/server.py

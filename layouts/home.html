@@ -20,6 +20,7 @@
                 <div class="links">
                     <a class="lnk pri" href="{{ $pro.RelPermalink }}">OPEN PRO →</a>
                     <a class="lnk" href="{{ $personal.RelPermalink }}">OPEN PERSONAL →</a>
+                    <a class="lnk" href="{{ (.GetPage `/lab`).RelPermalink }}">THE LAB →</a>
                     <a class="lnk" href="/pro/about/jonas-mehtali-resume.pdf">CV.PDF</a>
                 </div>
             </div>
@@ -35,7 +36,7 @@
     </section>
 
     <section class="sec reveal" aria-label="Verified channels">
-        <div class="sec-h"><span class="mark"></span><b>Identity</b><span class="k">verified channels</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Identity</h2><span class="k">verified channels</span></div>
         <div class="idrow">
             {{- range site.Params.identity }}
             <a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }} →</a>
@@ -49,7 +50,7 @@
         {{- $pubs := where $research.Pages "Params.venue" "!=" nil }}
         {{- $featured := index $pubs 0 }}
         {{- $rest := after 1 (first 4 $pubs) }}
-        <div class="sec-h"><span class="mark"></span><b>Research</b><span class="k">image modules</span>
+        <div class="sec-h"><span class="mark"></span><h2>Research</h2><span class="k">image modules</span>
             <a class="more" href="{{ $pro.RelPermalink }}" style="color:var(--accent)">FULL RECORD →</a></div>
         {{- with $featured }}
         {{- $fpage := . }}
@@ -77,7 +78,7 @@
 
     <section class="sec reveal" aria-label="Workshop">
         {{- $projects := site.GetPage "/personal/projects" }}
-        <div class="sec-h"><span class="mark"></span><b>Workshop</b><span class="k">side quests</span>
+        <div class="sec-h"><span class="mark"></span><h2>Workshop</h2><span class="k">side quests</span>
             <a class="more" href="{{ $personal.RelPermalink }}" style="color:var(--accent)">FULL COLLECTION →</a></div>
         <div class="grid3 stagger">
             {{- range first 3 $projects.Pages }}{{ partial "article-card" . }}{{ end }}
@@ -87,11 +88,12 @@
     {{- $news := site.GetPage "/news" }}
     {{- with $news }}
     <section class="sec reveal" aria-label="Station log">
-        <div class="sec-h"><span class="mark"></span><b>Station log</b><span class="k">recent activity</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Station log</h2><span class="k">recent activity</span>
+            <a class="more" href="{{ (.GetPage `/news`).RelPermalink }}" style="color:var(--accent)">FULL LOG →</a></div>
         <div class="news">
             {{- range first 3 .Pages }}
-            <div class="nrow"><span class="nd">{{ .Date | time.Format "2006-01-02" }}</span>
-                <span class="nt">{{ .Title }}{{ with .Params.description }}<small>{{ . }}</small>{{ end }}</span></div>
+            <a class="nrow" href="{{ .RelPermalink }}"><span class="nd">{{ .Date | time.Format "2006-01-02" }}</span>
+                <span class="nt">{{ .Title }}{{ with .Params.description }}<small>{{ . }}</small>{{ end }}</span></a>
             {{- end }}
         </div>
     </section>

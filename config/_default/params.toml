@@ -25,7 +25,7 @@ card = "summary_large_image"
 [defaultImage.opengraph]
 enabled = true
 local = true
-src = "img/avatar.jpg"
+src = "images/og-station.jpg"
 
 [colorScheme]
 toggle = false

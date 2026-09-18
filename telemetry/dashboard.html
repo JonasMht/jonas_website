@@ -34,10 +34,24 @@ tr:hover td { color:var(--text); cursor:pointer; }
 .timeline { max-height:260px; overflow:auto; font-family:var(--mono); font-size:.68rem; line-height:1.9; color:var(--dim); }
 .timeline .p { color:var(--accent); }
 @media (max-width:900px){ .cols { grid-template-columns:1fr; } }
+.range { display: flex; gap: 8px; margin: 4px 0 12px; }
+.rd { font-family: var(--mono, monospace); font-size: .62rem; letter-spacing: .1em; padding: 6px 12px;
+  background: var(--panel2, #141922); color: var(--dim, #8b95a5); border: 1px solid var(--line, #232a35);
+  border-radius: 6px; cursor: pointer; min-height: 34px; }
+.rd.on { color: var(--accent, #6fa8dc); border-color: var(--accent, #6fa8dc); }
+.hours { display: flex; align-items: flex-end; gap: 3px; height: 74px; padding: 8px 4px 0; }
+.hours .hb { flex: 1; display: flex; align-items: flex-end; height: 100%; }
+.hours .hb i { display: block; width: 100%; background: var(--accent, #6fa8dc); opacity: .75; border-radius: 2px 2px 0 0; min-height: 2px; }
 </style></head><body>
 <h1>Station Telemetry</h1>
 <p class="kick">Self-hosted · local profiles · no third parties</p>
+<div class="range">
+  <button data-days="1" class="rd">24H</button>
+  <button data-days="7" class="rd">7D</button>
+  <button data-days="30" class="rd on">30D</button>
+</div>
 <div class="gauges" id="gauges"></div>
+<div class="panel"><h2>Pageviews · last 24h</h2><div id="hours" class="hours"></div></div>
 <div class="cols">
     <div class="panel"><h2>Hot pages</h2><div id="pages"></div></div>
     <div class="panel"><h2>Sources</h2><div id="refs"></div></div>
@@ -48,8 +62,14 @@ tr:hover td { color:var(--text); cursor:pointer; }
         <div class="timeline" id="tl" style="margin-top:10px"></div></div>
 </div>
 <script>
-const K = new URLSearchParams(location.search).get("key") || "";
-const j = (u) => fetch(u + (u.includes("?") ? "&" : "?") + "key=" + K).then(r => r.json());
+let K = new URLSearchParams(location.search).get("key")
+      || (location.hash.startsWith("#key=") ? decodeURIComponent(location.hash.slice(5)) : "")
+      || sessionStorage.getItem("tkey") || "";
+if (K) {
+    sessionStorage.setItem("tkey", K);
+    history.replaceState(null, "", location.pathname);   // key never lingers in the URL
+}
+const j = (u) => fetch(u, { headers: { "X-Telemetry-Key": K } }).then(r => r.json());
 const fmt = (ts) => new Date(ts * 1000).toISOString().slice(0, 16).replace("T", " ");
 function drawHeat(d) {
     const c = document.getElementById("hm"), ctx = c.getContext("2d");
@@ -69,8 +89,19 @@ function drawHeat(d) {
 }
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g,
         c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let DAYS = 30;
 function render() {
-    j("/api/summary?days=30").then(d => {
+    j("/api/summary?days=" + DAYS).then(d => {
+        const hv = Math.max(1, ...d.hours.map(h => h[1]));
+        document.getElementById("hours").innerHTML = d.hours.map(([ts, n]) =>
+            `<div class="hb" title="${new Date(ts * 1000).toLocaleString([], {weekday:'short', hour:'2-digit'})} — ${n} views"><i style="height:${Math.round((n / hv) * 100)}%"></i></div>`).join("");
+        document.getElementById("gauges").innerHTML =
+            `<div class="g acc"><b>${d.views_today}</b><span>views · 24h</span></div>
+             <div class="g"><b>${d.views_total}</b><span>views · ${DAYS}d</span></div>
+             <div class="g"><b>${d.uniques_today}</b><span>uniques · 24h</span></div>
+             <div class="g"><b>${d.uniques_total}</b><span>uniques · ${DAYS}d</span></div>
+             <div class="g"><b>${d.returns}</b><span>returning</span></div>
+             <div class="g"><b>${d.clicks}</b><span>clicks · ${DAYS}d</span></div>`;
         document.getElementById("gauges").innerHTML =
             `<div class="g acc"><b>${d.views_today}</b><span>views today</span></div>
              <div class="g"><b>${d.views_total}</b><span>views · 30d</span></div>
@@ -107,6 +138,11 @@ function render() {
         });
     });
 }
+document.querySelectorAll(".rd").forEach(b => b.addEventListener("click", () => {
+    DAYS = parseInt(b.dataset.days, 10);
+    document.querySelectorAll(".rd").forEach(x => x.classList.toggle("on", x === b));
+    render();
+}));
 render(); setInterval(render, 30000);
 </script>
 </body></html>

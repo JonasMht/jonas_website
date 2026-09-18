@@ -10,7 +10,7 @@
     </header>
 
     <section class="sec reveal" aria-label="Comparison instrument">
-        <div class="sec-h"><span class="mark"></span><b>Comparison instrument</b><span class="k">drag the seam</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Comparison instrument</h2><span class="k">drag the seam</span></div>
         <div class="slider" id="cmp">
             {{ with resources.Get "img/nd2.png" }}{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080 1440) "sizes" "(max-width:820px) 94vw, 880px" "alt" "Notre-Dame reconstruction — shaded render" "attrs" "class=\"s-base\"") }}{{ end }}
             {{ with resources.Get "img/nd1.png" }}{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080 1440) "sizes" "(max-width:820px) 94vw, 880px" "alt" "Notre-Dame reconstruction — wireframe render" "attrs" "class=\"s-top\"") }}{{ end }}
@@ -23,7 +23,7 @@
     </section>
 
     <section class="sec reveal" aria-label="Key figures">
-        <div class="sec-h"><span class="mark"></span><b>Key figures</b><span class="k">the honest numbers</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Key figures</h2><span class="k">the honest numbers</span></div>
         <div class="grid3">
             <div class="mcell vcard"><span class="k">C-NCA inference</span><div><span class="v acc">476 fps</span><span class="sub">25 min of treatment, real time</span></div></div>
             <div class="mcell vcard"><span class="k">Model size</span><div><span class="v">12,210</span><span class="sub">learned parameters</span></div></div>

@@ -1,10 +1,10 @@
 ---
 title: Nacht Der Teddybären
 description: A Teddy-Zombie survival game built in Unity with custom AI, 3D Blender assets, fire control, and wave-based enemy spawning
-slug: project-nacht-der-teddybären
-aliases: ["/p/project-nacht-der-teddybären/"]
+slug: project-nacht-der-teddybaren
+aliases: ["/p/project-nacht-der-teddybaren/", "/p/project-nacht-der-teddyb%C3%A4ren/"]
 date: 2021-12-07 00:00:00+0000
-image: nacht-der-teddybären.jpg
+image: nacht-der-teddybaren.jpg
 categories:
     - Projects
 tags:
@@ -26,4 +26,4 @@ As part of a two-student team, I created a Teddy-Zombie survival game using Unit
 {{< youtube WPh75-kgGAw >}}
 
 
-> Videos filmed for the [Nacht Der Teddybären]({{< ref "/personal/projects/project-nacht-der-teddybären" >}} "Nacht Der Teddybären") project
+> Videos filmed for the [Nacht Der Teddybären]({{< ref "/personal/projects/project-nacht-der-teddybaren" >}} "Nacht Der Teddybären") project

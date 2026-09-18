@@ -47,7 +47,7 @@
         {{- with $featured }}
     <section class="sec reveal" aria-label="Featured project">
         {{- $year := .Date | time.Format "2006" }}
-        <div class="sec-h"><span class="mark"></span><b>Flagship</b><span class="k">featured module</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Flagship</h2><span class="k">featured module</span></div>
         <a class="spotlight" href="{{ .RelPermalink }}">
             {{- $img := "" }}
             {{- $p := . }}
@@ -67,7 +67,7 @@
     {{- end }}
 
     <section class="sec reveal" aria-label="Projects">
-        <div class="sec-h"><span class="mark"></span><b>Collection</b><span class="k">image modules</span>
+        <div class="sec-h"><span class="mark"></span><h2>Collection</h2><span class="k">image modules</span>
             <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">GITHUB →</a></div>
         <div class="grid3 stagger">
             {{- $featPage := "" }}
@@ -76,8 +76,31 @@
         </div>
     </section>
 
-    <section class="sec reveal" aria-label="Beyond the lab">
-        <div class="sec-h"><span class="mark"></span><b>Beyond the lab</b><span class="k">the ledger</span></div>
+    <section class="sec reveal" aria-label="Workbench">
+        <div class="sec-h"><span class="mark"></span><h2>Workbench</h2><span class="k">the workshop kit</span></div>
+        <div class="bench">
+            {{- range .Params.workbench }}
+            <div class="bench-row"><span class="bench-k">{{ .group }}</span>
+                <span class="bench-items">{{- range .items }}<span class="tag-chip">{{ . }}</span>{{ end }}</span></div>
+            {{- end }}
+        </div>
+    </section>
+
+    <section class="sec reveal" aria-label="Open source">
+        <div class="sec-h"><span class="mark"></span><h2>Open source</h2><span class="k">github.com/JonasMht</span>
+            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">ALL REPOS →</a></div>
+        <div class="repo-row stagger">
+            {{- range .Params.repos }}
+            <a class="repo" href="{{ .url }}" target="_blank" rel="noopener">
+                <span class="repo-name">{{ .name }}</span><span class="repo-lang">{{ .lang }}</span>
+                <p>{{ .desc }}</p>
+            </a>
+            {{- end }}
+        </div>
+    </section>
+
+<section class="sec reveal" aria-label="Beyond the lab">
+        <div class="sec-h"><span class="mark"></span><h2>Beyond the lab</h2><span class="k">the ledger</span></div>
         <div class="grid3 stagger">
             {{- range $experiences.Pages }}{{ partial "article-card" . }}{{ end }}
         </div>

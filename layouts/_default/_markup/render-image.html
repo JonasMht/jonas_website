@@ -4,6 +4,10 @@
   {{- $r = .Page.Resources.GetMatch (printf "*%s*" $src) -}}
 {{- end -}}
 {{- if $r -}}
+{{- $ext := lower (path.Ext $r.Name) -}}
+{{- if in (slice ".gif" ".webp") $ext -}}
+<img class="art-img art-img--std" src="{{ $r.RelPermalink }}" width="{{ $r.Width }}" height="{{ $r.Height }}" alt="{{ .PlainText | default .Page.Title }}" loading="lazy" decoding="async">
+{{- else -}}
 {{- $v := partial "img-variants.html" (dict "r" $r "widths" (slice 360 540 750 1080)) -}}
 {{- $cls := partial "img-class.html" (dict "r" $r) -}}
 {{- $pt := .Page.Title -}}
@@ -18,6 +22,7 @@
 </figure>
 {{- else -}}
 <img class="art-img {{ $cls }}" src="{{ $v.src }}"{{ with $v.srcset }} srcset="{{ . }}" sizes="{{ $sz }}"{{ end }} width="{{ $v.w }}" height="{{ $v.h }}" alt="{{ .PlainText | default $pt }}" loading="lazy" decoding="async">
+{{- end -}}
 {{- end -}}
 {{- else -}}
 <img class="art-img art-img--std" src="{{ $src | safeURL }}" alt="{{ .PlainText }}" loading="lazy" decoding="async">

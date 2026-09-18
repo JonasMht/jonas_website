@@ -49,7 +49,7 @@
     {{- end }}
 
     <section class="sec reveal" aria-label="Research routes">
-        <div class="sec-h"><span class="mark"></span><b>Routes</b><span class="k">three research lines</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Routes</h2><span class="k">three research lines</span></div>
         <div class="route-row">
             {{- range $i, $r := .Params.routes }}
             <a class="route" href="{{ .url }}">
@@ -62,7 +62,7 @@
     </section>
 
     <section class="sec reveal" aria-label="Selected publications">
-        <div class="sec-h"><span class="mark"></span><b>Selected publications</b><span class="k">figure first</span>
+        <div class="sec-h"><span class="mark"></span><h2>Selected publications</h2><span class="k">figure first</span>
             <a class="more" href="{{ (.GetPage `/pro/publications`).RelPermalink }}" style="color:var(--accent)">FULL LIST →</a></div>
         {{- range first 2 .Params.featuredPubs }}
         {{- with site.GetPage . }}
@@ -92,7 +92,7 @@
     </section>
 
     <section class="sec reveal" aria-label="Workbench">
-        <div class="sec-h"><span class="mark"></span><b>Workbench</b><span class="k">the actual stack</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Workbench</h2><span class="k">the actual stack</span></div>
         <div class="bench">
             {{- range .Params.workbench }}
             <div class="bench-row"><span class="bench-k">{{ .group }}</span>
@@ -102,7 +102,7 @@
     </section>
 
     <section class="sec reveal" aria-label="Career log">
-        <div class="sec-h"><span class="mark"></span><b>Career log</b><span class="k">session history</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Career log</h2><span class="k">session history</span></div>
         <ol class="sess-list">
             {{- range .Params.timeline }}
             <li class="sess"><span class="d">{{ .period }}</span><span class="dot" aria-hidden="true"></span>
@@ -116,7 +116,7 @@
     </section>
 
     <section class="sec reveal" aria-label="Open source">
-        <div class="sec-h"><span class="mark"></span><b>Open source</b><span class="k">github.com/JonasMht</span>
+        <div class="sec-h"><span class="mark"></span><h2>Open source</h2><span class="k">github.com/JonasMht</span>
             <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">ALL REPOS →</a></div>
         <div class="repo-row stagger">
             {{- range .Params.repos }}
@@ -129,7 +129,7 @@
     </section>
 
     <section class="sec reveal" aria-label="Talks">
-        <div class="sec-h"><span class="mark"></span><b>Talks</b><span class="k">conferences</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Talks</h2><span class="k">conferences</span></div>
         <ul class="talk-list">
             {{- range .Params.talks }}
             <li><span class="talk-venue">{{ .venue }}</span><span class="talk-what">{{ .what }}</span>
@@ -139,7 +139,7 @@
     </section>
 
     <section class="sec reveal" aria-label="Beyond research">
-        <div class="sec-h"><span class="mark"></span><b>Beyond research</b><span class="k">the rest of the record</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Beyond research</h2><span class="k">the rest of the record</span></div>
         <div class="grid3 stagger">
             <a class="card" href="{{ (.GetPage `/pro/teaching`).RelPermalink }}"><div class="card__body"><p class="card__eyebrow">TEACHING</p><h3 class="card__title">Teaching</h3><p class="card__desc">Image processing, medical imaging, GPU programming — and student project supervision.</p></div></a>
             <a class="card" href="{{ (.GetPage `/pro/endorsements`).RelPermalink }}"><div class="card__body"><p class="card__eyebrow">ENDORSEMENTS</p><h3 class="card__title">Endorsements</h3><p class="card__desc">Reference letters from professors I have worked with in Strasbourg and Oviedo.</p></div></a>

@@ -25,7 +25,7 @@ The goal of the internship was to take over and enhance the CryoTrack project wh
 The primary focus was on synchronizing the surgical procedure with the breathing cycle. This involved the implementation of a breathing tracking tool based on multi-camera marker detection.
 Another important part was the streamlining of the 3D Slicer workflow, displaying the optimal areas of entry and correcting the needle orientation during the whole procedure.
 
-{{< figure src="ArtificialRespirationMovement.gif" width=50% title="Breathing Simulation and Marker Detection">}}
+{{< figure src="ArtificialRespirationMovement.webp" width=50% title="Breathing Simulation and Marker Detection">}}
 
 Throughout the internship, I worked mostly in Python and C++ inside 3D Slicer: integrating IGTLink client/server communication between the different equipment pieces, marker detection from multiple cameras, and trajectory prediction for needle placement.
 
