@@ -2,6 +2,7 @@
 title: Invitation Crémaillère 
 image: home-warming.png
 description: Soirée Color Reveal 🎉
+draft: true
 slug: house-warming-2024
 aliases: ["/events/house-warming-2024/"]
 date: 2024-09-18 00:00:00+0000

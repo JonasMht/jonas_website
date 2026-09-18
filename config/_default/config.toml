@@ -15,7 +15,7 @@ hasCJKLanguage = false
 # Change it to your Disqus shortname before using
 
 # Robots TXT
-enableRobotsTXT = true
+enableRobotsTXT = false
 
 # Sitemap
 [taxonomies]

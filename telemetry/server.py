@@ -34,11 +34,9 @@ EVENT_TTL = 90 * 86400
 VISITOR_TTL = 400 * 86400
 RATE = {}  # ip -> [window_start, count]
 RATE_MAX, RATE_WIN = 120, 60          # requests per IP per minute
-BAN_AFTER = 3                          # 429s within the window before a temp ban
 BAN_SECS = 900                         # 15-minute escalating temp ban
 BANS = {}                              # ip -> [banned_until, strikes]
 STARTED = int(time.time())             # collector boot time, exposed via /api/pulse
-BLOCKED_HIT = [False]                  # set when a blocklisted IP is refused
 BLOCKFILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "blocked.txt")
 BLOCKED = set()
 BLOCKED_MTIME = 0
@@ -71,6 +69,8 @@ CREATE TABLE IF NOT EXISTS events (
 );
 CREATE INDEX IF NOT EXISTS ev_ts ON events(ts);
 CREATE INDEX IF NOT EXISTS ev_p ON events(p);
+CREATE INDEX IF NOT EXISTS ev_t_ts ON events(t, ts);
+CREATE INDEX IF NOT EXISTS ev_v ON events(v);
 CREATE TABLE IF NOT EXISTS visitors (
     v TEXT PRIMARY KEY, first INTEGER NOT NULL, last INTEGER NOT NULL,
     visits INTEGER NOT NULL DEFAULT 1
@@ -94,27 +94,28 @@ def prune_loop():
             pass
         time.sleep(3600)
 
-def rate_ok(ip):
-    """Per-IP throttle with escalating temp bans + permanent blocklist. Returns (ok, retry_after)."""
+def rate_ok(ip, cost=1):
+    """Per-IP event-budget throttle with escalating temp bans + permanent blocklist."""
     global BLOCKED_MTIME
     now = time.time()
     _prune_rates(now)
     _load_blockfile()
     if ip in BLOCKED:
-        BLOCKED_HIT[:] = [True]
+        print("[station-telemetry] BLOCKED hit from %s" % ip, flush=True)
         return False, -403
     until, strikes = BANS.get(ip, (0, 0))
     if until > now:
         return False, int(until - now)
     win, n = RATE.get(ip, (0, 0))
     if now - win > RATE_WIN:
-        RATE[ip] = (now, 1); return True, 0
-    if n >= RATE_MAX:
+        RATE[ip] = (now, cost); return True, 0
+    if n + cost > RATE_MAX:
         strikes += 1
-        BANS[ip] = (now + BAN_SECS * strikes, strikes)   # each repeat doubles down
+        BANS[ip] = (now + BAN_SECS * strikes, strikes)   # linear escalation: +15 min per repeat
         RATE.pop(ip, None)
+        print("[station-telemetry] BAN %s for %ds (strike %d)" % (ip, BAN_SECS * strikes, strikes), flush=True)
         return False, BAN_SECS * strikes
-    RATE[ip] = (win, n + 1); return True, 0
+    RATE[ip] = (win, n + cost); return True, 0
 
 def touch_visitor(cur, v, ts):
     cur.execute("INSERT INTO visitors(v, first, last) VALUES(?,?,?) ON CONFLICT(v) DO UPDATE SET last=excluded.last, visits=visits+1", (v, ts, ts))
@@ -177,7 +178,13 @@ class Handler(BaseHTTPRequestHandler):
             return
         body = self.rfile.read(n) if n > 0 else b""
 
-        ok, retry = rate_ok(ip)
+        try:
+            data = json.loads(body) if body else []
+        except Exception:
+            return self._json(400, {"e": "bad json"}, cors=True)
+        if not isinstance(data, list): data = [data]
+        # charge the event budget, not the request count — a batch of N costs N
+        ok, retry = rate_ok(ip, max(1, min(len(data), 40)))
         if not ok:
             self.close_connection = True
             if retry == -403:
@@ -187,7 +194,6 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header("Content-Length", "0")
             self.send_header("Connection", "close")
             self._cors(); self.end_headers()
-            self.close_connection = True
             return
         try:
             data = json.loads(body) if body else []
@@ -201,15 +207,18 @@ class Handler(BaseHTTPRequestHandler):
             if not isinstance(ev, dict): continue
             t = str(ev.get("t", ""))[:8]
             if t not in ("pv", "clk", "dur"): continue
-            rows.append((now, str(ev.get("v", ""))[:40], str(ev.get("s", ""))[:40], t,
-                         str(ev.get("p", "/"))[:200],
-                         max(0.0, min(1.0, float(ev.get("x", 0) or 0))),
-                         max(0.0, min(1.0, float(ev.get("y", 0) or 0))),
-                         max(0, min(100, int(ev.get("d", 0) or 0))),
-                         max(0, min(36000, int(ev.get("w", 0) or 0))),
-                         str(ev.get("r", ""))[:120],
-                         str(ev.get("b", ""))[:160], iph,
-                         self.headers.get("CF-IPCountry", "")[:8]))
+            try:
+                rows.append((now, str(ev.get("v", ""))[:40], str(ev.get("s", ""))[:40], t,
+                             str(ev.get("p", "/"))[:200].replace("<", "").replace(">", ""),
+                             max(0.0, min(1.0, float(ev.get("x", 0) or 0))),
+                             max(0.0, min(1.0, float(ev.get("y", 0) or 0))),
+                             max(0, min(100, int(ev.get("d", 0) or 0))),
+                             max(0, min(36000, int(ev.get("w", 0) or 0))),
+                             str(ev.get("r", ""))[:120].replace("<", "").replace(">", ""),
+                             str(ev.get("b", ""))[:160].replace("<", "").replace(">", ""), iph,
+                             self.headers.get("CF-IPCountry", "")[:8]))
+            except (TypeError, ValueError):
+                continue
         try:
             with db() as c:
                 cur = c.cursor()
@@ -257,9 +266,12 @@ def _q_days(q, default=30):
     try: return max(1, min(365, int(q.get("days", [default])[0])))
     except Exception: return default
 
+_PULSE = {"at": 0, "data": None}       # cached public aggregates (30s)
 def api_pulse():
-    """Public, keyless aggregates — nothing personal, safe to publish."""
+    """Public, keyless aggregates — nothing personal, safe to publish. Cached 30s."""
     now = int(time.time())
+    if _PULSE["data"] and now - _PULSE["at"] < 30:
+        d = dict(_PULSE["data"]); d["now"] = now; return d
     week = now - 7 * 86400
     with db() as c:
         cur = c.cursor()
@@ -268,8 +280,9 @@ def api_pulse():
         v7 = one("SELECT COUNT(DISTINCT v) FROM events WHERE ts >= ?", week)
         pv_total = one("SELECT COUNT(*) FROM events WHERE t = 'pv'")
         pages = one("SELECT COUNT(DISTINCT p) FROM events WHERE t = 'pv'")
-    return {"v7": v7, "pv_total": pv_total, "pages": pages,
-            "since": STARTED, "now": now}
+    d = {"v7": v7, "pv_total": pv_total, "pages": pages, "since": STARTED, "now": now}
+    _PULSE["at"] = now; _PULSE["data"] = d
+    return d
 
 def api_summary(q):
     days = _q_days(q)
@@ -368,7 +381,7 @@ def run():
     pathlib.Path(BLOCKFILE).touch(exist_ok=True)
     threading.Thread(target=prune_loop, daemon=True).start()
     print(f"[station-telemetry] dashboard key: {KEY}")
-    print(f"[station-telemetry] rate: {RATE_MAX}/{RATE_WIN}s per IP, ban after {BAN_AFTER} violations for {BAN_SECS}s, blocklist={BLOCKFILE}")
+    print(f"[station-telemetry] rate: {RATE_MAX}/{RATE_WIN}s per IP, escalating bans per IP for {BAN_SECS}s, blocklist={BLOCKFILE}")
     print(f"[station-telemetry] listening on 127.0.0.1:{PORT}, db={DB}, origin={ORIGIN}")
     LimitedServer(("127.0.0.1", PORT), Handler).serve_forever()
 

@@ -8,9 +8,9 @@
         <div class="mbody">
             <div class="mleft">
                 <div class="photo focus">
-                    {{- with resources.Get "img/avatar.jpg" }}
-                    <img src="{{ .RelPermalink }}" width="640" height="270" alt="Jonas Mehtali in the operating room">
-                    {{- end }}
+                {{- with resources.Get "img/avatar.jpg" }}
+                {{ partial "img.html" (dict "r" . "widths" (slice 480 750 960) "sizes" "(max-width:700px) 92vw, 480px" "alt" "Jonas Mehtali" "eager" true) }}
+                {{- end }}
                     <span class="tag">J. MEHTALI · OR 2 · ICUBE</span>
                 </div>
                 <p class="role">{{ .Params.kicker }}</p>
@@ -59,7 +59,7 @@
         {{- $fdesc := .Params.description | default .Title }}
         <a class="spotlight" href="{{ .RelPermalink }}">
             {{- with $fimg }}
-            <div class="spotlight__media focus"><img src="{{ .RelPermalink }}" alt="{{ $fdesc }}" loading="lazy"><span class="st">CH.01 · CURRENT</span></div>
+            <div class="spotlight__media focus">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080) "sizes" "(max-width:700px) 92vw, (max-width:1100px) 46vw, 520px" "alt" $fdesc) }}<span class="st">CH.01 · CURRENT</span></div>
             {{- end }}
             <div class="spotlight__body">
                 <p class="card__eyebrow">{{ .Params.venue | default (.Date | time.Format "2006") }} · {{ .Title }}</p>

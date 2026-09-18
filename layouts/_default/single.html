@@ -12,7 +12,7 @@
         {{- with .Params.description }}<p class="post-subtitle">{{ . }}</p>{{ end }}
         <p class="post-meta">
             {{- $yr := .Date | time.Format "2006" }}
-            {{- with .Params.venue }}<span class="tag-chip">{{ . }} · {{ $yr }}</span>{{ else }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 JAN 2006" }}</time>{{ end }}
+            {{- with .Params.venue }}<span class="tag-chip">{{ . }} · {{ $yr }}</span>{{ else }}{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 JAN 2006" }}</time>{{ end }}{{ end }}
             <span>{{ .ReadingTime }} MIN</span>
             {{- with .Params.tags }}{{ range first 4 . }}<span class="tag-chip">{{ . }}</span>{{ end }}{{ end }}
         </p>

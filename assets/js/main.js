@@ -369,6 +369,7 @@
             pct = Math.max(0, Math.min(100, pct));
             top.style.clipPath = "inset(0 " + (100 - pct) + "% 0 0)";
             handle.style.left = pct + "%";
+            handle.setAttribute("aria-valuenow", Math.round(pct));
         };
         var dragging = false;
         var move = function (ev) {

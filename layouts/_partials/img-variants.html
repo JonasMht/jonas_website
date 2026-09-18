@@ -11,6 +11,6 @@
 {{- end -}}
 {{- $out := dict "src" $r.RelPermalink "srcset" "" "w" $r.Width "h" $r.Height -}}
 {{- if $parts -}}
-  {{- $out = dict "src" $r.RelPermalink "srcset" (delimit $parts ", ") "w" $best.Width "h" $best.Height -}}
+  {{- $out = dict "src" $best.RelPermalink "srcset" (delimit $parts ", ") "w" $best.Width "h" $best.Height -}}
 {{- end -}}
 {{- return $out -}}

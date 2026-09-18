@@ -5,3 +5,7 @@ resources
 !assets/img/*.png
 !content/**/*.png
 !static/**/*.png
+telemetry/telemetry.db*
+telemetry/blocked.txt
+telemetry/backups/
+telemetry/.key

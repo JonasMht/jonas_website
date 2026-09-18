@@ -7,13 +7,17 @@
 {{- $v := partial "img-variants.html" (dict "r" $r "widths" (slice 360 540 750 1080)) -}}
 {{- $cls := partial "img-class.html" (dict "r" $r) -}}
 {{- $pt := .Page.Title -}}
+{{- $sz := "(max-width:820px) 60vw, 500px" -}}
+{{- if eq $cls "art-img--side" }}{{ $sz = "(max-width:820px) 60vw, 350px" }}
+{{- else if eq $cls "art-img--small" }}{{ $sz = "(max-width:820px) 60vw, 480px" }}
+{{- else if eq $cls "art-img--wide" }}{{ $sz = "(max-width:820px) 94vw, 768px" }}{{ end -}}
 {{- with .Title -}}
 <figure class="art-fig {{ $cls }}">
     <img class="art-img {{ $cls }}" src="{{ $v.src }}"{{ with $v.srcset }} srcset="{{ . }}" sizes="(max-width:820px) 94vw, 620px"{{ end }} width="{{ $v.w }}" height="{{ $v.h }}" alt="{{ .PlainText | default $pt }}" loading="lazy" decoding="async">
     <figcaption>{{ . }}</figcaption>
 </figure>
 {{- else -}}
-<img class="art-img {{ $cls }}" src="{{ $v.src }}"{{ with $v.srcset }} srcset="{{ . }}" sizes="(max-width:820px) 60vw, 500px"{{ end }} width="{{ $v.w }}" height="{{ $v.h }}" alt="{{ .PlainText | default $pt }}" loading="lazy" decoding="async">
+<img class="art-img {{ $cls }}" src="{{ $v.src }}"{{ with $v.srcset }} srcset="{{ . }}" sizes="{{ $sz }}"{{ end }} width="{{ $v.w }}" height="{{ $v.h }}" alt="{{ .PlainText | default $pt }}" loading="lazy" decoding="async">
 {{- end -}}
 {{- else -}}
 <img class="art-img art-img--std" src="{{ $src | safeURL }}" alt="{{ .PlainText }}" loading="lazy" decoding="async">

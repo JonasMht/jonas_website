@@ -67,6 +67,8 @@ function drawHeat(d) {
     document.getElementById("hinfo").textContent =
         (d.views || 0) + " views · avg depth " + (d.avg_depth || 0) + "% · " + (d.clicks || []).length + " clicks";
 }
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g,
+        c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function render() {
     j("/api/summary?days=30").then(d => {
         document.getElementById("gauges").innerHTML =
@@ -78,10 +80,10 @@ function render() {
              <div class="g"><b>${d.clicks}</b><span>clicks · 30d</span></div>`;
         const mx = Math.max(1, ...d.pages.map(p => p[1]));
         document.getElementById("pages").innerHTML = d.pages.map(([p, n]) =>
-            `<div class="row"><span class="n">${p}</span><span class="v">${n}</span></div>
+            `<div class="row"><span class="n">${esc(p)}</span><span class="v">${n}</span></div>
              <div class="bar"><i style="width:${(n / mx) * 100}%"></i></div>`).join("");
         document.getElementById("refs").innerHTML = d.refs.map(([r, n]) =>
-            `<div class="row"><span class="n">${r}</span><span class="v">${n}</span></div>`).join("");
+            `<div class="row"><span class="n">${esc(r)}</span><span class="v">${n}</span></div>`).join("");
         const sel = document.getElementById("hpage");
         if (!sel.options.length) {
             d.pages.forEach(([p]) => { const o = document.createElement("option"); o.value = o.textContent = p; sel.appendChild(o); });
@@ -95,10 +97,10 @@ function render() {
         d.visitors.forEach(v => {
             const tr = document.createElement("tr");
             tr.innerHTML = `<td class="mono">${v.id}</td><td class="mono">${v.visits}</td><td class="mono">${v.sessions}</td>
-                <td class="mono">${fmt(v.last)}</td><td>${v.pages.map(p => p[0]).join("<br>")}</td>`;
+                <td class="mono">${fmt(v.last)}</td><td>${v.pages.map(p => esc(p[0])).join("<br>")}</td>`;
             tr.onclick = () => j("/api/visitor?id=" + v.id).then(tl => {
                 document.getElementById("tl").innerHTML = tl.events.map(e =>
-                    `<div><span class="p">${fmt(e[0])}</span> ${e[1]} ${e[2]}` +
+                    `<div><span class="p">${fmt(e[0])}</span> ${e[1]} ${esc(e[2])}` +
                     (e[1] === "dur" ? ` · ${e[3]}s · depth ${e[4]}%` : "") + `</div>`).join("") || "no events";
             });
             tb.appendChild(tr);

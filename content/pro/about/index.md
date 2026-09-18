@@ -2,7 +2,7 @@
 title: About
 description: PhD Student — ICube Laboratory, University of Strasbourg
 slug: about
-aliases: ["/p/about-me/"]
+aliases: ["/p/about-me/", "/p/about/"]
 date: 2023-03-20 00:00:00+0000
 image: cryotrack-experiment.jpg
 weight: 4
@@ -17,7 +17,7 @@ links:
   website: jonas-mehtali-resume.pdf
 - title: "LinkedIn"
   description: "Connect on LinkedIn"
-  website: https://linkedin.com/in/jonasmehtali
+  website: https://www.linkedin.com/in/jonasmehtali/
 ---
 
 # Jonas Mehtali

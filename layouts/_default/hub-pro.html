@@ -73,7 +73,7 @@
             {{- with .Params.image }}{{ $pimg = $p.Resources.GetMatch . }}{{ end }}
             {{- if not $pimg }}{{ with .Resources.GetMatch "*.png" }}{{ $pimg = . }}{{ end }}{{ end }}
             {{- with $pimg }}
-            <div class="im">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080) "sizes" "(max-width:700px) 92vw, (max-width:1100px) 46vw, 520px" "alt" "") }}<span class="st">{{ $venue }}</span></div>
+            <div class="im">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080) "sizes" "(max-width:700px) 92vw, (max-width:1100px) 46vw, 250px" "alt" "") }}<span class="st">{{ $venue }}</span></div>
             {{- end }}
             <div class="bd">
                 <h3><a class="stretch" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
@@ -83,7 +83,7 @@
                     {{- with .Params.doi }}<a href="https://doi.org/{{ . }}" target="_blank" rel="noopener">[DOI]</a>{{ end }}
                     {{- with .Params.paper }}<a href="{{ . }}" target="_blank" rel="noopener">[PAPER]</a>{{ end }}
                     {{- with .Params.hal }}<a href="{{ . }}" target="_blank" rel="noopener">[HAL PDF]</a>{{ end }}
-                    <span>[CITE ↓]</span>
+                    <a href="{{ .RelPermalink }}#bibtex">[CITE ↓]</a>
                 </div>
             </div>
         </div>

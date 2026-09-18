@@ -18,6 +18,8 @@ application: no database, no forms, no server-side sessions.
 
 ## Vie privée / Privacy
 
+The full disclosure lives on its own page: [Privacy — station telemetry](/privacy/).
+
 - **No cookies.** The site sets none.
 - **Console & preferences** (the `~` terminal) live in your browser's
   `localStorage` and never leave your machine; `clear` in the console wipes them.
