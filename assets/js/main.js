@@ -263,9 +263,11 @@
             ta.style.position = "fixed"; ta.style.top = "0"; ta.style.left = "-9999px";
             document.body.appendChild(ta);
             clearSel();
-            ta.select();
+            ta.focus();
+            ta.setSelectionRange(0, ta.value.length);
             try { if (document.execCommand("copy")) done(); } catch (e) {}
             clearSel();
+            ta.blur();
             ta.remove();
         }
         btn.addEventListener("click", function () {
@@ -287,10 +289,10 @@
             function (on) { hl.classList.toggle("is-copied", on); });
     });
 
-    /* copyable identifiers — ORCID links become click-to-copy themselves;
+    /* copyable identifiers — ORCID text and links become click-to-copy;
        DOI links keep navigation and gain an inline copy chip */
     var ORCID = /^\d{4}-\d{4}-\d{4}-[\dXx]{4}$/;
-    document.querySelectorAll("main a").forEach(function (a) {
+    document.querySelectorAll("main a, main .mono-id-num").forEach(function (a) {
         if (a.closest(".highlight") || a.querySelector("img")) return;
         var text = (a.textContent || "").trim();
         var href = a.getAttribute("href") || "";
@@ -302,9 +304,16 @@
         if (ORCID.test(text)) {
             a.classList.add("copy-btn", "copy-id");
             a.setAttribute("role", "button");
+            a.setAttribute("tabindex", "0");
             a.setAttribute("aria-label", "Copy ORCID iD " + value + " to clipboard");
             a.innerHTML = CLIP_SVG.replace("<span>COPY</span>", "<span>" + value + "</span>");
-            a.addEventListener("click", function (ev) { ev.preventDefault(); }, true);
+            if (a.tagName !== "A") {
+                a.addEventListener("keydown", function (ev) {
+                    if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); a.click(); }
+                });
+            } else {
+                a.addEventListener("click", function (ev) { ev.preventDefault(); }, true);
+            }
             wireCopy(a, function () { return value; });
         } else {
             var chip = makeCopyBtn();
