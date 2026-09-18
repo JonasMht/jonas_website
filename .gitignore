@@ -9,3 +9,4 @@ telemetry/telemetry.db*
 telemetry/blocked.txt
 telemetry/backups/
 telemetry/.key
+__pycache__/
