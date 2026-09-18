@@ -263,15 +263,22 @@
         ta.blur(); ta.remove();
         return ok;
     }
-    function showBadge(el) {
-        var old = el.querySelector(".copy-badge");
+    function showBadge(el, ev) {
+        var old = document.querySelector(".copy-badge-wrap");
         if (old) old.remove();
+        var x, y;
+        if (ev && (ev.clientX || ev.clientY)) { x = ev.clientX; y = ev.clientY; }
+        else { var r = el.getBoundingClientRect(); x = r.left + r.width / 2; y = r.top; }
+        var w = document.createElement("span");
+        w.className = "copy-badge-wrap";
+        w.setAttribute("aria-hidden", "true");
+        w.style.cssText = "position:fixed;left:" + x + "px;top:" + y + "px;transform:translate(-50%,-130%);z-index:60;pointer-events:none;";
         var b = document.createElement("span");
         b.className = "copy-badge";
         b.textContent = "COPIED";
-        b.setAttribute("aria-hidden", "true");
-        el.appendChild(b);
-        setTimeout(function () { b.remove(); }, 1500);
+        w.appendChild(b);
+        document.body.appendChild(w);
+        setTimeout(function () { w.remove(); }, 1500);
     }
     var liveRegion = null;
     function announce(msg) {
@@ -340,9 +347,9 @@
             } else {
                 a.addEventListener("click", function (ev) { ev.preventDefault(); }, true);
             }
-            a.addEventListener("click", function () {
+            a.addEventListener("click", function (ev) {
                 doCopy(value).then(function (ok) {
-                    if (ok) { showBadge(a); announce("Copied to clipboard"); }
+                    if (ok) { showBadge(a, ev); announce("Copied to clipboard"); }
                 });
             });
         } else {
