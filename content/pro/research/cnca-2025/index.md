@@ -31,8 +31,8 @@ We estimate heat-induced tissue death during percutaneous thermal ablation with 
 ## BibTeX
 ```bibtex
 @inproceedings{mehtali2025cnca,
-  title     = {C-NCA: Chained Neural Cellular Automata for Fast Thermal Ablation Estimation},
-  author    = {Mehtali, Jonas and others},
+  title     = {C-NCA: Chained Neural Cellular Automata for Fast and Accurate Thermal Ablation Estimation},
+  author    = {Mehtali, Jonas and Verde, Juan Manuel and Essert, Caroline},
   booktitle = {Medical Image Computing and Computer Assisted Intervention -- MICCAI 2025},
   year      = {2025},
   publisher = {Springer},
