@@ -306,7 +306,7 @@
             a.setAttribute("role", "button");
             a.setAttribute("tabindex", "0");
             a.setAttribute("aria-label", "Copy ORCID iD " + value + " to clipboard");
-            a.innerHTML = CLIP_SVG.replace("<span>COPY</span>", "<span>" + value + "</span>");
+            a.innerHTML = "<span>" + value + "</span>";
             if (a.tagName !== "A") {
                 a.addEventListener("keydown", function (ev) {
                     if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); a.click(); }
