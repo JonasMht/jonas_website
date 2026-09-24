@@ -426,6 +426,30 @@ figure figcaption {
 
 
 /* ===================================================================
+   16b. CROSS-DOCUMENT VIEW TRANSITIONS
+   Native multi-page (MPA) page-to-page transitions, no JS. Browsers
+   without support ignore this and navigate normally.
+   =================================================================== */
+
+@view-transition {
+    navigation: auto;
+}
+
+/* Tune the default root cross-fade timing to feel quick, not draggy. */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.18s;
+}
+
+/* Honour reduced-motion: disable the cross-document animation entirely. */
+@media (prefers-reduced-motion: reduce) {
+    @view-transition {
+        navigation: none;
+    }
+}
+
+
+/* ===================================================================
    17. BUTTONS
    =================================================================== */
 
