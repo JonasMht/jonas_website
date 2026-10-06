@@ -2,7 +2,7 @@
 title: "Personal"
 description: "Game development, 3D art, and work experiences alongside my studies."
 layout: "hub-personal"
-eyebrow: "BEYOND THE LAB"
+eyebrow: "GAMES · 3D · TOOLS"
 headline: "Games, tools and |3D worlds|."
 lede: "Four games shipped since 2019, a museum 3D exhibit, and small utilities for recurring problems. Same standards as the research, softer deadlines."
 cells:
@@ -13,7 +13,7 @@ cells:
   - k: "Engines"
     v: "Unity · Godot"
     sub: "+ Blender for 3D"
-  - k: "Trades logged"
+  - k: "Part-time jobs"
     v: "3"
     sub: "2020 — 2022"
 featured: "sensha"

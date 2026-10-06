@@ -16,7 +16,7 @@ links:
 - title: "Promotional Document"
   description: "Promotional document used during the presentation of the project"
   website: dossier-communication-pi-2022-1.pdf
-- title: "Youtube Compilation"
+- title: "YouTube Compilation"
   description: "Compilation of some renders"
   website: https://www.youtube.com/playlist?list=PL6GgfN_TkzS5HTbS_GTr9Pvq7EiQtYHTX
 - title: "LinkedIn Publication"

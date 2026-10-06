@@ -11,12 +11,12 @@ cells:
     v: "3"
     sub: "MICCAI ×2 · IJCARS ×1"
     acc: true
-  - k: "Station pulse"
+  - k: "Visitors"
     pulse: true
     sub: "visitors · 7 days"
-  - k: "Research routes"
+  - k: "Research areas"
     v: "3"
-    sub: "simulation → planning → translation"
+    sub: "simulation → planning → clinical"
   - k: "Funding"
     v: "ITI"
     sub: "HealthTech doctoral program"
@@ -52,14 +52,14 @@ workbench:
     items: ["3D Slicer", "OpenIGTLink"]
   - group: "Interactive & 3D"
     items: ["Unity", "Godot", "Blender"]
-  - group: "This station"
+  - group: "Site"
     items: ["Hugo", "Caddy", "SQLite"]
 timeline:
   - period: "2024 —"
     title: "PhD Student, Computer-Assisted Interventions"
     place: "ICube Laboratory · University of Strasbourg"
     desc: "Automatic multi-needle adaptive planning for percutaneous thermal ablation, funded by the ITI HealthTech doctoral program."
-    out: "axis: multi-needle adaptive planning"
+    out: "multi-needle adaptive planning"
   - period: "2023 — 2024"
     title: "R&D Internships in Computer-Assisted Surgery"
     place: "TU Darmstadt · IHU Strasbourg · ICube"
@@ -100,7 +100,7 @@ repos:
     url: "https://github.com/JonasMht/GKA_file_manipulation_software"
   - name: "Sensha-Game-2019"
     lang: "Python"
-    desc: "2D real-time strategy tank game built with PyGame — where the workshop started."
+    desc: "2D real-time strategy tank game built with PyGame — my first project."
     url: "https://github.com/JonasMht/Sensha-Game-2019"
 ---
 

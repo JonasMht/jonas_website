@@ -2,7 +2,7 @@
 <article class="post">
     <header class="post-header container-narrow reveal">
         <nav class="crumbs" aria-label="Breadcrumb">
-            <a href="{{ site.Home.RelPermalink }}">STATION</a>
+            <a href="{{ site.Home.RelPermalink }}">Home</a>
             {{- range .Ancestors.Reverse }}
             {{- if not .IsHome }}<span>/</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
             {{- end }}
@@ -12,7 +12,7 @@
         {{- with .Params.description }}<p class="post-subtitle">{{ . }}</p>{{ end }}
         <p class="post-meta">
             {{- $yr := .Date | time.Format "2006" }}
-            {{- with .Params.venue }}<span class="tag-chip">{{ . }} · {{ $yr }}</span>{{ else }}{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 JAN 2006" }}</time>{{ end }}{{ end }}
+            {{- with .Params.venue }}<span class="tag-chip">{{ . }} · {{ $yr }}</span>{{ else }}{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 Jan 2006" }}</time>{{ end }}{{ end }}
             <span>{{ .ReadingTime }} MIN</span>
             {{- with .Params.tags }}{{ range first 4 . }}<span class="tag-chip">{{ . }}</span>{{ end }}{{ end }}
         </p>
@@ -52,7 +52,7 @@
     {{- $sibs := where .Parent.Pages "RelPermalink" "!=" .RelPermalink }}
     {{- with $sibs }}
     <aside class="container-narrow bridges reveal">
-        <div class="sec-h"><span class="mark"></span><h2>Continue</h2><span class="k">nearby modules</span></div>
+        <div class="sec-h"><span class="mark"></span><h2>Continue</h2><span class="k">related pages</span></div>
         <div class="bgrid">
             {{- range first 3 $sibs }}
             <a class="bridge" href="{{ .RelPermalink }}">

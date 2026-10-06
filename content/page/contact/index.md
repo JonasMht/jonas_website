@@ -9,4 +9,4 @@ image: oviedo-spain-cover.jpg
 ## Follow me on social media
 On [LinkedIn](https://www.linkedin.com/in/jonasmehtali/)
 
-On [Youtube](https://www.youtube.com/@JonasMht)
+On [YouTube](https://www.youtube.com/@JonasMht)

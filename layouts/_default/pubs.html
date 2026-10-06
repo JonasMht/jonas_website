@@ -2,8 +2,10 @@
 <div class="container">
     <header class="list-hero reveal">
         <nav class="crumbs" aria-label="Breadcrumb">
-            <a href="{{ site.Home.RelPermalink }}">STATION</a><span>/</span><a href="/pro/">PRO</a><span>/</span>
-            <span aria-current="page" style="color:var(--accent)">PUBLICATIONS</span>
+            <a href="{{ site.Home.RelPermalink }}">Home</a>
+            {{- with .Parent }}{{ if not .IsHome }}<span>/</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}{{ end }}
+            <span>/</span>
+            <span aria-current="page" style="color:var(--accent)">{{ .Title }}</span>
         </nav>
         <h1 class="list-title">Publications</h1>
         {{- with .Params.description }}<p class="list-desc">{{ . }}</p>{{ end }}

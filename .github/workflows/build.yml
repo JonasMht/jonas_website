@@ -23,7 +23,7 @@ jobs:
         run: ./hugo --gc --minify
       - name: Zero-JS sanity (content must exist in raw HTML)
         run: |
-          for probe in "in real time" "OPEN PRO" "Station pulse"; do
+          for probe in "thermal ablation" "Research →" "Jonas Mehtali"; do
             grep -q "$probe" public/index.html || { echo "MISSING: $probe"; exit 1; }
           done
           grep -q "No cookies" public/legal/index.html || { echo "legal missing"; exit 1; }

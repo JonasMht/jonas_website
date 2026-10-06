@@ -1,11 +1,11 @@
 ---
-title: "Privacy — station telemetry"
+title: "Privacy — site telemetry"
 description: "Full disclosure of the first-party telemetry: what is collected, for how long, and how to opt out."
 date: 2026-09-01T00:00:00+0000
 aliases: ["/p/privacy/"]
 ---
 
-## Vie privée / Privacy — station telemetry
+## Vie privée / Privacy — site telemetry
 
 This site is **fully self-hosted**. There are no cookies, no third-party
 scripts, no ad networks, and Google Analytics was removed in 2026.
@@ -23,10 +23,10 @@ to your name. Your IP is stored only as a one-way hash, kept with the event
 rows for 90 days for abuse analysis. No cross-site tracking, no fingerprinting
 beyond this ID, no advertising use, no data sale, no third parties ever.
 
-**Why:** understanding which modules are useful (hot/cold spots), which pages
+**Why:** understanding which pages are read (hot/cold spots), which pages
 need work, and how the research is being read.
 
-**Where it lives:** one SQLite database on the operator's own server. Retention:
+**Where it lives:** one SQLite database on the site owner's own server. Retention:
 raw events **90 days**, aggregated visitor rows **400 days**, then deleted.
 
 **Your controls:**
@@ -36,6 +36,6 @@ raw events **90 days**, aggregated visitor rows **400 days**, then deleted.
 - `telemetry on` re-enables it
 - browsers set to Do-Not-Track are honored automatically
 
-**Legal basis:** legitimate interest of the site operator (measure its own
+**Legal basis:** legitimate interest of the site owner (measure its own
 website), processed under GDPR art. 6(1)(f) with the balancing interests and
 opt-out documented above. Data controller: Jonas Mehtali, Strasbourg.

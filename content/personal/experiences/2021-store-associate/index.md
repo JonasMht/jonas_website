@@ -12,7 +12,7 @@ tags:
 ---
 
 ## Description
-Back in 2021, I was enrolled as a store associate in a convenient store for one year.
+In 2021 I worked part-time for a year at the convenience store in my hometown.
 <br>
 I was working part-time on weekends and during the holidays at the local convenient store of my hometown.
 

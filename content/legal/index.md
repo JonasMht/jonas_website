@@ -18,7 +18,7 @@ application: no database, no forms, no server-side sessions.
 
 ## Vie privée / Privacy
 
-The full disclosure lives on its own page: [Privacy — station telemetry](/privacy/).
+The full disclosure lives on its own page: [Privacy — site telemetry](/privacy/).
 
 - **No cookies.** The site sets none.
 - **Console & preferences** (the `~` terminal) live in your browser's
@@ -29,7 +29,7 @@ The full disclosure lives on its own page: [Privacy — station telemetry](/priv
 
 ## Accessibilité
 
-The station is built to be read with JavaScript disabled, honors
+This site is built to be read with JavaScript disabled, honors
 `prefers-reduced-motion` (all animation stops), keeps text contrast at WCAG AA
 against the dark ground, and every interactive element is reachable by
 keyboard. If something is hard to use, tell me — via any channel above.

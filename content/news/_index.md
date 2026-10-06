@@ -1,6 +1,6 @@
 ---
-title: "Station log"
-description: "Dated activity — what changed and when. The strongest 'this operator is active' signal there is."
+title: "News"
+description: "What changed on this site, and when."
 ---
 
 <!-- entries below, newest first -->

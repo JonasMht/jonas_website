@@ -18,7 +18,7 @@
     {{- $ogImage = . | absURL -}}
   {{- end -}}
 {{- else -}}
-  {{- $img := resources.Get "img/og-station.jpg" -}}
+  {{- $img := resources.Get "img/og-cover.jpg" -}}
   {{- if $img -}}{{- $ogImage = $img.Permalink -}}{{- end -}}
 {{- end -}}
 

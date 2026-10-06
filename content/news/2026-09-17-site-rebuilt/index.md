@@ -1,6 +1,6 @@
 ---
-title: "Site rebuilt — fusion 2, sober build"
-description: "The station got a full redesign: control-room aesthetic, figure-first publications, honest telemetry. You are looking at it."
+title: "Site rebuilt — new design"
+description: "A full redesign: one accent colour, figure-first publications, and a privacy-respecting visit counter. You are looking at it."
 date: 2026-09-16 22:00:00+0000
 ---
 

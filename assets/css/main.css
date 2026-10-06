@@ -11,10 +11,11 @@
     --line2: #303A4A;
     --text: #E5EAF1;
     --dim: #8C97A7;
-    --faint: #5A6678;
+    --faint: #77869E;
     --accent: #6FA8DC;
     --accent-dim: rgba(111, 168, 220, .35);
     --accent-faint: rgba(111, 168, 220, .1);
+    --accent-text: #8FBEE8;
     --ok: #46B98C;
     --sans: -apple-system, "Segoe UI", system-ui, sans-serif;
     --mono: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -51,8 +52,12 @@ img { max-width: 100%; height: auto; }
     display: grid; place-items: center; font-family: var(--mono); font-size: .72rem;
     letter-spacing: .22em; color: var(--accent); text-transform: uppercase;
     opacity: 1; transition: opacity .28s ease; pointer-events: none; }
-.ignition.is-done { opacity: 0; pointer-events: none; }
+/* `html.js .ignition` (0,2,1) outranks `.ignition.is-done` (0,2,0), so the
+   faded overlay kept swallowing clicks for 640ms after load. Both rules below
+   are scoped to match that specificity. */
 html.js .ignition { pointer-events: all; }
+.ignition.is-done { opacity: 0; }
+html.js .ignition.is-done { pointer-events: none; }
 html:not(.js) .ignition { display: none; }
 
 /* skip link — keyboard users only */
@@ -69,6 +74,9 @@ html:not(.js) .ignition { display: none; }
 .nav { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; padding: 10px var(--pad); max-width: var(--maxw); margin: 0 auto; }
 .nav .sys { font-family: var(--mono); font-size: .74rem; font-weight: 600; margin-right: auto;
     display: flex; align-items: center; gap: 9px; color: var(--text); }
+/* the wordmark is a nav control on touch; give it a full-height hit area there
+   without moving the glyph (negative margin keeps the bar's visual rhythm) */
+@media (pointer: coarse) { .nav .sys { min-height: 44px; margin-block: -6px; } }
 .nav .sys img { width: 22px; height: 22px; border-radius: 5px; object-fit: cover; object-position: center 20%; }
 .nav .sys i { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 8px var(--ok); }
 .nav .sys .suffix { color: var(--faint); font-weight: 400; }
@@ -81,9 +89,10 @@ html:not(.js) .ignition { display: none; }
 /* ===== monitor (hero panels) ===== */
 .monitor { margin-top: 30px; overflow: visible; border: 1px solid var(--line); border-radius: var(--r);
     background: var(--panel); }
-.mhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 18px;
+.mhead { display: flex; justify-content: space-between; align-items: center; gap: 6px 12px; padding: 11px 18px;
     border-bottom: 1px solid var(--line); background: var(--panel2); font-family: var(--mono);
     font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim);
+    flex-wrap: wrap; min-width: 0;
     border-radius: var(--r) var(--r) 0 0; }
 .mhead .live { color: var(--ok); white-space: nowrap; }
 .mhead .live::before { content: "● "; }
@@ -163,7 +172,7 @@ html:not(.js) .ignition { display: none; }
 .sess a { color: inherit; text-decoration: none; display: block; }
 .sess a:hover b { color: var(--accent); }
 .sess .out { display: block; margin-top: 3px; font-family: var(--mono); font-size: .6rem;
-    letter-spacing: .1em; color: var(--accent-dim); }
+    letter-spacing: .1em; color: var(--accent-text); }
 .sess a:hover .out { color: var(--accent); }
 .repo-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
 .repo { border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); padding: 13px 15px;
@@ -191,11 +200,16 @@ html:not(.js) .ignition { display: none; }
 /* touch targets — HIG/Android minimums on coarse pointers */
 @media (pointer: coarse) {
     .nav a.t, .chiprow a, .chiprow span, .idrow a, .copy-btn, .pager a, .more { min-height: 44px; }
-    .nav a.t { padding: 12px 10px; }
+    .nav a.t { padding: 12px 14px; }
     .chiprow a, .chiprow span { padding: 12px 10px; }
     .idrow a { padding: 12px 11px; }
     .copy-btn { padding: 10px 12px; }
     .copy-btn.inline { padding: 8px 10px; }
+    /* footer + nav chrome: give the small links a real hit area without
+       changing the visual rhythm (padding grows, the glyph does not) */
+    .foot-in a, .foot-bottom a, .crumbs a { display: inline-block; padding: 11px 4px; margin: -11px -4px; }
+    .foot-next, .more { display: inline-flex; align-items: center; min-height: 44px; }
+    .lnk { min-height: 44px; }
 }
 
 /* ===== section headers ===== */
@@ -246,7 +260,7 @@ html:not(.js) .ignition { display: none; }
     text-transform: uppercase; color: var(--faint); }
 .card__title { margin: 0 0 5px; font-size: .98rem; font-weight: 700; letter-spacing: -.01em; }
 .card__desc { margin: 0; color: var(--dim); font-size: .82rem; }
-.card__meta { display: flex; justify-content: space-between; gap: 10px; margin: 10px 0 0;
+.card__meta { display: flex; justify-content: space-between; gap: 4px 10px; margin: 10px 0 0; flex-wrap: wrap;
     font-family: var(--mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
 
 /* wide featured module */
@@ -332,9 +346,15 @@ a.nrow:hover .nt { color: var(--accent); }
 .slider .s-top { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); object-fit: cover; }
 .slider .s-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
     background: var(--accent); box-shadow: 0 0 12px var(--accent-dim); }
+/* the handle is a 2px line; a default outline would be an unreadable hairline,
+   so the focus ring is drawn on the 34px grip instead */
+.slider .s-handle:focus-visible { outline: none; }
+.slider .s-handle:focus-visible span { outline: 2px solid var(--accent); outline-offset: 3px; }
 .slider .s-handle span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     background: var(--accent); color: #0C0F14; width: 34px; height: 34px; border-radius: 50%;
     display: grid; place-items: center; font-size: .85rem; box-shadow: 0 4px 14px rgba(0,0,0,.5); }
+/* the handle is a 2px line; the grip is what a finger actually has to hit */
+@media (pointer: coarse) { .slider .s-handle span { width: 44px; height: 44px; } }
 .s-tag { position: absolute; top: 12px; z-index: 2; font-family: var(--mono); font-size: .54rem;
     letter-spacing: .14em; text-transform: uppercase; padding: 4px 10px; border-radius: 5px;
     background: rgba(12, 15, 20, .8); color: var(--accent); }
@@ -432,6 +452,20 @@ a.nrow:hover .nt { color: var(--accent); }
 .article-content .highlight { position: relative; margin: 1.4em 0; }
 .article-content .highlight pre { margin: 0; padding: 14px 16px; background: var(--panel2);
     border: 1px solid var(--line); border-radius: var(--r); overflow-x: auto; font-size: .8rem; line-height: 1.55; }
+/* scroll shadows — a wide code block scrolls, and without a cue the cut-off
+   line just reads as broken. On a dark ground a black shadow is invisible, so
+   the cue is an accent-tinted scrim that fades the glyphs at the scroll edge.
+   background-attachment: local layers hide the scrim once you reach that end. */
+.article-content .highlight pre {
+    background-image:
+        linear-gradient(to right, var(--panel2) 12px, rgba(23, 29, 39, 0)),
+        linear-gradient(to left, var(--panel2) 12px, rgba(23, 29, 39, 0)),
+        linear-gradient(to right, rgba(111, 168, 220, .28), rgba(111, 168, 220, 0)),
+        linear-gradient(to left, rgba(111, 168, 220, .28), rgba(111, 168, 220, 0));
+    background-position: 0 0, 100% 0, 0 0, 100% 0;
+    background-repeat: no-repeat;
+    background-size: 34px 100%, 34px 100%, 26px 100%, 26px 100%;
+    background-attachment: local, local, scroll, scroll; }
 .article-content .highlight pre code { background: none; border: none; padding: 0; font-size: inherit; }
 /* copy button — one click, drawn check, spring settle */
 .copy-btn { position: absolute; top: 8px; right: 8px; z-index: 2; display: flex; align-items: center; gap: 5px;

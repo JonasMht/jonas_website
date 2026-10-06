@@ -26,7 +26,7 @@ Cryoablation is a minimally invasive technique that uses extreme cold to destroy
 
 This work was published at the *27th International Conference on Medical Image Computing and Computer Assisted Intervention (MICCAI 2024)*, Marrakesh, Morocco, October 6-10, 2024.
 
-[📄 Read the Paper](https://papers.miccai.org/miccai-2024/179-Paper1240.html) · [🔬 DOI](https://doi.org/10.1007/978-3-031-72089-5_10)
+[Read the paper](https://papers.miccai.org/miccai-2024/179-Paper1240.html) · [DOI](https://doi.org/10.1007/978-3-031-72089-5_10)
 
 ---
 

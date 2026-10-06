@@ -79,7 +79,8 @@
         setInterval(flush, 5000);
     }
 
-    /* ignition blink — ≤300ms, once per session, skipped under reduced-motion */
+    /* ignition blink — ≤300ms, once per session, skipped under reduced-motion.
+       Any input dismisses it early: an intro animation must never eat a click. */
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!reduce) document.body.classList.add("rm-ok");
     var ign = document.querySelector(".ignition");
@@ -89,10 +90,17 @@
         if (seen) { ign.remove(); }
         else {
             try { sessionStorage.setItem("jm.ignited", "1"); } catch (e) {}
-            setTimeout(function () {
+            var ignT1, ignT2;
+            var dismissIgn = function () {
+                clearTimeout(ignT1); clearTimeout(ignT2);
+                if (!ign.parentNode) return;
                 ign.classList.add("is-done");
-                setTimeout(function () { ign.remove(); }, 400);
-            }, 240);
+                ignT2 = setTimeout(function () { ign.remove(); }, 400);
+            };
+            ignT1 = setTimeout(dismissIgn, 240);
+            ["pointerdown", "keydown", "wheel", "touchstart"].forEach(function (ev) {
+                window.addEventListener(ev, dismissIgn, { once: true, passive: true });
+            });
         }
     } else if (ign) { ign.remove(); }
 
@@ -457,7 +465,7 @@
         box.classList.add("is-open");
         if (!body.dataset.init) {
             body.dataset.init = "1";
-            line("STATION CONSOLE — local telemetry, honest theatre", "hi");
+            line("CONSOLE — local telemetry", "hi");
             line("type `help` for commands · `~` or ESC closes");
             logVisited();
             sessionLine();
@@ -531,10 +539,10 @@
         var cmd = parts[0].toLowerCase();
         if (cmd === "help") {
             line("help — this list");
-            line("telemetry on|off — opt out of / back into station telemetry (see /legal)");
+            line("telemetry on|off — opt out of / back into site telemetry (see /legal)");
             line("session — your visit, as local telemetry");
-            line("goto <path> — jump to a station path (e.g. goto /pro/)");
-            line("find <words> — search the station (titles, tags, descriptions)");
+            line("goto <path> — jump to a page (e.g. goto /pro/)");
+            line("find <words> — search the site (titles, tags, descriptions)");
             line("clear — wipe the local profile");
         } else if (cmd === "session") {
             sessionLine();

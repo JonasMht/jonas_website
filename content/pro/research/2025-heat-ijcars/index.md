@@ -27,7 +27,7 @@ Percutaneous thermal ablation is increasingly popular but still suffers from a c
 
 This work was published in the *International Journal of Computer Assisted Radiology and Surgery (IJCARS)* in 2025.
 
-[📄 Read the Paper](https://hal.science/hal-04973371) · [🔬 DOI](https://doi.org/10.1007/s11548-025-03350-z)
+[Read the paper](https://hal.science/hal-04973371) · [DOI](https://doi.org/10.1007/s11548-025-03350-z)
 
 ---
 

@@ -1,11 +1,11 @@
 <footer class="site-footer">
     <div class="foot-in">
-        <span>PULSE·FUSION 2 — SOBER BUILD · {{ site.Params.footer.since }}–{{ now.Year }}</span>
+        <span>JONAS MEHTALI · {{ site.Params.footer.since }}–{{ now.Year }}</span>
         {{- $home := site.Home.RelPermalink }}
         {{- $next := "/personal/" }}
         {{- if hasPrefix .RelPermalink "/personal" }}{{ $next = "/pro/" }}{{ else if hasPrefix .RelPermalink "/pro" }}{{ $next = "/personal/" }}{{ else if ne .RelPermalink $home }}{{ $next = $home }}{{ end }}
         {{- with site.GetPage $next }}
-        <a class="foot-next" href="{{ .RelPermalink }}">{{ if eq $next "/pro/" }}NEXT STATION: PRO →{{ else if eq $next "/personal/" }}NEXT STATION: PERSONAL →{{ else }}BACK TO OVERVIEW →{{ end }}</a>
+        <a class="foot-next" href="{{ .RelPermalink }}">{{ if eq $next "/pro/" }}Next: Research →{{ else if eq $next "/personal/" }}Next: Projects →{{ else }}Back to overview →{{ end }}</a>
         {{- end }}
         <span><a href="/legal/">LEGAL</a> · <a href="/pro/about/jonas-mehtali-resume.pdf">CV.PDF</a></span>
     </div>
@@ -18,8 +18,8 @@
 {{/* console-lite: hidden shell, revealed only by JS (zero-JS safe) */}}
 <button id="console-toggle" class="console-toggle" aria-haspopup="dialog">~ CONSOLE</button>
 <div class="console" id="console" hidden>
-    <div class="console__panel" role="dialog" aria-label="Station console">
-        <div class="console__bar"><b>STATION CONSOLE — GUEST@JONASX</b><span>LOCAL ONLY</span></div>
+    <div class="console__panel" role="dialog" aria-label="Console">
+        <div class="console__bar"><b>CONSOLE</b><span>LOCAL ONLY</span></div>
         <div class="console__body" id="console-body"></div>
         <div class="console__input"><span class="p">›</span><input id="console-input" type="text"
             autocomplete="off" spellcheck="false" aria-label="Console command"></div>
