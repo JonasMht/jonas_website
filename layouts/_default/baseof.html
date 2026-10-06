@@ -11,8 +11,10 @@
         {{ block "main" . }}{{ end }}
     </main>
     {{ partial "footer.html" . }}
-    <script>window.TELEMETRY_ENDPOINT = {{ site.Params.telemetryEndpoint | default "" | jsonify | safeJS }};</script>
+    {{- /* Telemetry endpoint travels as a data- attribute rather than an inline
+           script, so the CSP needs no hash for it. */ -}}
     {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
-    <script src="{{ $js.RelPermalink }}" defer></script>
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"
+            data-telemetry="{{ site.Params.telemetryEndpoint | default "" }}" defer></script>
 </body>
 </html>

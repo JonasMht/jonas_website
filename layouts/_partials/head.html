@@ -33,7 +33,10 @@
 {{ end }}
 <meta name="author" content="{{ site.Params.author.name }}">
 
-<script>document.documentElement.classList.add("js");</script>
+{{- /* External, not inline: keeps script-src at a flat 'self' so no CSP hash has
+       to be hand-maintained. Blocking (no defer) so .js lands before first paint. */ -}}
+{{- $boot := resources.Get "js/boot.js" | minify | fingerprint }}
+<script src="{{ $boot.RelPermalink }}" integrity="{{ $boot.Data.Integrity }}"></script>
 
 {{- /* LCP hero preload — matches the img partial's variants exactly */ -}}
 {{- $hero := dict -}}

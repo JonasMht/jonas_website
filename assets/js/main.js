@@ -18,7 +18,10 @@
     paint();
 
     /* ===== station telemetry — self-hosted, first-party, disclosed in /legal ===== */
-    var TEP = window.TELEMETRY_ENDPOINT || "";
+    /* endpoint arrives as a data- attribute on this very <script>, not as an
+       inline script, so the CSP stays at a flat script-src 'self' */
+    var selfScript = document.currentScript || document.querySelector("script[data-telemetry]");
+    var TEP = (selfScript && selfScript.dataset.telemetry) || "";
     var dnt = navigator.doNotTrack === "1" || window.doNotTrack === "1";
     var teleOff = null;
     try { teleOff = localStorage.getItem("jm.telemetry") === "off"; } catch (e) {}

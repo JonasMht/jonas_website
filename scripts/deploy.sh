@@ -3,8 +3,11 @@
 set -euo pipefail
 
 USER_HOST="${DEPLOY_TARGET:-jonas@10.0.0.12}"
-SITE_DIR="/srv/jonasx/site"
-TEL_DIR="/srv/jonasx/telemetry"
+# what Caddy actually serves on :8090 (see ~/jonasx/Caddyfile). This was
+# /srv/jonasx/site, a path that does not exist on the box — a deploy would have
+# rsynced into a directory nothing serves.
+SITE_DIR="${SITE_DIR:-/home/jonas/jonasx/site-preview}"
+TEL_DIR="${TEL_DIR:-/home/jonas/jonasx/telemetry}"
 
 cd "$(dirname "$0")/.."
 
