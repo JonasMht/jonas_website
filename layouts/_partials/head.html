@@ -41,7 +41,12 @@
 {{- /* LCP hero preload — matches the img partial's variants exactly */ -}}
 {{- $hero := dict -}}
 {{- $heroSizes := "" -}}
-{{- if and (eq .Kind "page") .Params.image -}}
+{{- if .IsHome -}}
+  {{- with resources.Get "img/avatar.jpg" -}}
+    {{- $hero = partial "img-variants.html" (dict "r" . "widths" (slice 480 750 960)) -}}
+    {{- $heroSizes = "(max-width:760px) 92vw, (min-width:1280px) 500px, 40vw" -}}
+  {{- end -}}
+{{- else if and (eq .Kind "page") .Params.image -}}
   {{- with .Resources.GetMatch .Params.image -}}
     {{- $hero = partial "img-variants.html" (dict "r" . "widths" (slice 540 750 1080 1440)) -}}
     {{- $heroSizes = "(max-width:820px) 94vw, 768px" -}}
@@ -50,7 +55,7 @@
   {{- with site.GetPage .Params.hero.photo.page -}}
     {{- with .Resources.GetMatch $.Params.hero.photo.image -}}
       {{- $hero = partial "img-variants.html" (dict "r" . "widths" (slice 480 750 1080)) -}}
-      {{- $heroSizes = "(max-width:760px) 92vw, (max-width:1439px) 42vw, 540px" -}}
+      {{- $heroSizes = "(max-width:760px) 92vw, (min-width:1280px) 500px, 40vw" -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}

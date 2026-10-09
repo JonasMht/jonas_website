@@ -1,6 +1,6 @@
 ---
-title: "The Lab"
-description: "Interactive visualisations from my research and personal projects."
+title: "3D reconstruction viewer"
+description: "Compare two views of the Notre-Dame reconstruction project."
 slug: lab
 layout: "lab"
 ---

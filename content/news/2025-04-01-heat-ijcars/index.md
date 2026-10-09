@@ -1,7 +1,7 @@
 ---
 title: "HEAT published in IJCARS — open access via HAL"
 description: "The GPU simulation framework paper is out; the author version lives on HAL, open to everyone."
-date: 2025-04-01 00:00:00+0000
+date: "2025-04-10T00:00:00Z"
 ---
 
 **HEAT: High-Efficiency Simulation for Thermal Ablation Therapy** appeared in

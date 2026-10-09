@@ -1,6 +1,6 @@
 ---
 title: "Publications"
-description: "Research papers, supporting code and citation files from my work in medical image computing and simulation."
+description: "Research in medical image computing and simulation, with study summaries, paper links and citations."
 slug: publications
 layout: "pubs"
 papers:
@@ -9,8 +9,6 @@ papers:
   - "/pro/research/2024-cryotrack-miccai"
 ---
 
-All three entries are peer-reviewed. DOIs resolve via [doi.org](https://doi.org);
-the HEAT journal paper is open-access via [HAL](https://hal.science/hal-04973371).
-Citation keys are embedded in each paper page — copy the BibTeX block straight
-into your `.bib` file, or write to me through any of the channels on the
-[overview](/) page.
+The pages above include a summary of each study, links to the paper and a BibTeX citation. My earlier work on typography and e-commerce usability is described in the [Oviedo research internship](/pro/research/2022-research-internship/).
+
+[Google Scholar](https://scholar.google.com/citations?user=0QQM6zIAAAAJ) · [HAL](https://hal.science/search?q=Jonas%20Mehtali) · [ORCID](https://orcid.org/0009-0003-3688-7782)

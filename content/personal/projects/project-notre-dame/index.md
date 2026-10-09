@@ -1,6 +1,7 @@
 ---
-title: Project Notre Dame
-description: 3D reconstruction and rendering of medieval architectural elements for the Musée de l'Œuvre Notre-Dame, Strasbourg, using Blender
+projectType: "3D modelling · Museum project"
+title: "Notre-Dame: 3D reconstruction"
+description: "3D assets and renders for a museum mediation project. I led a team of three students working on the visual reconstruction."
 slug: project-notre-dame
 aliases: ["/p/project-notre-dame/"]
 date: 2022-03-10 00:00:00+0000
@@ -28,32 +29,25 @@ links:
 
 ---
 
-## Description
-During a six-month long project, I led a 3D team of three students to create all the 3D assets and visuals for an artistic and cultural mediation app for the Musée Notre Dame de Strasbourg.
+## Project
 
-## Mission
-The goal of this project was to create 3D models of a painting displayed in the Musée Notre Dame de Strasbourg.
-<br>
-The 3D models were then used to create a mobile application that would allow visitors to discover the painting and its history in a new way.
+This six-month student project reconstructed elements of a painting for a cultural mediation application at the Musée de l’Œuvre Notre-Dame in Strasbourg.
 
+## My contribution
 
-## Videos
-### Sample of 3D models
-{{< youtube hMwaHPiG-eM >}}
-### Tutorial (French)
-{{< youtube 7xpeSMMu8_I >}}
+I led a 3D team of three students creating the models and visual assets in Blender. I also recorded a modelling tutorial to help the team maintain a consistent workflow. The renders were shown in the museum's presentation of the reconstruction work.
 
-I recorded a tutorial in French to explain how I created the 3D models of the painting.
-<br>
-Its purpose was to help the other members of the team to create their own 3D models.
-### Compilation of all the 3D models
+## Renders and demonstration
+
+{{< figure src="scene-render.png" title="Reconstructed scene" >}}
+{{< figure src="musee.jpg" title="Presentation at the museum" >}}
+
+### Model compilation
+
 {{< youtube mtQCm5erVaw >}}
 
-## Images
-{{< figure src="musee.jpg" title="Exposition at the Museum" >}}
-{{< figure src="scene-render.png" title="Full Scene Render" >}}
+### Modelling tutorial · French
 
-## Conclusion
-The renders were shown in the museum's presentation of the reconstruction work.
+{{< youtube 7xpeSMMu8_I >}}
 
-> Image rendered for the [Projet Notre Dame]({{< ref "/personal/projects/project-notre-dame" >}} "Projet Notre Dame")
+[Compare the shaded and wireframe views](/lab/).

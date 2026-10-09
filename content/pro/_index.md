@@ -3,25 +3,23 @@ title: "Professional"
 description: "PhD student in computer-assisted interventions at ICube Laboratory, University of Strasbourg."
 layout: "hub-pro"
 hero:
-  kicker: "ICube · University of Strasbourg"
-  headline: "Research, software|& teaching."
-  lede: "I'm a PhD candidate at ICube in Strasbourg, working where computer science meets medicine. I build simulations and interactive software, share the research behind them, and teach along the way."
+  kicker: "Research · Software · Teaching"
+  headline: "Computer-assisted|interventions"
+  lede: "My PhD at ICube focuses on planning thermal ablation with multiple needles. I work on ablation simulation, needle placement and interfaces for adapting a plan during a procedure."
   photo:
     page: "/pro/research/2024-assisted-surgery-internship"
     image: "JonasMRPlanning.png"
     alt: "Jonas exploring an anatomical model with a mixed-reality headset"
-    caption: "J. Mehtali · Mixed reality"
+    caption: "Mixed-reality planning prototype · ICube, 2024"
   links:
-    - label: "Explore research →"
-      url: "/pro/research/"
-      primary: true
-    - label: "About me →"
-      url: "/pro/about/"
-    - label: "CV.PDF ↓"
-      url: "/pro/about/jonas-mehtali-resume.pdf"
-  explore:
-    - label: "Publications"
+    - label: "Publications ↓"
       url: "#publications"
+      primary: true
+    - label: "Background & CV →"
+      url: "/pro/about/"
+  explore:
+    - label: "Research focus"
+      url: "#research-focus"
     - label: "Teaching"
       url: "/pro/teaching/"
     - label: "Experience"
@@ -31,38 +29,40 @@ hero:
 featuredPubs:
   - "/pro/research/cnca-2025"
   - "/pro/research/2025-heat-ijcars"
+  - "/pro/research/2024-cryotrack-miccai"
+focus:
+  - title: "Ablation simulation"
+    description: "GPU-based numerical models and learned estimators of tissue damage, designed for interactive planning."
+  - title: "Needle planning"
+    description: "Placement of multiple needles, anatomical constraints and adapting subsequent insertions as a procedure progresses."
+  - title: "Interactive software"
+    description: "Planning and navigation interfaces using medical images, tracked instruments and 3D visualisation."
 workbench:
   - group: "Core"
-    items: ["Python", "C++"]
-  - group: "Surgical platforms"
-    items: ["3D Slicer", "OpenIGTLink"]
+    items: ["Python", "C++", "CUDA"]
+  - group: "Imaging & models"
+    items: ["3D Slicer", "PyTorch", "VTK"]
   - group: "Interactive & 3D"
     items: ["Unity", "Godot", "Blender"]
-  - group: "Site"
-    items: ["Hugo", "Caddy", "SQLite"]
 timeline:
   - period: "2024 —"
     title: "PhD Student, Computer-Assisted Interventions"
     place: "ICube Laboratory · University of Strasbourg"
     desc: "Automatic multi-needle adaptive planning for percutaneous thermal ablation, funded by the ITI HealthTech doctoral program."
-    out: "multi-needle adaptive planning"
   - period: "2023 — 2024"
     title: "R&D Internships in Computer-Assisted Surgery"
     place: "TU Darmstadt · IHU Strasbourg · ICube"
-    desc: "Took over and enhanced CryoTrack; GPU-accelerated thermal ablation simulation."
-    out: "real-time MR planning · CryoTrack handover"
+    desc: "Development of Cryotrack planning and navigation tools, followed by GPU-based ablation simulation and mixed-reality interfaces."
     url: "/pro/research/2024-assisted-surgery-internship/"
   - period: "2022"
     title: "Research Internship in Computer Science"
     place: "University of Oviedo, Spain"
-    desc: "Full research project, published on PeerJ Computer Science."
-    out: "complete pipeline → PeerJ paper"
+    desc: "Study of typography and e-commerce usability, published in PeerJ Computer Science."
     url: "/pro/research/2022-research-internship/"
   - period: "2020"
     title: "Research Internship — Landslide Monitoring"
     place: "EOST, Strasbourg"
     desc: "Python data-analysis tool for landslide surveillance."
-    out: "GKA landslide analyzer, open source"
     url: "/pro/research/2020-landslide-monitoring/"
 talks:
   - venue: "MICCAI 2024 · Marrakesh"
@@ -74,18 +74,16 @@ talks:
 repos:
   - name: "UniNet"
     lang: "C++"
-    desc: "Unified networking library for fast cross-platform data transfer."
+    desc: "Networking library for exchanging data between applications."
     url: "https://github.com/JonasMht/UniNet"
   - name: "TER_CNN_Compression"
+    label: "CNN compression"
     lang: "Jupyter"
     desc: "Master's research project: CNN compression for medical imaging."
     url: "https://github.com/JonasMht/TER_CNN_Compression"
   - name: "GKA_file_manipulation_software"
+    label: "Landslide data analysis"
     lang: "Python"
     desc: "EOST internship: landslide data analyzer (statistics and charts)."
     url: "https://github.com/JonasMht/GKA_file_manipulation_software"
-  - name: "Sensha-Game-2019"
-    lang: "Python"
-    desc: "2D real-time strategy tank game built with PyGame — my first project."
-    url: "https://github.com/JonasMht/Sensha-Game-2019"
 ---

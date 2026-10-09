@@ -3,6 +3,7 @@
   {{- if or .Draft (not (in (slice "home" "section" "page") .Kind)) }}{{ continue }}{{ end -}}
   {{- $items = $items | append (dict
       "t" .Title
+      "h" (replace (printf "%s %s" (.Params.headline | default "") (.Params.hero.headline | default "")) "|" " ")
       "u" .RelPermalink
       "d" (.Params.description | default "")
       "s" .Section

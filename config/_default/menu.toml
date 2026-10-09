@@ -1,4 +1,4 @@
-# Main navigation — the station grammar: overview · pro · personal · cv
+# Main navigation
 [[main]]
 identifier = "overview"
 name = "Overview"
@@ -7,7 +7,7 @@ weight = 1
 
 [[main]]
 identifier = "pro"
-name = "Pro"
+name = "Professional"
 url = "/pro/"
 weight = 2
 
@@ -19,7 +19,7 @@ weight = 3
 
 [[main]]
 identifier = "cv"
-name = "CV.PDF"
+name = "CV"
 url = "/pro/about/jonas-mehtali-resume.pdf"
 weight = 4
 

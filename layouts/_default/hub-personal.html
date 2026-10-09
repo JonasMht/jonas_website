@@ -1,46 +1,40 @@
 {{ define "main" }}
 <div class="container hub-page">
     {{ partial "hub-hero.html" . }}
-
     {{- $projects := site.GetPage "/personal/projects" -}}
     {{- $experiences := site.GetPage "/personal/experiences" -}}
 
-    <section class="sec reveal" id="projects" aria-label="Projects">
-        <div class="sec-h"><span class="mark"></span><h2>Things I've made</h2><span class="k">games · 3D · experiments</span></div>
-        <div class="project-gallery stagger">
-            {{- range $projects.RegularPages.ByDate.Reverse }}{{ partial "article-card" . }}{{ end }}
+    <section class="sec" id="projects" aria-labelledby="projects-title">
+        <div class="sec-h"><h2 id="projects-title">Projects</h2></div>
+        <div class="project-gallery">
+            {{- range $projects.RegularPages.ByDate.Reverse }}{{ partial "article-card.html" . }}{{ end }}
         </div>
     </section>
 
-    <section class="sec reveal" aria-label="Workbench">
-        <div class="sec-h"><span class="mark"></span><h2>Workbench</h2><span class="k">tools</span></div>
-        <div class="bench">
-            {{- range .Params.workbench }}
-            <div class="bench-row"><span class="bench-k">{{ .group }}</span>
-                <span class="bench-items">{{- range .items }}<span class="tag-chip">{{ . }}</span>{{ end }}</span></div>
-            {{- end }}
+    <section class="sec" id="open-source" aria-labelledby="code-title">
+        <div class="sec-h">
+            <h2 id="code-title">Code & small tools</h2>
+            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener">{{ partial "action-label.html" "GitHub ↗" }}</a>
         </div>
-    </section>
-
-    <section class="sec reveal" id="open-source" aria-label="Open source">
-        <div class="sec-h"><span class="mark"></span><h2>Open source</h2><span class="k">github.com/JonasMht</span>
-            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">{{ partial "action-label.html" "ALL REPOS →" }}</a></div>
-        <div class="repo-row stagger">
+        <div class="repo-row">
             {{- range .Params.repos }}
             <a class="repo" href="{{ .url }}" target="_blank" rel="noopener">
-                <span class="repo-name">{{ .name }}</span><span class="repo-lang">{{ .lang }}</span>
+                <span class="repo-name">{{ .label | default .name }}</span><span class="repo-lang">{{ .lang }}</span>
                 <p>{{ .desc }}</p>
+                {{ partial "icon.html" (dict "name" "arrow-up-right") }}
             </a>
             {{- end }}
         </div>
     </section>
 
-    <section class="sec reveal" id="experiences" aria-label="Beyond the lab">
-        <div class="sec-h"><span class="mark"></span><h2>Beyond the lab</h2><span class="k">experience</span></div>
-        <div class="grid3 stagger">
-            {{- range $experiences.Pages }}{{ partial "article-card" . }}{{ end }}
+    <section class="sec" id="experiences" aria-labelledby="experience-title">
+        <div class="sec-h"><h2 id="experience-title">Other experience</h2></div>
+        <p class="section-intro">Jobs I held alongside my studies.</p>
+        <div class="experience-links">
+            {{- range $experiences.RegularPages.ByDate.Reverse }}
+            <a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><time>{{ .Date.Format "2006" }}</time>{{ partial "icon.html" (dict "name" "arrow-right") }}</a>
+            {{- end }}
         </div>
     </section>
-
 </div>
 {{ end }}

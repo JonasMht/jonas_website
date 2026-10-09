@@ -1,0 +1,19 @@
+{{- $page := . -}}
+<article class="paper-card">
+    {{- with .Resources.GetMatch .Params.image }}
+    <a class="im media-frame" href="{{ $page.RelPermalink }}" tabindex="-1" aria-label="{{ $page.Title }}">
+        {{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080) "sizes" "(max-width:760px) 90vw, 300px" "alt" "") }}
+    </a>
+    {{- end }}
+    <div class="bd">
+        <p class="ven">{{ .Params.venue }}{{ with .Params.contribution }}<span> · {{ . }}</span>{{ end }}</p>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        {{- with .Params.authors }}<p class="paper-authors">{{ . }}</p>{{ end }}
+        <p class="tldr">{{ .Params.tldr | default .Params.description }}</p>
+        <div class="paper-links">
+            <a href="{{ .RelPermalink }}">{{ partial "action-label.html" "Summary →" }}</a>
+            {{- with .Params.paper }}<a href="{{ . }}" target="_blank" rel="noopener">{{ partial "action-label.html" "Paper ↗" }}</a>{{ end }}
+            <a href="{{ .RelPermalink }}#bibtex">{{ partial "action-label.html" "Cite ↓" }}</a>
+        </div>
+    </div>
+</article>

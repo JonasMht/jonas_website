@@ -1,7 +1,12 @@
 ---
 title: Jonas Mehtali
 description: "PhD candidate in computer-assisted interventions at ICube, Strasbourg. Research, publications, and personal projects."
-kicker: "PHD CANDIDATE · COMPUTER-ASSISTED INTERVENTIONS"
-headline: "Real-time |planning| for thermal ablation."
-lede: "I research real-time planning for percutaneous thermal ablation at ICube, Strasbourg: when a liver tumor needs several overlapping ablations, my work computes and adapts the needle plan during the procedure. Outside the lab, I build games, tools and 3D worlds."
+kicker: "Computer-assisted interventions"
+headline: "Jonas Mehtali"
+role: "PhD researcher at ICube, University of Strasbourg."
+lede: "I develop simulation models and planning tools for image-guided thermal ablation. My work combines medical imaging, GPU computing and interactive 3D software."
+featuredPubs:
+  - "/pro/research/cnca-2025"
+  - "/pro/research/2025-heat-ijcars"
+  - "/pro/research/2024-cryotrack-miccai"
 ---

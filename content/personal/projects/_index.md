@@ -1,4 +1,4 @@
 ---
 title: Projects
-description: "Games, 3D art, and creative projects built for the joy of building them."
+description: "Game programming, 3D modelling and visualisation projects from my studies and personal work."
 ---

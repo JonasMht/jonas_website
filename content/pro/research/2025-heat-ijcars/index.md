@@ -1,9 +1,11 @@
 ---
+contribution: "First author"
+authors: "Jonas Mehtali, Juan Verde, Caroline Essert"
 title: "HEAT: High-Efficiency Simulation for Thermal Ablation Therapy"
-description: "GPU-accelerated real-time thermal ablation simulation published in IJCARS 2025"
+description: "GPU-based thermal simulation with multiple resolutions for interactive needle planning."
 slug: 2025-heat-ijcars
 aliases: ["/p/2025-heat-ijcars/"]
-date: 2025-04-01 00:00:00+0000
+date: "2025-04-10T00:00:00Z"
 image: heat_sim_color.png
 categories:
     - Research
@@ -15,23 +17,32 @@ tags:
     - Medical Imaging
     - Simulation
 venue: "IJCARS 2025"
-tldr: "HEAT computes ablation zones in under a second: Pennes bioheat, perfusion and heat-sink effects on the GPU, fast enough for interactive planning."
+tldr: "A multi-resolution GPU simulation that balances response time and detail while adjusting needle positions."
 doi: "10.1007/s11548-025-03350-z"
 paper: "https://hal.science/hal-04973371"
 hal: "https://hal.science/hal-04973371"
 ---
 
-## Abstract
+## Overview
 
-Percutaneous thermal ablation is increasingly popular but still suffers from a complex preoperative planning, especially regarding the prediction of the ablation zone. We propose **HEAT** (High-Efficiency simulation for thermal Ablation Therapy), a novel GPU-accelerated simulation framework for thermal ablation that enables real-time planning.
+HEAT is a GPU-based simulation method for interactive thermal ablation planning. It uses a coarser estimate while the user adjusts needle positions, then computes a more detailed result when those positions are fixed.
 
-This work was published in the *International Journal of Computer Assisted Radiology and Surgery (IJCARS)* in 2025.
+The method compares finite-difference and lattice Boltzmann implementations of the Pennes bioheat equation.
 
-[Read the paper](https://hal.science/hal-04973371) · [DOI](https://doi.org/10.1007/s11548-025-03350-z)
+**Authors:** Jonas Mehtali, Juan Verde and Caroline Essert. Published in *International Journal of Computer Assisted Radiology and Surgery*, 2025.
 
----
+## Evaluation
+
+The paper evaluates radiofrequency ablation scenarios against a reference simulation. It reports up to 5.8 fps for high-resolution frames and 32 fps for intermediate, lower-resolution frames. The latter trades some accuracy for responsiveness; the paper details that trade-off and the tested parameters.
+
+[Read the author manuscript on HAL](https://hal.science/hal-04973371) · [Publisher record and abstract](https://doi.org/10.1007/s11548-025-03350-z)
+
+## Related work
+
+The project builds on my [2024 research internship](/pro/research/2024-assisted-surgery-internship/). [C-NCA](/pro/research/cnca-2025/) subsequently explored a learned estimator for thermal tissue damage.
 
 ## BibTeX
+
 ```bibtex
 @article{mehtali2025heat,
   title     = {HEAT: High-Efficiency Simulation for Thermal Ablation Therapy},
@@ -41,35 +52,3 @@ This work was published in the *International Journal of Computer Assisted Radio
   doi       = {10.1007/s11548-025-03350-z}
 }
 ```
-
-## Motivation
-
-Thermal ablation is a minimally invasive cancer treatment that uses heat to destroy tumors. However, accurately predicting the ablation zone (the area that will be destroyed) remains challenging. Traditional simulation methods are too slow for clinical use, taking minutes or even hours to compute.
-
-## Approach
-
-HEAT runs the simulation on the GPU:
-
-- **Fast computation**: results in under 1 second for interactive planning
-- **GPU parallelization** of 3D volumetric data
-- **Physical accuracy**: heat transfer models include the Pennes bioheat equation, perfusion effects, and heat sink effects near blood vessels
-
-## Results
-
-- Sub-second simulation times
-- Accuracy validated against experimental data
-- Integrates with the existing surgical planning workflow
-
-## Authors
-
-- **Jonas Mehtali** (Lead Author)
-- Juan Verde
-- Caroline Essert
-
-*ICube Laboratory, University of Strasbourg*
-
-## Related Work
-
-This work builds on my research internship in 2024 at ICube/IHU Strasbourg, which focused on networked computing for thermal ablation simulation. The HEAT project represents a significant advancement in computational efficiency and clinical applicability.
-
-See also: [Cryotrack: Planning and Navigation for Computer Assisted Cryoablation (MICCAI 2024)](/p/2024-cryotrack-miccai/)

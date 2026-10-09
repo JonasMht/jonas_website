@@ -2,11 +2,10 @@
     <nav class="nav" aria-label="Main navigation">
         <a class="sys" href="{{ site.Home.RelPermalink }}">
             {{- with resources.Get "img/avatar.jpg" -}}
-            {{ $av := .Resize "44x webp q85" }}
-            <span class="avatar-frame media-frame"><img src="{{ $av.RelPermalink }}" srcset="{{ $av.RelPermalink }} 44w" width="22" height="22" alt=""></span>
+            {{ $av := .Resize "64x webp q85" }}
+            <span class="avatar-frame media-frame"><img src="{{ $av.RelPermalink }}" width="28" height="28" alt=""></span>
             {{- end }}
-            <span>J.MEHTALI <span class="suffix">// ICUBE · STRASBOURG</span></span>
-            <i aria-hidden="true"></i>
+            <span>Jonas Mehtali</span>
         </a>
         {{- $home := site.Home.RelPermalink }}
         {{- range site.Menus.main }}

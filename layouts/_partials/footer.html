@@ -1,26 +1,20 @@
 <footer class="site-footer">
-    <div class="foot-in">
-        <span>JONAS MEHTALI · {{ site.Params.footer.since }}–{{ now.Year }}</span>
-        {{- $home := site.Home.RelPermalink }}
-        {{- $next := "/personal/" }}
-        {{- if hasPrefix .RelPermalink "/personal" }}{{ $next = "/pro/" }}{{ else if hasPrefix .RelPermalink "/pro" }}{{ $next = "/personal/" }}{{ else if ne .RelPermalink $home }}{{ $next = $home }}{{ end }}
-        {{- with site.GetPage $next }}
-        <a class="foot-next" href="{{ .RelPermalink }}">
-            {{- if eq $next "/pro/" -}}
-                {{ partial "action-label.html" "Next: Research →" }}
-            {{- else if eq $next "/personal/" -}}
-                {{ partial "action-label.html" "Next: Projects →" }}
-            {{- else -}}
-                {{ partial "action-label.html" "Back to overview →" }}
-            {{- end -}}
-        </a>
-        {{- end }}
-        <span><a href="/legal/">LEGAL</a> · <a href="/pro/about/jonas-mehtali-resume.pdf">CV.PDF</a></span>
+    <div class="footer-main container">
+        <div>
+            <a class="footer-name" href="/">Jonas Mehtali</a>
+            <p>Computer-assisted interventions<br>ICube · University of Strasbourg</p>
+        </div>
+        <nav class="footer-links" aria-label="Contact and profiles">
+            <a href="https://www.linkedin.com/in/jonasmehtali/" target="_blank" rel="noopener">{{ partial "icon.html" (dict "name" "brand-linkedin") }}<span>LinkedIn</span></a>
+            <a href="https://github.com/JonasMht" target="_blank" rel="noopener">{{ partial "icon.html" (dict "name" "brand-github") }}<span>GitHub</span></a>
+            <a href="https://orcid.org/0009-0003-3688-7782" target="_blank" rel="noopener">{{ partial "icon.html" (dict "name" "id") }}<span>ORCID</span></a>
+            <a href="/pro/about/jonas-mehtali-resume.pdf">{{ partial "icon.html" (dict "name" "download") }}<span>CV (PDF)</span></a>
+        </nav>
     </div>
-    <div class="foot-bottom">
-        <span>© {{ site.Params.author.name }} — ICUBE · UNISTRA</span>
-        <span>BUILT WITH HUGO · NO COOKIES · {{ if site.Params.telemetryEndpoint }}TELEMETRY CONTROLS IN CONSOLE{{ else }}TELEMETRY OFF{{ end }}</span>
+    <div class="footer-bottom container">
+        <span>© {{ now.Year }} Jonas Mehtali</span>
+        <a href="/privacy/">Privacy</a>
+        <a href="/legal/">Legal</a>
     </div>
 </footer>
-
 {{ partial "console.html" . }}

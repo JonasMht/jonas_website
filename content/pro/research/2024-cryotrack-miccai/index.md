@@ -1,6 +1,8 @@
 ---
+contribution: "Co-author"
+authors: "Henry J. Krumb, Jonas Mehtali, Juan Verde, Anirban Mukhopadhyay, Caroline Essert"
 title: "Cryotrack: Planning and Navigation for Computer Assisted Cryoablation"
-description: "Published at MICCAI 2024 - A novel planning and navigation system for cryoablation"
+description: "CT-based planning and electromagnetic needle navigation for cryoablation, evaluated in a phantom study."
 slug: 2024-cryotrack-miccai
 aliases: ["/p/2024-cryotrack-miccai/"]
 date: 2024-10-06 00:00:00+0000
@@ -15,22 +17,29 @@ tags:
     - Medical Imaging
     - Python
 venue: "MICCAI 2024 · Marrakesh"
-tldr: "Planning and navigation for cryoablation: ice-ball simulation, probe tracking and AR overlay of the lethal zone, validated on phantoms and ex-vivo tissue."
+tldr: "CT-based needle planning and electromagnetic navigation, evaluated with an experienced surgeon and two novice operators."
 doi: "10.1007/978-3-031-72089-5_10"
 paper: "https://papers.miccai.org/miccai-2024/179-Paper1240.html"
 ---
 
-## Abstract
+## Overview
 
-Cryoablation is a minimally invasive technique that uses extreme cold to destroy cancerous tumors. However, it remains challenging to plan and navigate during the procedure. We present **Cryotrack**, a novel planning and navigation system for computer-assisted cryoablation.
+Cryotrack assists with planning and guiding a needle during cryoablation. It uses a CT scan and segmented anatomy to identify feasible insertion regions while accounting for obstacles and risk structures. Electromagnetic tracking and a 3D interface provide guidance during insertion.
 
-This work was published at the *27th International Conference on Medical Image Computing and Computer Assisted Intervention (MICCAI 2024)*, Marrakesh, Morocco, October 6-10, 2024.
+**Authors:** Henry J. Krumb, Jonas Mehtali, Juan Verde, Anirban Mukhopadhyay and Caroline Essert. Published at MICCAI 2024.
 
-[Read the paper](https://papers.miccai.org/miccai-2024/179-Paper1240.html) · [DOI](https://doi.org/10.1007/978-3-031-72089-5_10)
+## Evaluation
 
----
+The paper reports a phantom study with an experienced surgeon and two novice operators. It compares intervention time, targeting accuracy and risk-structure avoidance with conventional CT-based guidance. This evaluation does not establish results in patients.
+
+[Read the paper and study details](https://papers.miccai.org/miccai-2024/179-Paper1240.html) · [Publisher record](https://doi.org/10.1007/978-3-031-72089-5_10)
+
+## Related work
+
+My [2023 research internship](/pro/research/2023-assisted-surgery-internship/) describes the development work and experimental setup.
 
 ## BibTeX
+
 ```bibtex
 @inproceedings{krumb2024cryotrack,
   title     = {Cryotrack: Planning and Navigation for Computer Assisted Cryoablation},
@@ -41,59 +50,3 @@ This work was published at the *27th International Conference on Medical Image C
   doi       = {10.1007/978-3-031-72089-5_10}
 }
 ```
-
-## Motivation
-
-Cryoablation offers several advantages over thermal ablation:
-- Precise control of the ablation zone
-- Minimal pain for the patient
-- Ability to treat tumors near sensitive structures
-
-However, planning cryoablation procedures remains challenging due to:
-- Complex ice ball formation dynamics
-- Difficulty in visualizing the ablation zone in real-time
-- Lack of dedicated planning tools
-
-## Cryotrack System
-
-Cryotrack provides:
-
-1. **Pre-operative Planning**
-   - 3D visualization of the target tumor
-   - Simulation of ice ball growth
-   - Optimization of probe placement
-
-2. **Intra-operative Navigation**
-   - Real-time tracking of cryoprobes
-   - Augmented reality overlay of predicted ablation zone
-   - Integration with imaging systems
-
-3. **Visualization**
-   - Clear visualization of the lethal ice zone vs. the benign cold zone
-   - Heat sink effect awareness near blood vessels
-
-## Results
-
-The system was validated through:
-- Phantom experiments
-- Ex-vivo tissue testing
-- Clinical feasibility studies
-
-## Authors
-
-- Henry J. Krumb
-- **Jonas Mehtali**
-- Juan Verde
-- Anirban Mukhopadhyay
-- Caroline Essert
-
-*ICube Laboratory, University of Strasbourg*
-
-## Conference Experience
-
-I presented Cryotrack at MICCAI 2024 in Marrakesh. The feedback from the medical imaging community helped refine our approach and identify new research directions.
-
-## Related Work
-
-This work complements my later research on thermal ablation:
-- [HEAT: High-Efficiency Simulation for Thermal Ablation Therapy (IJCARS 2025)](/p/2025-heat-ijcars/)

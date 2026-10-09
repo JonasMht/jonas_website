@@ -38,7 +38,12 @@
         { t: "Overview", u: "/", d: "Jonas Mehtali — research and projects", g: [] },
         { t: "Professional", u: "/pro/", d: "Research, publications and experience", g: [] },
         { t: "Personal", u: "/personal/", d: "Games, 3D art and tools", g: [] },
-        { t: "The Lab", u: "/lab/", d: "Interactive experiments", g: [] },
+        {
+            t: "3D reconstruction viewer",
+            u: "/lab/",
+            d: "Compare shaded and wireframe views",
+            g: [],
+        },
         { t: "Publications", u: "/pro/publications/", d: "Papers and research", g: [] },
         { t: "About", u: "/pro/about/", d: "Background and CV", g: [] },
         { t: "Privacy", u: "/privacy/", d: "Site telemetry and your controls", g: [] },
@@ -125,6 +130,7 @@
                     if (!url) return;
                     pages.set(url.pathname, {
                         t: page.t,
+                        h: typeof page.h === "string" ? page.h : "",
                         u: url.pathname,
                         d: typeof page.d === "string" ? page.d : "",
                         g: Array.isArray(page.g)
@@ -164,7 +170,7 @@
 
     function help(target) {
         var rows = [
-            ["find <words>", "Search titles, descriptions and tags. Try find games."],
+            ["find <words>", "Search page headings, descriptions and tags. Try find games."],
             ["goto <page>", "Open a page. Try goto pro, goto lab or goto /personal/."],
             ["session", "Show this page, theme and console session."],
             ["telemetry", "Check site telemetry and change your browser preference."],
@@ -236,7 +242,7 @@
                 var terms = normalize(query).split(/\s+/);
                 var matches = pages
                     .map(function (page) {
-                        var title = normalize(page.t);
+                        var title = normalize(page.t + " " + page.h);
                         var tags = normalize(page.g.join(" "));
                         var text = title + " " + tags + " " + normalize(page.d);
                         if (

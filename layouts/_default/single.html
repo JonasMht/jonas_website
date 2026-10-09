@@ -11,9 +11,9 @@
         <h1 class="post-title">{{ .Title }}</h1>
         {{- with .Params.description }}<p class="post-subtitle">{{ . }}</p>{{ end }}
         <p class="post-meta">
-            {{- $yr := .Date | time.Format "2006" }}
-            {{- with .Params.venue }}<span class="tag-chip">{{ . }} · {{ $yr }}</span>{{ else }}{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 Jan 2006" }}</time>{{ end }}{{ end }}
-            <span>{{ .ReadingTime }} MIN</span>
+            {{- with .Params.venue }}<span class="tag-chip">{{ . }}</span>{{ else }}{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 Jan 2006" }}</time>{{ end }}{{ end }}
+            {{- with .Params.contribution }}<span>{{ . }}</span>{{ end }}
+            <span>{{ .ReadingTime }} min read</span>
             {{- with .Params.tags }}{{ range first 4 . }}<span class="tag-chip">{{ . }}</span>{{ end }}{{ end }}
         </p>
         {{- $hero := "" }}

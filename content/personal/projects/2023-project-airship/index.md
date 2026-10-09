@@ -1,6 +1,7 @@
 ---
+projectType: "Game development · VR"
 title: Airship VR Game
-description: A Unity game developed for Meta VR headsets
+description: "VR puzzle game in Unity, with game logic, 3D assets and textures I created for a university project."
 slug: 2023-project-airship
 aliases: ["/p/2023-project-airship/"]
 date: 2023-12-01 00:00:00+0000
@@ -15,14 +16,15 @@ tags:
     - VR
 ---
 
-## Description
-I created a VR airship puzzle-survival game using Unity during my last semester at the University of Strasbourg. I wrote the game logic in Unity and created the 3D assets and textures using Blender.
-<br>
-The player's goal is to repair a sinking airship by solving interactive puzzles: clicking buttons, flipping switches and turning handles. The game is designed for the Meta VR headset and uses the handheld controller tracking feature to interact with the environment.
-<br>
-This project provided me with valuable hands-on experience in Unity game development for VR headsets and project management, which I believe, as for all projects undertaken, will come in handy in my future ventures.
+## Project
 
+I developed this VR game during my final semester at the University of Strasbourg. Players repair a sinking airship by solving puzzles with buttons, switches and handles, using tracked controllers on a Meta VR headset.
 
-## Additional Material
-{{< figure src="airship-render2.png" width=100% title="Airship Front" >}}
-{{< figure src="airship-render3.png" width=100% title="Airship Back" >}}
+## My contribution
+
+I programmed the game logic in Unity and created the 3D models and textures in Blender.
+
+## Renders
+
+{{< figure src="airship-render2.png" title="Airship exterior — front view" >}}
+{{< figure src="airship-render3.png" title="Airship exterior — rear view" >}}

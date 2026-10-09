@@ -14,27 +14,7 @@
     <section class="sec reveal" style="margin-top:24px" aria-label="Peer-reviewed publications">
         {{- range .Params.papers }}
         {{- with site.GetPage . }}
-        {{- $venue := .Params.venue }}
-        <div class="paper-card">
-            {{- $pimg := "" }}
-            {{- $p := . }}
-            {{- with .Params.image }}{{ $pimg = $p.Resources.GetMatch . }}{{ end }}
-            {{- if not $pimg }}{{ with .Resources.GetMatch "*.png" }}{{ $pimg = . }}{{ end }}{{ end }}
-            {{- with $pimg }}
-            <div class="im media-frame">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080) "sizes" "(max-width:700px) 92vw, (max-width:1100px) 46vw, 250px" "alt" "") }}<span class="st">{{ $venue }}</span></div>
-            {{- end }}
-            <div class="bd">
-                <h3><a class="stretch" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-                <span class="ven">{{ .Params.venue }}</span>
-                <p class="tldr">{{ .Params.tldr | default .Params.description }}</p>
-                <div class="chiprow">
-                    {{- with .Params.doi }}<a href="https://doi.org/{{ . }}" target="_blank" rel="noopener">{{ partial "action-label.html" "DOI ↗" }}</a>{{ end }}
-                    {{- with .Params.paper }}<a href="{{ . }}" target="_blank" rel="noopener">{{ partial "action-label.html" "PAPER ↗" }}</a>{{ end }}
-                    {{- with .Params.hal }}<a href="{{ . }}" target="_blank" rel="noopener">{{ partial "action-label.html" "HAL PDF ↗" }}</a>{{ end }}
-                    <a href="{{ .RelPermalink }}#bibtex">{{ partial "action-label.html" "Cite ↓" }}</a>
-                </div>
-            </div>
-        </div>
+        {{ partial "publication-card.html" . }}
         {{- end }}
         {{- end }}
     </section>

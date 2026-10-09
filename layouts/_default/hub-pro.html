@@ -2,91 +2,72 @@
 <div class="container hub-page">
     {{ partial "hub-hero.html" . }}
 
-    <section class="sec reveal" id="publications" aria-label="Selected publications">
-        <div class="sec-h"><span class="mark"></span><h2>Selected publications</h2><span class="k">papers & ideas</span>
-            <a class="more" href="{{ (.GetPage `/pro/publications`).RelPermalink }}" style="color:var(--accent)">{{ partial "action-label.html" "FULL LIST →" }}</a></div>
-        {{- range first 2 .Params.featuredPubs }}
-        {{- with site.GetPage . }}
-        {{- $venue := .Params.venue }}
-        <div class="paper-card">
-            {{- $pimg := "" }}
-            {{- $p := . }}
-            {{- with .Params.image }}{{ $pimg = $p.Resources.GetMatch . }}{{ end }}
-            {{- if not $pimg }}{{ with .Resources.GetMatch "*.png" }}{{ $pimg = . }}{{ end }}{{ end }}
-            {{- with $pimg }}
-            <div class="im media-frame">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080) "sizes" "(max-width:700px) 92vw, (max-width:1100px) 46vw, 250px" "alt" "") }}<span class="st">{{ $venue }}</span></div>
+    <section class="sec" id="research-focus" aria-labelledby="focus-title">
+        <div class="sec-h"><h2 id="focus-title">Research focus</h2></div>
+        <div class="research-focus">
+            {{- range .Params.focus }}
+            <div><h3>{{ .title }}</h3><p>{{ .description }}</p></div>
             {{- end }}
-            <div class="bd">
-                <h3><a class="stretch" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-                <span class="ven">{{ .Params.venue }}</span>
-                <p class="tldr">{{ .Params.tldr | default .Params.description }}</p>
-                <div class="chiprow">
-                    {{- with .Params.doi }}<a href="https://doi.org/{{ . }}" target="_blank" rel="noopener">{{ partial "action-label.html" "DOI ↗" }}</a>{{ end }}
-                    {{- with .Params.paper }}<a href="{{ . }}" target="_blank" rel="noopener">{{ partial "action-label.html" "PAPER ↗" }}</a>{{ end }}
-                    {{- with .Params.hal }}<a href="{{ . }}" target="_blank" rel="noopener">{{ partial "action-label.html" "HAL PDF ↗" }}</a>{{ end }}
-                    <a href="{{ .RelPermalink }}#bibtex">{{ partial "action-label.html" "Cite ↓" }}</a>
-                </div>
-            </div>
         </div>
-        {{- end }}
+        <p class="research-context">PhD since September 2024, supervised by Caroline Essert and Juan Verde.<br>ICube Laboratory · University of Strasbourg · ITI HealthTech</p>
+    </section>
+
+    <section class="sec" id="publications" aria-labelledby="publications-title">
+        <div class="sec-h">
+            <h2 id="publications-title">Selected publications</h2>
+            <a class="more" href="/pro/publications/">{{ partial "action-label.html" "All publications →" }}</a>
+        </div>
+        {{- range .Params.featuredPubs }}
+        {{- with site.GetPage . }}{{ partial "publication-card.html" . }}{{ end }}
         {{- end }}
     </section>
 
-    <section class="sec reveal" aria-label="Workbench">
-        <div class="sec-h"><span class="mark"></span><h2>Workbench</h2><span class="k">tools</span></div>
-        <div class="bench">
-            {{- range .Params.workbench }}
-            <div class="bench-row"><span class="bench-k">{{ .group }}</span>
-                <span class="bench-items">{{- range .items }}<span class="tag-chip">{{ . }}</span>{{ end }}</span></div>
-            {{- end }}
-        </div>
-    </section>
-
-    <section class="sec reveal" id="experience" aria-label="Experience">
-        <div class="sec-h"><span class="mark"></span><h2>Experience</h2><span class="k">experience</span></div>
-        <ol class="sess-list">
+    <section class="sec" id="experience" aria-labelledby="experience-title">
+        <div class="sec-h"><h2 id="experience-title">Experience</h2></div>
+        <ol class="experience-list">
             {{- range .Params.timeline }}
-            <li class="sess"><span class="d">{{ .period }}</span><span class="dot" aria-hidden="true"></span>
-                {{- if .url }}
-                <a href="{{ .url }}"><div><b>{{ .title }}</b><p>{{ .place }}{{ with .desc }} — {{ . }}{{ end }}</p><span class="out">→ {{ .out }}</span></div></a>
-                {{- else }}
-                <div><b>{{ .title }}</b><p>{{ .place }}{{ with .desc }} — {{ . }}{{ end }}</p><span class="out">→ {{ .out }}</span></div>
-                {{- end }}</li>
+            <li>
+                <span class="experience-period">{{ .period }}</span>
+                <div>
+                    <h3>{{ if .url }}<a href="{{ .url }}">{{ .title }}</a>{{ else }}{{ .title }}{{ end }}</h3>
+                    <p class="experience-place">{{ .place }}</p>
+                    <p>{{ .desc }}</p>
+                </div>
+            </li>
             {{- end }}
         </ol>
     </section>
 
-    <section class="sec reveal" id="open-source" aria-label="Open source">
-        <div class="sec-h"><span class="mark"></span><h2>Open source</h2><span class="k">github.com/JonasMht</span>
-            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">{{ partial "action-label.html" "ALL REPOS →" }}</a></div>
-        <div class="repo-row stagger">
+    <section class="sec" id="open-source" aria-labelledby="software-title">
+        <div class="sec-h">
+            <h2 id="software-title">Software</h2>
+            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener">{{ partial "action-label.html" "GitHub ↗" }}</a>
+        </div>
+        <div class="repo-row">
             {{- range .Params.repos }}
             <a class="repo" href="{{ .url }}" target="_blank" rel="noopener">
-                <span class="repo-name">{{ .name }}</span><span class="repo-lang">{{ .lang }}</span>
+                <span class="repo-name">{{ .label | default .name }}</span><span class="repo-lang">{{ .lang }}</span>
                 <p>{{ .desc }}</p>
+                {{ partial "icon.html" (dict "name" "arrow-up-right") }}
             </a>
             {{- end }}
         </div>
-    </section>
-
-    <section class="sec reveal" aria-label="Talks">
-        <div class="sec-h"><span class="mark"></span><h2>Talks</h2><span class="k">conferences</span></div>
-        <ul class="talk-list">
-            {{- range .Params.talks }}
-            <li><span class="talk-venue">{{ .venue }}</span><span class="talk-what">{{ .what }}</span>
-                {{- with .url }}<a class="more" href="{{ . }}">{{ partial "action-label.html" "Talk →" }}</a>{{ end }}</li>
+        <div class="bench" aria-label="Technical tools">
+            {{- range .Params.workbench }}
+            <div class="bench-row"><span class="bench-k">{{ .group }}</span><span class="bench-items">{{ delimit .items " · " }}</span></div>
             {{- end }}
-        </ul>
-    </section>
-
-    <section class="sec reveal" aria-label="Beyond research">
-        <div class="sec-h"><span class="mark"></span><h2>Beyond research</h2><span class="k">teaching · endorsements · about</span></div>
-        <div class="grid3 stagger">
-            <a class="card" href="{{ (.GetPage `/pro/teaching`).RelPermalink }}"><div class="card__body"><p class="card__eyebrow">TEACHING</p><h3 class="card__title">Teaching</h3><p class="card__desc">Image processing, medical imaging, GPU programming — and student project supervision.</p></div></a>
-            <a class="card" href="{{ (.GetPage `/pro/endorsements`).RelPermalink }}"><div class="card__body"><p class="card__eyebrow">ENDORSEMENTS</p><h3 class="card__title">Endorsements</h3><p class="card__desc">Reference letters from professors I have worked with in Strasbourg and Oviedo.</p></div></a>
-            <a class="card" href="{{ (.GetPage `/pro/about`).RelPermalink }}"><div class="card__body"><p class="card__eyebrow">ABOUT</p><h3 class="card__title">About</h3><p class="card__desc">The full story: research focus, toolkit, publications, and profiles.</p></div></a>
         </div>
     </section>
 
+    <section class="sec context-links" aria-label="Teaching and background">
+        <a href="/pro/teaching/">
+            <h2>Teaching {{ partial "icon.html" (dict "name" "arrow-right") }}</h2>
+            <p>Teaching activities, student project topics and course resources.</p>
+        </a>
+        <a href="/pro/about/">
+            <h2>Background & CV {{ partial "icon.html" (dict "name" "arrow-right") }}</h2>
+            <p>Research interests, academic profiles and curriculum vitae.</p>
+        </a>
+    </section>
 </div>
 {{ end }}

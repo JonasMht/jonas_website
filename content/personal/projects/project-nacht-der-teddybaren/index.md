@@ -1,6 +1,7 @@
 ---
-title: Nacht Der Teddybären
-description: A Teddy-Zombie survival game built in Unity with custom AI, 3D Blender assets, fire control, and wave-based enemy spawning
+projectType: "Game development · Unity"
+title: "Nacht der Teddybären"
+description: "Unity survival game made by two students. I worked on enemy AI, wave logic, shooting and Blender assets."
 slug: project-nacht-der-teddybaren
 aliases: ["/p/project-nacht-der-teddybaren/", "/p/project-nacht-der-teddyb%C3%A4ren/"]
 date: 2021-12-07 00:00:00+0000
@@ -14,16 +15,24 @@ tags:
     - Art
 ---
 
-## Description
-As part of a two-student team, I created a Teddy-Zombie survival game using Unity within a four-month timeframe. My responsibilities for the project included working on the AI, 3D asset modeling and texturing using Blender, fire control, enemy spawner, and wave system. This project provided me with valuable hands-on experience in Unity game development and project management, which I believe will come in handy in my future ventures.
+## Project
 
-## Videos
-### Full gameplay
+A survival game built in Unity by a two-student team over four months. Players face successive waves of teddy-bear enemies.
+
+## My contribution
+
+I worked on enemy AI, shooting, enemy spawning and the wave system. I also modelled and textured 3D assets in Blender.
+
+## Demonstrations
+
+### Gameplay
+
 {{< youtube NNKAQUaYZ7k >}}
+
 ### Blender animations
+
 {{< youtube nyvyek3WAS0 >}}
-### How waves are managed
+
+### Wave system
+
 {{< youtube WPh75-kgGAw >}}
-
-
-> Videos filmed for the [Nacht Der Teddybären]({{< ref "/personal/projects/project-nacht-der-teddybaren" >}} "Nacht Der Teddybären") project
