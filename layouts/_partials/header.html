@@ -14,5 +14,6 @@
         {{- $active := or (eq $.RelPermalink $url) (and (ne $url $home) (hasPrefix $.RelPermalink $url)) }}
         <a class="t{{ if $active }} on{{ end }}" href="{{ $url }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
         {{- end }}
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light mode">Day</button>
     </nav>
 </header>

@@ -61,7 +61,7 @@
 {{ (printf `<link rel="preload" as="image" href=%q imagesrcset=%q imagesizes=%q fetchpriority="high">` $hero.src $hero.srcset $heroSizes) | safeHTML }}
 {{- end -}}
 
-{{- /* Always-dark station: no scheme flash, no toggle. Reduced-motion = designed peer. */ -}}
+{{- /* boot.js restores the saved theme before the stylesheet paints. */ -}}
 
 {{- /* Open Graph / Twitter */ -}}
 <meta property="og:title" content="{{ $title }}">

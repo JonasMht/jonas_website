@@ -3,7 +3,7 @@
 {{- $personal := site.GetPage "/personal" -}}
 
 <div class="container">
-    <section class="monitor reveal" aria-label="Overview">
+    <section class="monitor monitor--portrait reveal" aria-label="Overview">
         <div class="mhead"><span>JONAS MEHTALI — OVERVIEW</span><span class="live">STRASBOURG · FR</span></div>
         <div class="mbody">
             <div class="mleft">
@@ -23,14 +23,6 @@
                     <a class="lnk" href="{{ (.GetPage `/lab`).RelPermalink }}">The Lab →</a>
                     <a class="lnk" href="/pro/about/jonas-mehtali-resume.pdf">CV.PDF</a>
                 </div>
-            </div>
-            <div class="mright" role="list" aria-label="Key numbers">
-                {{- range .Params.cells }}
-                <div class="mcell" role="listitem">
-                    <span class="k">{{ .k }}</span>
-                    <div><span class="v{{ if .acc }} acc{{ end }}">{{ .v }}</span><span class="sub">{{ .sub }}</span></div>
-                </div>
-                {{- end }}
             </div>
         </div>
     </section>

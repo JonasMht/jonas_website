@@ -1,6 +1,27 @@
 (function () {
     "use strict";
 
+    /* Keep the theme choice across pages; dark remains the site's default. */
+    var themeButton = document.querySelector("[data-theme-toggle]");
+    function syncTheme() {
+        var light = document.documentElement.dataset.theme === "light";
+        if (themeButton) {
+            themeButton.textContent = light ? "Night" : "Day";
+            themeButton.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
+        }
+        var themeMeta = document.querySelector('meta[name="theme-color"]');
+        if (themeMeta) themeMeta.content = light ? "#F3F6FA" : "#0C0F14";
+    }
+    if (themeButton) {
+        themeButton.addEventListener("click", function () {
+            var theme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+            document.documentElement.dataset.theme = theme;
+            try { localStorage.setItem("jm.theme", theme); } catch (e) {}
+            syncTheme();
+        });
+        syncTheme();
+    }
+
     /* scroll progress rail */
     var bar = document.createElement("div");
     bar.id = "progress";

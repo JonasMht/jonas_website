@@ -12,8 +12,18 @@ TEL_DIR="${TEL_DIR:-/home/jonas/jonasx/telemetry}"
 cd "$(dirname "$0")/.."
 
 echo "[1/3] building…"
-HUGO="${HUGO:-$(command -v hugo || echo /tmp/opencode/hugo)}"
-"$HUGO" --gc --minify
+if [ -n "${HUGO:-}" ]; then
+    "$HUGO" --gc --minify
+elif command -v hugo >/dev/null 2>&1; then
+    hugo --gc --minify
+elif command -v docker >/dev/null 2>&1; then
+    docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/src" \
+        hugomods/hugo:exts-0.152.2 --gc --minify
+else
+    echo "Install Hugo extended 0.152.2 or Docker, or set HUGO to the binary path." >&2
+    exit 1
+fi
+python3 scripts/hero-options.py public public/opt/index.html
 
 echo "[2/3] syncing site → ${USER_HOST}:${SITE_DIR}"
 rsync -az --delete public/ "${USER_HOST}:${SITE_DIR}/"
