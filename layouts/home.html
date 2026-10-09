@@ -1,32 +1,37 @@
 {{ define "main" }}
 <div class="container">
-    <section class="profile-hero" aria-labelledby="profile-title">
-        <div class="profile-hero__copy">
-            <p class="hero-kicker">{{ .Params.kicker }}</p>
-            <h1 id="profile-title">{{ .Params.headline }}</h1>
-            <p class="profile-hero__role">{{ .Params.role }}</p>
-            <p class="profile-hero__lede">{{ .Params.lede }}</p>
-            <div class="links">
-                <a class="lnk pri" href="/pro/">{{ partial "action-label.html" "Research & publications →" }}</a>
-                <a class="lnk" href="/pro/about/jonas-mehtali-resume.pdf"><span>CV (PDF)</span>{{ partial "icon.html" (dict "name" "download") }}</a>
-            </div>
-            <nav class="profile-links" aria-label="Professional profiles">
-                {{- $icons := dict "Scholar" "school" "GitHub" "brand-github" "LinkedIn" "brand-linkedin" }}
-                {{- range site.Params.identity }}
-                {{- if in (slice "Scholar" "GitHub" "LinkedIn") .name }}
-                <a href="{{ .url }}" target="_blank" rel="noopener">{{ partial "icon.html" (dict "name" (index $icons .name)) }}<span>{{ .name }}</span></a>
-                {{- end }}
-                {{- end }}
-            </nav>
+    <section class="monitor hub-hero" aria-labelledby="profile-title">
+        <div class="mhead">
+            <span>Jonas Mehtali — Overview</span>
+            <span>Strasbourg · FR</span>
         </div>
-        <figure class="profile-hero__figure">
-            <div class="profile-hero__image media-frame">
+        <div class="hub-hero__body">
+            <figure class="hub-hero__photo media-frame">
                 {{- with resources.Get "img/avatar.jpg" }}
-                {{ partial "img.html" (dict "r" . "widths" (slice 480 750 960) "sizes" "(max-width:760px) 92vw, (min-width:1280px) 500px, 40vw" "alt" "Jonas Mehtali working with the Cryotrack system" "eager" true) }}
+                {{ partial "img.html" (dict "r" . "widths" (slice 480 750 960) "sizes" "(max-width:760px) calc(92vw - 46px), (max-width:1100px) 40vw, 516px" "alt" "Jonas Mehtali working with the Cryotrack system" "eager" true) }}
                 {{- end }}
+                <figcaption>Research at ICube · Strasbourg</figcaption>
+            </figure>
+            <div class="hub-hero__copy">
+                <p class="hub-hero__kicker">{{ .Params.kicker }}</p>
+                <h1 id="profile-title">{{ .Params.headline }}</h1>
+                <p class="hub-hero__role">{{ .Params.role }}</p>
+                <p class="hub-hero__lede">{{ .Params.lede }}</p>
+                <div class="links">
+                    <a class="lnk pri" href="/pro/">{{ partial "action-label.html" "Research & publications →" }}</a>
+                    <a class="lnk" href="/pro/about/jonas-mehtali-resume.pdf"><span>CV (PDF)</span>{{ partial "icon.html" (dict "name" "download") }}</a>
+                </div>
             </div>
-            <figcaption>Research at ICube · Strasbourg</figcaption>
-        </figure>
+        </div>
+        <nav class="hub-nav" aria-label="Professional profiles">
+            <span class="hub-nav__label">Profiles</span>
+            {{- $icons := dict "Scholar" "school" "GitHub" "brand-github" "LinkedIn" "brand-linkedin" }}
+            {{- range site.Params.identity }}
+            {{- if in (slice "Scholar" "GitHub" "LinkedIn") .name }}
+            <a href="{{ .url }}" target="_blank" rel="noopener"><span>{{ .name }}</span>{{ partial "icon.html" (dict "name" (index $icons .name)) }}</a>
+            {{- end }}
+            {{- end }}
+        </nav>
     </section>
 
     <section class="sec" aria-labelledby="research-title">

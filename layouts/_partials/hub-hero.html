@@ -1,30 +1,36 @@
 {{- $hero := .Params.hero -}}
-<section class="profile-hero profile-hero--section" aria-labelledby="hub-title">
-    <div class="profile-hero__copy">
-        <p class="hero-kicker">{{ $hero.kicker }}</p>
-        <h1 id="hub-title">{{ replace $hero.headline "|" " " }}</h1>
-        <p class="profile-hero__lede">{{ $hero.lede }}</p>
-        <div class="links">
-            {{- range $hero.links }}
-            <a class="lnk{{ if .primary }} pri{{ end }}" href="{{ .url }}">{{ partial "action-label.html" .label }}</a>
-            {{- end }}
-        </div>
+<section class="monitor hub-hero" aria-labelledby="hub-title">
+    <div class="mhead">
+        <span>Jonas Mehtali — {{ .Title }}</span>
+        <span>Strasbourg · FR</span>
     </div>
-    <figure class="profile-hero__figure">
-        <div class="profile-hero__image media-frame">
+    <div class="hub-hero__body">
+        <figure class="hub-hero__photo media-frame">
             {{- with site.GetPage $hero.photo.page }}
             {{- with .Resources.GetMatch $hero.photo.image }}
-            {{ partial "img.html" (dict "r" . "widths" (slice 480 750 1080) "sizes" "(max-width:760px) 92vw, (min-width:1280px) 500px, 40vw" "alt" $hero.photo.alt "eager" true) }}
+            {{ partial "img.html" (dict "r" . "widths" (slice 480 750 1080) "sizes" "(max-width:760px) calc(92vw - 46px), (max-width:1100px) 40vw, 516px" "alt" $hero.photo.alt "eager" true) }}
             {{- end }}
             {{- end }}
+            <figcaption>{{ $hero.photo.caption }}</figcaption>
+        </figure>
+        <div class="hub-hero__copy">
+            <p class="hub-hero__kicker">{{ $hero.kicker }}</p>
+            {{- $parts := split $hero.headline "|" }}
+            <h1 id="hub-title">{{ index $parts 0 }}{{ with index $parts 1 }}<em>{{ . }}</em>{{ end }}</h1>
+            <p class="hub-hero__lede">{{ $hero.lede }}</p>
+            <div class="links">
+                {{- range $hero.links }}
+                <a class="lnk{{ if .primary }} pri{{ end }}" href="{{ .url }}">{{ partial "action-label.html" .label }}</a>
+                {{- end }}
+            </div>
         </div>
-        <figcaption>{{ $hero.photo.caption }}</figcaption>
-    </figure>
+    </div>
+    <nav class="hub-nav" aria-label="Explore {{ .Title | lower }}">
+        <span class="hub-nav__label">Explore</span>
+        {{- range $hero.explore }}
+        {{- $icon := "arrow-right" }}
+        {{- if hasPrefix .url "#" }}{{ $icon = "arrow-down" }}{{ else if hasPrefix .url "http" }}{{ $icon = "arrow-up-right" }}{{ end }}
+        <a href="{{ .url }}"><span>{{ .label }}</span>{{ partial "icon.html" (dict "name" $icon) }}</a>
+        {{- end }}
+    </nav>
 </section>
-<nav class="hub-nav" aria-label="Explore {{ .Title | lower }}">
-    {{- range $hero.explore }}
-    {{- $icon := "arrow-right" }}
-    {{- if hasPrefix .url "#" }}{{ $icon = "arrow-down" }}{{ else if hasPrefix .url "http" }}{{ $icon = "arrow-up-right" }}{{ end }}
-    <a href="{{ .url }}"><span>{{ .label }}</span>{{ partial "icon.html" (dict "name" $icon) }}</a>
-    {{- end }}
-</nav>

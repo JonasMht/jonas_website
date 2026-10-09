@@ -44,7 +44,7 @@
 {{- if .IsHome -}}
   {{- with resources.Get "img/avatar.jpg" -}}
     {{- $hero = partial "img-variants.html" (dict "r" . "widths" (slice 480 750 960)) -}}
-    {{- $heroSizes = "(max-width:760px) 92vw, (min-width:1280px) 500px, 40vw" -}}
+    {{- $heroSizes = "(max-width:760px) calc(92vw - 46px), (max-width:1100px) 40vw, 516px" -}}
   {{- end -}}
 {{- else if and (eq .Kind "page") .Params.image -}}
   {{- with .Resources.GetMatch .Params.image -}}
@@ -55,7 +55,7 @@
   {{- with site.GetPage .Params.hero.photo.page -}}
     {{- with .Resources.GetMatch $.Params.hero.photo.image -}}
       {{- $hero = partial "img-variants.html" (dict "r" . "widths" (slice 480 750 1080)) -}}
-      {{- $heroSizes = "(max-width:760px) 92vw, (min-width:1280px) 500px, 40vw" -}}
+      {{- $heroSizes = "(max-width:760px) calc(92vw - 46px), (max-width:1100px) 40vw, 516px" -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}

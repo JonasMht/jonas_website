@@ -3,8 +3,8 @@ title: "Professional"
 description: "PhD student in computer-assisted interventions at ICube Laboratory, University of Strasbourg."
 layout: "hub-pro"
 hero:
-  kicker: "Research · Software · Teaching"
-  headline: "Computer-assisted|interventions"
+  kicker: "ICube · University of Strasbourg"
+  headline: "Research, software|& teaching"
   lede: "My PhD at ICube focuses on planning thermal ablation with multiple needles. I work on ablation simulation, needle placement and interfaces for adapting a plan during a procedure."
   photo:
     page: "/pro/research/2024-assisted-surgery-internship"
