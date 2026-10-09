@@ -184,12 +184,23 @@ async def telemetry_checks(browser):
             # WebKit's interception API omits Blob beacon bodies. Exercise the
             # real fetch fallback so the payload remains inspectable in this test.
             await context.add_init_script("navigator.sendBeacon = () => false;")
-        document = await context.request.get(BASE + "/")
-        html = (await document.text()).replace('data-telemetry=""', 'data-telemetry="/e"').replace("data-telemetry=''", 'data-telemetry="/e"')
-        # Hugo minification can leave empty HTML attributes unquoted.
-        html = html.replace("data-telemetry defer", 'data-telemetry="/e" defer')
-        assert 'data-telemetry="/e"' in html
-        await context.route(BASE + "/", lambda route: route.fulfill(status=200, content_type="text/html", body=html))
+        # Keep the real navigation response and its security/address-space
+        # context. Fulfilling synthetic HTML for an HTTP LAN preview makes
+        # Chromium block its real subresources as private-network requests.
+        # Configure only the deferred collector script before it executes.
+        await context.add_init_script("""(() => {
+            function configure() {
+                const script = document.querySelector('script[data-telemetry]');
+                if (!script) return false;
+                script.dataset.telemetry = '/e';
+                return true;
+            }
+            const observer = new MutationObserver(() => {
+                if (configure()) observer.disconnect();
+            });
+            observer.observe(document, {childList: true, subtree: true});
+            if (configure()) observer.disconnect();
+        })();""")
         batches = []
 
         async def receive(route):
