@@ -2,46 +2,32 @@
 title: "Professional"
 description: "PhD student in computer-assisted interventions at ICube Laboratory, University of Strasbourg."
 layout: "hub-pro"
-eyebrow: "ICube Laboratory · University of Strasbourg"
-headline: "Thermal ablation planning, |in real time|."
-tagline: "Percutaneous thermal ablation treats liver tumors with needle-mounted heat. When one needle is not enough, clinicians must plan several overlapping ablations, and local recurrence reaches 10 to 39% within five years. My PhD builds the planning software that runs fast enough to use during the procedure."
-now: "Building the multi-needle replanning loop on the C-NCA estimator"
-cells:
-  - k: "Publications"
-    v: "3"
-    sub: "MICCAI ×2 · IJCARS ×1"
-    acc: true
-  - k: "Visitors"
-    pulse: true
-    sub: "visitors · 7 days"
-  - k: "Research areas"
-    v: "3"
-    sub: "simulation → planning → clinical"
-  - k: "Funding"
-    v: "ITI"
-    sub: "HealthTech doctoral program"
-routes:
-  - no: "R1 · SIMULATION"
-    status: "SHIPPED"
-    st: "ship"
-    title: "Make heat computable"
-    metric: "2 papers · in the planning loop"
-    desc: "C-NCA estimates tissue death fast enough to plan interactively; HEAT computes the ablation zone in under a second."
-    url: "/pro/research/cnca-2025/"
-  - no: "R2 · PLANNING"
-    status: "IN PROGRESS"
-    st: "wip"
-    title: "Make plans real-time"
-    metric: "multi-needle · replanning"
-    desc: "Automatic multi-needle placement and adaptive replanning, built on the C-NCA estimator and the CryoTrack workflow."
-    url: "/pro/research/2024-cryotrack-miccai/"
-  - no: "R3 · CLINICAL"
-    status: "EARLY"
-    st: "early"
-    title: "Make it clinical"
-    metric: "ITI HealthTech"
-    desc: "Planning interfaces designed and tested with clinicians at the IHU, inside the operating-room loop."
-    url: "/pro/about/"
+hero:
+  kicker: "ICube · University of Strasbourg"
+  headline: "Research, software|& teaching."
+  lede: "I'm a PhD candidate at ICube in Strasbourg, working where computer science meets medicine. I build simulations and interactive software, share the research behind them, and teach along the way."
+  photo:
+    page: "/pro/research/2024-assisted-surgery-internship"
+    image: "JonasMRPlanning.png"
+    alt: "Jonas exploring an anatomical model with a mixed-reality headset"
+    caption: "J. Mehtali · Mixed reality"
+  links:
+    - label: "Explore research →"
+      url: "/pro/research/"
+      primary: true
+    - label: "About me →"
+      url: "/pro/about/"
+    - label: "CV.PDF ↓"
+      url: "/pro/about/jonas-mehtali-resume.pdf"
+  explore:
+    - label: "Publications"
+      url: "#publications"
+    - label: "Teaching"
+      url: "/pro/teaching/"
+    - label: "Experience"
+      url: "#experience"
+    - label: "Open source"
+      url: "#open-source"
 featuredPubs:
   - "/pro/research/cnca-2025"
   - "/pro/research/2025-heat-ijcars"
@@ -103,11 +89,3 @@ repos:
     desc: "2D real-time strategy tank game built with PyGame — my first project."
     url: "https://github.com/JonasMht/Sensha-Game-2019"
 ---
-
-My research topic is **percutaneous thermal ablation**, a minimally invasive
-treatment for small liver tumors. When a tumor exceeds what a single needle can
-cover, clinicians must plan multiple overlapping ablations manually, and local
-recurrence rates reach 10 to 39&nbsp;% within five years.
-
-My PhD works on three parts of this problem: faster simulation, replanning
-during the procedure, and the interfaces clinicians use to do both.

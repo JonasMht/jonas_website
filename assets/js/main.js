@@ -6,8 +6,9 @@
     function syncTheme() {
         var light = document.documentElement.dataset.theme === "light";
         if (themeButton) {
-            themeButton.textContent = light ? "Night" : "Day";
-            themeButton.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
+            var label = light ? "Switch to dark mode" : "Switch to light mode";
+            themeButton.setAttribute("aria-label", label);
+            themeButton.setAttribute("title", label);
         }
         var themeMeta = document.querySelector('meta[name="theme-color"]');
         if (themeMeta) themeMeta.content = light ? "#F3F6FA" : "#0C0F14";

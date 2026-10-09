@@ -1,0 +1,31 @@
+{{- $hero := .Params.hero -}}
+<section class="monitor hub-hero reveal" aria-labelledby="hub-title">
+    <div class="mhead"><span>JONAS MEHTALI — {{ .Title }}</span><span class="live">STRASBOURG · FR</span></div>
+    <div class="hub-hero__body">
+        <figure class="hub-hero__photo">
+            {{- with site.GetPage $hero.photo.page }}
+            {{- with .Resources.GetMatch $hero.photo.image }}
+            {{ partial "img.html" (dict "r" . "widths" (slice 480 750 1080) "sizes" "(max-width:760px) 92vw, (max-width:1439px) 42vw, 540px" "alt" $hero.photo.alt "eager" true) }}
+            {{- end }}
+            {{- end }}
+            <figcaption>{{ $hero.photo.caption }}</figcaption>
+        </figure>
+        <div class="hub-hero__copy">
+            <p class="hub-hero__kicker">{{ $hero.kicker }}</p>
+            {{- $parts := split $hero.headline "|" }}
+            <h1 id="hub-title">{{ index $parts 0 }}{{ with index $parts 1 }}<em>{{ . }}</em>{{ end }}</h1>
+            <p class="hub-hero__lede">{{ $hero.lede }}</p>
+            <div class="links">
+                {{- range $hero.links }}
+                <a class="lnk{{ if .primary }} pri{{ end }}" href="{{ .url }}">{{ .label }}</a>
+                {{- end }}
+            </div>
+        </div>
+    </div>
+    <nav class="hub-nav" aria-label="Explore {{ .Title | lower }}">
+        <span class="hub-nav__label">Explore</span>
+        {{- range $hero.explore }}
+        <a href="{{ .url }}">{{ .label }} <span aria-hidden="true">{{ if hasPrefix .url "#" }}↓{{ else if hasPrefix .url "http" }}↗{{ else }}→{{ end }}</span></a>
+        {{- end }}
+    </nav>
+</section>

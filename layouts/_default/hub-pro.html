@@ -1,68 +1,9 @@
 {{ define "main" }}
-<div class="container">
-    <section class="monitor reveal" aria-label="Professional overview">
-        <div class="mhead"><span>JONAS MEHTALI — RESEARCH · {{ .Params.eyebrow }}</span><span class="live">STRASBOURG · FR</span></div>
-        <div class="mbody">
-            <div class="mleft">
-                <div class="photo focus">
-                    {{- with resources.Get "img/cryotrack.jpg" }}
-                    {{ partial "img.html" (dict "r" . "widths" (slice 480 960 1440) "sizes" "(max-width:700px) 92vw, 480px" "alt" "CryoTrack experiment setup" "eager" true) }}
-                    {{- end }}
-                    <span class="tag">CRYOTRACK · PLANNING LAB</span>
-                </div>
-                <h1>{{- $parts := split .Params.headline "|" }}{{ index $parts 0 }}{{ with index $parts 1 }}<em>{{ . }}</em>{{ end }}{{ with index $parts 2 }}{{ . }}{{ end }}</h1>
-                <p class="lede">{{ .Params.tagline }}</p>
-                <div class="links">
-                    <a class="lnk pri" href="/pro/about/jonas-mehtali-resume.pdf">CV.PDF</a>
-                    <a class="lnk" href="{{ (.GetPage `/pro/publications`).RelPermalink }}">PUBLICATIONS →</a>
-                    <a class="lnk" href="{{ (.GetPage `/pro/about`).RelPermalink }}">ABOUT →</a>
-                </div>
-            </div>
-            <div class="mright" role="list" aria-label="Key numbers">
-                {{- range .Params.cells }}
-                <div class="mcell" role="listitem">
-                    <span class="k">{{ .k }}</span>
-                    <div>{{ if .pulse }}<span class="v acc" id="pulse-v7" title="unique visitors, last 7 days">···</span><span class="sub" id="pulse-sub">{{ .sub }}</span>{{ else }}<span class="v{{ if .acc }} acc{{ end }}">{{ .v }}</span><span class="sub">{{ .sub }}</span>{{ end }}</div>
-                </div>
-                {{- end }}
-            </div>
-        </div>
-    </section>
+<div class="container hub-page">
+    {{ partial "hub-hero.html" . }}
 
-    {{- with .Params.now }}
-    {{- $sec := site.GetPage "/pro/research" }}
-    {{- $latest := first 1 $sec.RegularPages.ByDate.Reverse }}
-    {{- $l := index $latest 0 }}
-    <div class="now-strip reveal" role="status">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="now-k">NOW</span>
-        <span class="now-v">{{ . }}</span>
-        {{- with $l }}
-        {{- $days := math.Round (div (sub now.Unix .Date.Unix) 86400) }}
-        <span class="now-sep" aria-hidden="true"></span>
-        <span class="now-k">LATEST</span>
-        <a class="now-latest" href="{{ .RelPermalink }}">{{ .Title }}</a>
-        <span class="latest-meta">{{ .Params.venue }} · {{ $days }}d ago</span>
-        {{- end }}
-        <span class="now-place">ICUBE · STRASBOURG</span>
-    </div>
-    {{- end }}
-
-    <section class="sec reveal" aria-label="Research">
-        <div class="sec-h"><span class="mark"></span><h2>Research</h2><span class="k">current work</span></div>
-        <div class="route-row">
-            {{- range $i, $r := .Params.routes }}
-            <a class="route" href="{{ .url }}">
-                {{- if eq $i 0 }}<span class="start">START</span>{{ end }}
-                <span class="no">{{ .no }}</span><h3>{{ .title }}</h3><p>{{ .desc }}</p>
-                <span class="route-meta"><span class="status st-{{ .st }}">{{ .status }}</span><span class="metric">{{ .metric }}</span></span>
-            </a>
-            {{- end }}
-        </div>
-    </section>
-
-    <section class="sec reveal" aria-label="Selected publications">
-        <div class="sec-h"><span class="mark"></span><h2>Selected publications</h2><span class="k">selected</span>
+    <section class="sec reveal" id="publications" aria-label="Selected publications">
+        <div class="sec-h"><span class="mark"></span><h2>Selected publications</h2><span class="k">papers & ideas</span>
             <a class="more" href="{{ (.GetPage `/pro/publications`).RelPermalink }}" style="color:var(--accent)">FULL LIST →</a></div>
         {{- range first 2 .Params.featuredPubs }}
         {{- with site.GetPage . }}
@@ -101,7 +42,7 @@
         </div>
     </section>
 
-    <section class="sec reveal" aria-label="Career log">
+    <section class="sec reveal" id="experience" aria-label="Experience">
         <div class="sec-h"><span class="mark"></span><h2>Experience</h2><span class="k">experience</span></div>
         <ol class="sess-list">
             {{- range .Params.timeline }}
@@ -115,7 +56,7 @@
         </ol>
     </section>
 
-    <section class="sec reveal" aria-label="Open source">
+    <section class="sec reveal" id="open-source" aria-label="Open source">
         <div class="sec-h"><span class="mark"></span><h2>Open source</h2><span class="k">github.com/JonasMht</span>
             <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">ALL REPOS →</a></div>
         <div class="repo-row stagger">
@@ -147,8 +88,5 @@
         </div>
     </section>
 
-    {{- with .Content }}
-    <section class="sec reveal article-content">{{ . }}</section>
-    {{- end }}
 </div>
 {{ end }}

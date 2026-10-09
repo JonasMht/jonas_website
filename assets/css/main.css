@@ -109,11 +109,17 @@ html:not(.js) .ignition { display: none; }
     transition: color .16s ease, background-color .16s ease, border-color .16s ease; }
 .nav a.t:hover { color: var(--text); border-color: var(--line2); }
 .nav a.t.on { color: var(--accent); border: 1px solid var(--accent-dim); background: var(--accent-faint); }
-.theme-toggle { display: none; min-height: 44px; padding: 0 12px; cursor: pointer;
-    font: .62rem var(--mono); letter-spacing: .1em; text-transform: uppercase;
-    color: var(--accent); background: var(--accent-faint); border: 1px solid var(--accent-dim); border-radius: 6px; }
+.theme-toggle { display: none; position: relative; flex: none; width: 44px; height: 44px; padding: 0; cursor: pointer;
+    color: var(--accent); background: var(--accent-faint); border: 1px solid var(--accent-dim); border-radius: 9px;
+    transition: color .2s ease, border-color .2s ease, background-color .2s ease; }
 html.js .theme-toggle { display: inline-flex; align-items: center; justify-content: center; }
-.theme-toggle:hover { color: var(--text); border-color: var(--accent); }
+.theme-toggle:hover { color: var(--text); border-color: var(--accent); background: var(--panel2); }
+.theme-icon { position: absolute; width: 19px; height: 19px; fill: none; stroke: currentColor;
+    stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; pointer-events: none;
+    transition: opacity .2s ease, transform .25s ease; }
+.theme-icon--moon { opacity: 0; transform: rotate(-35deg) scale(.7); }
+[data-theme="light"] .theme-icon--sun { opacity: 0; transform: rotate(35deg) scale(.7); }
+[data-theme="light"] .theme-icon--moon { opacity: 1; transform: rotate(0) scale(1); }
 
 /* ===== monitor (hero panels) ===== */
 .monitor { margin-top: 30px; overflow: visible; border: 1px solid var(--line); border-radius: var(--r);
@@ -167,6 +173,67 @@ html.js .theme-toggle { display: inline-flex; align-items: center; justify-conte
 .lnk:hover { border-color: var(--accent); color: var(--accent); }
 .lnk.pri { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .lnk.pri:hover { background: var(--accent-text); color: var(--on-accent); }
+
+/* The section introductions share Overview's photo-and-copy rhythm. */
+.hub-hero__body { display: grid; grid-template-columns: 1fr 1.12fr; gap: 40px; padding: 32px; }
+.hub-hero__photo { position: relative; min-height: 360px; margin: 0; overflow: hidden;
+    border: 1px solid var(--line2); border-radius: 8px; background: var(--panel2); }
+.hub-hero__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
+.hub-hero__photo::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(transparent 65%, rgba(12, 15, 20, .65)); pointer-events: none; }
+.hub-hero__photo figcaption { position: absolute; left: 16px; bottom: 14px; z-index: 1;
+    max-width: calc(100% - 32px); padding: 3px 7px; border-radius: 3px;
+    font: .58rem/1.6 var(--mono); letter-spacing: .14em; text-transform: uppercase;
+    color: #C5DFF5; background: rgba(12, 15, 20, .86); }
+.hub-hero__copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 16px 0; }
+.hub-hero__kicker { margin: 0 0 22px; font: .62rem/1.7 var(--mono); letter-spacing: .16em;
+    text-transform: uppercase; color: var(--faint); }
+.hub-hero h1 { margin: 0; font-size: clamp(2.1rem, 3.5vw, 3.1rem); font-weight: 800;
+    line-height: 1.12; letter-spacing: -.035em; }
+.hub-hero h1 em { display: block; font-style: normal; color: var(--accent); }
+.hub-hero__lede { max-width: 47ch; margin: 20px 0 26px; font-size: 1rem; line-height: 1.75; color: var(--dim); }
+.hub-nav { display: flex; align-items: center; gap: 12px 32px; padding: 8px 32px;
+    border-top: 1px solid var(--line); flex-wrap: wrap; }
+.hub-nav__label { margin-right: auto; font: .58rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--faint); }
+.hub-nav a { display: inline-flex; align-items: center; gap: 18px; min-height: 44px; font-size: .8rem; color: var(--dim); }
+.hub-nav a span { color: var(--accent); transition: transform .2s ease; }
+.hub-nav a:hover { color: var(--text); }
+.hub-nav a:hover span { transform: translate(2px, -2px); }
+.hub-page .sec[id] { scroll-margin-top: 110px; }
+.hub-page .sec-h { flex-wrap: wrap; }
+.project-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.project-gallery .card__media { height: auto; aspect-ratio: 16 / 9; }
+.project-gallery .card__body { padding: 20px 22px; }
+.project-gallery .card__title { font-size: 1.15rem; }
+.project-gallery .card__desc { font-size: .88rem; max-width: 60ch; }
+.project-gallery .card__meta { margin-top: 16px; }
+@media (min-width: 761px) and (max-width: 1100px) {
+    .hub-hero__body { gap: 28px; padding: 24px; }
+    .hub-hero h1 { font-size: 2.15rem; }
+    .hub-hero__photo { min-height: 340px; }
+}
+@media (max-width: 760px) {
+    .nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px 8px; }
+    .nav .sys { grid-column: 1 / 4; margin: 0; width: fit-content; }
+    .nav .sys .suffix { display: none; }
+    .nav .theme-toggle { grid-column: 4; grid-row: 1; justify-self: end; }
+    .nav a.t { grid-row: 2; display: flex; align-items: center; justify-content: center; padding-inline: 8px; }
+    .hub-hero__body { grid-template-columns: 1fr; gap: 24px; padding: 20px; }
+    .hub-hero__photo { min-height: 0; aspect-ratio: 4 / 3; max-height: 380px; }
+    .hub-hero__copy { padding: 0 2px 4px; }
+    .hub-hero__kicker { margin-bottom: 14px; }
+    .hub-hero h1 { font-size: clamp(1.9rem, 6.8vw, 2.6rem); }
+    .hub-hero__lede { margin: 16px 0 22px; font-size: .94rem; }
+    .hub-nav { gap: 0 24px; padding: 10px 22px; }
+    .hub-nav__label { display: none; }
+    .hub-nav a { flex: 1 1 calc(50% - 24px); justify-content: space-between; }
+    .hub-page .sec[id] { scroll-margin-top: 140px; }
+    .project-gallery { gap: 16px; }
+    .project-gallery .card__body { padding: 16px 18px; }
+}
+@media (max-width: 560px) {
+    .project-gallery { grid-template-columns: 1fr; }
+}
 
 /* focus brackets — float 8px off, moat of dark ground */
 .focus { position: relative; }

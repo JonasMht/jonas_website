@@ -54,7 +54,7 @@ out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#0C0F14"><title>Homepage options · Jonas Mehtali</title>
 {scripts[0]}<link rel="stylesheet" href="{css}"><link rel="stylesheet" href="/opt/options.css"></head><body>{header}
-<main class="container"><div class="comparison-intro"><p class="role">Homepage study</p><h1>Three directions for the main card.</h1><p>Switch between options, then try Day / Night in the navigation. The profile row below uses the new, even spacing.</p></div>
+<main class="container"><div class="comparison-intro"><p class="role">Homepage study</p><h1>Three directions for the main card.</h1><p>Switch between options, then try the sun / moon button in the navigation. The profile row below uses the new, even spacing.</p></div>
 <div class="option-controls" role="group" aria-label="Choose a homepage preview">{buttons}</div>{panels}{identity}
 <p class="comparison-end"><a href="/">← Back to the current preview</a></p></main>{''.join(scripts[1:])}<script src="/opt/options.js" defer></script></body></html>''')
 (out.parent / 'options.css').write_text('''

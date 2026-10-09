@@ -2,31 +2,35 @@
 title: "Personal"
 description: "Game development, 3D art, and work experiences alongside my studies."
 layout: "hub-personal"
-eyebrow: "GAMES · 3D · TOOLS"
-headline: "Games, tools and |3D worlds|."
-lede: "Four games shipped since 2019, a museum 3D exhibit, and small utilities for recurring problems. Same standards as the research, softer deadlines."
-cells:
-  - k: "Games shipped"
-    v: "4"
-    sub: "since 2019"
-    acc: true
-  - k: "Engines"
-    v: "Unity · Godot"
-    sub: "+ Blender for 3D"
-  - k: "Part-time jobs"
-    v: "3"
-    sub: "2020 — 2022"
-featured: "sensha"
+hero:
+  kicker: "Outside the lab"
+  headline: "Made out of|curiosity."
+  lede: "Games, 3D worlds and useful little tools. This is where I follow an idea, learn something new, and see what I can make of it. A few experiences from everyday life live here, too."
+  photo:
+    page: "/pro/about"
+    image: "oviedo-spain-cover.jpg"
+    alt: "Jonas sitting beside an outdoor sculpture of a filmmaker and a horse"
+    caption: "J. Mehtali · Outside the lab"
+  links:
+    - label: "Browse projects ↓"
+      url: "#projects"
+      primary: true
+    - label: "GitHub ↗"
+      url: "https://github.com/JonasMht"
+  explore:
+    - label: "Projects"
+      url: "#projects"
+    - label: "Small tools"
+      url: "#open-source"
+    - label: "Experiences"
+      url: "#experiences"
+    - label: "Videos"
+      url: "https://www.youtube.com/@JonasMht"
 workbench:
   - group: "Engines & tools"
     items: ["Unity", "Godot", "Blender", "PyGame"]
   - group: "Languages"
     items: ["Python", "C#", "GLSL"]
-badges:
-  - "Game Dev"
-  - "3D Art"
-  - "Blender"
-  - "Unity"
 repos:
   - name: "Sensha-Game-2019"
     lang: "Python"
@@ -41,9 +45,3 @@ repos:
     desc: "Student project (archived): neural nets implemented from scratch."
     url: "https://github.com/JonasMht/My_Neural_Nets"
 ---
-
-When something annoying needs solving, I build tools for it: small utilities,
-experiments with LLMs, whatever makes a recurring problem less tedious. The
-rest of the time I make games and 3D art: I started with **Sensha** (Python,
-PyGame) for my Baccalauréat, later revisited in Godot with multiplayer support,
-and I model worlds in Blender when inspiration strikes.
