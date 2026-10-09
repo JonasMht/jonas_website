@@ -1,4 +1,4 @@
-/* Image experiments for the private study. Every effect settles to the original image. */
+/* Image experiments for the private study. Each entrance settles to the chosen colour. */
 window.StudyMedia = (function () {
     "use strict";
 
@@ -6,8 +6,10 @@ window.StudyMedia = (function () {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     const contrast = matchMedia("(forced-colors: active), (prefers-contrast: more)");
     const records = [];
+    const effects = window.StudyEffects;
     let frame = "corners";
     let reveal = "still";
+    let tone = "natural";
     let observer;
     let resize;
 
@@ -39,6 +41,16 @@ window.StudyMedia = (function () {
                 line += `M${r - 12 - x * 7} 1v4M${13 + x * 7} ${b}v-4`;
             }
             tip = `M1 1H12M${r - 11} ${b}H${r}`;
+        } else if (kind === "rails-ii") {
+            const joint = Math.min(14, w * 0.1, h * 0.16);
+            const run = Math.min(w * 0.46, 180);
+            const stem = Math.min(44, h * 0.35);
+            base = `M1 ${stem}V${joint}L${joint} 1H${r - joint}L${r} ${joint}V${b - stem}M${r} ${b - joint}L${r - joint} ${b}H${joint}L1 ${b - joint}V${stem}`;
+            base += `M${joint + 5} 4H${r - joint - 5}M${joint + 5} ${b - 3}H${r - joint - 5}`;
+            line = `M1 ${stem}V${joint}L${joint} 1H${run}M${r - run} ${b}H${r - joint}L${r} ${b - joint}V${b - stem}`;
+            line += `M${r - 26} 1H${r - joint}L${r} ${joint}V${joint + 10}M1 ${b - joint - 10}V${b - joint}L${joint} ${b}H26`;
+            tip = `M${joint + 2} 1H${joint + 13}M${r - joint - 13} ${b}H${r - joint - 2}`;
+            tip += `M${run + 8} 1h4M${r - run - 12} ${b}h4`;
         } else if (kind === "bevel") {
             const c = 18;
             base = `M${c} 1H${r - c}L${r} ${c}V${b - c}L${r - c} ${b}H${c}L1 ${b - c}V${c}Z`;
@@ -64,6 +76,7 @@ window.StudyMedia = (function () {
         record.animations = [];
         record.sweep?.remove();
         record.sweep = null;
+        effects.cancel(record);
         record.element.removeAttribute("data-image-playing");
     }
 
@@ -72,27 +85,40 @@ window.StudyMedia = (function () {
         if (!record.ready || reduced.matches || contrast.matches || chosen === "still")
             return false;
         const image = record.image;
+        if (!image.clientWidth || !image.clientHeight || !image.animate) return false;
+        const filter = getComputedStyle(image).filter;
+        const baseFilter = filter === "none" ? "" : filter + " ";
         const full = "inset(0% 0% 0% 0%)";
-        const effects = {
+        const entrances = {
             sweep: [{ clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: full }],
             aperture: [
                 { clipPath: "polygon(68% 0%, 68% 0%, 32% 100%, 32% 100%)" },
                 { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" },
             ],
             develop: [
-                { opacity: 0.25, filter: "blur(2px) brightness(1.18)" },
-                { opacity: 1, filter: "none" },
+                { opacity: 0.25, filter: baseFilter + "blur(2px) brightness(1.18)" },
+                { opacity: 1, filter },
             ],
             raster: [{ clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: full }],
         };
         const duration = { sweep: 620, aperture: 540, develop: 480, raster: 600 }[chosen];
-        if (!effects[chosen] || !image.animate) return false;
+        if (!entrances[chosen]) {
+            record.element.dataset.imagePlaying = chosen;
+            const animation = effects.play(record, chosen);
+            if (!animation) {
+                stop(record);
+                return false;
+            }
+            traceRails(record, animation.effect.getTiming().duration);
+            finish(record, animation);
+            return true;
+        }
         const options = {
             duration,
             easing: chosen === "raster" ? "steps(12, end)" : "cubic-bezier(.22,.65,.3,1)",
         };
         record.element.dataset.imagePlaying = chosen;
-        const animation = image.animate(effects[chosen], options);
+        const animation = image.animate(entrances[chosen], options);
         record.animations.push(animation);
         if (chosen === "sweep") {
             const sweep = document.createElement("span");
@@ -116,13 +142,33 @@ window.StudyMedia = (function () {
                 ),
             );
         }
-        // No fill mode: even interrupted effects leave an ordinary, visible photograph.
+        traceRails(record, duration);
+        finish(record, animation);
+        return true;
+    }
+
+    function traceRails(record, duration) {
+        if (record.element.dataset.imageFrame !== "rails-ii") return;
+        const line = record.svg.querySelector(".study-ornament-line");
+        const length = line.getTotalLength();
+        record.animations.push(
+            line.animate(
+                [
+                    { strokeDasharray: `${length} ${length}`, strokeDashoffset: length },
+                    { strokeDasharray: `${length} ${length}`, strokeDashoffset: 0 },
+                ],
+                { duration: Math.min(duration, 720), easing: "cubic-bezier(.22,.65,.3,1)" },
+            ),
+        );
+    }
+
+    function finish(record, animation) {
+        // No fill mode on the controlling animation; cancellation restores the source.
         animation.finished
             .then(() => {
                 if (record.animations[0] === animation) stop(record);
             })
             .catch(() => {});
-        return true;
     }
 
     function visible(record) {
@@ -167,8 +213,11 @@ window.StudyMedia = (function () {
             ready: false,
             played: false,
             animations: [],
+            layers: [],
+            raf: null,
         };
         records.push(record);
+        effects.applyTone(record, tone, contrast.matches);
         resize?.observe(element);
         ornament(record);
         image.addEventListener("load", () => arrive(record));
@@ -181,7 +230,8 @@ window.StudyMedia = (function () {
         if (!preview && !record.played) observer?.observe(element);
     }
 
-    function init() {
+    function init(tones) {
+        effects.install(tones);
         if ("IntersectionObserver" in window)
             observer = new IntersectionObserver(
                 (entries) => {
@@ -201,7 +251,15 @@ window.StudyMedia = (function () {
             resize = new ResizeObserver((entries) => {
                 for (const entry of entries) {
                     const record = records.find((item) => item.element === entry.target);
-                    if (record) ornament(record);
+                    if (!record) continue;
+                    const layer = record.layers[0];
+                    if (
+                        layer &&
+                        (Math.abs(layer.clientWidth - record.image.clientWidth) > 1 ||
+                            Math.abs(layer.clientHeight - record.image.clientHeight) > 1)
+                    )
+                        stop(record);
+                    ornament(record);
                 }
             });
         // Keep video controls, before/after comparisons and navigation avatars untouched.
@@ -218,7 +276,10 @@ window.StudyMedia = (function () {
         }
         for (const preference of [reduced, contrast])
             preference.addEventListener("change", () => {
-                for (const record of records) stop(record);
+                for (const record of records) {
+                    stop(record);
+                    effects.applyTone(record, tone, contrast.matches);
+                }
             });
         window.addEventListener("pagehide", () => {
             for (const record of records) stop(record);
@@ -226,18 +287,24 @@ window.StudyMedia = (function () {
         window.addEventListener("beforeprint", () => {
             for (const record of records) stop(record);
         });
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) for (const record of records) stop(record);
+        });
     }
 
     return {
         init,
-        apply(nextFrame, nextReveal) {
+        apply(nextFrame, nextReveal, nextTone) {
             const changed = frame !== nextFrame;
             const motionChanged = reveal !== nextReveal;
+            const toneChanged = tone !== nextTone;
             frame = nextFrame;
             reveal = nextReveal;
+            tone = nextTone;
             for (const record of records) {
                 if (changed) ornament(record);
-                if (motionChanged) stop(record);
+                if (motionChanged || toneChanged) stop(record);
+                if (toneChanged) effects.applyTone(record, tone, contrast.matches);
             }
         },
         replay() {

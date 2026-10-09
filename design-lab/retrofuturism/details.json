@@ -19,6 +19,10 @@
         "arc": {
             "name": "Orbital arcs",
             "description": "Open arcs and four quiet alignment ticks. Softer, spacious geometry."
+        },
+        "rails-ii": {
+            "name": "Light rails II",
+            "description": "Twin light tracks, cut joints and brighter end caps. A more deliberate silhouette."
         }
     },
     "reveals": {
@@ -41,6 +45,31 @@
         "raster": {
             "name": "Raster build",
             "description": "Twelve measured steps reveal the image like a plotter. 600 ms."
+        },
+        "pixel": {
+            "name": "Pixel reconstruction",
+            "description": "Large, crisp blocks build into a detailed image. A one-second transmission.",
+            "round": 3
+        },
+        "print": {
+            "name": "Screen-print reveal",
+            "description": "Poster inks, halftone dots and a diagonal print pass. 1.2 seconds.",
+            "round": 3
+        },
+        "spectral": {
+            "name": "Spectral split",
+            "description": "Cyan and violet image layers converge into one photograph. 960 ms.",
+            "round": 3
+        },
+        "blueprint": {
+            "name": "Blueprint exposure",
+            "description": "A cyan image develops through a luminous drafting grid. 1.05 seconds.",
+            "round": 3
+        },
+        "broadcast": {
+            "name": "Broadcast assembly",
+            "description": "Wide image bands arrive from opposite sides and lock together. 1.1 seconds.",
+            "round": 3
         }
     },
     "mixes": {
@@ -53,7 +82,9 @@
             "grain": 18,
             "grid": 44,
             "glow": 125,
-            "description": "Your Ion palette, precise light rails and one clean scan. The strongest starting point."
+            "description": "Your Ion palette, precise light rails and one clean scan. The strongest starting point.",
+            "tone": "natural",
+            "round": 2
         },
         "aperture": {
             "letter": "L",
@@ -64,7 +95,9 @@
             "grain": 16,
             "grid": 64,
             "glow": 110,
-            "description": "Faceted light, cut corners and a diagonal reveal. Sharper and more cinematic."
+            "description": "Faceted light, cut corners and a diagonal reveal. Sharper and more cinematic.",
+            "tone": "natural",
+            "round": 2
         },
         "ghost": {
             "letter": "M",
@@ -75,7 +108,9 @@
             "grain": 22,
             "grid": 64,
             "glow": 105,
-            "description": "A wider corridor, softer glow and a double trace. More analogue, less insistent."
+            "description": "A wider corridor, softer glow and a double trace. More analogue, less insistent.",
+            "tone": "natural",
+            "round": 2
         },
         "observatory": {
             "letter": "N",
@@ -86,7 +121,9 @@
             "grain": 14,
             "grid": 64,
             "glow": 80,
-            "description": "Broad silver arcs and quiet image frames. The most restrained of the new mixes."
+            "description": "Broad silver arcs and quiet image frames. The most restrained of the new mixes.",
+            "tone": "natural",
+            "round": 2
         },
         "film": {
             "letter": "O",
@@ -97,7 +134,9 @@
             "grain": 28,
             "grid": 72,
             "glow": 110,
-            "description": "Rose light, coarser background texture and an offset frame. A warmer alternative."
+            "description": "Rose light, coarser background texture and an offset frame. A warmer alternative.",
+            "tone": "natural",
+            "round": 2
         },
         "plot": {
             "letter": "P",
@@ -108,8 +147,115 @@
             "grain": 18,
             "grid": 40,
             "glow": 80,
-            "description": "Drafting lines, indexed rails and a stepped reveal. The most instrument-like direction."
+            "description": "Drafting lines, indexed rails and a stepped reveal. The most instrument-like direction.",
+            "tone": "natural",
+            "round": 2
+        },
+        "transmission": {
+            "letter": "R",
+            "name": "Light Grid / Transmission",
+            "version": "light-grid",
+            "frame": "rails-ii",
+            "reveal": "pixel",
+            "tone": "cobalt",
+            "grain": 18,
+            "grid": 48,
+            "glow": 105,
+            "round": 3,
+            "description": "Rebuilt Light Rails, a cobalt portrait and chunky pixels resolving into focus."
+        },
+        "imprint": {
+            "letter": "S",
+            "name": "Light Grid / Imprint",
+            "version": "light-grid",
+            "frame": "rails-ii",
+            "reveal": "print",
+            "tone": "press",
+            "grain": 18,
+            "grid": 48,
+            "glow": 105,
+            "round": 3,
+            "description": "The Light Grid you loved, with four poster inks, a diagonal print pass and the new rails."
+        },
+        "refraction": {
+            "letter": "T",
+            "name": "Light Grid / Refraction",
+            "version": "light-grid",
+            "frame": "rails-ii",
+            "reveal": "spectral",
+            "tone": "prism",
+            "grain": 18,
+            "grid": 48,
+            "glow": 105,
+            "round": 3,
+            "description": "Violet and cyan exposures converge inside the new frame, against your chosen Light Grid."
+        },
+        "exposure": {
+            "letter": "U",
+            "name": "Light Grid / Exposure",
+            "version": "light-grid",
+            "frame": "rails-ii",
+            "reveal": "blueprint",
+            "tone": "cobalt",
+            "grain": 18,
+            "grid": 48,
+            "glow": 105,
+            "round": 3,
+            "description": "A cyanotype portrait develops through a drafting grid, bounded by twin light tracks."
+        },
+        "broadcast": {
+            "letter": "V",
+            "name": "Light Grid / Broadcast",
+            "version": "light-grid",
+            "frame": "rails-ii",
+            "reveal": "broadcast",
+            "tone": "amber",
+            "grain": 18,
+            "grid": 48,
+            "glow": 105,
+            "round": 3,
+            "description": "Copper image bands assemble inside the new rails. A warm print against the cool Light Grid."
+        },
+        "lightline": {
+            "letter": "Q",
+            "name": "Light Grid / Signal",
+            "version": "light-grid",
+            "frame": "rails",
+            "reveal": "sweep",
+            "tone": "natural",
+            "grain": 18,
+            "grid": 48,
+            "glow": 105,
+            "round": 2,
+            "description": "Your latest vote: Light Grid, the original Light Rails and Light Sweep. The reference for this round."
         }
     },
-    "lead": "aperture"
+    "lead": "lightline",
+    "tones": {
+        "natural": {
+            "name": "Original colour",
+            "description": "The photograph as it was captured."
+        },
+        "cobalt": {
+            "name": "Cobalt duotone",
+            "description": "Deep navy, cyan midtones and cool paper highlights.",
+            "colors": ["#121628", "#26327f", "#4db3ea", "#f6f7fa"]
+        },
+        "prism": {
+            "name": "Prism spectrum",
+            "description": "Ink shadows, violet midtones and a pale cyan finish.",
+            "colors": ["#100d25", "#56449c", "#b6afe4", "#e0f9fc"]
+        },
+        "press": {
+            "name": "Poster inks",
+            "description": "Four bold ink levels from your LinkedIn palette. A graphic, poster-like portrait.",
+            "colors": ["#121628", "#26327f", "#4db3ea", "#f6f7fa"],
+            "discrete": true
+        },
+        "amber": {
+            "name": "Copper print",
+            "description": "Indigo shadows, warm copper and creamy highlights.",
+            "colors": ["#17172b", "#7f4968", "#e29a65", "#fff0d0"]
+        }
+    }
 }

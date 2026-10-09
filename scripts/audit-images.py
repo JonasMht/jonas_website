@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DETAILS = json.loads((ROOT / "design-lab/retrofuturism/details.json").read_text())
 LAYOUT = run_path(str(Path(__file__).with_name("audit-site.py")))
 HERO = ".hub-hero__photo"
+PHOTO = HERO + " > img"
 
 
 async def explore(page, pane):
@@ -33,16 +34,16 @@ async def finish_motion(page):
     )
 
 
-async def photo_pixels(page):
+async def photo_pixels(page, locator=None, inset=8):
     # Exclude the rounded outer edge, whose antialiasing can differ by one RGB
     # level after Chromium removes a compositing layer. Compare the photograph.
-    box = await page.locator(HERO + " img").bounding_box()
+    box = await (locator or page.locator(PHOTO)).bounding_box()
     return await page.screenshot(
         clip={
-            "x": box["x"] + 8,
-            "y": box["y"] + 8,
-            "width": box["width"] - 16,
-            "height": box["height"] - 16,
+            "x": box["x"] + inset,
+            "y": box["y"] + inset,
+            "width": box["width"] - inset * 2,
+            "height": box["height"] - inset * 2,
         }
     )
 
@@ -61,7 +62,7 @@ async def main():
         lead = DETAILS["mixes"][DETAILS["lead"]]
         query = parse_qs(urlsplit(page.url).query)
         assert query["v"] == [lead["version"]]
-        for key in ("frame", "reveal", "grain", "grid", "glow"):
+        for key in ("frame", "reveal", "tone", "grain", "grid", "glow"):
             assert query[key] == [str(lead[key])]
         assert (
             await page.locator("[data-mix]").first.get_attribute("data-mix")
@@ -73,7 +74,7 @@ async def main():
             await page.locator(f'[data-mix="{key}"]').focus()
             await page.keyboard.press("Enter")
             query = parse_qs(urlsplit(page.url).query)
-            for setting in ("frame", "reveal", "grain", "grid", "glow"):
+            for setting in ("frame", "reveal", "tone", "grain", "grid", "glow"):
                 assert query[setting] == [str(mix[setting])], (key, query)
             assert query["v"] == [mix["version"]]
             assert (
@@ -98,7 +99,27 @@ async def main():
             "e => e === document.activeElement"
         )
         passed.append(
-            "six combinations, five frames, five reveals: keyboard selection, shared settings and reduced motion"
+            f"{len(DETAILS['mixes'])} combinations, {len(DETAILS['frames'])} frames, {len(DETAILS['reveals'])} reveals: keyboard selection, shared settings and reduced motion"
+        )
+
+        # All colour tables visibly transform the portrait and restore it exactly.
+        await page.goto(
+            BASE + "/opt/?mix=lightline&theme=dark", wait_until="networkidle"
+        )
+        original = await photo_pixels(page)
+        colours = set()
+        for key in DETAILS["tones"]:
+            await explore(page, "tones")
+            await page.locator(f'[data-tone="{key}"]').click()
+            assert parse_qs(urlsplit(page.url).query)["tone"] == [key]
+            assert await page.locator(HERO).get_attribute("data-image-tone") == key
+            colours.add(await photo_pixels(page))
+        assert len(colours) == len(DETAILS["tones"]), "colour treatments look identical"
+        await explore(page, "tones")
+        await page.locator('[data-tone="natural"]').click()
+        assert original == await photo_pixels(page)
+        passed.append(
+            "all portrait colours change actual pixels; original colour restores the source exactly"
         )
 
         # Record independent votes, exact mixes and notes, then recover them after navigation.
@@ -108,6 +129,7 @@ async def main():
             ("backgrounds", "love"),
             ("frames", "love"),
             ("reveals", "maybe"),
+            ("tones", "love"),
         ):
             await page.locator(
                 f'[data-vote-group="{group}"] [data-rating="{rating}"]'
@@ -155,6 +177,7 @@ async def main():
             "Ion: love" in copied
             and "Light rails: love" in copied
             and "Light sweep: maybe" in copied
+            and "Original colour: love" in copied
         )
         assert saved_url in copied and "Keep Ion; try quieter light rails." in copied
         # HTTP fallback must copy the whole ballot, keep the drawer open and restore focus.
@@ -188,13 +211,20 @@ async def main():
             "votes, notes and exact saved mixes persist; clipboard success, HTTP fallback and denial recovery; clear/remove controls"
         )
 
-        # All five drawer panels must fit real phone, tablet and desktop layouts.
+        # All six drawer panels must fit real phone, tablet and desktop layouts.
         for width in (320, 768, 1440):
             await page.set_viewport_size({"width": width, "height": 1000})
             for theme in ("dark", "light"):
                 await page.goto(BASE + f"/opt/?mix=aperture&theme={theme}")
                 await LAYOUT["settle_page"](page, True)
-                for pane in ("mixes", "backgrounds", "frames", "reveals", "votes"):
+                for pane in (
+                    "mixes",
+                    "backgrounds",
+                    "frames",
+                    "reveals",
+                    "tones",
+                    "votes",
+                ):
                     await explore(page, pane)
                     await page.evaluate("document.fonts.ready")
                     audit = await page.evaluate(
@@ -207,9 +237,47 @@ async def main():
                     )
                     assert not audit["issues"], (width, theme, pane, audit["issues"])
         passed.append(
-            "30 open-panel layouts: text contrast, clipping, control sizes and ornaments in both themes at 320/768/1440px"
+            "36 open-panel layouts: text contrast, clipping, control sizes and ornaments in both themes at 320/768/1440px"
         )
         await context.close()
+
+        # Existing ballots and shared URLs must still identify the original rails.
+        legacy = await browser.new_context(reduced_motion="reduce")
+        await legacy.add_init_script("""localStorage.setItem('jm.design-votes.v1',JSON.stringify({
+            backgrounds:{'light-grid':'love'},frames:{rails:'love'},reveals:{sweep:'love'},
+            mixes:[],note:'Original Light Grid vote'
+        }))""")
+        old = await legacy.new_page()
+        old.on("pageerror", lambda error: errors.append(str(error)))
+        await old.goto(
+            BASE
+            + "/opt/pro/research/2025-heat-ijcars/?v=light-grid&theme=dark&grain=18&grid=48&glow=105&frame=rails&reveal=sweep",
+            wait_until="networkidle",
+        )
+        assert await old.locator("html").get_attribute("data-study-tone") == "natural"
+        await old.locator("[data-study-open-votes]").click()
+        assert (
+            await old.locator(
+                '[data-vote-group="frames"] [data-rating="love"]'
+            ).get_attribute("aria-pressed")
+            == "true"
+        )
+        assert (
+            "Light rails: love" in await old.locator("#study-vote-export").input_value()
+        )
+        await explore(old, "frames")
+        await old.locator('[data-frame="rails-ii"]').click()
+        await old.locator("[data-study-open-votes]").click()
+        assert (
+            await old.locator(
+                '[data-vote-group="frames"] [aria-pressed="true"]'
+            ).count()
+            == 0
+        )
+        await legacy.close()
+        passed.append(
+            "the saved HEAT article link and old Light Rails vote remain valid; Rails II has its own rating"
+        )
 
         # Test real motion separately from the reduced-motion layout audit.
         motion = await browser.new_context(viewport={"width": 1440, "height": 1050})
@@ -241,11 +309,11 @@ async def main():
             )
             assert (
                 await page.locator(
-                    "main [data-image-playing], main .study-load-sweep"
+                    "main [data-image-playing], main .study-load-sweep, main .study-image-effect"
                 ).count()
                 == 0
             )
-            assert await page.locator(HERO + " img").evaluate(
+            assert await page.locator(PHOTO).evaluate(
                 "e => { const s=getComputedStyle(e); return s.clipPath==='none' && s.filter==='none' && s.opacity==='1' && !e.getAnimations().length; }"
             )
         await page.locator("[data-study-replay]").click()
@@ -253,7 +321,7 @@ async def main():
         await page.wait_for_function(
             "!document.querySelector('main [data-image-playing]')"
         )
-        assert await page.locator(HERO + " img").evaluate(
+        assert await page.locator(PHOTO).evaluate(
             "e=>getComputedStyle(e).clipPath==='none'"
         )
         await page.emulate_media(reduced_motion="no-preference")
@@ -264,8 +332,117 @@ async def main():
             "all entrances change pixels, reserve layout and settle to the original image; replay, cached reload and live reduced-motion cancellation"
         )
 
+        # New effects must settle to the chosen grade, remove their layers and release animations.
+        for key, mix in DETAILS["mixes"].items():
+            if mix.get("round") != 3:
+                continue
+            await page.goto(
+                BASE + f"/opt/?mix={key}&theme=dark", wait_until="networkidle"
+            )
+            await finish_motion(page)
+            clean = await photo_pixels(page)
+            await page.locator("[data-study-replay]").click()
+            await finish_motion(page)
+            assert clean == await photo_pixels(page), (
+                key,
+                "final colour changed after replay",
+            )
+            assert await page.locator(".study-image-effect").count() == 0
+            assert (
+                await page.locator("main").evaluate(
+                    "e=>e.getAnimations({subtree:true}).length"
+                )
+                == 0
+            )
+        passed.append(
+            "all five new mixes finish at their chosen colour, with no effect layers or running image animations"
+        )
+
+        await page.goto(
+            BASE + "/opt/?mix=transmission&theme=dark", wait_until="networkidle"
+        )
+        await finish_motion(page)
+        for _ in range(5):
+            await page.locator("[data-study-replay]").click()
+            assert await page.locator(HERO + " .study-image-effect").count() == 1
+        canvas = page.locator(HERO + " canvas")
+        first_columns = int(await canvas.get_attribute("data-pixel-columns"))
+        await page.wait_for_function(
+            "Number(document.querySelector('.hub-hero__photo canvas')?.dataset.pixelColumns) > 70"
+        )
+        assert int(await canvas.get_attribute("data-pixel-columns")) > first_columns
+        assert await canvas.evaluate(
+            "e => !e.getContext('2d').imageSmoothingEnabled && e.width <= 1200"
+        )
+        await page.emulate_media(contrast="more")
+        if ENGINE == "firefox":
+            # Firefox's emulation updates new queries but not existing MediaQueryLists
+            # or CSS until navigation. Test the actual high-contrast document there.
+            await page.reload(wait_until="networkidle")
+        await finish_motion(page)
+        assert await page.locator(PHOTO).evaluate(
+            "e=>getComputedStyle(e).filter==='none'"
+        )
+        assert await page.locator(".study-image-effect").count() == 0
+        await page.emulate_media(contrast="no-preference")
+        if ENGINE == "firefox":
+            await page.reload(wait_until="networkidle")
+            await finish_motion(page)
+        await page.wait_for_function(
+            "getComputedStyle(document.querySelector('.hub-hero__photo > img')).filter.includes('study-tone-cobalt')"
+        )
+        await page.locator("[data-study-replay]").click()
+        await page.set_viewport_size({"width": 768, "height": 1050})
+        await finish_motion(page)
+        assert await page.locator(".study-image-effect").count() == 0
+        await page.set_viewport_size({"width": 1440, "height": 1050})
+        await page.locator("[data-study-replay]").click()
+        await page.evaluate("window.dispatchEvent(new Event('beforeprint'))")
+        assert await page.locator(".study-image-effect").count() == 0
+        assert await page.locator(PHOTO).evaluate(
+            "e=>getComputedStyle(e).opacity==='1'"
+        )
+        passed.append(
+            "pixel resolution increases with smoothing disabled; rapid replay, resizing, high contrast and printing cancel cleanly"
+        )
+
+        # Research diagrams on the voted article retain their exact final colours.
+        article = "/opt/pro/research/2025-heat-ijcars/"
+        await page.goto(
+            BASE + article + "?mix=lightline&theme=dark", wait_until="networkidle"
+        )
+        await finish_motion(page)
+        figure = page.locator("main .media-frame[data-image-frame] > img").first
+        await figure.scroll_into_view_if_needed()
+        await finish_motion(page)
+        # Exclude the frame glow: the new rails deliberately illuminate the image edges.
+        source = await photo_pixels(page, figure, inset=12)
+        await page.goto(
+            BASE + article + "?mix=imprint&theme=dark", wait_until="networkidle"
+        )
+        await figure.scroll_into_view_if_needed()
+        await finish_motion(page)
+        assert await figure.evaluate("e=>getComputedStyle(e).filter==='none'")
+        assert source == await photo_pixels(page, figure, inset=12), (
+            "scientific figure colours changed"
+        )
+        assert (
+            await page.locator(
+                'main [data-image-tone]:not([data-image-tone="natural"])'
+            ).count()
+            == 0
+        )
+        passed.append(
+            "HEAT research diagrams keep their original pixels after the poster reveal"
+        )
+
+        await page.goto(
+            BASE + "/opt/?mix=transmission&theme=dark", wait_until="networkidle"
+        )
+        await finish_motion(page)
+
         # Gate the actual hero response to prove effects never conceal a slow or failed image.
-        src = await page.locator(HERO + " img").get_attribute("src")
+        src = await page.locator(PHOTO).get_attribute("src")
         gate = asyncio.Event()
 
         async def delay(route):
@@ -273,9 +450,9 @@ async def main():
             await route.continue_()
 
         await page.route("**" + src, delay)
-        await page.goto(BASE + "/opt/?mix=relay", wait_until="domcontentloaded")
+        await page.goto(BASE + "/opt/?mix=transmission", wait_until="domcontentloaded")
         await page.wait_for_selector(HERO + '[data-image-load="waiting"]')
-        assert await page.locator(HERO + " img").evaluate(
+        assert await page.locator(PHOTO).evaluate(
             "e=>getComputedStyle(e).opacity==='1'"
         )
         gate.set()
@@ -286,9 +463,9 @@ async def main():
         await page.reload(wait_until="networkidle")
         assert await page.locator(HERO).get_attribute("data-image-load") == "error"
         assert await page.locator(HERO).get_attribute("data-image-playing") is None
-        assert await page.locator(HERO + " img").get_attribute("alt")
+        assert await page.locator(PHOTO).get_attribute("alt")
         await page.locator("[data-study-replay]").click()
-        assert await page.locator(HERO + " img").evaluate(
+        assert await page.locator(PHOTO).evaluate(
             "e=>getComputedStyle(e).clipPath==='none'"
         )
         passed.append(
@@ -302,9 +479,12 @@ async def main():
         )
         page = await blocked.new_page()
         page.on("pageerror", lambda error: errors.append(str(error)))
-        await page.goto(BASE + "/opt/?mix=ghost&frame=invalid&reveal=invalid")
+        await page.goto(
+            BASE + "/opt/?mix=ghost&frame=invalid&reveal=invalid&tone=invalid"
+        )
         assert await page.locator("html").get_attribute("data-study-frame") == "corners"
         assert await page.locator("html").get_attribute("data-study-reveal") == "still"
+        assert await page.locator("html").get_attribute("data-study-tone") == "natural"
         await page.locator("[data-study-open-votes]").click()
         await page.locator(
             '[data-vote-group="backgrounds"] [data-rating="love"]'

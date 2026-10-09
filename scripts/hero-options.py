@@ -37,11 +37,19 @@ def detail_markup(details, presets, image):
         ("mixes", "mix"),
         ("frames", "frame"),
         ("reveals", "reveal"),
+        ("tones", "tone"),
     ):
         cards = []
         items = list(details[category].items())
         if category == "mixes":
-            items.sort(key=lambda pair: pair[0] != details["lead"])
+            items.sort(
+                key=lambda pair: (
+                    pair[0] != details["lead"],
+                    -pair[1].get("round", 1),
+                )
+            )
+        elif category == "reveals":
+            items.sort(key=lambda pair: -pair[1].get("round", 1))
         for key, item in items:
             title = escape(
                 item.get("letter", "")
@@ -50,6 +58,8 @@ def detail_markup(details, presets, image):
             )
             frame = key if category == "frames" else item.get("frame")
             frame_attr = f' data-frame-preview="{frame}"' if frame else ""
+            tone = key if category == "tones" else item.get("tone")
+            tone_attr = f' data-tone-preview="{tone}"' if tone else ""
             variables = ""
             if category == "mixes":
                 swatch = presets[item["version"]]["swatch"]
@@ -67,13 +77,15 @@ def detail_markup(details, presets, image):
             picked = (
                 '<span class="study-choice-label">Your pick</span>'
                 if category == "mixes" and key == details["lead"]
+                else '<span class="study-choice-label">New study</span>'
+                if item.get("round") == 3
                 else ""
             )
             cards.append(
                 f'<button type="button" class="study-detail-card" data-{attribute}="{key}" '
                 f'aria-pressed="false" aria-label="{title}"{variables}>'
                 '<span class="study-detail-stage" aria-hidden="true">'
-                f'<span class="study-media-preview media-frame"{frame_attr}>'
+                f'<span class="study-media-preview media-frame"{frame_attr}{tone_attr}>'
                 f'<img src="{escape(image)}" width="240" height="150" loading="lazy" alt="">'
                 "</span></span>"
                 f'<span class="study-detail-name">{title}{picked}</span>'
@@ -88,7 +100,13 @@ def preset_markup(presets):
     options = []
     cards = []
     # Lead with the latest feedback; all original URLs and labels stay stable.
-    for family in ("Top choice", "Shortlist", "Earlier favourite", "Explore"):
+    for family in (
+        "Latest vote",
+        "Top choice",
+        "Shortlist",
+        "Earlier favourite",
+        "Explore",
+    ):
         options.append(f'<optgroup label="{family} directions">')
         for key, preset in presets.items():
             if preset["family"] != family:
@@ -145,7 +163,10 @@ def build(built, destination):
                 if marker not in source:
                     raise ValueError(f"Missing study {key} insertion point")
                 source = source.replace(marker, json.dumps(value, ensure_ascii=False))
-            source = (SOURCE / "media.js").read_text() + "\n" + source
+            source = "\n".join(
+                [(SOURCE / part).read_text() for part in ("effects.js", "media.js")]
+                + [source]
+            )
         else:
             source += "\n" + (SOURCE / "media.css").read_text()
         data = source.encode()

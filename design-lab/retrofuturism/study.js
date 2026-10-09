@@ -55,6 +55,7 @@
         for (const [key, choices, baseline] of [
             ["frame", details.frames, "corners"],
             ["reveal", details.reveals, "still"],
+            ["tone", details.tones, "natural"],
         ]) {
             const value =
                 query.get(key) ||
@@ -76,7 +77,8 @@
         root.style.setProperty("--study-energy", state.glow / 100);
         root.dataset.studyFrame = state.frame;
         root.dataset.studyReveal = state.reveal;
-        media.apply(state.frame, state.reveal);
+        root.dataset.studyTone = state.tone;
+        media.apply(state.frame, state.reveal, state.tone);
     }
 
     function versionURL(path = location.href) {
@@ -87,6 +89,7 @@
         url.searchParams.delete("mix");
         url.searchParams.set("frame", state.frame);
         url.searchParams.set("reveal", state.reveal);
+        url.searchParams.set("tone", state.tone);
         return url;
     }
 
@@ -218,7 +221,7 @@
         }
         bar.querySelector("[data-study-preset]").value = state.version;
         const preset = presets[state.version];
-        const caption = `${preset.letter} · ${preset.name} / ${details.frames[state.frame].name} / ${details.reveals[state.reveal].name}`;
+        const caption = `${preset.letter} · ${preset.name} / ${details.frames[state.frame].name} / ${details.reveals[state.reveal].name}${state.tone === "natural" ? "" : " / " + details.tones[state.tone].name}`;
         const description = bar.querySelector(".study-caption");
         if (description.textContent !== caption) description.textContent = caption;
         bar.querySelector("[data-study-count]").textContent =
@@ -230,7 +233,7 @@
         }
         drawGrid();
         syncTheme();
-        for (const key of ["frame", "reveal", "mix"]) {
+        for (const key of ["frame", "reveal", "tone", "mix"]) {
             for (const button of bar.querySelectorAll(`[data-${key}]`)) {
                 const selected =
                     key === "mix"
@@ -286,12 +289,12 @@
     async function copyLink() {
         const copied = await copyText(versionURL().href);
         bar.querySelector(".study-message").textContent = copied
-            ? "Link copied. It includes the backdrop, frame, reveal, theme and settings."
+            ? "Link copied. It includes the backdrop, frame, reveal, colour, theme and settings."
             : "Copy the address from your browser. It includes this version and all your settings.";
     }
 
     function isMix(mix) {
-        return ["version", "frame", "reveal", ...Object.keys(limits)].every(
+        return ["version", "frame", "reveal", "tone", ...Object.keys(limits)].every(
             (key) => mix[key] === state[key],
         );
     }
@@ -300,7 +303,7 @@
         const named = Object.values(details.mixes).find(isMix);
         return named
             ? `${named.letter} · ${named.name}`
-            : `${presets[state.version].name} / ${details.frames[state.frame].name} / ${details.reveals[state.reveal].name}`;
+            : `${presets[state.version].name} / ${details.frames[state.frame].name} / ${details.reveals[state.reveal].name} / ${details.tones[state.tone].name}`;
     }
 
     function panel(name) {
@@ -346,7 +349,7 @@
     }
 
     function readVotes() {
-        const result = { backgrounds: {}, frames: {}, reveals: {}, mixes: [], note: "" };
+        const result = { backgrounds: {}, frames: {}, reveals: {}, tones: {}, mixes: [], note: "" };
         try {
             const saved = JSON.parse(localStorage.getItem(voteKey));
             if (!saved || typeof saved !== "object") return result;
@@ -354,6 +357,7 @@
                 ["backgrounds", presets],
                 ["frames", details.frames],
                 ["reveals", details.reveals],
+                ["tones", details.tones],
             ]) {
                 for (const key of Object.keys(catalog)) {
                     const rating = saved[group]?.[key];
@@ -379,6 +383,7 @@
             ["backgrounds", "Backdrops", presets],
             ["frames", "Image frames", details.frames],
             ["reveals", "Image reveals", details.reveals],
+            ["tones", "Portrait colours", details.tones],
         ]) {
             const choices = Object.entries(votes[group]).map(
                 ([key, rating]) => `${catalog[key].name}: ${rating}`,
@@ -406,8 +411,18 @@
 
     function renderVotes() {
         if (!votes) return;
-        const selected = { backgrounds: state.version, frames: state.frame, reveals: state.reveal };
-        const catalogs = { backgrounds: presets, frames: details.frames, reveals: details.reveals };
+        const selected = {
+            backgrounds: state.version,
+            frames: state.frame,
+            reveals: state.reveal,
+            tones: state.tone,
+        };
+        const catalogs = {
+            backgrounds: presets,
+            frames: details.frames,
+            reveals: details.reveals,
+            tones: details.tones,
+        };
         for (const [group, key] of Object.entries(selected)) {
             bar.querySelector(`[data-vote-name="${group}"]`).textContent =
                 catalogs[group][key].name;
@@ -417,7 +432,7 @@
                     String(votes[group][key] === button.dataset.rating),
                 );
         }
-        const count = ["backgrounds", "frames", "reveals"].reduce(
+        const count = ["backgrounds", "frames", "reveals", "tones"].reduce(
             (total, group) => total + Object.keys(votes[group]).length,
             0,
         );
@@ -454,21 +469,20 @@
         bar.querySelector("#study-vote-note").value = votes.note;
         for (const button of bar.querySelectorAll("[data-study-pane]"))
             button.addEventListener("click", () => panel(button.dataset.studyPane));
-        for (const key of ["frame", "reveal", "mix"]) {
+        for (const key of ["frame", "reveal", "tone", "mix"]) {
             for (const button of bar.querySelectorAll(`[data-${key}]`)) {
                 button.addEventListener("click", () => {
                     if (key === "mix") {
                         const mix = details.mixes[button.dataset.mix];
                         state = Object.fromEntries(
-                            ["version", "frame", "reveal", ...Object.keys(limits)].map((name) => [
-                                name,
-                                mix[name],
-                            ]),
+                            ["version", "frame", "reveal", "tone", ...Object.keys(limits)].map(
+                                (name) => [name, mix[name]],
+                            ),
                         );
                     } else state[key] = button.dataset[key];
                     render();
                     closeGallery();
-                    if (key !== "frame") replay();
+                    if (key === "reveal" || key === "mix") replay();
                 });
                 if (key === "reveal") {
                     const preview = () =>
@@ -496,6 +510,7 @@
                         backgrounds: state.version,
                         frames: state.frame,
                         reveals: state.reveal,
+                        tones: state.tone,
                     }[category];
                     if (votes[category][key] === button.dataset.rating) delete votes[category][key];
                     else votes[category][key] = button.dataset.rating;
@@ -563,7 +578,7 @@
             const preset = presets[preview.dataset.swatchPath];
             preview.setAttribute("d", patternPath(preset.pattern, preset.grid));
         }
-        media.init();
+        media.init(details.tones);
         initDetails();
         for (const button of bar.querySelectorAll("[data-preset]")) {
             button.addEventListener("click", () => {

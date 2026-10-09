@@ -457,7 +457,7 @@ def main():
     parser.add_argument("--themes", nargs="+", choices=["dark", "light"], default=["dark", "light"])
     parser.add_argument("--paths", nargs="+", help="Audit specific routes instead of discovering every rendered page.")
     parser.add_argument("--study", action="store_true", help="Audit every design study and each new palette across the main page types.")
-    parser.add_argument("--image-study", action="store_true", help="Audit the six image/frame combinations across the main page types.")
+    parser.add_argument("--image-study", action="store_true", help="Audit the lead and latest image combinations across the main page types.")
     parser.add_argument("--browser", choices=["chromium", "firefox", "webkit"], default="chromium")
     parser.add_argument("--skip-no-js", action="store_true")
     parser.add_argument("--max-screenshots", type=int, default=120)
@@ -466,7 +466,9 @@ def main():
         if args.paths or args.study:
             parser.error("--image-study cannot be combined with --paths or --study")
         details = json.loads((ROOT / "design-lab/retrofuturism/details.json").read_text())
-        args.paths = [f"/opt{route}?mix={key}" for key in details["mixes"] for route in SAMPLE_ROUTES]
+        latest_round = max(mix.get("round", 1) for mix in details["mixes"].values())
+        mixes = [key for key, mix in details["mixes"].items() if key == details["lead"] or mix.get("round", 1) == latest_round]
+        args.paths = [f"/opt{route}?mix={key}" for key in mixes for route in SAMPLE_ROUTES]
     if args.study:
         if args.paths:
             parser.error("--study and --paths cannot be combined")

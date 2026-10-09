@@ -42,6 +42,84 @@
 [data-image-frame="arc"] .study-ornament {
     stroke-linecap: round;
 }
+[data-image-frame="rails-ii"] .study-ornament-base {
+    opacity: 0.38;
+}
+[data-image-frame="rails-ii"] .study-ornament-line {
+    stroke-width: 1.7;
+    filter: drop-shadow(0 0 4px var(--glow-strong, var(--glow)));
+}
+[data-image-frame="rails-ii"] .study-ornament-tip {
+    stroke-width: 2.5;
+}
+.study-colour-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+.study-filtered-image {
+    filter: var(--study-photo-filter, none);
+}
+.study-image-effect {
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+    isolation: isolate;
+}
+.study-image-effect > img,
+.study-image-effect > canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+}
+.study-image-effect > canvas {
+    image-rendering: pixelated;
+}
+.study-effect-print {
+    background: #f6f7fa;
+}
+.study-print-dots {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, #121628 0 0.8px, transparent 1px) 0 0 / 4px 4px;
+    mix-blend-mode: multiply;
+    opacity: 0.3;
+}
+.study-ink-pass {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 32%;
+    height: 120%;
+}
+.study-effect-spectral {
+    background: #100d25;
+}
+.study-exposure-grid {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(#b4f4ff38 1px, transparent 1px) 0 0 / 24px 24px,
+        linear-gradient(90deg, #b4f4ff38 1px, transparent 1px) 0 0 / 24px 24px;
+}
+.study-exposure-line {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: #e0faff;
+    box-shadow: -7px 0 24px 5px #4db3eaaa;
+}
+/* Keep the image caption readable while a temporary layer is playing. */
+.hub-hero__photo[data-image-frame] figcaption {
+    z-index: 4;
+}
 [data-image-load="waiting"] {
     background-color: var(--panel2);
     background-image: linear-gradient(
@@ -185,7 +263,7 @@ html:not(.js) .study-status-row button {
 }
 .study-vote-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
 }
 .study-vote-grid fieldset {
@@ -312,7 +390,8 @@ html:not(.js) .study-status-row button {
     }
 }
 @media (prefers-reduced-motion: reduce), (forced-colors: active), (prefers-contrast: more) {
-    .study-load-sweep {
+    .study-load-sweep,
+    .study-image-effect {
         display: none;
     }
     .study-ornament-line {
@@ -323,5 +402,17 @@ html:not(.js) .study-status-row button {
     .study-ornament path {
         stroke: CanvasText;
         opacity: 1;
+    }
+}
+@media (forced-colors: active), (prefers-contrast: more), print {
+    .study-filtered-image {
+        filter: none !important;
+    }
+}
+@media print {
+    .study-image-effect,
+    .study-load-sweep,
+    .study-ornament {
+        display: none;
     }
 }

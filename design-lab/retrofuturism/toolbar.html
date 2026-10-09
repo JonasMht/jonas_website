@@ -24,8 +24,8 @@
         <div class="study-tools">
             <details class="study-browse">
                 <summary
-                    aria-label="Explore designs, frames, reveals and votes"
-                    title="Explore designs, frames, reveals and votes"
+                    aria-label="Explore designs, frames, reveals, colours and votes"
+                    title="Explore designs, frames, reveals, colours and votes"
                 >
                     {{icon:layout-grid}}<span class="study-tool-label">Explore</span>
                 </summary>
@@ -70,6 +70,14 @@
                             </button>
                             <button
                                 type="button"
+                                data-study-pane="tones"
+                                aria-pressed="false"
+                                aria-controls="study-tones"
+                            >
+                                Colour
+                            </button>
+                            <button
+                                type="button"
                                 data-study-pane="votes"
                                 aria-pressed="false"
                                 aria-controls="study-votes"
@@ -83,8 +91,9 @@
                             aria-label="New combinations"
                         >
                             <p class="study-gallery-intro">
-                                Prism / Aperture is your lead: cut corners and a diagonal reveal.
-                                Compare the six mixes, or try individual frames and entrances.
+                                Your pick: Light Grid, Light rails and Light sweep. Compare it with
+                                five new image treatments, all using the same backdrop and the new
+                                Light rails II. Choose a mix, then press Replay to see it again.
                             </p>
                             <div class="study-detail-grid">{{mixes_cards}}</div>
                         </section>
@@ -96,7 +105,7 @@
                         >
                             <p class="study-gallery-intro">
                                 All ten backdrops remain available. Changing one keeps your chosen
-                                frame and reveal.
+                                frame, reveal and portrait colour.
                             </p>
                             <div
                                 class="study-gallery-grid"
@@ -113,8 +122,9 @@
                             hidden
                         >
                             <p class="study-gallery-intro">
-                                Four new ornaments and the original brackets. Select one to see it
-                                on the real images, including the header.
+                                Light rails II adds twin tracks, cut joints and bright end caps.
+                                Compare it with your original Light rails and the earlier frames.
+                                Select one to see it on the page, including the header.
                             </p>
                             <div class="study-detail-grid">{{frames_cards}}</div>
                         </section>
@@ -130,6 +140,19 @@
                                 them immediately.
                             </p>
                             <div class="study-detail-grid">{{reveals_cards}}</div>
+                        </section>
+                        <section
+                            id="study-tones"
+                            data-study-panel="tones"
+                            aria-label="Portrait colour treatments"
+                            hidden
+                        >
+                            <p class="study-gallery-intro">
+                                Apply a lasting colour treatment to header portraits. Cobalt and
+                                Poster inks borrow the navy and cyan of your LinkedIn artwork.
+                                Research figures keep their original colours after the reveal.
+                            </p>
+                            <div class="study-detail-grid">{{tones_cards}}</div>
                         </section>
                         <section
                             id="study-votes"
@@ -211,6 +234,32 @@
                                         >
                                             Maybe</button
                                         ><button
+                                            type="button"
+                                            data-rating="pass"
+                                            aria-pressed="false"
+                                        >
+                                            Pass
+                                        </button>
+                                    </div>
+                                </fieldset>
+                                <fieldset data-vote-group="tones">
+                                    <legend>Colour · <span data-vote-name="tones"></span></legend>
+                                    <div class="study-rating">
+                                        <button
+                                            type="button"
+                                            data-rating="love"
+                                            aria-pressed="false"
+                                        >
+                                            Love
+                                        </button>
+                                        <button
+                                            type="button"
+                                            data-rating="maybe"
+                                            aria-pressed="false"
+                                        >
+                                            Maybe
+                                        </button>
+                                        <button
                                             type="button"
                                             data-rating="pass"
                                             aria-pressed="false"
