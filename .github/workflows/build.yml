@@ -21,26 +21,26 @@ jobs:
           chmod +x hugo
       - name: Build
         run: ./hugo --gc --minify
-      - name: Zero-JS sanity (content must exist in raw HTML)
-        run: |
-          for probe in "thermal ablation" "Research →" "Jonas Mehtali"; do
-            grep -q "$probe" public/index.html || { echo "MISSING: $probe"; exit 1; }
-          done
-          grep -q "No cookies" public/legal/index.html || { echo "legal missing"; exit 1; }
+      - name: Content, anchor and CSP checks
+        run: python3 scripts/check-built.py
       - name: Internal link check (no broken refs, no orphaned assets)
         run: python3 scripts/link-check.py
-      - name: CSP sanity (no executable inline scripts)
-        run: |
-          # The site is served with script-src 'self'. An executable inline
-          # <script> would be blocked in production and the page would silently
-          # lose its JS — that is exactly how the lab slider and console broke.
-          # JSON-LD is data, not script, and is allowed.
-          hits=$(grep -rlE '<script(?![^>]*[[:space:]]src=)(?![^>]*application/ld\+json)[^>]*>' public --include='*.html' -P || true)
-          if [ -n "$hits" ]; then
-            echo "Executable inline <script> found — move it to assets/js/ (see boot.js):"
-            echo "$hits" | head -20
-            exit 1
-          fi
-          echo "no executable inline scripts"
       - name: Collector syntax check
         run: python3 -m py_compile telemetry/server.py
+      - name: Install browser test tools
+        run: |
+          python3 -m venv /tmp/website-browser-tests
+          /tmp/website-browser-tests/bin/pip install playwright==1.61.0
+          /tmp/website-browser-tests/bin/python -m playwright install --with-deps chromium
+      - name: Browser regression checks
+        run: |
+          python3 -m http.server 8776 --bind 127.0.0.1 --directory public > /tmp/website-test-server.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          for attempt in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8776/ > /dev/null; then break; fi
+            sleep 0.2
+          done
+          /tmp/website-browser-tests/bin/python scripts/audit-console.py http://127.0.0.1:8776
+          /tmp/website-browser-tests/bin/python scripts/audit-controls.py http://127.0.0.1:8776
+          /tmp/website-browser-tests/bin/python scripts/audit-site.py http://127.0.0.1:8776

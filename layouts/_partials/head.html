@@ -174,7 +174,11 @@
 </script>
 {{- end }}
 
-{{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="preload" href="/fonts/anton-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/source-sans-3-regular.woff2" as="font" type="font/woff2" crossorigin>
+{{- $styles := slice (resources.Get "css/main.css") (resources.Get "css/visual.css") -}}
+{{- with resources.Get "css/console.css" }}{{ $styles = $styles | append . }}{{ end -}}
+{{- $css := $styles | resources.Concat "css/main.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
 <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">

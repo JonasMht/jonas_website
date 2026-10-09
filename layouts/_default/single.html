@@ -19,7 +19,7 @@
         {{- $hero := "" }}
         {{- with .Params.image }}{{ $r := $.Resources.GetMatch . }}{{ if $r }}{{ $hero = $r }}{{ end }}{{ end }}
         {{- with $hero }}
-        <figure class="post-hero focus">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080 1440) "sizes" "(max-width:820px) 94vw, 768px" "alt" ($.Params.description | default $.Title) "eager" true) }}</figure>
+        <figure class="post-hero media-frame">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080 1440) "sizes" "(max-width:820px) 94vw, 768px" "alt" ($.Params.description | default $.Title) "eager" true) }}</figure>
         {{- end }}
     </header>
 
@@ -67,10 +67,10 @@
 
     <footer class="post-footer container-narrow reveal">
         {{- with .Parent }}
-        <a class="lnk" href="{{ .RelPermalink }}">← BACK TO {{ .Title | upper }}</a>
+        <a class="lnk" href="{{ .RelPermalink }}">{{ partial "icon.html" (dict "name" "arrow-left") }}<span>Back to {{ .Title }}</span></a>
         {{- end }}
         {{- with .Params.doi }}
-        <a class="lnk" href="https://doi.org/{{ . }}" target="_blank" rel="noopener">DOI.ORG/{{ . }} →</a>
+        <a class="lnk" href="https://doi.org/{{ . }}" target="_blank" rel="noopener"><span>DOI</span>{{ partial "icon.html" (dict "name" "arrow-up-right") }}</a>
         {{- end }}
     </footer>
 </article>

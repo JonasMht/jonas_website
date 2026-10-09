@@ -1,5 +1,5 @@
 ---
-title: About
+title: About Jonas Mehtali
 description: PhD Student — ICube Laboratory, University of Strasbourg
 slug: about
 aliases: ["/p/about-me/", "/p/about/"]
@@ -19,8 +19,6 @@ links:
   description: "Connect on LinkedIn"
   website: https://www.linkedin.com/in/jonasmehtali/
 ---
-
-# Jonas Mehtali
 
 PhD Student in Computer-Assisted Interventions · ICube Laboratory, University of Strasbourg
 

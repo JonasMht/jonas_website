@@ -12,9 +12,31 @@
 </header>
 
 <section class="container">
-    <div class="card-grid reveal stagger">
-        {{- range .RegularPages }}{{ partial "article-card" . }}{{ end }}
+    {{- $pages := .RegularPages -}}
+    {{- if eq .Kind "taxonomy" }}{{ $pages = .Pages.ByTitle }}{{ end -}}
+    {{- $paginator := .Paginate $pages -}}
+    {{- if eq .Kind "taxonomy" }}
+    <div class="term-grid">
+        {{- range $paginator.Pages }}
+        <a class="term-card" href="{{ .RelPermalink }}">
+            <div>
+                <h2>{{ .Title }}</h2>
+                <p>{{ len .RegularPages }} {{ if eq (len .RegularPages) 1 }}page{{ else }}pages{{ end }}</p>
+            </div>
+            {{ partial "icon.html" (dict "name" "arrow-right") }}
+        </a>
+        {{- end }}
     </div>
+    {{- else if $paginator.Pages }}
+    <div class="card-grid reveal stagger">
+        {{- range $paginator.Pages }}{{ partial "article-card" . }}{{ end }}
+    </div>
+    {{- else }}
+    <div class="list-empty">
+        <p>There are no pages in this collection yet.</p>
+        <a class="lnk" href="{{ site.Home.RelPermalink }}">{{ partial "action-label.html" "Back to overview →" }}</a>
+    </div>
+    {{- end }}
     {{ partial "pager.html" . }}
 </section>
 {{ end }}

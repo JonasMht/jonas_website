@@ -5,24 +5,22 @@
         {{- $next := "/personal/" }}
         {{- if hasPrefix .RelPermalink "/personal" }}{{ $next = "/pro/" }}{{ else if hasPrefix .RelPermalink "/pro" }}{{ $next = "/personal/" }}{{ else if ne .RelPermalink $home }}{{ $next = $home }}{{ end }}
         {{- with site.GetPage $next }}
-        <a class="foot-next" href="{{ .RelPermalink }}">{{ if eq $next "/pro/" }}Next: Research →{{ else if eq $next "/personal/" }}Next: Projects →{{ else }}Back to overview →{{ end }}</a>
+        <a class="foot-next" href="{{ .RelPermalink }}">
+            {{- if eq $next "/pro/" -}}
+                {{ partial "action-label.html" "Next: Research →" }}
+            {{- else if eq $next "/personal/" -}}
+                {{ partial "action-label.html" "Next: Projects →" }}
+            {{- else -}}
+                {{ partial "action-label.html" "Back to overview →" }}
+            {{- end -}}
+        </a>
         {{- end }}
         <span><a href="/legal/">LEGAL</a> · <a href="/pro/about/jonas-mehtali-resume.pdf">CV.PDF</a></span>
     </div>
     <div class="foot-bottom">
         <span>© {{ site.Params.author.name }} — ICUBE · UNISTRA</span>
-        <span>BUILT WITH HUGO · NO COOKIES · SELF-HOSTED TELEMETRY · OPT-OUT IN CONSOLE</span>
+        <span>BUILT WITH HUGO · NO COOKIES · {{ if site.Params.telemetryEndpoint }}TELEMETRY CONTROLS IN CONSOLE{{ else }}TELEMETRY OFF{{ end }}</span>
     </div>
 </footer>
 
-{{/* console-lite: hidden shell, revealed only by JS (zero-JS safe) */}}
-<button id="console-toggle" class="console-toggle" aria-haspopup="dialog">~ CONSOLE</button>
-<div class="console" id="console" hidden>
-    <div class="console__panel" role="dialog" aria-label="Console">
-        <div class="console__bar"><b>CONSOLE</b><span>LOCAL ONLY</span></div>
-        <div class="console__body" id="console-body"></div>
-        <div class="console__input"><span class="p">›</span><input id="console-input" type="text"
-            autocomplete="off" spellcheck="false" aria-label="Console command"></div>
-        <div class="console__ft"><span>HELP · GOTO · FIND · TAB COMPLETES · ↑ HISTORY</span><span>~ OR ESC TO CLOSE</span></div>
-    </div>
-</div>
+{{ partial "console.html" . }}

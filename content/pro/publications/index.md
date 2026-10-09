@@ -1,6 +1,6 @@
 ---
 title: "Publications"
-description: "Peer-reviewed work on real-time thermal ablation planning: MICCAI ×2, IJCARS ×1. Each entry leads with the figure, a one-sentence takeaway, and links."
+description: "Research papers, supporting code and citation files from my work in medical image computing and simulation."
 slug: publications
 layout: "pubs"
 papers:

@@ -1,0 +1,518 @@
+/* Site console. Its controls use the same type, colours and target size as the page. */
+.console-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: var(--control-height, 44px);
+    margin: 0 auto 28px;
+    padding: 10px 16px;
+    border: 1px solid var(--line2);
+    border-radius: 8px;
+    color: var(--dim);
+    background: var(--panel);
+    font: 600 0.85rem/1.3 var(--sans);
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.console-toggle[hidden] {
+    display: none;
+}
+.console-toggle:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    background: var(--panel2);
+}
+.console-toggle .icon {
+    width: 18px;
+    height: 18px;
+}
+.console-toggle kbd {
+    margin-left: 10px;
+    color: var(--faint);
+    font: inherit;
+}
+
+.console {
+    position: fixed;
+    inset: auto 0 var(--console-bottom, 20px);
+    width: min(740px, calc(100% - 32px));
+    max-width: none;
+    max-height: calc(var(--console-viewport-height, 100dvh) - 40px);
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--line2);
+    border-radius: 16px;
+    color: var(--text);
+    background: var(--console-bg);
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+}
+
+.console::backdrop {
+    background: rgba(6, 12, 20, 0.5);
+}
+.console[open] {
+    display: flex;
+    animation: console-in 0.16s ease-out;
+}
+.console__panel {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    max-height: inherit;
+}
+
+.console__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    gap: 16px;
+    padding: 18px 20px 14px;
+    background: var(--panel);
+}
+
+.console__heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+.console__heading > .icon {
+    flex: 0 0 23px;
+    width: 23px;
+    height: 23px;
+    color: var(--accent);
+}
+.console__heading h2 {
+    margin: 0;
+    color: var(--text);
+    font: 650 1rem/1.3 var(--sans);
+    letter-spacing: -0.02em;
+}
+.console__heading p {
+    margin: 4px 0 0;
+    color: var(--dim);
+    font: 0.8rem/1.5 var(--sans);
+}
+
+.console__close,
+.console__run {
+    display: inline-flex;
+    flex: 0 0 var(--control-height, 44px);
+    align-items: center;
+    justify-content: center;
+    width: var(--control-height, 44px);
+    height: var(--control-height, 44px);
+    padding: 0;
+    border: 1px solid var(--line2);
+    border-radius: 8px;
+    color: var(--dim);
+    background: var(--panel);
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.console__close:hover {
+    color: var(--text);
+    background: var(--panel2);
+    border-color: var(--accent);
+}
+.console__close .icon,
+.console__run .icon {
+    width: 20px;
+    height: 20px;
+}
+.console__run {
+    color: var(--on-accent);
+    border-color: var(--accent);
+    background: var(--accent);
+}
+.console__run:hover {
+    border-color: var(--accent-text);
+    background: var(--accent-text);
+}
+.console__run:disabled {
+    color: var(--faint);
+    border-color: var(--line);
+    background: var(--panel2);
+    cursor: default;
+}
+
+.console__shortcuts,
+.console__suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.console__shortcuts {
+    padding: 0 20px 14px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+}
+.console__shortcuts button,
+.console__suggestions button,
+.console__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--control-height, 44px);
+    padding: 9px 13px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    color: var(--dim);
+    background: var(--panel2);
+    font: 500 0.73rem/1.4 var(--mono);
+    cursor: pointer;
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.console__shortcuts button:hover,
+.console__suggestions button:hover,
+.console__action:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    background: var(--accent-faint);
+}
+
+.console__shortcuts button,
+.console__action {
+    font: 600 0.85rem/1.4 var(--sans);
+}
+
+.console__body {
+    flex: 1 1 auto;
+    min-height: 100px;
+    max-height: min(380px, 43dvh);
+    padding: 20px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    color: var(--dim);
+    font: 0.79rem/1.7 var(--mono);
+    overflow-wrap: anywhere;
+}
+
+.console__body:focus-visible {
+    outline-offset: -3px;
+}
+.console__entry + .console__entry {
+    margin-top: 20px;
+}
+.console__command {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 8px;
+    color: var(--text);
+}
+.console__command::before {
+    content: "›";
+    color: var(--accent);
+}
+.console__command code {
+    color: inherit;
+    font: inherit;
+    white-space: pre-wrap;
+}
+.console__response {
+    padding-left: 18px;
+}
+.console__welcome .console__response,
+.console__cleared .console__response {
+    padding-left: 0;
+}
+.console__response p {
+    margin: 0;
+}
+.console__response p + p {
+    margin-top: 6px;
+}
+.console__response .console__emphasis {
+    color: var(--text);
+}
+.console__response a {
+    text-underline-offset: 3px;
+}
+.console__response .console__action {
+    margin: 10px 6px 0 0;
+}
+.console__help {
+    display: grid;
+    grid-template-columns: 155px 1fr;
+    gap: 7px 16px;
+    margin: 0;
+}
+.console__help dt {
+    color: var(--text);
+}
+.console__help dd {
+    margin: 0;
+}
+.console__help code {
+    color: inherit;
+    font: inherit;
+}
+.console__results {
+    display: grid;
+    gap: 8px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+}
+.console__result {
+    display: block;
+    padding: 11px 13px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    text-decoration: none;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+.console__result:hover {
+    border-color: var(--accent);
+    background: var(--panel2);
+}
+.console__result strong {
+    display: block;
+    color: var(--text);
+    font: 600 0.86rem/1.45 var(--sans);
+}
+.console__result span {
+    display: block;
+    margin-top: 4px;
+    color: var(--dim);
+    font: 0.8rem/1.5 var(--sans);
+}
+.console__result small {
+    display: block;
+    margin-top: 5px;
+    color: var(--accent-text);
+    font: 0.68rem/1.5 var(--mono);
+}
+.console__suggestions {
+    flex-shrink: 0;
+    max-height: 132px;
+    padding: 10px 20px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    border-top: 1px solid var(--line);
+}
+.console__suggestions[hidden] {
+    display: none;
+}
+.console__suggestions button {
+    max-width: 100%;
+    min-height: 36px;
+    padding: 7px 10px;
+    font-size: 0.68rem;
+    overflow-wrap: anywhere;
+}
+
+.console__input {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    padding: 12px 16px;
+    border-top: 1px solid var(--line2);
+    background: var(--panel);
+}
+
+.console__input:focus-within {
+    box-shadow: inset 3px 0 0 var(--accent);
+}
+.console__prompt {
+    margin-left: 4px;
+    color: var(--accent);
+    font: 1.25rem/1 var(--mono);
+}
+.console__input input {
+    flex: 1;
+    width: 100%;
+    min-height: var(--control-height, 44px);
+    margin: 0;
+    padding: 8px 0;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    color: var(--text);
+    background: transparent;
+    font: 16px/1.5 var(--mono);
+    caret-color: var(--accent);
+}
+
+.console__input input::placeholder {
+    color: var(--faint);
+    opacity: 1;
+    font-size: 0.8rem;
+}
+.console__input input:focus-visible {
+    outline: none;
+}
+.console__ft {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    padding: 10px 20px 12px;
+    border-top: 1px solid var(--line);
+    color: var(--faint);
+    background: var(--panel);
+    font: 0.66rem/1.5 var(--sans);
+}
+
+.console__keys {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.console__keys > span {
+    margin: 0 3px;
+}
+.console__keys kbd {
+    color: var(--dim);
+    font: 0.62rem/1 var(--mono);
+}
+body.console-open {
+    overflow: hidden;
+}
+
+/* The visual viewport also shrinks when a phone's on-screen keyboard opens. */
+.console--compact .console__bar {
+    padding-block: 10px;
+}
+.console--compact .console__heading p,
+.console--compact .console__shortcuts,
+.console--compact .console__ft {
+    display: none;
+}
+.console--compact .console__body {
+    min-height: 0;
+    padding-block: 12px;
+}
+.console--compact .console__suggestions {
+    max-height: 88px;
+    padding-block: 5px;
+}
+.console--tiny .console__suggestions {
+    display: none;
+}
+
+@keyframes console-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 540px) {
+    .console {
+        inset-block-end: var(--console-bottom, 12px);
+        width: calc(100% - 20px);
+        max-height: calc(var(--console-viewport-height, 100dvh) - 24px);
+        border-radius: 12px;
+    }
+    .console__bar {
+        gap: 8px;
+        padding: 14px;
+    }
+    .console__heading {
+        gap: 10px;
+    }
+    .console__heading p {
+        font-size: 0.75rem;
+    }
+    .console__heading > .icon {
+        display: none;
+    }
+    .console__shortcuts {
+        gap: 5px;
+        padding: 0 14px 12px;
+    }
+    .console__shortcuts button {
+        flex: 1;
+        padding-inline: 8px;
+        font-size: 0.78rem;
+    }
+    .console__body {
+        padding: 16px 14px;
+    }
+    .console__response {
+        padding-left: 0;
+    }
+    .console__help {
+        grid-template-columns: 1fr;
+        gap: 3px;
+    }
+    .console__help dd + dt {
+        margin-top: 9px;
+    }
+    .console__suggestions {
+        padding: 8px 14px;
+    }
+    .console__suggestions button {
+        min-height: 44px;
+    }
+    .console__input {
+        gap: 8px;
+        padding: 10px;
+    }
+    .console__ft {
+        padding: 9px 14px 11px;
+    }
+    .console__keys {
+        display: none;
+    }
+}
+
+@media (max-height: 500px) {
+    .console__bar {
+        padding-block: 10px;
+    }
+    .console__heading p,
+    .console__shortcuts,
+    .console__ft {
+        display: none;
+    }
+    .console__body {
+        min-height: 0;
+        padding-block: 12px;
+    }
+    .console__suggestions {
+        max-height: 88px;
+        padding-block: 5px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .console[open] {
+        animation: none;
+    }
+}
+
+@media print {
+    .console-toggle,
+    .console {
+        display: none !important;
+    }
+}

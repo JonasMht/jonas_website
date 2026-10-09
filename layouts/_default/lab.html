@@ -11,14 +11,14 @@
 
     <section class="sec reveal" aria-label="Comparison instrument">
         <div class="sec-h"><span class="mark"></span><h2>Comparison instrument</h2><span class="k">interactive</span></div>
-        <div class="slider" id="cmp">
+        <div class="slider media-frame" id="cmp">
             {{ with resources.Get "img/nd2.png" }}{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080 1440) "sizes" "(max-width:820px) 94vw, 880px" "alt" "Notre-Dame reconstruction — shaded render" "class" "s-base") }}{{ end }}
             {{ with resources.Get "img/nd1.png" }}{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080 1440) "sizes" "(max-width:820px) 94vw, 880px" "alt" "Notre-Dame reconstruction — wireframe render" "class" "s-top") }}{{ end }}
-            <div class="s-handle" tabindex="0" role="slider" aria-label="Comparison seam position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span>⇄</span></div>
+            <div class="s-handle" tabindex="0" role="slider" aria-label="Comparison seam position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span>{{ partial "icon.html" (dict "name" "arrows-horizontal") }}</span></div>
             <span class="s-tag s-tag-l">RENDER · SHADED</span>
             <span class="s-tag s-tag-r">RENDER · WIREFRAME</span>
         </div>
-        <p class="below">Notre-Dame reconstruction — the same scene, two render passes. The same slider will later hold <b>target vs. predicted</b> ablation maps from the papers.</p>
+        <p class="below">Explore the Notre-Dame reconstruction as a shaded scene and a wireframe. Drag the divider, or focus it and use the arrow keys to compare the two views.</p>
     </section>
 
     <section class="sec reveal" aria-label="Key figures">
@@ -28,8 +28,7 @@
             <div class="mcell vcard"><span class="k">Model size</span><div><span class="v">12,210</span><span class="sub">learned parameters</span></div></div>
             <div class="mcell vcard"><span class="k">HEAT simulation</span><div><span class="v">≤ 1 s</span><span class="sub">sub-second ablation zones</span></div></div>
         </div>
-        <p class="below">Full benchmarks live in the papers — <a href="/pro/publications/">publications →</a>. The interactive
-        WebGL planner is planned for this page.</p>
+        <p class="below">See the <a href="/pro/publications/">publications</a> for the benchmark methods, datasets and results behind these figures.</p>
     </section>
 </div>
 {{ end }}

@@ -36,7 +36,7 @@ The goal of this internship was to participate in the development of a research 
 ## Posts
 {{< figure src="oviedo-spain-diploma.png" title="Diploma Ceremony" >}}
 
-<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FREUOviedo%2Fposts%2Fpfbid02ZUhia6rwrUsaKSKqhCRykvCu3JsbPKN5WCB9cJZPxHdvAyPgeJpJRH13jWJUXDF7l&width=500&show_text=true&height=785&appId" width="500" height="785" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+[See the research camp post on Facebook](https://www.facebook.com/REUOviedo/posts/pfbid02ZUhia6rwrUsaKSKqhCRykvCu3JsbPKN5WCB9cJZPxHdvAyPgeJpJRH13jWJUXDF7l).
 
 ## Conclusion
 I had the opportunity to discover Oviedo and the region of Asturias during my free time with my 

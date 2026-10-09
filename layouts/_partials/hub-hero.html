@@ -2,7 +2,7 @@
 <section class="monitor hub-hero reveal" aria-labelledby="hub-title">
     <div class="mhead"><span>JONAS MEHTALI — {{ .Title }}</span><span class="live">STRASBOURG · FR</span></div>
     <div class="hub-hero__body">
-        <figure class="hub-hero__photo">
+        <figure class="hub-hero__photo media-frame">
             {{- with site.GetPage $hero.photo.page }}
             {{- with .Resources.GetMatch $hero.photo.image }}
             {{ partial "img.html" (dict "r" . "widths" (slice 480 750 1080) "sizes" "(max-width:760px) 92vw, (max-width:1439px) 42vw, 540px" "alt" $hero.photo.alt "eager" true) }}
@@ -17,7 +17,7 @@
             <p class="hub-hero__lede">{{ $hero.lede }}</p>
             <div class="links">
                 {{- range $hero.links }}
-                <a class="lnk{{ if .primary }} pri{{ end }}" href="{{ .url }}">{{ .label }}</a>
+                <a class="lnk{{ if .primary }} pri{{ end }}" href="{{ .url }}">{{ partial "action-label.html" .label }}</a>
                 {{- end }}
             </div>
         </div>
@@ -25,7 +25,9 @@
     <nav class="hub-nav" aria-label="Explore {{ .Title | lower }}">
         <span class="hub-nav__label">Explore</span>
         {{- range $hero.explore }}
-        <a href="{{ .url }}">{{ .label }} <span aria-hidden="true">{{ if hasPrefix .url "#" }}↓{{ else if hasPrefix .url "http" }}↗{{ else }}→{{ end }}</span></a>
+        {{- $icon := "arrow-right" }}
+        {{- if hasPrefix .url "#" }}{{ $icon = "arrow-down" }}{{ else if hasPrefix .url "http" }}{{ $icon = "arrow-up-right" }}{{ end }}
+        <a href="{{ .url }}"><span>{{ .label }}</span>{{ partial "icon.html" (dict "name" $icon) }}</a>
         {{- end }}
     </nav>
 </section>

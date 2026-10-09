@@ -7,11 +7,15 @@ aliases: ["/p/privacy/"]
 
 ## Vie privée / Privacy — site telemetry
 
-This site is **fully self-hosted**. There are no cookies, no third-party
-scripts, no ad networks, and Google Analytics was removed in 2026.
+This is a static website. It does not set cookies or use advertising networks
+or Google Analytics. Fonts, icons and site scripts are served by this site.
+Pages with videos load thumbnails from YouTube; the embedded player loads only
+when you press play.
 
-Instead, the site runs its **own first-party telemetry**, described here in
-full:
+Self-hosted deployments can enable **first-party telemetry**, described below.
+The console's `telemetry` command shows whether collection is active for the
+build you are visiting and your browser. An unconfigured build sends no
+telemetry events.
 
 **What is collected (per visit):**
 - pages viewed, referrer origin, device class (mobile/tablet/desktop)
@@ -30,11 +34,21 @@ need work, and how the research is being read.
 raw events **90 days**, aggregated visitor rows **400 days**, then deleted.
 
 **Your controls:**
-- open the console (`~` / backtick) and type `telemetry off` — tracking stops
-  immediately for this browser and your profile is wiped
-- `clear` wipes the local profile at any time
-- `telemetry on` re-enables it
+- open the **Console** button at the bottom of the page, or press `~` / backtick
+- `telemetry` shows the current status and buttons for changing your preference
+- `telemetry off` stops collection immediately for this browser, discards unsent
+  events and removes its local visitor and session IDs; previously sent events
+  are not deleted by this command
+- `telemetry on` allows collection when an endpoint is configured
+- `clear` clears console output and command history; it does not change theme or
+  telemetry preferences
 - browsers set to Do-Not-Track are honored automatically
+
+Commands and command history stay in the current page's memory. Site search
+downloads this site's public search index and matches your words in the browser;
+the search words are not sent to a search service. Console interactions are not
+included in telemetry click events. If browser storage is unavailable, a changed
+telemetry preference applies only until you leave the page.
 
 **Legal basis:** legitimate interest of the site owner (measure its own
 website), processed under GDPR art. 6(1)(f) with the balancing interests and

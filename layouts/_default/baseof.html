@@ -3,9 +3,9 @@
 <head>
     {{ partial "head.html" . }}
 </head>
-<body>
+{{- $iconSprite := partialCached "icon-sprite.html" "site" -}}
+<body data-icon-sprite="{{ $iconSprite.RelPermalink }}">
     <a class="skip" href="#main-content">Skip to content</a>
-    <div class="ignition" aria-hidden="true">J.MEHTALI // ICUBE · STRASBOURG</div>
     {{ partial "header.html" . }}
     <main id="main-content">
         {{ block "main" . }}{{ end }}
@@ -16,5 +16,7 @@
     {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"
             data-telemetry="{{ site.Params.telemetryEndpoint | default "" }}" defer></script>
+    {{ $console := resources.Get "js/console.js" | minify | fingerprint }}
+    <script src="{{ $console.RelPermalink }}" integrity="{{ $console.Data.Integrity }}" defer></script>
 </body>
 </html>

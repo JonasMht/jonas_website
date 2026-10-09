@@ -2,11 +2,11 @@
 {{- if gt $pag.TotalPages 1 }}
 <nav class="pager" aria-label="Pagination">
     {{- with $pag.Prev }}
-    <a class="pager__btn" href="{{ .URL }}">&larr; Newer</a>
+    <a class="pager__btn" href="{{ .URL }}">{{ partial "icon.html" (dict "name" "arrow-left") }}<span>Previous</span></a>
     {{- end }}
-    <span class="pager__info">{{ $pag.PageNumber }} / {{ $pag.TotalPages }}</span>
+    <span class="pager__info" aria-label="Page {{ $pag.PageNumber }} of {{ $pag.TotalPages }}">{{ $pag.PageNumber }} / {{ $pag.TotalPages }}</span>
     {{- with $pag.Next }}
-    <a class="pager__btn" href="{{ .URL }}">Older &rarr;</a>
+    <a class="pager__btn" href="{{ .URL }}"><span>Next</span>{{ partial "icon.html" (dict "name" "arrow-right") }}</a>
     {{- end }}
 </nav>
 {{- end }}

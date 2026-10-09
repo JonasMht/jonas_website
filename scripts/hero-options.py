@@ -31,6 +31,7 @@ def hero(column, portrait=False):
     return opening + column + '</div></section>'
 
 identity = re.search(r'<section\b[^>]*aria-label=["\']?Identity\b.*?</section>', src, re.S).group(0)
+icon_sprite = re.search(r'data-icon-sprite=["\']?([^\s"\'>]+)', src).group(1)
 header = re.search(r'<header\b.*?</header>', src, re.S).group(0)
 
 facts = '''<div class="mright" role="list" aria-label="At a glance">
@@ -53,7 +54,7 @@ panels = ''.join(f'<section id="option-{key}" class="option {cls}" aria-label="{
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#0C0F14"><title>Homepage options · Jonas Mehtali</title>
-{scripts[0]}<link rel="stylesheet" href="{css}"><link rel="stylesheet" href="/opt/options.css"></head><body>{header}
+{scripts[0]}<link rel="stylesheet" href="{css}"><link rel="stylesheet" href="/opt/options.css"></head><body data-icon-sprite="{icon_sprite}">{header}
 <main class="container"><div class="comparison-intro"><p class="role">Homepage study</p><h1>Three directions for the main card.</h1><p>Switch between options, then try the sun / moon button in the navigation. The profile row below uses the new, even spacing.</p></div>
 <div class="option-controls" role="group" aria-label="Choose a homepage preview">{buttons}</div>{panels}{identity}
 <p class="comparison-end"><a href="/">← Back to the current preview</a></p></main>{''.join(scripts[1:])}<script src="/opt/options.js" defer></script></body></html>''')

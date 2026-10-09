@@ -21,8 +21,10 @@ application: no database, no forms, no server-side sessions.
 The full disclosure lives on its own page: [Privacy — site telemetry](/privacy/).
 
 - **No cookies.** The site sets none.
-- **Console & preferences** (the `~` terminal) live in your browser's
-  `localStorage` and never leave your machine; `clear` in the console wipes them.
+- **Console commands and history** stay in the current page and disappear when
+  you leave it. `clear` clears the console output and command history.
+- **Theme and telemetry preferences** are saved in your browser's `localStorage`.
+  `clear` does not change those preferences; use `telemetry off` to opt out.
 - **No third-party scripts.** The site loads none. YouTube videos appear as a
   static thumbnail (fetched from `i.ytimg.com` when the article renders); the
   embedded player only contacts Google when you press play.

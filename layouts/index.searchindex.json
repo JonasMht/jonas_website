@@ -1,6 +1,6 @@
 {{- $items := slice -}}
-{{- range site.RegularPages -}}
-  {{- if .Draft }}{{ continue }}{{ end -}}
+{{- range site.Pages -}}
+  {{- if or .Draft (not (in (slice "home" "section" "page") .Kind)) }}{{ continue }}{{ end -}}
   {{- $items = $items | append (dict
       "t" .Title
       "u" .RelPermalink

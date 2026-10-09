@@ -24,7 +24,7 @@
 
     <section class="sec reveal" id="open-source" aria-label="Open source">
         <div class="sec-h"><span class="mark"></span><h2>Open source</h2><span class="k">github.com/JonasMht</span>
-            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">ALL REPOS →</a></div>
+            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">{{ partial "action-label.html" "ALL REPOS →" }}</a></div>
         <div class="repo-row stagger">
             {{- range .Params.repos }}
             <a class="repo" href="{{ .url }}" target="_blank" rel="noopener">

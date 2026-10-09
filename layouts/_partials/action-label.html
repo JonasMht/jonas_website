@@ -1,0 +1,10 @@
+{{- /* Convert legacy arrow labels into the shared icon language. */ -}}
+{{- $text := . -}}
+{{- $icon := "" -}}
+{{- range $glyph, $name := dict "→" "arrow-right" "←" "arrow-left" "↗" "arrow-up-right" "↓" "arrow-down" -}}
+    {{- if in $text $glyph -}}
+        {{- $icon = $name -}}
+        {{- $text = trim (replace $text $glyph "") " " -}}
+    {{- end -}}
+{{- end -}}
+<span>{{ $text }}</span>{{ with $icon }}{{ partial "icon.html" (dict "name" .) }}{{ end }}

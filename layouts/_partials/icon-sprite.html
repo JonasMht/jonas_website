@@ -1,0 +1,9 @@
+{{- /* One self-hosted Tabler sprite, shared by HTML controls and JavaScript. */ -}}
+{{- $symbols := slice -}}
+{{- range resources.Match "icons/tabler/*.svg" -}}
+    {{- $name := path.BaseName .Name -}}
+    {{- $body := replaceRE `(?s)^.*?<svg[^>]*>(.*)</svg>\s*$` "$1" .Content -}}
+    {{- $symbols = $symbols | append (printf `<symbol id="%s" viewBox="0 0 24 24">%s</symbol>` $name $body) -}}
+{{- end -}}
+{{- $svg := printf `<svg xmlns="http://www.w3.org/2000/svg">%s</svg>` (delimit $symbols "") -}}
+{{- return (resources.FromString "icons/tabler.svg" $svg | minify | fingerprint) -}}

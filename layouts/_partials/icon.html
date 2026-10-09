@@ -1,0 +1,5 @@
+{{- $sprite := partialCached "icon-sprite.html" "site" -}}
+{{- if not (resources.Get (printf "icons/tabler/%s.svg" .name)) -}}
+    {{- errorf "Unknown Tabler icon: %s" .name -}}
+{{- end -}}
+<svg class="icon{{ with .class }} {{ . }}{{ end }}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="{{ $sprite.RelPermalink }}#{{ .name }}"></use></svg>

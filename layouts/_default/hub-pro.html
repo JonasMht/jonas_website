@@ -4,7 +4,7 @@
 
     <section class="sec reveal" id="publications" aria-label="Selected publications">
         <div class="sec-h"><span class="mark"></span><h2>Selected publications</h2><span class="k">papers & ideas</span>
-            <a class="more" href="{{ (.GetPage `/pro/publications`).RelPermalink }}" style="color:var(--accent)">FULL LIST →</a></div>
+            <a class="more" href="{{ (.GetPage `/pro/publications`).RelPermalink }}" style="color:var(--accent)">{{ partial "action-label.html" "FULL LIST →" }}</a></div>
         {{- range first 2 .Params.featuredPubs }}
         {{- with site.GetPage . }}
         {{- $venue := .Params.venue }}
@@ -14,17 +14,17 @@
             {{- with .Params.image }}{{ $pimg = $p.Resources.GetMatch . }}{{ end }}
             {{- if not $pimg }}{{ with .Resources.GetMatch "*.png" }}{{ $pimg = . }}{{ end }}{{ end }}
             {{- with $pimg }}
-            <div class="im">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080) "sizes" "(max-width:700px) 92vw, (max-width:1100px) 46vw, 250px" "alt" "") }}<span class="st">{{ $venue }}</span></div>
+            <div class="im media-frame">{{ partial "img.html" (dict "r" . "widths" (slice 540 750 1080) "sizes" "(max-width:700px) 92vw, (max-width:1100px) 46vw, 250px" "alt" "") }}<span class="st">{{ $venue }}</span></div>
             {{- end }}
             <div class="bd">
                 <h3><a class="stretch" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                 <span class="ven">{{ .Params.venue }}</span>
                 <p class="tldr">{{ .Params.tldr | default .Params.description }}</p>
                 <div class="chiprow">
-                    {{- with .Params.doi }}<a href="https://doi.org/{{ . }}" target="_blank" rel="noopener">[DOI]</a>{{ end }}
-                    {{- with .Params.paper }}<a href="{{ . }}" target="_blank" rel="noopener">[PAPER]</a>{{ end }}
-                    {{- with .Params.hal }}<a href="{{ . }}" target="_blank" rel="noopener">[HAL PDF]</a>{{ end }}
-                    <a href="{{ .RelPermalink }}#bibtex">[CITE ↓]</a>
+                    {{- with .Params.doi }}<a href="https://doi.org/{{ . }}" target="_blank" rel="noopener">{{ partial "action-label.html" "DOI ↗" }}</a>{{ end }}
+                    {{- with .Params.paper }}<a href="{{ . }}" target="_blank" rel="noopener">{{ partial "action-label.html" "PAPER ↗" }}</a>{{ end }}
+                    {{- with .Params.hal }}<a href="{{ . }}" target="_blank" rel="noopener">{{ partial "action-label.html" "HAL PDF ↗" }}</a>{{ end }}
+                    <a href="{{ .RelPermalink }}#bibtex">{{ partial "action-label.html" "Cite ↓" }}</a>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
 
     <section class="sec reveal" id="open-source" aria-label="Open source">
         <div class="sec-h"><span class="mark"></span><h2>Open source</h2><span class="k">github.com/JonasMht</span>
-            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">ALL REPOS →</a></div>
+            <a class="more" href="https://github.com/JonasMht" target="_blank" rel="noopener" style="color:var(--accent)">{{ partial "action-label.html" "ALL REPOS →" }}</a></div>
         <div class="repo-row stagger">
             {{- range .Params.repos }}
             <a class="repo" href="{{ .url }}" target="_blank" rel="noopener">
@@ -74,7 +74,7 @@
         <ul class="talk-list">
             {{- range .Params.talks }}
             <li><span class="talk-venue">{{ .venue }}</span><span class="talk-what">{{ .what }}</span>
-                {{- with .url }}<a class="more" href="{{ . }}">Talk →</a>{{ end }}</li>
+                {{- with .url }}<a class="more" href="{{ . }}">{{ partial "action-label.html" "Talk →" }}</a>{{ end }}</li>
             {{- end }}
         </ul>
     </section>

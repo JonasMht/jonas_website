@@ -1,0 +1,45 @@
+{{/* Native dialog: keyboard focus and the page behind it are managed by the browser. */}}
+<button id="console-toggle" class="console-toggle" type="button" aria-haspopup="dialog"
+        aria-controls="console" aria-expanded="false" hidden>
+    {{ partial "icon.html" (dict "name" "terminal") }}
+    <span>Console</span>
+    <kbd aria-hidden="true">~</kbd>
+</button>
+<dialog class="console" id="console" aria-labelledby="console-title" aria-describedby="console-description">
+    <div class="console__panel">
+        <header class="console__bar">
+            <div class="console__heading">
+                {{ partial "icon.html" (dict "name" "terminal") }}
+                <div>
+                    <h2 id="console-title">Site console</h2>
+                    <p id="console-description">A shortcut to pages, search and privacy controls.</p>
+                </div>
+            </div>
+            <button class="console__close" type="button" data-console-close aria-label="Close console" title="Close console (Esc)">
+                {{ partial "icon.html" (dict "name" "x") }}
+            </button>
+        </header>
+        <div class="console__shortcuts" aria-label="Console shortcuts">
+            <button type="button" data-command="help">Help</button>
+            <button type="button" data-command="goto /pro/">Research</button>
+            <button type="button" data-command="goto /personal/">Projects</button>
+            <button type="button" data-command="telemetry">Privacy</button>
+        </div>
+        <div class="console__body" id="console-body" role="log" aria-label="Command output"
+             aria-live="polite" aria-relevant="additions" tabindex="0"></div>
+        <div class="console__suggestions" id="console-suggestions" aria-label="Command suggestions" hidden></div>
+        <form class="console__input" id="console-form">
+            <span class="console__prompt" aria-hidden="true">›</span>
+            <input id="console-input" name="command" type="text" autocomplete="off" autocapitalize="none"
+                   spellcheck="false" enterkeyhint="go" maxlength="300" aria-label="Console command"
+                   aria-describedby="console-input-hint" placeholder="Try help or find games" autofocus>
+            <button class="console__run" type="submit" aria-label="Run command" title="Run command">
+                {{ partial "icon.html" (dict "name" "arrow-right") }}
+            </button>
+        </form>
+        <footer class="console__ft">
+            <span id="console-input-hint">Commands stay in this tab.</span>
+            <span class="console__keys"><kbd>↑</kbd><kbd>↓</kbd> history <span>·</span> <kbd>→</kbd> complete <span>·</span> <kbd>Esc</kbd> close</span>
+        </footer>
+    </div>
+</dialog>
