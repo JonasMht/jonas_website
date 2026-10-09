@@ -1,42 +1,44 @@
 {{ define "main" }}
-<header class="list-hero container reveal">
-    <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="{{ site.Home.RelPermalink }}">Home</a>
-        {{- range .Ancestors.Reverse }}
-        {{- if not .IsHome }}<span class="crumbs__sep">/</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
-        {{- end }}
-    </nav>
-    <h1 class="list-title">{{ .Title }}</h1>
-    {{- with .Params.description }}<p class="list-desc">{{ . }}</p>{{ end }}
-    {{- with .Content }}<div class="list-content article-content">{{ . }}</div>{{ end }}
-</header>
+<div class="collection-surface">
+    <header class="list-hero container reveal">
+        <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="{{ site.Home.RelPermalink }}">Home</a>
+            {{- range .Ancestors.Reverse }}
+            {{- if not .IsHome }}<span class="crumbs__sep">/</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+            {{- end }}
+        </nav>
+        <h1 class="list-title">{{ .Title }}</h1>
+        {{- with .Params.description }}<p class="list-desc">{{ . }}</p>{{ end }}
+        {{- with .Content }}<div class="list-content article-content">{{ . }}</div>{{ end }}
+    </header>
 
-<section class="container">
-    {{- $pages := .RegularPages -}}
-    {{- if eq .Kind "taxonomy" }}{{ $pages = .Pages.ByTitle }}{{ end -}}
-    {{- $paginator := .Paginate $pages -}}
-    {{- if eq .Kind "taxonomy" }}
-    <div class="term-grid">
-        {{- range $paginator.Pages }}
-        <a class="term-card" href="{{ .RelPermalink }}">
-            <div>
-                <h2>{{ .Title }}</h2>
-                <p>{{ len .RegularPages }} {{ if eq (len .RegularPages) 1 }}page{{ else }}pages{{ end }}</p>
-            </div>
-            {{ partial "icon.html" (dict "name" "arrow-right") }}
-        </a>
+    <section class="container">
+        {{- $pages := .RegularPages -}}
+        {{- if eq .Kind "taxonomy" }}{{ $pages = .Pages.ByTitle }}{{ end -}}
+        {{- $paginator := .Paginate $pages -}}
+        {{- if eq .Kind "taxonomy" }}
+        <div class="term-grid">
+            {{- range $paginator.Pages }}
+            <a class="term-card" href="{{ .RelPermalink }}">
+                <div>
+                    <h2>{{ .Title }}</h2>
+                    <p>{{ len .RegularPages }} {{ if eq (len .RegularPages) 1 }}page{{ else }}pages{{ end }}</p>
+                </div>
+                {{ partial "icon.html" (dict "name" "arrow-right") }}
+            </a>
+            {{- end }}
+        </div>
+        {{- else if $paginator.Pages }}
+        <div class="card-grid reveal stagger">
+            {{- range $paginator.Pages }}{{ partial "article-card" . }}{{ end }}
+        </div>
+        {{- else }}
+        <div class="list-empty">
+            <p>There are no pages in this collection yet.</p>
+            <a class="lnk" href="{{ site.Home.RelPermalink }}">{{ partial "action-label.html" "Back to overview →" }}</a>
+        </div>
         {{- end }}
-    </div>
-    {{- else if $paginator.Pages }}
-    <div class="card-grid reveal stagger">
-        {{- range $paginator.Pages }}{{ partial "article-card" . }}{{ end }}
-    </div>
-    {{- else }}
-    <div class="list-empty">
-        <p>There are no pages in this collection yet.</p>
-        <a class="lnk" href="{{ site.Home.RelPermalink }}">{{ partial "action-label.html" "Back to overview →" }}</a>
-    </div>
-    {{- end }}
-    {{ partial "pager.html" . }}
-</section>
+        {{ partial "pager.html" . }}
+    </section>
+</div>
 {{ end }}

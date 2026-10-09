@@ -30,17 +30,19 @@
     --brand-navy: #26327f;
     --brand-cyan: #4db3ea;
     --brand-royal: #285adc;
-    --bg: #0e161f;
-    --page-bg: #15212b;
+    --bg: #0a111a;
+    --page-bg: #0e1b2a;
+    --blueprint-line: rgb(134 188 219 / 4%);
+    --blueprint-major: rgb(134 188 219 / 5%);
     --page-width: min(var(--maxw), calc(100% - 2 * clamp(16px, 3vw, 40px)));
-    --panel: #15212b;
-    --panel2: #1b2934;
+    --panel: #192a39;
+    --panel2: #203444;
     --line: #2b3a48;
     --line2: #455869;
     --text: #edf3f7;
     --dim: #b0bdc9;
     --faint: #97aaba;
-    --header-bg: rgb(21 33 43 / 96%);
+    --header-bg: rgb(25 42 57 / 97%);
     --console-bg: #101821;
     --accent: #86bcdb;
     --accent-text: #b4d9ed;
@@ -53,12 +55,15 @@
 
 :root[data-theme="light"] {
     --bg: #edf1f5;
-    --page-bg: #ffffff;
+    --page-bg: #d8e2ed;
+    --blueprint-line: rgb(44 91 136 / 3%);
+    --blueprint-major: rgb(44 91 136 / 5%);
+    --panel: #ffffff;
     --panel2: #eff3f7;
     --text: #162b3b;
-    --dim: #4c6072;
-    --faint: #566a7d;
-    --accent: #2c5b88;
+    --dim: #405467;
+    --faint: #43576a;
+    --accent: #2b5884;
     --accent-text: #26327f;
     --accent-dim: rgb(38 50 127 / 30%);
     --accent-faint: rgb(40 90 220 / 6%);
@@ -873,7 +878,44 @@ body {
     width: var(--page-width);
     margin-inline: auto;
     padding-block: clamp(24px, 3vw, 40px) 64px;
-    background: var(--page-bg);
+    background-color: var(--page-bg);
+    background-image:
+        linear-gradient(var(--blueprint-major) 1px, transparent 1px),
+        linear-gradient(90deg, var(--blueprint-major) 1px, transparent 1px),
+        linear-gradient(var(--blueprint-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
+    background-size:
+        160px 160px,
+        160px 160px,
+        32px 32px,
+        32px 32px;
+    background-position: center top;
+}
+
+/* Quiet, solid reading surfaces keep the drafting grid out of the text. */
+.page-surface > .container > .sec,
+.page-surface > .container > .list-hero {
+    padding: 32px;
+    border: 0;
+    border-radius: var(--r);
+    background: var(--panel);
+}
+
+.page-surface > .container > .sec {
+    margin-top: 32px;
+}
+
+.page-surface > .post,
+.page-surface > .collection-surface {
+    width: calc(100% - 2 * var(--pad));
+    margin-inline: auto;
+    padding-block: 32px;
+    border-radius: var(--r);
+    background: var(--panel);
+}
+
+.page-surface > .post {
+    max-width: 900px;
 }
 
 .page-surface .monitor {
@@ -1307,7 +1349,7 @@ body {
     display: flow-root;
     margin-top: 0;
     padding-block: 36px 0;
-    background: var(--page-bg);
+    background: var(--panel);
 }
 
 .site-footer .container {
@@ -1367,7 +1409,8 @@ body {
         gap: 24px;
     }
 
-    .repo-row {
+    .repo-row,
+    .research-focus {
         grid-template-columns: 1fr;
     }
 }
@@ -1383,6 +1426,22 @@ body {
 
     .page-surface {
         padding-block: 24px 32px;
+    }
+
+    .page-surface > .container > .sec,
+    .page-surface > .container > .list-hero {
+        padding: 24px 20px;
+    }
+
+    .page-surface > .container > .sec {
+        margin-top: 24px;
+    }
+
+    .page-surface > .post,
+    .page-surface > .collection-surface {
+        width: 100%;
+        padding-block: 24px;
+        border-radius: 0;
     }
 
     .nav {
@@ -1459,8 +1518,17 @@ body {
 
 @media print {
     body {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --panel2: #ffffff;
+        --text: #111111;
+        --dim: #444444;
+        --faint: #666666;
+        --accent: #2b5d8f;
+        --accent-faint: transparent;
         display: block;
         min-height: 0;
+        background: #ffffff;
     }
 
     .page-surface {
