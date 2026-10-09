@@ -38,6 +38,9 @@
     --field-blue: rgb(55 97 255 / 24%);
     --glow: rgb(65 203 255 / 18%);
     --glow-strong: rgb(65 203 255 / 36%);
+    --grain-image: url("/textures/grain.svg");
+    --grain-opacity: 0.16;
+    --grain-blend: soft-light;
     --page-width: min(var(--maxw), calc(100% - 2 * clamp(16px, 3vw, 40px)));
     --panel: #112131;
     --panel2: #162c40;
@@ -66,6 +69,8 @@
     --field-blue: rgb(40 90 220 / 10%);
     --glow: rgb(40 90 220 / 10%);
     --glow-strong: rgb(40 90 220 / 20%);
+    --grain-opacity: 0.04;
+    --grain-blend: multiply;
     --panel: #ffffff;
     --panel2: #eff3f7;
     --text: #162b3b;
@@ -996,10 +1001,6 @@ body {
     padding-inline: 26px;
 }
 
-.site-header::before {
-    content: none;
-}
-
 .site-header::after,
 .site-footer::before {
     content: "";
@@ -1497,6 +1498,49 @@ body {
     color: var(--dim);
 }
 
+/* One static, seamless grain tile gives the surfaces a fine analogue texture.
+   It sits behind the content so type and images remain sharp. */
+:is(
+    .hub-hero,
+    .mhead,
+    .page-surface > .container > .sec,
+    .page-surface > .container > .list-hero,
+    .page-surface > .post,
+    .page-surface > .collection-surface,
+    .site-footer
+) {
+    position: relative;
+    isolation: isolate;
+}
+
+:is(
+    .hub-hero,
+    .mhead,
+    .page-surface > .container > .sec,
+    .page-surface > .container > .list-hero,
+    .page-surface > .post,
+    .page-surface > .collection-surface,
+    .site-footer
+)::after,
+.site-header::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    height: auto;
+    border-radius: inherit;
+    background: var(--grain-image) repeat 0 0 / 192px 192px;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: var(--grain-blend);
+    pointer-events: none;
+}
+
+@media (forced-colors: active), (prefers-contrast: more) {
+    :root {
+        --grain-image: none;
+    }
+}
+
 @media (max-width: 980px) {
     .paper-card {
         grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
@@ -1618,6 +1662,7 @@ body {
         --accent-faint: transparent;
         --glow: transparent;
         --glow-strong: transparent;
+        --grain-image: none;
         display: block;
         min-height: 0;
         background: #ffffff;
