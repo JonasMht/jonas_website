@@ -6,13 +6,11 @@
 {{- $iconSprite := partialCached "icon-sprite.html" "site" -}}
 <body data-icon-sprite="{{ $iconSprite.RelPermalink }}">
     <a class="skip" href="#main-content">Skip to content</a>
-    <div class="site-shell">
-        {{ partial "header.html" . }}
-        <main id="main-content" class="page-surface">
-            {{ block "main" . }}{{ end }}
-        </main>
-        {{ partial "footer.html" . }}
-    </div>
+    {{ partial "header.html" . }}
+    <main id="main-content" class="page-surface">
+        {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
     {{- /* Telemetry endpoint travels as a data- attribute rather than an inline
            script, so the CSP needs no hash for it. */ -}}
     {{ $js := resources.Get "js/main.js" | minify | fingerprint }}

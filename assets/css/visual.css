@@ -32,6 +32,7 @@
     --brand-royal: #285adc;
     --bg: #0e161f;
     --page-bg: #15212b;
+    --page-width: min(var(--maxw), calc(100% - 2 * clamp(16px, 3vw, 40px)));
     --panel: #15212b;
     --panel2: #1b2934;
     --line: #2b3a48;
@@ -859,21 +860,20 @@ html:not(.js) .s-handle {
 
 /* Professional portfolio: readable copy, generous space and useful metadata. */
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
     background: var(--bg);
 }
 
-/* One uninterrupted column runs behind the header, content and footer. */
-.site-shell {
-    display: flow-root;
-    width: min(var(--maxw), calc(100% - 2 * clamp(16px, 3vw, 40px)));
-    min-height: 100svh;
-    margin-inline: auto;
-    background: var(--page-bg);
-}
-
+/* Full-width header and footer frame a continuous central page. */
 .page-surface {
     display: flow-root;
-    padding-block: clamp(24px, 3vw, 40px) 40px;
+    flex: 1;
+    width: var(--page-width);
+    margin-inline: auto;
+    padding-block: clamp(24px, 3vw, 40px) 64px;
+    background: var(--page-bg);
 }
 
 .page-surface .monitor {
@@ -895,6 +895,7 @@ body {
 }
 
 .nav {
+    width: var(--page-width);
     padding-block: 14px;
     gap: 8px 6px;
 }
@@ -1303,8 +1304,14 @@ body {
 }
 
 .site-footer {
-    margin-top: 80px;
+    display: flow-root;
+    margin-top: 0;
     padding-block: 36px 0;
+    background: var(--page-bg);
+}
+
+.site-footer .container {
+    width: var(--page-width);
 }
 
 .footer-main {
@@ -1366,12 +1373,12 @@ body {
 }
 
 @media (max-width: 760px) {
-    body {
-        background: var(--page-bg);
+    :root {
+        --page-width: 100%;
     }
 
-    .site-shell {
-        width: 100%;
+    body {
+        background: var(--page-bg);
     }
 
     .page-surface {
@@ -1451,7 +1458,11 @@ body {
 }
 
 @media print {
-    .site-shell,
+    body {
+        display: block;
+        min-height: 0;
+    }
+
     .page-surface {
         width: 100%;
         max-width: none;
