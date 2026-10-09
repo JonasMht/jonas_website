@@ -4,7 +4,7 @@
     --study-grain: 0.16;
     --study-cyan: 0 209 235;
     --study-blue: 55 97 255;
-    --study-ray: 103 220 250;
+    --study-ray: 65 203 255;
     --grain-opacity: var(--study-grain);
     --field-cyan: rgb(var(--study-cyan) / calc(0.18 * var(--study-energy)));
     --field-blue: rgb(var(--study-blue) / calc(0.24 * var(--study-energy)));
@@ -18,6 +18,12 @@
     --field-blue: rgb(var(--study-blue) / calc(0.1 * var(--study-energy)));
     --glow: rgb(var(--study-ray) / calc(0.1 * var(--study-energy)));
     --glow-strong: rgb(var(--study-ray) / calc(0.2 * var(--study-energy)));
+}
+
+:root[data-study="blueprint"][data-theme="light"] {
+    --study-cyan: 0 156 210;
+    --study-blue: 40 90 220;
+    --study-ray: 40 90 220;
 }
 
 /* B: an orthographic wire grid and the cool green of early vector displays. */
@@ -138,6 +144,7 @@
 }
 
 .study-field {
+    display: none;
     position: absolute;
     z-index: -2;
     inset-block: 0;
@@ -146,6 +153,11 @@
     transform: translateX(-50%);
     overflow: hidden;
     pointer-events: none;
+}
+
+[data-study="light-grid"] .study-field,
+[data-study="afterglow"] .study-field {
+    display: block;
 }
 
 .study-field::after {
@@ -539,7 +551,7 @@ html:not(.js) .study-row {
 }
 
 @media (forced-colors: active), (prefers-contrast: more) {
-    .study-field {
+    [data-study] .study-field {
         display: none;
     }
 }
