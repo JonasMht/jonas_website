@@ -266,10 +266,10 @@ def discover_pages(public_dir):
 
 async def settle_page(page, javascript):
     """Scroll normally to load lazy images and reveal content before measuring."""
-    await page.evaluate("document.fonts.ready")
     if not javascript:
-        # With scripting disabled, Chromium does not invoke requestAnimationFrame
-        # callbacks created by evaluate(). Drive scrolling from Python instead.
+        # Disabled scripting prevents rAF callbacks in Chromium and promise
+        # resolution in Firefox, even when fonts have loaded. Keep these checks
+        # synchronous in the page and drive the bounded waits from Python.
         height = await page.evaluate("document.documentElement.scrollHeight")
         step = max(300, int(page.viewport_size["height"] * .8))
         for offset in range(0, height, step):
@@ -277,11 +277,15 @@ async def settle_page(page, javascript):
             await page.wait_for_timeout(20)
         await page.evaluate("scrollTo(0, 0)")
         for _ in range(20):
-            if await page.evaluate("[...document.images].every(image => image.complete)"):
+            ready = await page.evaluate(
+                "document.fonts.status === 'loaded' && "
+                "[...document.images].every(image => image.complete)"
+            )
+            if ready:
                 break
             await page.wait_for_timeout(100)
-        await page.evaluate("document.fonts.ready")
         return
+    await page.evaluate("document.fonts.ready")
     await page.evaluate("""async () => {
         const pause = () => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
         const height = document.documentElement.scrollHeight;
