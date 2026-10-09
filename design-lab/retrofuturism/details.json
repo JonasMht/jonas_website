@@ -110,5 +110,6 @@
             "glow": 80,
             "description": "Drafting lines, indexed rails and a stepped reveal. The most instrument-like direction."
         }
-    }
+    },
+    "lead": "aperture"
 }

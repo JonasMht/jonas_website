@@ -169,6 +169,13 @@ html:not(.js) .study-status-row button {
 .study-detail-name {
     padding: 14px 16px 6px;
 }
+.study-choice-label {
+    display: block;
+    margin-top: 5px;
+    color: var(--lab-accent);
+    font-size: 12px;
+    font-weight: 400;
+}
 .study-detail-description {
     padding: 0 16px 18px;
     color: var(--lab-dim);

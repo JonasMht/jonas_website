@@ -39,7 +39,10 @@ def detail_markup(details, presets, image):
         ("reveals", "reveal"),
     ):
         cards = []
-        for key, item in details[category].items():
+        items = list(details[category].items())
+        if category == "mixes":
+            items.sort(key=lambda pair: pair[0] != details["lead"])
+        for key, item in items:
             title = escape(
                 item.get("letter", "")
                 + (" · " if "letter" in item else "")
@@ -61,6 +64,11 @@ def detail_markup(details, presets, image):
                     )
                     + '"'
                 )
+            picked = (
+                '<span class="study-choice-label">Your pick</span>'
+                if category == "mixes" and key == details["lead"]
+                else ""
+            )
             cards.append(
                 f'<button type="button" class="study-detail-card" data-{attribute}="{key}" '
                 f'aria-pressed="false" aria-label="{title}"{variables}>'
@@ -68,7 +76,7 @@ def detail_markup(details, presets, image):
                 f'<span class="study-media-preview media-frame"{frame_attr}>'
                 f'<img src="{escape(image)}" width="240" height="150" loading="lazy" alt="">'
                 "</span></span>"
-                f'<span class="study-detail-name">{title}</span>'
+                f'<span class="study-detail-name">{title}{picked}</span>'
                 f'<span class="study-detail-description">{escape(item["description"])}</span>'
                 "</button>"
             )

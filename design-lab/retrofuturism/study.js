@@ -28,6 +28,7 @@
 
     function readState() {
         const query = new URLSearchParams(location.search);
+        const lead = details.mixes[details.lead];
         const mix = Object.hasOwn(details.mixes, query.get("mix"))
             ? details.mixes[query.get("mix")]
             : null;
@@ -36,23 +37,29 @@
             saved = JSON.parse(localStorage.getItem(storageKey)) || {};
         } catch (_) {}
         const requested = query.get("v") || mix?.version;
+        const hasSavedVersion = Object.hasOwn(presets, saved.version);
         const version = Object.hasOwn(presets, requested)
             ? requested
-            : Object.hasOwn(presets, saved.version)
+            : hasSavedVersion
               ? saved.version
-              : "ion";
+              : lead.version;
         const result = { version };
         for (const key of Object.keys(limits)) {
             const fallback = requested
                 ? (mix?.[key] ?? presets[version][key])
-                : bounded(key, saved[key], presets[version][key]);
+                : hasSavedVersion
+                  ? bounded(key, saved[key], presets[version][key])
+                  : lead[key];
             result[key] = bounded(key, query.get(key), fallback);
         }
         for (const [key, choices, baseline] of [
             ["frame", details.frames, "corners"],
             ["reveal", details.reveals, "still"],
         ]) {
-            const value = query.get(key) || mix?.[key] || (!requested && saved[key]);
+            const value =
+                query.get(key) ||
+                mix?.[key] ||
+                (!requested && (hasSavedVersion ? saved[key] : lead[key]));
             result[key] = Object.hasOwn(choices, value) ? value : baseline;
         }
         const theme = query.get("theme");

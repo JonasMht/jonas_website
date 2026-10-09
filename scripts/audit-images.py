@@ -57,6 +57,16 @@ async def main():
         await context.add_init_script("localStorage.setItem('jm.telemetry', 'off')")
         page = await context.new_page()
         page.on("pageerror", lambda error: errors.append(str(error)))
+        await page.goto(BASE + "/opt/", wait_until="networkidle")
+        lead = DETAILS["mixes"][DETAILS["lead"]]
+        query = parse_qs(urlsplit(page.url).query)
+        assert query["v"] == [lead["version"]]
+        for key in ("frame", "reveal", "grain", "grid", "glow"):
+            assert query[key] == [str(lead[key])]
+        assert (
+            await page.locator("[data-mix]").first.get_attribute("data-mix")
+            == DETAILS["lead"]
+        )
         await page.goto(BASE + "/opt/?mix=relay&theme=dark")
         for key, mix in DETAILS["mixes"].items():
             await explore(page, "mixes")
