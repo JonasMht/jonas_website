@@ -21,7 +21,7 @@ import sys
 import time
 from collections import Counter
 from pathlib import Path
-from urllib.parse import quote, urljoin, urlsplit
+from urllib.parse import quote, urljoin, urlsplit, urlunsplit
 
 from playwright.async_api import async_playwright
 
@@ -327,7 +327,9 @@ async def audit_page(page, args, route, width, theme, javascript, screenshot_bud
     page.on("requestfailed", on_failed)
     result = {"path": route, "width": width, "theme": theme, "javascript": javascript}
     try:
-        response = await page.goto(urljoin(args.base_url + "/", quote(route, safe="/")), wait_until="load", timeout=25000)
+        parts = urlsplit(route)
+        encoded_route = urlunsplit((parts.scheme, parts.netloc, quote(parts.path, safe="/%"), parts.query, parts.fragment))
+        response = await page.goto(urljoin(args.base_url + "/", encoded_route), wait_until="load", timeout=25000)
         result["status"] = response.status if response else None
         await settle_page(page, javascript)
         result.update(await page.evaluate(AUDIT_JS, {

@@ -1,0 +1,188 @@
+<aside class="study-bar" aria-label="Design comparison">
+    <div class="study-row">
+        <span class="study-label">Design study</span>
+        <div class="study-presets" role="group" aria-label="Visual direction">
+            <button type="button" data-preset="blueprint" aria-pressed="true">
+                <span>A</span> Blueprint
+            </button>
+            <button type="button" data-preset="vector" aria-pressed="false">
+                <span>B</span> Vector
+            </button>
+            <button type="button" data-preset="light-grid" aria-pressed="false">
+                <span>C</span> Light Grid
+            </button>
+            <button type="button" data-preset="afterglow" aria-pressed="false">
+                <span>D</span> Afterglow
+            </button>
+        </div>
+        <label class="study-mobile-picker">
+            <span class="sr-only">Visual direction</span>
+            <select data-study-preset>
+                <option value="blueprint">A · Blueprint</option>
+                <option value="vector">B · Vector</option>
+                <option value="light-grid">C · Light Grid</option>
+                <option value="afterglow">D · Afterglow</option>
+            </select>
+        </label>
+        <div class="study-tools">
+            <button
+                class="study-theme"
+                type="button"
+                data-study-theme
+                aria-label="Switch to light mode"
+                title="Switch to light mode"
+            >
+                <svg
+                    class="icon theme-icon--sun"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <use href="{{sprite}}#sun"></use>
+                </svg>
+                <svg
+                    class="icon theme-icon--moon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <use href="{{sprite}}#moon"></use>
+                </svg>
+            </button>
+            <details class="study-adjust">
+                <summary>
+                    <svg
+                        class="icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <use href="{{sprite}}#arrows-horizontal"></use>
+                    </svg>
+                    Adjust
+                </summary>
+                <div class="study-settings">
+                    <div class="study-settings-inner">
+                        <label class="study-knob" for="study-grain"
+                            >Background grain
+                            <output for="study-grain" data-value="grain">16%</output>
+                            <input
+                                id="study-grain"
+                                data-knob="grain"
+                                type="range"
+                                min="0"
+                                max="35"
+                                step="1"
+                                value="16"
+                            />
+                            <span>Fine, static texture behind the content.</span>
+                        </label>
+                        <label class="study-knob" for="study-grid"
+                            >Grid spacing <output for="study-grid" data-value="grid">32 px</output>
+                            <input
+                                id="study-grid"
+                                data-knob="grid"
+                                type="range"
+                                min="24"
+                                max="80"
+                                step="4"
+                                value="32"
+                            />
+                            <span>Smaller is denser; larger gives more space.</span>
+                        </label>
+                        <label class="study-knob" for="study-glow"
+                            >Light intensity
+                            <output for="study-glow" data-value="glow">100%</output>
+                            <input
+                                id="study-glow"
+                                data-knob="glow"
+                                type="range"
+                                min="0"
+                                max="160"
+                                step="5"
+                                value="100"
+                            />
+                            <span>Adjusts the halo around the background lines.</span>
+                        </label>
+                        <div class="study-actions">
+                            <label class="study-page-label" for="study-page"
+                                >Preview page
+                                <select id="study-page">
+                                    <option value="/opt/">Overview</option>
+                                    <option value="/opt/pro/">Professional</option>
+                                    <option value="/opt/personal/">Personal</option>
+                                    <option value="/opt/pro/research/cnca-2025/">
+                                        Research article
+                                    </option>
+                                    <option value="/opt/pro/publications/">Publications</option>
+                                </select>
+                            </label>
+                            <button type="button" data-study-reset>Reset this version</button>
+                            <button type="button" data-study-copy>
+                                <svg
+                                    class="icon"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.75"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <use href="{{sprite}}#copy"></use>
+                                </svg>
+                                Copy this version’s link
+                            </button>
+                            <a href="/" class="study-exit">Return to website</a>
+                        </div>
+                        <p class="study-references">
+                            Design references:
+                            <a
+                                href="https://motionographer.com/2011/01/24/full-coverage-talking-tron-with-digital-domain/"
+                                target="_blank"
+                                rel="noopener"
+                                >TRON’s geometric forms and light lines</a
+                            >
+                            ·
+                            <a
+                                href="https://gmunk.com/TRON-Board-Room"
+                                target="_blank"
+                                rel="noopener"
+                                >GMUNK’s grid-based interfaces</a
+                            >
+                            ·
+                            <a
+                                href="https://www.computerhistory.org/brochures/graphics/"
+                                target="_blank"
+                                rel="noopener"
+                                >Early computer graphics</a
+                            >
+                        </p>
+                        <p class="study-message" role="status" aria-live="polite"></p>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </div>
+    <p class="study-caption">
+        Blueprint · The current blue drafting field, with grain on the background.
+    </p>
+    <noscript
+        ><p class="study-noscript">
+            Enable JavaScript to compare versions and adjust the background. The website below
+            remains readable.
+        </p></noscript
+    >
+</aside>

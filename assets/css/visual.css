@@ -41,6 +41,8 @@
     --grain-image: url("/textures/grain.svg");
     --grain-opacity: 0.16;
     --grain-blend: soft-light;
+    --grain-neutral: #808080;
+    --grid-size: 32px;
     --page-width: min(var(--maxw), calc(100% - 2 * clamp(16px, 3vw, 40px)));
     --panel: #112131;
     --panel2: #162c40;
@@ -71,6 +73,7 @@
     --glow-strong: rgb(40 90 220 / 20%);
     --grain-opacity: 0.04;
     --grain-blend: multiply;
+    --grain-neutral: #ffffff;
     --panel: #ffffff;
     --panel2: #eff3f7;
     --text: #162b3b;
@@ -894,6 +897,7 @@ body {
 
 /* The backdrop fades into the gutters; content remains opaque and interactive. */
 .page-surface {
+    --side-fade: clamp(36px, 12vw, 200px);
     position: relative;
     isolation: isolate;
     display: flow-root;
@@ -903,16 +907,19 @@ body {
     padding-block: clamp(24px, 3vw, 40px) 64px;
 }
 
-.page-surface::before {
-    --side-fade: clamp(36px, 12vw, 200px);
+.page-surface::before,
+.page-surface::after {
     content: "";
     position: absolute;
-    z-index: -1;
     inset-block: 0;
     left: 50%;
     width: min(100vw, calc(100% + 200px));
     transform: translateX(-50%);
     pointer-events: none;
+}
+
+.page-surface::before {
+    z-index: -2;
     background-color: var(--page-bg);
     background-image:
         linear-gradient(
@@ -935,14 +942,34 @@ body {
         radial-gradient(ellipse min(600px, 60vw) 480px at 50% 100%, var(--field-blue), transparent);
     background-size:
         100% 100%,
-        160px 160px,
-        160px 160px,
-        32px 32px,
-        32px 32px,
+        calc(var(--grid-size) * 5) calc(var(--grid-size) * 5),
+        calc(var(--grid-size) * 5) calc(var(--grid-size) * 5),
+        var(--grid-size) var(--grid-size),
+        var(--grid-size) var(--grid-size),
         100% 100%,
         100% 100%,
         100% 100%;
     background-position: center top;
+}
+
+/* Texture belongs to the illuminated drafting field. Opaque content surfaces
+   paint above both backdrop layers, keeping text, photos and controls smooth. */
+.page-surface::after {
+    z-index: -1;
+    background-image:
+        linear-gradient(
+            90deg,
+            var(--grain-neutral),
+            transparent var(--side-fade),
+            transparent calc(100% - var(--side-fade)),
+            var(--grain-neutral)
+        ),
+        var(--grain-image);
+    background-size:
+        100% 100%,
+        192px 192px;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: var(--grain-blend);
 }
 
 .hub-hero {
@@ -975,7 +1002,8 @@ body {
 }
 
 .page-surface > .post,
-.page-surface > .collection-surface {
+.page-surface > .collection-surface,
+.page-surface > .notfound {
     width: calc(100% - 2 * var(--pad));
     margin-inline: auto;
     padding-block: 32px;
@@ -1498,41 +1526,8 @@ body {
     color: var(--dim);
 }
 
-/* One static, seamless grain tile gives the surfaces a fine analogue texture.
-   It sits behind the content so type and images remain sharp. */
-:is(
-    .hub-hero,
-    .mhead,
-    .page-surface > .container > .sec,
-    .page-surface > .container > .list-hero,
-    .page-surface > .post,
-    .page-surface > .collection-surface,
-    .site-footer
-) {
-    position: relative;
-    isolation: isolate;
-}
-
-:is(
-    .hub-hero,
-    .mhead,
-    .page-surface > .container > .sec,
-    .page-surface > .container > .list-hero,
-    .page-surface > .post,
-    .page-surface > .collection-surface,
-    .site-footer
-)::after,
 .site-header::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    height: auto;
-    border-radius: inherit;
-    background: var(--grain-image) repeat 0 0 / 192px 192px;
-    opacity: var(--grain-opacity);
-    mix-blend-mode: var(--grain-blend);
-    pointer-events: none;
+    content: none;
 }
 
 @media (forced-colors: active), (prefers-contrast: more) {
@@ -1678,6 +1673,7 @@ body {
     }
 
     .page-surface::before,
+    .page-surface::after,
     .hub-hero::before {
         content: none;
     }
