@@ -32,7 +32,6 @@
     --brand-royal: #285adc;
     --bg: #0e161f;
     --page-bg: #15212b;
-    --page-shadow: 0 12px 40px rgb(0 0 0 / 14%), 0 1px 3px rgb(0 0 0 / 10%);
     --panel: #15212b;
     --panel2: #1b2934;
     --line: #2b3a48;
@@ -40,7 +39,7 @@
     --text: #edf3f7;
     --dim: #b0bdc9;
     --faint: #97aaba;
-    --header-bg: rgb(14 22 31 / 96%);
+    --header-bg: rgb(21 33 43 / 96%);
     --console-bg: #101821;
     --accent: #86bcdb;
     --accent-text: #b4d9ed;
@@ -54,7 +53,6 @@
 :root[data-theme="light"] {
     --bg: #edf1f5;
     --page-bg: #ffffff;
-    --page-shadow: 0 12px 40px rgb(22 43 59 / 5%), 0 1px 3px rgb(22 43 59 / 3%);
     --panel2: #eff3f7;
     --text: #162b3b;
     --dim: #4c6072;
@@ -63,7 +61,7 @@
     --accent-text: #26327f;
     --accent-dim: rgb(38 50 127 / 30%);
     --accent-faint: rgb(40 90 220 / 6%);
-    --header-bg: rgb(237 241 245 / 96%);
+    --header-bg: rgb(255 255 255 / 96%);
     --console-bg: #f6f7fa;
 }
 
@@ -864,20 +862,18 @@ body {
     background: var(--bg);
 }
 
-/* A continuous page surface uses the empty gutters on larger screens. */
-.page-surface {
+/* One uninterrupted column runs behind the header, content and footer. */
+.site-shell {
     display: flow-root;
     width: min(var(--maxw), calc(100% - 2 * clamp(16px, 3vw, 40px)));
-    margin: 28px auto 0;
-    padding-block: clamp(24px, 3vw, 40px) 40px;
-    border: 1px solid var(--line);
-    border-radius: 16px;
+    min-height: 100svh;
+    margin-inline: auto;
     background: var(--page-bg);
-    box-shadow: var(--page-shadow);
 }
 
-.page-surface:has(> .post) {
-    max-width: 920px;
+.page-surface {
+    display: flow-root;
+    padding-block: clamp(24px, 3vw, 40px) 40px;
 }
 
 .page-surface .monitor {
@@ -1374,13 +1370,12 @@ body {
         background: var(--page-bg);
     }
 
-    .page-surface {
+    .site-shell {
         width: 100%;
-        margin-top: 0;
+    }
+
+    .page-surface {
         padding-block: 24px 32px;
-        border: 0;
-        border-radius: 0;
-        box-shadow: none;
     }
 
     .nav {
@@ -1456,15 +1451,13 @@ body {
 }
 
 @media print {
-    .page-surface,
-    .page-surface:has(> .post) {
+    .site-shell,
+    .page-surface {
         width: 100%;
         max-width: none;
+        min-height: 0;
         margin: 0;
         padding: 0;
-        border: 0;
-        border-radius: 0;
         background: none;
-        box-shadow: none;
     }
 }
