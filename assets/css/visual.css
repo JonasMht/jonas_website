@@ -30,40 +30,48 @@
     --brand-navy: #26327f;
     --brand-cyan: #4db3ea;
     --brand-royal: #285adc;
-    --bg: #0a111a;
-    --page-bg: #0e1b2a;
-    --blueprint-line: rgb(134 188 219 / 4%);
-    --blueprint-major: rgb(134 188 219 / 5%);
+    --bg: #060c15;
+    --page-bg: #0a1728;
+    --blueprint-line: rgb(86 195 231 / 4%);
+    --blueprint-major: rgb(108 195 245 / 6%);
+    --field-cyan: rgb(0 209 235 / 18%);
+    --field-blue: rgb(55 97 255 / 24%);
+    --glow: rgb(65 203 255 / 18%);
+    --glow-strong: rgb(65 203 255 / 36%);
     --page-width: min(var(--maxw), calc(100% - 2 * clamp(16px, 3vw, 40px)));
-    --panel: #192a39;
-    --panel2: #203444;
-    --line: #2b3a48;
-    --line2: #455869;
+    --panel: #112131;
+    --panel2: #162c40;
+    --line: #263d50;
+    --line2: #436175;
     --text: #edf3f7;
-    --dim: #b0bdc9;
-    --faint: #97aaba;
-    --header-bg: rgb(25 42 57 / 97%);
+    --dim: #b5c5d4;
+    --faint: #a4bacb;
+    --header-bg: rgb(12 25 40 / 97%);
     --console-bg: #101821;
-    --accent: #86bcdb;
-    --accent-text: #b4d9ed;
-    --accent-dim: rgb(77 179 234 / 40%);
-    --accent-faint: rgb(77 179 234 / 9%);
+    --accent: #70dff2;
+    --accent-text: #b3f3ff;
+    --accent-dim: rgb(77 210 240 / 38%);
+    --accent-faint: rgb(77 210 240 / 9%);
     --control-height: 44px;
     --control-radius: 8px;
     --ease: cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
 :root[data-theme="light"] {
-    --bg: #edf1f5;
-    --page-bg: #d8e2ed;
+    --bg: #edf1f7;
+    --page-bg: #d5e1f0;
     --blueprint-line: rgb(44 91 136 / 3%);
     --blueprint-major: rgb(44 91 136 / 5%);
+    --field-cyan: rgb(0 156 210 / 9%);
+    --field-blue: rgb(40 90 220 / 10%);
+    --glow: rgb(40 90 220 / 10%);
+    --glow-strong: rgb(40 90 220 / 20%);
     --panel: #ffffff;
     --panel2: #eff3f7;
     --text: #162b3b;
-    --dim: #405467;
-    --faint: #43576a;
-    --accent: #2b5884;
+    --dim: #31465d;
+    --faint: #384b60;
+    --accent: #25458b;
     --accent-text: #26327f;
     --accent-dim: rgb(38 50 127 / 30%);
     --accent-faint: rgb(40 90 220 / 6%);
@@ -284,6 +292,7 @@ strong {
         color 120ms ease,
         background-color 120ms ease,
         border-color 120ms ease,
+        box-shadow 120ms ease,
         transform 120ms var(--ease);
 }
 
@@ -309,10 +318,12 @@ strong {
 
 .lnk.pri {
     background: var(--accent);
+    box-shadow: 0 0 20px var(--glow);
 }
 
-.lnk.pri:hover {
+.lnk.pri:is(:hover, :focus-visible) {
     background: var(--accent-text);
+    box-shadow: 0 0 26px var(--glow-strong);
 }
 
 .nav a.t {
@@ -462,6 +473,11 @@ strong {
 .post-hero {
     --frame-size: 18px;
     --frame-width: 2px;
+}
+
+.hub-hero__photo::before,
+.post-hero::before {
+    filter: drop-shadow(0 0 5px var(--glow-strong));
 }
 
 .mleft .photo,
@@ -871,25 +887,73 @@ body {
     background: var(--bg);
 }
 
-/* Full-width header and footer frame a continuous central page. */
+/* The backdrop fades into the gutters; content remains opaque and interactive. */
 .page-surface {
+    position: relative;
+    isolation: isolate;
     display: flow-root;
     flex: 1;
     width: var(--page-width);
     margin-inline: auto;
     padding-block: clamp(24px, 3vw, 40px) 64px;
+}
+
+.page-surface::before {
+    --side-fade: clamp(36px, 12vw, 200px);
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset-block: 0;
+    left: 50%;
+    width: min(100vw, calc(100% + 200px));
+    transform: translateX(-50%);
+    pointer-events: none;
     background-color: var(--page-bg);
     background-image:
+        linear-gradient(
+            90deg,
+            var(--bg),
+            transparent var(--side-fade),
+            transparent calc(100% - var(--side-fade)),
+            var(--bg)
+        ),
         linear-gradient(var(--blueprint-major) 1px, transparent 1px),
         linear-gradient(90deg, var(--blueprint-major) 1px, transparent 1px),
         linear-gradient(var(--blueprint-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
+        linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px),
+        radial-gradient(ellipse min(440px, 50vw) 640px at 8% 200px, var(--field-cyan), transparent),
+        radial-gradient(
+            ellipse min(520px, 50vw) 800px at 94% 480px,
+            var(--field-blue),
+            transparent
+        ),
+        radial-gradient(ellipse min(600px, 60vw) 480px at 50% 100%, var(--field-blue), transparent);
     background-size:
+        100% 100%,
         160px 160px,
         160px 160px,
         32px 32px,
-        32px 32px;
+        32px 32px,
+        100% 100%,
+        100% 100%,
+        100% 100%;
     background-position: center top;
+}
+
+.hub-hero {
+    position: relative;
+    border-color: var(--accent-dim);
+    box-shadow: 0 16px 48px -24px var(--glow);
+}
+
+.hub-hero::before {
+    content: "";
+    position: absolute;
+    inset: -1px 8% auto;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--brand-royal), transparent);
+    box-shadow: 0 0 16px var(--glow-strong);
 }
 
 /* Quiet, solid reading surfaces keep the drafting grid out of the text. */
@@ -936,6 +1000,32 @@ body {
     content: none;
 }
 
+.site-header::after,
+.site-footer::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-dim) 20%,
+        var(--accent) 50%,
+        var(--brand-royal) 80%,
+        transparent
+    );
+    box-shadow: 0 0 16px var(--glow);
+}
+
+.site-header::after {
+    bottom: -1px;
+}
+
+.site-footer::before {
+    top: -1px;
+}
+
 .nav {
     width: var(--page-width);
     padding-block: 14px;
@@ -980,6 +1070,9 @@ body {
 .nav a.t.on {
     border-color: var(--accent-dim);
     background: var(--accent-faint);
+    box-shadow:
+        inset 0 0 16px var(--accent-faint),
+        0 0 16px var(--glow);
 }
 
 .theme-toggle {
@@ -1346,6 +1439,7 @@ body {
 }
 
 .site-footer {
+    position: relative;
     display: flow-root;
     margin-top: 0;
     padding-block: 36px 0;
@@ -1418,10 +1512,6 @@ body {
 @media (max-width: 760px) {
     :root {
         --page-width: 100%;
-    }
-
-    body {
-        background: var(--page-bg);
     }
 
     .page-surface {
@@ -1526,6 +1616,8 @@ body {
         --faint: #666666;
         --accent: #2b5d8f;
         --accent-faint: transparent;
+        --glow: transparent;
+        --glow-strong: transparent;
         display: block;
         min-height: 0;
         background: #ffffff;
@@ -1538,5 +1630,10 @@ body {
         margin: 0;
         padding: 0;
         background: none;
+    }
+
+    .page-surface::before,
+    .hub-hero::before {
+        content: none;
     }
 }
