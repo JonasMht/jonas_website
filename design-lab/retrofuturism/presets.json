@@ -2,7 +2,7 @@
     "blueprint": {
         "letter": "A",
         "name": "Blueprint",
-        "family": "Reference",
+        "family": "Shortlist",
         "pattern": "orthographic",
         "grain": 16,
         "grid": 32,
@@ -11,12 +11,13 @@
         "swatch": {
             "dark": ["#0a1728", "#70dff2", "#00d1eb", "#3761ff"],
             "light": ["#d5e1f0", "#25458b", "#009cd2", "#285adc"]
-        }
+        },
+        "round": 1
     },
     "vector": {
         "letter": "B",
         "name": "Vector",
-        "family": "Reference",
+        "family": "Explore",
         "pattern": "orthographic",
         "grain": 20,
         "grid": 28,
@@ -25,12 +26,13 @@
         "swatch": {
             "dark": ["#0a1a1c", "#9ae7d4", "#58d1a8", "#0b7e83"],
             "light": ["#dae6df", "#226152", "#58d1a8", "#0b7e83"]
-        }
+        },
+        "round": 1
     },
     "light-grid": {
         "letter": "C",
         "name": "Light Grid",
-        "family": "Favourite",
+        "family": "Earlier favourite",
         "pattern": "perspective",
         "grain": 18,
         "grid": 48,
@@ -39,12 +41,13 @@
         "swatch": {
             "dark": ["#071521", "#94eaff", "#00bcec", "#1c4ad6"],
             "light": ["#dbe6ed", "#205575", "#00bcec", "#1c4ad6"]
-        }
+        },
+        "round": 1
     },
     "afterglow": {
         "letter": "D",
         "name": "Afterglow",
-        "family": "Favourite",
+        "family": "Earlier favourite",
         "pattern": "diagonal",
         "grain": 24,
         "grid": 40,
@@ -53,12 +56,13 @@
         "swatch": {
             "dark": ["#17172b", "#b7baff", "#7041e0", "#d05269"],
             "light": ["#e1ddeb", "#584183", "#7041e0", "#d05269"]
-        }
+        },
+        "round": 1
     },
     "ion": {
         "letter": "E",
         "name": "Ion",
-        "family": "New",
+        "family": "Top choice",
         "pattern": "corridor",
         "grain": 18,
         "grid": 44,
@@ -67,12 +71,13 @@
         "swatch": {
             "dark": ["#061522", "#a0efff", "#00d0f5", "#3354f6"],
             "light": ["#dce9f1", "#195574", "#00adc8", "#4762d9"]
-        }
+        },
+        "round": 2
     },
     "dusk": {
         "letter": "F",
         "name": "Dusk",
-        "family": "New",
+        "family": "Shortlist",
         "pattern": "horizon",
         "grain": 25,
         "grid": 60,
@@ -81,12 +86,13 @@
         "swatch": {
             "dark": ["#181629", "#edb9d2", "#6559ef", "#f09178"],
             "light": ["#eadfe6", "#80415e", "#9b8ce5", "#e8a885"]
-        }
+        },
+        "round": 2
     },
     "contour": {
         "letter": "G",
         "name": "Contour",
-        "family": "New",
+        "family": "Explore",
         "pattern": "contours",
         "grain": 20,
         "grid": 40,
@@ -95,12 +101,13 @@
         "swatch": {
             "dark": ["#071d22", "#92e9d3", "#23beab", "#9764f5"],
             "light": ["#dce9e6", "#235d56", "#59b4a2", "#aa8bcf"]
-        }
+        },
+        "round": 2
     },
     "orbit": {
         "letter": "H",
         "name": "Orbit",
-        "family": "New",
+        "family": "Shortlist",
         "pattern": "orbits",
         "grain": 14,
         "grid": 52,
@@ -109,12 +116,13 @@
         "swatch": {
             "dark": ["#111c2a", "#caddeb", "#507bac", "#d69d5c"],
             "light": ["#e0e7ed", "#365369", "#7b99b8", "#bc915b"]
-        }
+        },
+        "round": 2
     },
     "prism": {
         "letter": "I",
         "name": "Prism",
-        "family": "New",
+        "family": "Top choice",
         "pattern": "facets",
         "grain": 16,
         "grid": 64,
@@ -123,12 +131,13 @@
         "swatch": {
             "dark": ["#0e142a", "#c0caff", "#32bcd1", "#8558ed"],
             "light": ["#e2e5f1", "#454f89", "#75b9c9", "#9e88d1"]
-        }
+        },
+        "round": 2
     },
     "solar": {
         "letter": "J",
         "name": "Solar",
-        "family": "New",
+        "family": "Explore",
         "pattern": "raster",
         "grain": 26,
         "grid": 48,
@@ -137,6 +146,7 @@
         "swatch": {
             "dark": ["#20180f", "#f3ce8e", "#bd792c", "#d2643f"],
             "light": ["#eee2d0", "#765027", "#b58847", "#cb926c"]
-        }
+        },
+        "round": 2
     }
 }

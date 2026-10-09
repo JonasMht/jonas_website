@@ -1,0 +1,114 @@
+{
+    "frames": {
+        "corners": {
+            "name": "Original corners",
+            "description": "The familiar L brackets. A clean reference for every comparison."
+        },
+        "rails": {
+            "name": "Light rails",
+            "description": "Long, fine tracks with small index ticks. Precise and architectural."
+        },
+        "bevel": {
+            "name": "Prism cut",
+            "description": "Chamfered corners with two illuminated edges. A more sculpted frame."
+        },
+        "echo": {
+            "name": "Double exposure",
+            "description": "Offset corner traces in two tones. A restrained phosphor afterimage."
+        },
+        "arc": {
+            "name": "Orbital arcs",
+            "description": "Open arcs and four quiet alignment ticks. Softer, spacious geometry."
+        }
+    },
+    "reveals": {
+        "still": {
+            "name": "Immediate",
+            "description": "No entrance effect. The reference for speed and clarity."
+        },
+        "sweep": {
+            "name": "Light sweep",
+            "description": "A single light line travels down as the image appears. 620 ms."
+        },
+        "aperture": {
+            "name": "Split aperture",
+            "description": "A diagonal opening expands from the centre. 540 ms."
+        },
+        "develop": {
+            "name": "Phosphor develop",
+            "description": "Soft light resolves into a crisp photograph. 480 ms."
+        },
+        "raster": {
+            "name": "Raster build",
+            "description": "Twelve measured steps reveal the image like a plotter. 600 ms."
+        }
+    },
+    "mixes": {
+        "relay": {
+            "letter": "K",
+            "name": "Ion / Relay",
+            "version": "ion",
+            "frame": "rails",
+            "reveal": "sweep",
+            "grain": 18,
+            "grid": 44,
+            "glow": 125,
+            "description": "Your Ion palette, precise light rails and one clean scan. The strongest starting point."
+        },
+        "aperture": {
+            "letter": "L",
+            "name": "Prism / Aperture",
+            "version": "prism",
+            "frame": "bevel",
+            "reveal": "aperture",
+            "grain": 16,
+            "grid": 64,
+            "glow": 110,
+            "description": "Faceted light, cut corners and a diagonal reveal. Sharper and more cinematic."
+        },
+        "ghost": {
+            "letter": "M",
+            "name": "Ion / Ghost",
+            "version": "ion",
+            "frame": "echo",
+            "reveal": "develop",
+            "grain": 22,
+            "grid": 64,
+            "glow": 105,
+            "description": "A wider corridor, softer glow and a double trace. More analogue, less insistent."
+        },
+        "observatory": {
+            "letter": "N",
+            "name": "Orbit / Observatory",
+            "version": "orbit",
+            "frame": "arc",
+            "reveal": "develop",
+            "grain": 14,
+            "grid": 64,
+            "glow": 80,
+            "description": "Broad silver arcs and quiet image frames. The most restrained of the new mixes."
+        },
+        "film": {
+            "letter": "O",
+            "name": "Dusk / Film",
+            "version": "dusk",
+            "frame": "echo",
+            "reveal": "aperture",
+            "grain": 28,
+            "grid": 72,
+            "glow": 110,
+            "description": "Rose light, coarser background texture and an offset frame. A warmer alternative."
+        },
+        "plot": {
+            "letter": "P",
+            "name": "Blueprint / Plot",
+            "version": "blueprint",
+            "frame": "rails",
+            "reveal": "raster",
+            "grain": 18,
+            "grid": 40,
+            "glow": 80,
+            "description": "Drafting lines, indexed rails and a stepped reveal. The most instrument-like direction."
+        }
+    }
+}

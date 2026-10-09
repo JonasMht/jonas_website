@@ -23,24 +23,232 @@
         </div>
         <div class="study-tools">
             <details class="study-browse">
-                <summary aria-label="Browse all designs" title="Browse all designs">
-                    {{icon:layout-grid}}<span class="study-tool-label"
-                        >{{preset_count}} designs</span
-                    >
+                <summary
+                    aria-label="Explore designs, frames, reveals and votes"
+                    title="Explore designs, frames, reveals and votes"
+                >
+                    {{icon:layout-grid}}<span class="study-tool-label">Explore</span>
                 </summary>
                 <div class="study-settings study-gallery">
                     <div class="study-gallery-inner">
-                        <p class="study-gallery-intro">
-                            Six new directions, your two favourites and the original references.
-                            Pick one to try it on this page.
-                        </p>
                         <div
-                            class="study-gallery-grid"
+                            class="study-sections"
                             role="group"
-                            aria-label="All visual directions"
+                            aria-label="Explore the design study"
                         >
-                            {{preset_cards}}
+                            <button
+                                type="button"
+                                data-study-pane="mixes"
+                                aria-pressed="true"
+                                aria-controls="study-mixes"
+                            >
+                                New mixes
+                            </button>
+                            <button
+                                type="button"
+                                data-study-pane="backgrounds"
+                                aria-pressed="false"
+                                aria-controls="study-backgrounds"
+                            >
+                                Backdrops
+                            </button>
+                            <button
+                                type="button"
+                                data-study-pane="frames"
+                                aria-pressed="false"
+                                aria-controls="study-frames"
+                            >
+                                Frames
+                            </button>
+                            <button
+                                type="button"
+                                data-study-pane="reveals"
+                                aria-pressed="false"
+                                aria-controls="study-reveals"
+                            >
+                                Reveals
+                            </button>
+                            <button
+                                type="button"
+                                data-study-pane="votes"
+                                aria-pressed="false"
+                                aria-controls="study-votes"
+                            >
+                                Your votes <span data-vote-count>0</span>
+                            </button>
                         </div>
+                        <section
+                            id="study-mixes"
+                            data-study-panel="mixes"
+                            aria-label="New combinations"
+                        >
+                            <p class="study-gallery-intro">
+                                Six twists on your shortlist. Ion and Prism lead; Orbit, Dusk and
+                                Blueprint offer quieter alternatives. Try a mix, replay its
+                                entrance, then vote.
+                            </p>
+                            <div class="study-detail-grid">{{mixes_cards}}</div>
+                        </section>
+                        <section
+                            id="study-backgrounds"
+                            data-study-panel="backgrounds"
+                            aria-label="Background directions"
+                            hidden
+                        >
+                            <p class="study-gallery-intro">
+                                All ten backdrops remain available. Changing one keeps your chosen
+                                frame and reveal.
+                            </p>
+                            <div
+                                class="study-gallery-grid"
+                                role="group"
+                                aria-label="All visual directions"
+                            >
+                                {{preset_cards}}
+                            </div>
+                        </section>
+                        <section
+                            id="study-frames"
+                            data-study-panel="frames"
+                            aria-label="Image frame designs"
+                            hidden
+                        >
+                            <p class="study-gallery-intro">
+                                Four new ornaments and the original brackets. Select one to see it
+                                on the real images, including the header.
+                            </p>
+                            <div class="study-detail-grid">{{frames_cards}}</div>
+                        </section>
+                        <section
+                            id="study-reveals"
+                            data-study-panel="reveals"
+                            aria-label="Image reveal designs"
+                            hidden
+                        >
+                            <p class="study-gallery-intro">
+                                Hover or focus a preview to play it. Select one to try it on the
+                                page. Entrances run once when images arrive; reduced motion shows
+                                them immediately.
+                            </p>
+                            <div class="study-detail-grid">{{reveals_cards}}</div>
+                        </section>
+                        <section
+                            id="study-votes"
+                            data-study-panel="votes"
+                            aria-label="Your design votes"
+                            hidden
+                        >
+                            <p class="study-gallery-intro">
+                                Rate the parts of your current mix. Votes stay in this browser.
+                                <strong
+                                    >Copy your votes and paste them into our conversation</strong
+                                >
+                                so I can follow your choices.
+                            </p>
+                            <div class="study-vote-grid">
+                                <fieldset data-vote-group="backgrounds">
+                                    <legend>
+                                        Backdrop · <span data-vote-name="backgrounds"></span>
+                                    </legend>
+                                    <div class="study-rating">
+                                        <button
+                                            type="button"
+                                            data-rating="love"
+                                            aria-pressed="false"
+                                        >
+                                            Love</button
+                                        ><button
+                                            type="button"
+                                            data-rating="maybe"
+                                            aria-pressed="false"
+                                        >
+                                            Maybe</button
+                                        ><button
+                                            type="button"
+                                            data-rating="pass"
+                                            aria-pressed="false"
+                                        >
+                                            Pass
+                                        </button>
+                                    </div>
+                                </fieldset>
+                                <fieldset data-vote-group="frames">
+                                    <legend>Frame · <span data-vote-name="frames"></span></legend>
+                                    <div class="study-rating">
+                                        <button
+                                            type="button"
+                                            data-rating="love"
+                                            aria-pressed="false"
+                                        >
+                                            Love</button
+                                        ><button
+                                            type="button"
+                                            data-rating="maybe"
+                                            aria-pressed="false"
+                                        >
+                                            Maybe</button
+                                        ><button
+                                            type="button"
+                                            data-rating="pass"
+                                            aria-pressed="false"
+                                        >
+                                            Pass
+                                        </button>
+                                    </div>
+                                </fieldset>
+                                <fieldset data-vote-group="reveals">
+                                    <legend>Reveal · <span data-vote-name="reveals"></span></legend>
+                                    <div class="study-rating">
+                                        <button
+                                            type="button"
+                                            data-rating="love"
+                                            aria-pressed="false"
+                                        >
+                                            Love</button
+                                        ><button
+                                            type="button"
+                                            data-rating="maybe"
+                                            aria-pressed="false"
+                                        >
+                                            Maybe</button
+                                        ><button
+                                            type="button"
+                                            data-rating="pass"
+                                            aria-pressed="false"
+                                        >
+                                            Pass
+                                        </button>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="study-vote-actions">
+                                <button type="button" data-save-mix>
+                                    {{icon:check}} Save this mix
+                                </button>
+                                <button type="button" data-copy-votes>
+                                    {{icon:copy}} Copy votes &amp; links
+                                </button>
+                            </div>
+                            <label class="study-note-label" for="study-vote-note"
+                                >Anything you would change?
+                                <textarea
+                                    id="study-vote-note"
+                                    rows="2"
+                                    maxlength="2000"
+                                    placeholder="For example: Ion colours, Prism frame, a subtler reveal…"
+                                ></textarea>
+                            </label>
+                            <p class="study-vote-help">
+                                Click a selected rating to clear it. Saving a mix keeps its exact
+                                settings and theme.
+                            </p>
+                            <p class="study-vote-status" role="status"></p>
+                            <ul class="study-saved-mixes" aria-label="Saved combinations"></ul>
+                            <label class="study-vote-export-label" for="study-vote-export"
+                                >Your votes, ready to share
+                                <textarea id="study-vote-export" rows="6" readonly></textarea>
+                            </label>
+                        </section>
                     </div>
                 </div>
             </details>
@@ -195,9 +403,21 @@
             </details>
         </div>
     </div>
-    <p class="study-caption" aria-live="polite">
-        Blueprint · The current blue drafting field, with grain on the background.
-    </p>
+    <div class="study-status-row">
+        <p class="study-caption" aria-live="polite">
+            Blueprint · The current blue drafting field, with grain on the background.
+        </p>
+        <button
+            type="button"
+            data-study-replay
+            aria-label="Replay image entrance"
+            title="Replay image entrance"
+        >
+            {{icon:player-play}}<span class="study-replay-label">Replay</span>
+        </button>
+        <button type="button" data-study-open-votes>Vote</button>
+    </div>
+    <p class="study-replay-status sr-only" role="status"></p>
     <noscript
         ><p class="study-noscript">
             Enable JavaScript to compare versions and adjust the background. The website below

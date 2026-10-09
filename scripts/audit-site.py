@@ -144,6 +144,17 @@ AUDIT_JS = r"""({touch, controlSelector, javascript}) => {
         }
         const frame = image.closest('.media-frame');
         if (!frame) { add('missing-image-frame', image, {url: image.currentSrc || image.src}); continue; }
+        const ornament = frame.querySelector(':scope > .study-ornament:not([hidden])');
+        if (ornament) {
+            const paths = [...ornament.querySelectorAll('path')];
+            if (!paths.some(path => path.getAttribute('d') && path.getTotalLength() > 0 && style(path).stroke !== 'none')) {
+                add('missing-frame-paint', frame, {});
+            }
+            const rect = ornament.getBoundingClientRect();
+            const clipped = clippedBy(frame, rect, true);
+            if (clipped) add('clipped-image-frame', frame, {rect: rectData(rect), ...clipped});
+            continue;
+        }
         const before = getComputedStyle(frame, '::before');
         if (['none', 'normal'].includes(before.content) || before.display === 'none' || before.backgroundImage === 'none') {
             add('missing-frame-paint', frame, {}); continue;
@@ -446,17 +457,23 @@ def main():
     parser.add_argument("--themes", nargs="+", choices=["dark", "light"], default=["dark", "light"])
     parser.add_argument("--paths", nargs="+", help="Audit specific routes instead of discovering every rendered page.")
     parser.add_argument("--study", action="store_true", help="Audit every design study and each new palette across the main page types.")
+    parser.add_argument("--image-study", action="store_true", help="Audit the six image/frame combinations across the main page types.")
     parser.add_argument("--browser", choices=["chromium", "firefox", "webkit"], default="chromium")
     parser.add_argument("--skip-no-js", action="store_true")
     parser.add_argument("--max-screenshots", type=int, default=120)
     args = parser.parse_args()
+    if args.image_study:
+        if args.paths or args.study:
+            parser.error("--image-study cannot be combined with --paths or --study")
+        details = json.loads((ROOT / "design-lab/retrofuturism/details.json").read_text())
+        args.paths = [f"/opt{route}?mix={key}" for key in details["mixes"] for route in SAMPLE_ROUTES]
     if args.study:
         if args.paths:
             parser.error("--study and --paths cannot be combined")
         presets = json.loads((ROOT / "design-lab/retrofuturism/presets.json").read_text())
         args.paths = [f"/opt/?v={key}" for key in presets]
         for key, preset in presets.items():
-            if preset["family"] == "New":
+            if preset["round"] == 2:
                 args.paths.extend(f"/opt{route}?v={key}" for route in (
                     "/pro/", "/personal/", "/pro/research/cnca-2025/", "/pro/publications/", "/lab/", "/404.html",
                 ))

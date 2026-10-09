@@ -51,6 +51,7 @@ async def main():
         styles = []
         for version in PRESETS:
             await page.locator(".study-browse summary").click()
+            await page.locator('[data-study-pane="backgrounds"]').click()
             button = page.locator(f'[data-preset="{version}"]')
             await button.focus()
             await page.keyboard.press("Enter")
@@ -70,7 +71,8 @@ async def main():
         assert await page.locator("html").get_attribute("data-study") == "solar"
         await page.locator(".study-browse summary").click()
         await page.locator(".study-adjust summary").focus()
-        await page.keyboard.press("Tab")
+        for _ in range(3):
+            await page.keyboard.press("Tab")
         assert await page.locator(".site-header .sys").evaluate(
             "e => e === document.activeElement"
         )
@@ -85,7 +87,7 @@ async def main():
         # Every new geometry responds to its density control, including equal spacing
         # across different designs (which must not retain the previous vector path).
         for version, preset in PRESETS.items():
-            if preset["family"] != "New":
+            if preset["round"] != 2:
                 continue
             await page.locator("[data-study-preset]").select_option(version)
             await page.locator(".study-adjust summary").click()
@@ -207,6 +209,7 @@ async def main():
         await page.locator("[data-study-preset]").select_option("vector")
         assert await page.locator("html").get_attribute("data-study") == "vector"
         await page.locator(".study-browse summary").click()
+        await page.locator('[data-study-pane="backgrounds"]').click()
         await page.locator('[data-preset="solar"]').click()
         assert await page.locator("html").get_attribute("data-study") == "solar"
         await page.locator(".study-browse summary").click()

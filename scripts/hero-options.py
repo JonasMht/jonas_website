@@ -11,6 +11,7 @@ import re
 import shutil
 import sys
 from html import escape
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 
@@ -19,11 +20,67 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "design-lab" / "retrofuturism"
 
 
+class PreviewImage(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.src = ""
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "img" and "art-img" in attrs.get("class", "") and not self.src:
+            self.src = attrs["src"]
+
+
+def detail_markup(details, presets, image):
+    panels = []
+    for category, attribute in (
+        ("mixes", "mix"),
+        ("frames", "frame"),
+        ("reveals", "reveal"),
+    ):
+        cards = []
+        for key, item in details[category].items():
+            title = escape(
+                item.get("letter", "")
+                + (" · " if "letter" in item else "")
+                + item["name"]
+            )
+            frame = key if category == "frames" else item.get("frame")
+            frame_attr = f' data-frame-preview="{frame}"' if frame else ""
+            variables = ""
+            if category == "mixes":
+                swatch = presets[item["version"]]["swatch"]
+                variables = (
+                    ' style="'
+                    + ";".join(
+                        f"--detail-{token}-{theme}:{color}"
+                        for theme, colors in swatch.items()
+                        for token, color in zip(
+                            ("bg", "accent", "cool", "warm"), colors
+                        )
+                    )
+                    + '"'
+                )
+            cards.append(
+                f'<button type="button" class="study-detail-card" data-{attribute}="{key}" '
+                f'aria-pressed="false" aria-label="{title}"{variables}>'
+                '<span class="study-detail-stage" aria-hidden="true">'
+                f'<span class="study-media-preview media-frame"{frame_attr}>'
+                f'<img src="{escape(image)}" width="240" height="150" loading="lazy" alt="">'
+                "</span></span>"
+                f'<span class="study-detail-name">{title}</span>'
+                f'<span class="study-detail-description">{escape(item["description"])}</span>'
+                "</button>"
+            )
+        panels.append((category, "".join(cards)))
+    return dict(panels)
+
+
 def preset_markup(presets):
     options = []
     cards = []
-    # Put the new work first; the original URLs and A–D labels stay stable.
-    for family in ("New", "Favourite", "Reference"):
+    # Lead with the latest feedback; all original URLs and labels stay stable.
+    for family in ("Top choice", "Shortlist", "Earlier favourite", "Explore"):
         options.append(f'<optgroup label="{family} directions">')
         for key, preset in presets.items():
             if preset["family"] != family:
@@ -69,15 +126,20 @@ def build(built, destination):
         shutil.rmtree(output)
     output.mkdir(parents=True)
     presets = json.loads((SOURCE / "presets.json").read_text())
+    details = json.loads((SOURCE / "details.json").read_text())
 
     assets = {}
     for name in ("study.css", "study.js"):
         source = (SOURCE / name).read_text()
         if name == "study.js":
-            marker = "/* @presets */ {}"
-            if marker not in source:
-                raise ValueError("Missing study preset insertion point")
-            source = source.replace(marker, json.dumps(presets, ensure_ascii=False))
+            for key, value in (("presets", presets), ("details", details)):
+                marker = f"/* @{key} */ {{}}"
+                if marker not in source:
+                    raise ValueError(f"Missing study {key} insertion point")
+                source = source.replace(marker, json.dumps(value, ensure_ascii=False))
+            source = (SOURCE / "media.js").read_text() + "\n" + source
+        else:
+            source += "\n" + (SOURCE / "media.css").read_text()
         data = source.encode()
         stem, extension = name.split(".")
         filename = f"{stem}.{hashlib.sha256(data).hexdigest()[:12]}.{extension}"
@@ -98,6 +160,10 @@ def build(built, destination):
         "{{preset_cards}}", cards
     )
     toolbar = toolbar.replace("{{preset_count}}", str(len(presets)))
+    preview = PreviewImage()
+    preview.feed(pages[Path("index.html")])
+    for key, markup in detail_markup(details, presets, preview.src).items():
+        toolbar = toolbar.replace("{{" + key + "_cards}}", markup)
     toolbar = re.sub(
         r"\{\{icon:([a-z-]+)\}\}",
         lambda match: (

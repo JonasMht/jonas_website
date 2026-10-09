@@ -48,3 +48,5 @@ jobs:
           /tmp/website-browser-tests/bin/python scripts/audit-site.py http://127.0.0.1:8776
           /tmp/website-browser-tests/bin/python scripts/audit-study.py http://127.0.0.1:8776
           /tmp/website-browser-tests/bin/python scripts/audit-site.py http://127.0.0.1:8776 --study --output /tmp/website-study-layouts
+          /tmp/website-browser-tests/bin/python scripts/audit-images.py http://127.0.0.1:8776
+          /tmp/website-browser-tests/bin/python scripts/audit-site.py http://127.0.0.1:8776 --image-study --output /tmp/website-image-layouts
