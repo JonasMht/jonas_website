@@ -11,7 +11,10 @@
         {{- range site.Menus.main }}
         {{- $url := .URL }}
         {{- $active := or (eq $.RelPermalink $url) (and (ne $url $home) (hasPrefix $.RelPermalink $url)) }}
-        <a class="t{{ if $active }} on{{ end }}" href="{{ $url }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+        <a class="t{{ if $active }} on{{ end }}" href="{{ $url }}"{{ if $active }} aria-current="page"{{ end }}>
+            {{- with .Params.icon }}{{ partial "icon.html" (dict "name" .) }}{{ end }}
+            <span>{{ .Name }}</span>
+        </a>
         {{- end }}
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light mode" title="Switch to light mode">
             {{ partial "icon.html" (dict "name" "sun" "class" "theme-icon theme-icon--sun") }}

@@ -4,24 +4,28 @@ identifier = "overview"
 name = "Overview"
 url = "/"
 weight = 1
+params.icon = "layout-grid"
 
 [[main]]
 identifier = "pro"
 name = "Professional"
 url = "/pro/"
 weight = 2
+params.icon = "briefcase-2"
 
 [[main]]
 identifier = "personal"
 name = "Personal"
 url = "/personal/"
 weight = 3
+params.icon = "user-circle"
 
 [[main]]
 identifier = "cv"
 name = "CV"
 url = "/pro/about/jonas-mehtali-resume.pdf"
 weight = 4
+params.icon = "file-text"
 
 # Verified channels — identity block + footer
 [[social]]
