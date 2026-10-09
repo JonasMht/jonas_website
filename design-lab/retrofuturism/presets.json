@@ -1,0 +1,142 @@
+{
+    "blueprint": {
+        "letter": "A",
+        "name": "Blueprint",
+        "family": "Reference",
+        "pattern": "orthographic",
+        "grain": 16,
+        "grid": 32,
+        "glow": 100,
+        "description": "The current blue drafting field, with grain on the background.",
+        "swatch": {
+            "dark": ["#0a1728", "#70dff2", "#00d1eb", "#3761ff"],
+            "light": ["#d5e1f0", "#25458b", "#009cd2", "#285adc"]
+        }
+    },
+    "vector": {
+        "letter": "B",
+        "name": "Vector",
+        "family": "Reference",
+        "pattern": "orthographic",
+        "grain": 20,
+        "grid": 28,
+        "glow": 55,
+        "description": "Mint light, a precise wire grid and sharper geometry.",
+        "swatch": {
+            "dark": ["#0a1a1c", "#9ae7d4", "#58d1a8", "#0b7e83"],
+            "light": ["#dae6df", "#226152", "#58d1a8", "#0b7e83"]
+        }
+    },
+    "light-grid": {
+        "letter": "C",
+        "name": "Light Grid",
+        "family": "Favourite",
+        "pattern": "perspective",
+        "grain": 18,
+        "grid": 48,
+        "glow": 105,
+        "description": "Deep ink, ice-blue light and a receding grid.",
+        "swatch": {
+            "dark": ["#071521", "#94eaff", "#00bcec", "#1c4ad6"],
+            "light": ["#dbe6ed", "#205575", "#00bcec", "#1c4ad6"]
+        }
+    },
+    "afterglow": {
+        "letter": "D",
+        "name": "Afterglow",
+        "family": "Favourite",
+        "pattern": "diagonal",
+        "grain": 24,
+        "grid": 40,
+        "glow": 115,
+        "description": "Indigo, warm light and an angled grid.",
+        "swatch": {
+            "dark": ["#17172b", "#b7baff", "#7041e0", "#d05269"],
+            "light": ["#e1ddeb", "#584183", "#7041e0", "#d05269"]
+        }
+    },
+    "ion": {
+        "letter": "E",
+        "name": "Ion",
+        "family": "New",
+        "pattern": "corridor",
+        "grain": 18,
+        "grid": 44,
+        "glow": 125,
+        "description": "Ice blue and cobalt light around a deep geometric corridor.",
+        "swatch": {
+            "dark": ["#061522", "#a0efff", "#00d0f5", "#3354f6"],
+            "light": ["#dce9f1", "#195574", "#00adc8", "#4762d9"]
+        }
+    },
+    "dusk": {
+        "letter": "F",
+        "name": "Dusk",
+        "family": "New",
+        "pattern": "horizon",
+        "grain": 25,
+        "grid": 60,
+        "glow": 125,
+        "description": "Rose light at the horizon, blue shadows and a wider grid.",
+        "swatch": {
+            "dark": ["#181629", "#edb9d2", "#6559ef", "#f09178"],
+            "light": ["#eadfe6", "#80415e", "#9b8ce5", "#e8a885"]
+        }
+    },
+    "contour": {
+        "letter": "G",
+        "name": "Contour",
+        "family": "New",
+        "pattern": "contours",
+        "grain": 20,
+        "grid": 40,
+        "glow": 110,
+        "description": "Teal and violet, with flowing lines drawn like a terrain map.",
+        "swatch": {
+            "dark": ["#071d22", "#92e9d3", "#23beab", "#9764f5"],
+            "light": ["#dce9e6", "#235d56", "#59b4a2", "#aa8bcf"]
+        }
+    },
+    "orbit": {
+        "letter": "H",
+        "name": "Orbit",
+        "family": "New",
+        "pattern": "orbits",
+        "grain": 14,
+        "grid": 52,
+        "glow": 90,
+        "description": "Cool silver and restrained amber along broad orbital arcs.",
+        "swatch": {
+            "dark": ["#111c2a", "#caddeb", "#507bac", "#d69d5c"],
+            "light": ["#e0e7ed", "#365369", "#7b99b8", "#bc915b"]
+        }
+    },
+    "prism": {
+        "letter": "I",
+        "name": "Prism",
+        "family": "New",
+        "pattern": "facets",
+        "grain": 16,
+        "grid": 64,
+        "glow": 115,
+        "description": "Blue-violet light and angular facets on a near-black field.",
+        "swatch": {
+            "dark": ["#0e142a", "#c0caff", "#32bcd1", "#8558ed"],
+            "light": ["#e2e5f1", "#454f89", "#75b9c9", "#9e88d1"]
+        }
+    },
+    "solar": {
+        "letter": "J",
+        "name": "Solar",
+        "family": "New",
+        "pattern": "raster",
+        "grain": 26,
+        "grid": 48,
+        "glow": 100,
+        "description": "Warm amber, copper and a fine instrument grid.",
+        "swatch": {
+            "dark": ["#20180f", "#f3ce8e", "#bd792c", "#d2643f"],
+            "light": ["#eee2d0", "#765027", "#b58847", "#cb926c"]
+        }
+    }
+}

@@ -47,4 +47,4 @@ jobs:
           /tmp/website-browser-tests/bin/python scripts/audit-controls.py http://127.0.0.1:8776
           /tmp/website-browser-tests/bin/python scripts/audit-site.py http://127.0.0.1:8776
           /tmp/website-browser-tests/bin/python scripts/audit-study.py http://127.0.0.1:8776
-          /tmp/website-browser-tests/bin/python scripts/audit-site.py http://127.0.0.1:8776 --paths '/opt/?v=blueprint' '/opt/?v=vector' '/opt/?v=light-grid' '/opt/?v=afterglow' '/opt/pro/?v=light-grid' '/opt/personal/?v=afterglow' '/opt/pro/research/cnca-2025/?v=vector' '/opt/pro/publications/?v=light-grid' --output /tmp/website-study-layouts
+          /tmp/website-browser-tests/bin/python scripts/audit-site.py http://127.0.0.1:8776 --study --output /tmp/website-study-layouts

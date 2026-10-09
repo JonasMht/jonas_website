@@ -6,15 +6,45 @@ Only the opt/ output is replaced. The normal website stays independent.
 """
 
 import hashlib
+import json
 import re
 import shutil
 import sys
+from html import escape
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "design-lab" / "retrofuturism"
+
+
+def preset_markup(presets):
+    options = []
+    cards = []
+    # Put the new work first; the original URLs and A–D labels stay stable.
+    for family in ("New", "Favourite", "Reference"):
+        options.append(f'<optgroup label="{family} directions">')
+        for key, preset in presets.items():
+            if preset["family"] != family:
+                continue
+            title = escape(f"{preset['letter']} · {preset['name']}")
+            options.append(f'<option value="{key}">{title}</option>')
+            variables = []
+            for theme, colors in preset["swatch"].items():
+                for token, color in zip(("bg", "accent", "cool", "warm"), colors):
+                    variables.append(f"--sample-{token}-{theme}:{color}")
+            cards.append(
+                f'<button type="button" class="study-preset-card" data-preset="{key}" '
+                f'aria-pressed="false" aria-label="{title}">'
+                f'<span class="study-swatch" style="{";".join(variables)}" aria-hidden="true">'
+                '<svg viewBox="0 0 1440 960" preserveAspectRatio="xMidYMid slice" focusable="false">'
+                f'<path data-swatch-path="{key}"></path></svg></span>'
+                f'<span class="study-preset-name">{title}<span class="study-badge">{family}</span></span>'
+                f'<span class="study-preset-description">{escape(preset["description"])}</span></button>'
+            )
+        options.append("</optgroup>")
+    return "".join(options), "".join(cards)
 
 
 def build(built, destination):
@@ -38,10 +68,17 @@ def build(built, destination):
     if output.exists():
         shutil.rmtree(output)
     output.mkdir(parents=True)
+    presets = json.loads((SOURCE / "presets.json").read_text())
 
     assets = {}
     for name in ("study.css", "study.js"):
-        data = (SOURCE / name).read_bytes()
+        source = (SOURCE / name).read_text()
+        if name == "study.js":
+            marker = "/* @presets */ {}"
+            if marker not in source:
+                raise ValueError("Missing study preset insertion point")
+            source = source.replace(marker, json.dumps(presets, ensure_ascii=False))
+        data = source.encode()
         stem, extension = name.split(".")
         filename = f"{stem}.{hashlib.sha256(data).hexdigest()[:12]}.{extension}"
         (output / filename).write_bytes(data)
@@ -56,6 +93,21 @@ def build(built, destination):
         return f'{match.group(1)}"{value}"'
 
     toolbar = (SOURCE / "toolbar.html").read_text()
+    options, cards = preset_markup(presets)
+    toolbar = toolbar.replace("{{preset_options}}", options).replace(
+        "{{preset_cards}}", cards
+    )
+    toolbar = toolbar.replace("{{preset_count}}", str(len(presets)))
+    toolbar = re.sub(
+        r"\{\{icon:([a-z-]+)\}\}",
+        lambda match: (
+            '<svg class="icon" viewBox="0 0 24 24" fill="none" '
+            'stroke="currentColor" stroke-width="1.75" stroke-linecap="round" '
+            'stroke-linejoin="round" aria-hidden="true" focusable="false">'
+            f'<use href="{{{{sprite}}}}#{match.group(1)}"></use></svg>'
+        ),
+        toolbar,
+    )
     for relative, html in pages.items():
         # Only rewrite anchors; assets, canonical URLs and icon sprites keep their URLs.
         html = re.sub(

@@ -8,6 +8,8 @@ Requires Playwright. Run hero-options.py after building Hugo first.
 import asyncio
 import json
 import sys
+from pathlib import Path
+from runpy import run_path
 from urllib.parse import parse_qs, urlsplit
 
 from playwright.async_api import async_playwright
@@ -15,6 +17,12 @@ from playwright.async_api import async_playwright
 
 BASE = (sys.argv[1] if len(sys.argv) > 1 else "http://127.0.0.1:8776").rstrip("/")
 ENGINE = sys.argv[2] if len(sys.argv) > 2 else "chromium"
+PRESETS = json.loads(
+    (
+        Path(__file__).resolve().parents[1] / "design-lab/retrofuturism/presets.json"
+    ).read_text()
+)
+LAYOUT_AUDIT = run_path(str(Path(__file__).with_name("audit-site.py")))
 
 
 async def clipped(page, selector, inset=16, height=None):
@@ -41,7 +49,8 @@ async def main():
         page.on("pageerror", lambda error: errors.append(str(error)))
         await page.goto(BASE + "/opt/?v=blueprint&theme=dark", wait_until="networkidle")
         styles = []
-        for version in ("blueprint", "vector", "light-grid", "afterglow"):
+        for version in PRESETS:
+            await page.locator(".study-browse summary").click()
             button = page.locator(f'[data-preset="{version}"]')
             await button.focus()
             await page.keyboard.press("Enter")
@@ -53,12 +62,36 @@ async def main():
                 )
             )
             assert parse_qs(urlsplit(page.url).query)["v"] == [version]
-        assert len(set(styles)) == 4
+            assert not await page.locator(".study-browse").evaluate("e => e.open")
+        assert len(set(styles)) == len(PRESETS)
+        await page.get_by_role("button", name="Next design", exact=True).click()
+        assert await page.locator("html").get_attribute("data-study") == "blueprint"
+        await page.get_by_role("button", name="Previous design", exact=True).click()
+        assert await page.locator("html").get_attribute("data-study") == "solar"
         passed.append(
-            "four distinct presets: keyboard activation, selected state and URL"
+            f"{len(PRESETS)} distinct presets: gallery keyboard activation, selected state, wraparound stepping and URL"
         )
 
-        await page.locator('[data-preset="light-grid"]').click()
+        # Every new geometry responds to its density control, including equal spacing
+        # across different designs (which must not retain the previous vector path).
+        for version, preset in PRESETS.items():
+            if preset["family"] != "New":
+                continue
+            await page.locator("[data-study-preset]").select_option(version)
+            await page.locator(".study-adjust summary").click()
+            await page.locator("#study-grid").press("Home")
+            sparse = await page.locator(".study-perspective path").first.get_attribute(
+                "d"
+            )
+            await page.locator("#study-grid").press("End")
+            assert sparse != await page.locator(
+                ".study-perspective path"
+            ).first.get_attribute("d")
+            assert await page.locator(".study-perspective").first.is_visible()
+            await page.keyboard.press("Escape")
+        passed.append("all six new geometries redraw when grid spacing changes")
+
+        await page.locator("[data-study-preset]").select_option("light-grid")
         await page.locator(".study-adjust summary").click()
         for key, last in (("grain", "35"), ("grid", "80"), ("glow", "160")):
             await page.locator(f"#study-{key}").focus()
@@ -163,9 +196,14 @@ async def main():
         await page.goto(BASE + "/opt/?v=afterglow&theme=dark", wait_until="networkidle")
         await page.locator("[data-study-preset]").select_option("vector")
         assert await page.locator("html").get_attribute("data-study") == "vector"
+        await page.locator(".study-browse summary").click()
+        await page.locator('[data-preset="solar"]').click()
+        assert await page.locator("html").get_attribute("data-study") == "solar"
+        await page.locator(".study-browse summary").click()
         await page.locator(".study-adjust summary").click()
+        assert not await page.locator(".study-browse").evaluate("e => e.open")
         assert await page.evaluate("document.documentElement.scrollWidth <= innerWidth")
-        await page.locator(".study-settings").evaluate(
+        await page.locator(".study-adjust .study-settings").evaluate(
             "e => e.scrollTop = e.scrollHeight"
         )
         assert await page.locator("[data-study-copy]").is_visible()
@@ -174,7 +212,28 @@ async def main():
         await page.mouse.wheel(0, 800)
         await page.wait_for_function("scrollY > 100")
         passed.append(
-            "320px: native version selector, scrolling settings, no overflow and normal page scrolling"
+            "320px: selector, gallery selection, exclusive drawers, scrolling settings and normal page scrolling"
+        )
+
+        for width in (320, 768, 1440):
+            await page.set_viewport_size({"width": width, "height": 1000})
+            for theme in ("dark", "light"):
+                await page.goto(
+                    BASE + f"/opt/?v=contour&theme={theme}", wait_until="networkidle"
+                )
+                await LAYOUT_AUDIT["settle_page"](page, True)
+                await page.locator(".study-browse summary").click()
+                audit = await page.evaluate(
+                    LAYOUT_AUDIT["AUDIT_JS"],
+                    {
+                        "touch": width <= 768,
+                        "controlSelector": LAYOUT_AUDIT["CONTROL_SELECTOR"],
+                        "javascript": True,
+                    },
+                )
+                assert not audit["issues"], (width, theme, audit["issues"])
+        passed.append(
+            "open gallery: target sizes, text contrast and clipping at 320/768/1440px in both themes"
         )
 
         await page.goto(

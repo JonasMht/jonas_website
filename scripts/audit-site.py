@@ -445,10 +445,21 @@ def main():
     parser.add_argument("--widths", type=int, nargs="+", default=[320, 768, 1440])
     parser.add_argument("--themes", nargs="+", choices=["dark", "light"], default=["dark", "light"])
     parser.add_argument("--paths", nargs="+", help="Audit specific routes instead of discovering every rendered page.")
+    parser.add_argument("--study", action="store_true", help="Audit every design study and each new palette across the main page types.")
     parser.add_argument("--browser", choices=["chromium", "firefox", "webkit"], default="chromium")
     parser.add_argument("--skip-no-js", action="store_true")
     parser.add_argument("--max-screenshots", type=int, default=120)
     args = parser.parse_args()
+    if args.study:
+        if args.paths:
+            parser.error("--study and --paths cannot be combined")
+        presets = json.loads((ROOT / "design-lab/retrofuturism/presets.json").read_text())
+        args.paths = [f"/opt/?v={key}" for key in presets]
+        for key, preset in presets.items():
+            if preset["family"] == "New":
+                args.paths.extend(f"/opt{route}?v={key}" for route in (
+                    "/pro/", "/personal/", "/pro/research/cnca-2025/", "/pro/publications/", "/lab/", "/404.html",
+                ))
     if args.workers < 1 or any(width < 240 for width in args.widths):
         parser.error("workers must be positive and viewport widths at least 240px")
     args.base_url = args.base_url.rstrip("/")

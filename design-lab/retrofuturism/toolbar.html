@@ -1,30 +1,49 @@
 <aside class="study-bar" aria-label="Design comparison">
     <div class="study-row">
         <span class="study-label">Design study</span>
-        <div class="study-presets" role="group" aria-label="Visual direction">
-            <button type="button" data-preset="blueprint" aria-pressed="true">
-                <span>A</span> Blueprint
-            </button>
-            <button type="button" data-preset="vector" aria-pressed="false">
-                <span>B</span> Vector
-            </button>
-            <button type="button" data-preset="light-grid" aria-pressed="false">
-                <span>C</span> Light Grid
-            </button>
-            <button type="button" data-preset="afterglow" aria-pressed="false">
-                <span>D</span> Afterglow
-            </button>
-        </div>
-        <label class="study-mobile-picker">
+        <label class="study-picker">
             <span class="sr-only">Visual direction</span>
             <select data-study-preset>
-                <option value="blueprint">A · Blueprint</option>
-                <option value="vector">B · Vector</option>
-                <option value="light-grid">C · Light Grid</option>
-                <option value="afterglow">D · Afterglow</option>
+                {{preset_options}}
             </select>
         </label>
+        <div class="study-stepper" role="group" aria-label="Step through designs">
+            <button
+                type="button"
+                data-study-step="-1"
+                aria-label="Previous design"
+                title="Previous design"
+            >
+                {{icon:arrow-left}}
+            </button>
+            <span data-study-count aria-hidden="true">1 / {{preset_count}}</span>
+            <button type="button" data-study-step="1" aria-label="Next design" title="Next design">
+                {{icon:arrow-right}}
+            </button>
+        </div>
         <div class="study-tools">
+            <details class="study-browse">
+                <summary aria-label="Browse all designs" title="Browse all designs">
+                    {{icon:layout-grid}}<span class="study-tool-label"
+                        >{{preset_count}} designs</span
+                    >
+                </summary>
+                <div class="study-settings study-gallery">
+                    <div class="study-gallery-inner">
+                        <p class="study-gallery-intro">
+                            Six new directions, your two favourites and the original references.
+                            Pick one to try it on this page.
+                        </p>
+                        <div
+                            class="study-gallery-grid"
+                            role="group"
+                            aria-label="All visual directions"
+                        >
+                            {{preset_cards}}
+                        </div>
+                    </div>
+                </div>
+            </details>
             <button
                 class="study-theme"
                 type="button"
@@ -58,7 +77,7 @@
                 </svg>
             </button>
             <details class="study-adjust">
-                <summary>
+                <summary aria-label="Adjust design" title="Adjust design">
                     <svg
                         class="icon"
                         viewBox="0 0 24 24"
@@ -71,7 +90,7 @@
                     >
                         <use href="{{sprite}}#arrows-horizontal"></use>
                     </svg>
-                    Adjust
+                    <span class="study-tool-label">Adjust</span>
                 </summary>
                 <div class="study-settings">
                     <div class="study-settings-inner">
@@ -176,7 +195,7 @@
             </details>
         </div>
     </div>
-    <p class="study-caption">
+    <p class="study-caption" aria-live="polite">
         Blueprint · The current blue drafting field, with grain on the background.
     </p>
     <noscript

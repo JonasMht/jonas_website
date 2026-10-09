@@ -4,35 +4,9 @@
 
     const root = document.documentElement;
     const storageKey = "jm.design-study.v1";
-    const presets = {
-        blueprint: {
-            grain: 16,
-            grid: 32,
-            glow: 100,
-            caption:
-                "A · Blueprint — The current blue drafting field, with grain on the background.",
-        },
-        vector: {
-            grain: 20,
-            grid: 28,
-            glow: 55,
-            caption:
-                "B · Vector — Mint light, a precise wire grid and sharper geometry. The most restrained.",
-        },
-        "light-grid": {
-            grain: 18,
-            grid: 48,
-            glow: 105,
-            caption:
-                "C · Light Grid — Deep ink, ice-blue light and a receding grid. My recommended direction.",
-        },
-        afterglow: {
-            grain: 24,
-            grid: 40,
-            glow: 115,
-            caption: "D · Afterglow — Indigo, warm light and an angled grid. The most expressive.",
-        },
-    };
+    // The build inserts presets.json here, sharing metadata with the visual picker.
+    const presets = /* @presets */ {};
+    const versions = Object.keys(presets);
     const limits = { grain: [0, 35, 1], grid: [24, 80, 4], glow: [0, 160, 5] };
     let bar;
     let field;
@@ -58,7 +32,7 @@
             ? requested
             : Object.hasOwn(presets, saved.version)
               ? saved.version
-              : "light-grid";
+              : "ion";
         const result = { version };
         for (const key of Object.keys(limits)) {
             const fallback = requested
@@ -73,6 +47,8 @@
 
     function applyTokens() {
         root.dataset.study = state.version;
+        root.dataset.pattern = presets[state.version].pattern;
+        root.dataset.studyRound = presets[state.version].family === "New" ? "2" : "1";
         root.style.setProperty("--study-grain", state.grain / 100);
         root.style.setProperty("--grid-size", state.grid + "px");
         root.style.setProperty("--study-energy", state.glow / 100);
@@ -98,17 +74,103 @@
         }
     }
 
-    function drawGrid() {
-        if (gridDrawn === state.grid) return;
-        gridDrawn = state.grid;
+    // Static vector geometry: no animation loop, canvas or per-scroll drawing.
+    // The same paths drive the real backdrop and its small gallery preview.
+    function patternPath(pattern, spacing) {
         const lines = [];
-        for (let x = -1440; x <= 2880; x += state.grid * 4) {
-            lines.push(`M720 64L${x} 960`);
+        const point = (x, y) => `${Math.round(x)} ${Math.round(y)}`;
+        const segment = (x1, y1, x2, y2) => lines.push(`M${point(x1, y1)}L${point(x2, y2)}`);
+        if (pattern === "perspective" || pattern === "horizon") {
+            const horizon = pattern === "horizon" ? 260 : 64;
+            for (let x = -1440; x <= 2880; x += spacing * 4) {
+                segment(720, horizon, x, 960);
+            }
+            for (let distance = spacing * 0.4; distance < 960 - horizon; distance *= 1.36) {
+                segment(0, horizon + distance, 1440, horizon + distance);
+            }
+            if (pattern === "horizon") segment(0, horizon, 1440, horizon);
+        } else if (pattern === "corridor") {
+            const center = [880, 340];
+            const corners = [
+                [-480, -360],
+                [1840, -360],
+                [1840, 1320],
+                [-480, 1320],
+            ];
+            for (let scale = 0.07; scale < 1.8; scale *= 1 + spacing / 150) {
+                const ring = corners.map(([x, y]) =>
+                    point(center[0] + (x - center[0]) * scale, center[1] + (y - center[1]) * scale),
+                );
+                lines.push(`M${ring.join("L")}Z`);
+            }
+            for (const [x, y] of corners) segment(...center, x, y);
+            segment(...center, -480, 480);
+            segment(...center, 1840, 480);
+        } else if (pattern === "contours") {
+            for (let level = -5; level < 960 / spacing + 6; level++) {
+                let path = "";
+                for (let x = -20; x <= 1460; x += 20) {
+                    const y =
+                        level * spacing +
+                        Math.sin(x / 230 + level * 0.13) * 130 +
+                        Math.sin(x / 490 - level * 0.1) * 90;
+                    path += (x === -20 ? "M" : "L") + point(x, y);
+                }
+                lines.push(path);
+            }
+        } else if (pattern === "orbits") {
+            const cx = 960,
+                cy = 280;
+            for (let radius = spacing; radius < 1600; radius += spacing * 1.7) {
+                const ry = radius * 0.76;
+                lines.push(
+                    `M${point(cx - radius, cy)}a${radius} ${ry} 0 1 0 ${radius * 2} 0a${radius} ${ry} 0 1 0 ${-radius * 2} 0`,
+                );
+            }
+            for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 6) {
+                segment(cx, cy, cx + Math.cos(angle) * 1800, cy + Math.sin(angle) * 1400);
+            }
+        } else if (pattern === "facets") {
+            const stepX = spacing * 3,
+                stepY = spacing * 2.2;
+            const meshPoint = (column, row) => [
+                column * stepX +
+                    ((row % 2) * stepX) / 2 +
+                    Math.sin(row * 1.7 + column) * spacing * 0.4,
+                row * stepY + Math.cos(row + column * 0.7) * spacing * 0.5,
+            ];
+            for (let row = -2; row < 960 / stepY + 2; row++) {
+                for (let column = -2; column < 1440 / stepX + 2; column++) {
+                    const a = meshPoint(column, row),
+                        b = meshPoint(column + 1, row);
+                    const c = meshPoint(column + (row % 2 ? 1 : 0), row + 1);
+                    lines.push(`M${point(...a)}L${point(...b)}L${point(...c)}Z`);
+                }
+            }
+        } else if (pattern === "diagonal") {
+            for (let x = -1440; x < 2880; x += spacing * 3) {
+                segment(x, 0, x + 1440, 960);
+                segment(x, 0, x - 1440, 960);
+            }
+        } else {
+            const raster = pattern === "raster";
+            for (let y = 0; y < 960; y += raster ? spacing / 2 : spacing * 2)
+                segment(0, y, 1440, y);
+            for (let x = 0; x < 1440; x += raster ? spacing * 4 : spacing * 2) {
+                segment(x, 0, x, 960);
+                if (raster) for (let y = 0; y < 960; y += spacing * 2) segment(x - 7, y, x + 7, y);
+            }
         }
-        for (let distance = state.grid * 0.4; distance < 900; distance *= 1.36) {
-            lines.push(`M0 ${64 + distance}H1440`);
-        }
-        for (const path of field.querySelectorAll("path")) path.setAttribute("d", lines.join(""));
+        return lines.join("");
+    }
+
+    function drawGrid() {
+        const pattern = presets[state.version].pattern;
+        const key = `${pattern}:${state.grid}`;
+        if (gridDrawn === key) return;
+        gridDrawn = key;
+        const pathData = patternPath(pattern, state.grid);
+        for (const path of field.querySelectorAll("path")) path.setAttribute("d", pathData);
     }
 
     function syncTheme() {
@@ -126,7 +188,12 @@
             button.setAttribute("aria-pressed", String(button.dataset.preset === state.version));
         }
         bar.querySelector("[data-study-preset]").value = state.version;
-        bar.querySelector(".study-caption").textContent = presets[state.version].caption;
+        const preset = presets[state.version];
+        const caption = `${preset.letter} · ${preset.name} — ${preset.description}`;
+        const description = bar.querySelector(".study-caption");
+        if (description.textContent !== caption) description.textContent = caption;
+        bar.querySelector("[data-study-count]").textContent =
+            `${versions.indexOf(state.version) + 1} / ${versions.length}`;
         for (const key of Object.keys(limits)) {
             bar.querySelector(`[data-knob="${key}"]`).value = state[key];
             bar.querySelector(`[data-value="${key}"]`).textContent =
@@ -144,8 +211,8 @@
 
     function choose(version) {
         if (!Object.hasOwn(presets, version)) return;
-        state = { version, ...presets[version] };
-        delete state.caption;
+        const { grain, grid, glow } = presets[version];
+        state = { version, grain, grid, glow };
         bar.querySelector(".study-message").textContent = "";
         render();
     }
@@ -200,8 +267,27 @@
             field.append(svg);
         }
         document.querySelector(".page-surface").prepend(field);
+        for (const preview of bar.querySelectorAll("[data-swatch-path]")) {
+            const preset = presets[preview.dataset.swatchPath];
+            preview.setAttribute("d", patternPath(preset.pattern, preset.grid));
+        }
         for (const button of bar.querySelectorAll("[data-preset]")) {
-            button.addEventListener("click", () => choose(button.dataset.preset));
+            button.addEventListener("click", () => {
+                choose(button.dataset.preset);
+                const gallery = bar.querySelector(".study-browse");
+                gallery.open = false;
+                gallery.querySelector("summary").focus({ preventScroll: true });
+            });
+        }
+        for (const button of bar.querySelectorAll("[data-study-step]")) {
+            button.addEventListener("click", () => {
+                const next =
+                    (versions.indexOf(state.version) +
+                        Number(button.dataset.studyStep) +
+                        versions.length) %
+                    versions.length;
+                choose(versions[next]);
+            });
         }
         bar.querySelector("[data-study-preset]").addEventListener("change", (event) =>
             choose(event.target.value),
@@ -235,15 +321,21 @@
         pagePicker.addEventListener("change", () => {
             location.href = versionURL(pagePicker.value);
         });
-        const adjustments = bar.querySelector("details");
+        const drawers = [...bar.querySelectorAll("details")];
+        for (const drawer of drawers) {
+            drawer.querySelector("summary").addEventListener("click", () => {
+                for (const other of drawers) if (other !== drawer) other.open = false;
+            });
+        }
         document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape" && adjustments.open) {
-                adjustments.open = false;
-                adjustments.querySelector("summary").focus();
+            const opened = drawers.find((drawer) => drawer.open);
+            if (event.key === "Escape" && opened) {
+                opened.open = false;
+                opened.querySelector("summary").focus();
             }
         });
         document.addEventListener("click", (event) => {
-            if (!bar.contains(event.target)) adjustments.open = false;
+            if (!bar.contains(event.target)) for (const drawer of drawers) drawer.open = false;
             const link = event.target.closest('a[href^="/opt/"]');
             if (link) link.href = versionURL(link.href);
         });
@@ -251,6 +343,9 @@
             state = readState();
             render();
         });
+        new ResizeObserver(() => {
+            root.style.setProperty("--study-bar-height", `${bar.getBoundingClientRect().height}px`);
+        }).observe(bar);
         render();
     });
 })();
