@@ -213,6 +213,7 @@
         if (!Object.hasOwn(presets, version)) return;
         const { grain, grid, glow } = presets[version];
         state = { version, grain, grid, glow };
+        bar.querySelector(".study-browse").open = false;
         bar.querySelector(".study-message").textContent = "";
         render();
     }
@@ -234,7 +235,7 @@
             input.className = "study-copy-buffer";
             input.value = url;
             input.setAttribute("aria-label", "Version link");
-            document.body.append(input);
+            bar.append(input);
             input.select();
             try {
                 copied = document.execCommand("copy");
@@ -275,7 +276,6 @@
             button.addEventListener("click", () => {
                 choose(button.dataset.preset);
                 const gallery = bar.querySelector(".study-browse");
-                gallery.open = false;
                 gallery.querySelector("summary").focus({ preventScroll: true });
             });
         }
@@ -338,6 +338,10 @@
             if (!bar.contains(event.target)) for (const drawer of drawers) drawer.open = false;
             const link = event.target.closest('a[href^="/opt/"]');
             if (link) link.href = versionURL(link.href);
+        });
+        document.addEventListener("focusin", (event) => {
+            // Tabbing back into the page must never leave its focused link covered.
+            if (!bar.contains(event.target)) for (const drawer of drawers) drawer.open = false;
         });
         window.addEventListener("popstate", () => {
             state = readState();

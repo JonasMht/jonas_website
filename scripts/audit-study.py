@@ -68,6 +68,16 @@ async def main():
         assert await page.locator("html").get_attribute("data-study") == "blueprint"
         await page.get_by_role("button", name="Previous design", exact=True).click()
         assert await page.locator("html").get_attribute("data-study") == "solar"
+        await page.locator(".study-browse summary").click()
+        await page.locator(".study-adjust summary").focus()
+        await page.keyboard.press("Tab")
+        assert await page.locator(".site-header .sys").evaluate(
+            "e => e === document.activeElement"
+        )
+        assert not await page.locator(".study-browse").evaluate("e => e.open")
+        await page.locator(".study-browse summary").click()
+        await page.locator("[data-study-preset]").select_option("ion")
+        assert not await page.locator(".study-browse").evaluate("e => e.open")
         passed.append(
             f"{len(PRESETS)} distinct presets: gallery keyboard activation, selected state, wraparound stepping and URL"
         )
